@@ -30,7 +30,7 @@ export const initialValues = {
   principleEducation: "",
   logo: "",
   address: "",
-  isActive: "",
+  isActive: "Active",
 };
 
 const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
@@ -53,7 +53,7 @@ const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
       address: Yup.string().required("address is required"),
       isActive: Yup.string(),
     });
-  const title: any = mode === "Add" ? "Add Branches" : "Edit Branches";
+  const title: any = mode === "Add" ? "Add Branch" : "Edit Branch";
   const actionLabel = mode === "Add" ? "Add" : "Edit";
 
   const status = [
@@ -71,7 +71,7 @@ const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
     <Dialog
       open={open}
       onClose={onClose}
-      maxWidth="lg"
+      maxWidth="sm"
       fullWidth
       PaperProps={{
         sx: {
@@ -116,7 +116,7 @@ const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
                   </Typography>
                 </Grid>
                 <Grid container spacing={2}>
-                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                  <Grid size={{ xs: 12 }}>
                     <CustomFields
                       name="name"
                       label="Branch Name"
@@ -124,7 +124,7 @@ const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
                     />
                   </Grid>
 
-                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                  <Grid size={{ xs: 12 }}>
                     <CustomFields
                       name="principleName"
                       label="Principle Name"
@@ -132,7 +132,7 @@ const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
                     />
                   </Grid>
 
-                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                  <Grid size={{ xs: 12 }}>
                     <CustomFields
                       name="principleEducation"
                       label="Principle Education"
@@ -141,7 +141,7 @@ const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
                   </Grid>
 
                   {mode === "Edit" && (
-                    <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                    <Grid size={{ xs: 12 }}>
                       <CustomSelect
                         name="isActive"
                         label="isActive"
@@ -160,7 +160,7 @@ const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
                     />
                   </Grid>
 
-                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                  <Grid size={{ xs: 12 }}>
                     <FileUploadField
                       key={"logo"}
                       name={"logo"}

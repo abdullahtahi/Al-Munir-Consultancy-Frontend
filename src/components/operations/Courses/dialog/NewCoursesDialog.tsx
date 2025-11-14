@@ -61,7 +61,7 @@ const NewCoursesDialog: React.FC<NewCoursesDialogProps> = ({
     <Dialog
       open={open}
       onClose={onClose}
-      maxWidth="lg"
+      maxWidth="sm"
       fullWidth
       PaperProps={{
         sx: {
@@ -99,7 +99,7 @@ const NewCoursesDialog: React.FC<NewCoursesDialogProps> = ({
               <DialogContent>
                 <Grid container spacing={2} sx={{
                 }}>
-                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                  <Grid size={{ xs: 12 }}>
                     <CustomFields
                       name="name"
                       label="Course Name"
@@ -108,7 +108,7 @@ const NewCoursesDialog: React.FC<NewCoursesDialogProps> = ({
                   </Grid>
 
                   {mode === "Edit" && (
-                    <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                    <Grid size={{ xs: 12 }}>
                       <CustomSelect
                         name="isActive"
                         label="isActive"
@@ -118,7 +118,7 @@ const NewCoursesDialog: React.FC<NewCoursesDialogProps> = ({
                       />
                     </Grid>
                   )}
-                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                  <Grid size={{ xs: 12 }}>
                     <FileUploadField
                       key={"logo"}
                       name={"logo"}
