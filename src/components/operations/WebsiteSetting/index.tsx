@@ -18,7 +18,12 @@ export const initialValues = {
   logo: "",
   facebookLink: "",
   youtubeLink: "",
-  email: ""
+  email: "",
+  sucessStories:"",
+  trustedTutors:"",
+  schedule:"",
+  courses:""
+
 };
 
 const WebisteInforamtionComponent = () => {
@@ -37,13 +42,17 @@ const WebisteInforamtionComponent = () => {
       facebookLink: Yup.string(),
       youtubeLink: Yup.string(),
       email: Yup.string().required("email is required"),
+      sucessStories:Yup.string().required("sucessStories is required"),
+      trustedTutors:Yup.string().required("Trusted Tutors is required"),
+      schedule:Yup.string().required("Schedule is required"),
+      courses:Yup.string().required("courses is required"),
     });
     const handleSubmit = async (values: any) => {
       try {
         if (values?.id) {
           const {isActive,...rest}=values
           const user: any = await put(
-            `${baseUrl}/api/v1/courses/${singleUser.id}`,
+            `${baseUrl}/api/v1/courses/${singleUser?.id}`,
             {...rest,isActive:isActive== "Active" ?true:false}
           );
   
@@ -171,6 +180,43 @@ const WebisteInforamtionComponent = () => {
                       placeholder="Enter Youtube Link"
                     />
                   </Grid>
+                  <Grid size={{ xs: 12,sm:12,md:6 }}>
+                    <CustomFields
+                      name="sucessStories"
+                      label="Sucess Stories"
+                      placeholder="Enter Sucess Stories"
+                      type="number"
+                    />
+                  </Grid>
+                  <Grid size={{ xs: 12,sm:12,md:6 }}>
+                    <CustomFields
+                      name="trustedTutors"
+                      label="Trusted Tutors"
+                      placeholder="Enter Trusted Tutors"
+                      type="number"
+
+                    />
+                  </Grid>
+               
+                  
+                  <Grid size={{ xs: 12,sm:12,md:6 }}>
+                    <CustomFields
+                      name="schedule"
+                      label="Schedule"
+                      placeholder="Enter Schedule"
+                      type="number"
+
+                    />
+                  </Grid>
+                  <Grid size={{ xs: 12,sm:12,md:6 }}>
+                    <CustomFields
+                      name="courses"
+                      label="Courses"
+                      placeholder="Enter courses"
+                      type="number"
+
+                    />
+                  </Grid>
                   <Grid size={{ xs: 12, sm: 12, md: 12 }}>
                     <FileUploadField
                       key={"logo"}
@@ -178,7 +224,7 @@ const WebisteInforamtionComponent = () => {
                       label={"Logo"}
                     />
                   </Grid>
-                  {Object.keys(singleUser).length>0?   <img
+                  {singleUser && Object.keys(singleUser)?.length>0?   <img
                         src={`${BASE_URL + "/" + singleUser.logo}`}
                         className="admissionImgs"
                         alt="Branch Image"
