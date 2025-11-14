@@ -42,7 +42,10 @@ import {
   IconUserCog,
   IconWallet,
   IconWindmill,
-  IconGiftFilled
+  IconGiftFilled,
+  IconBrandEtsy,
+  IconBookFilled,
+  IconAdjustmentsCode
 } from '@tabler/icons-react';
 import { uniqueId } from 'lodash';
 
@@ -97,6 +100,33 @@ const Menuitems: MenuitemsType[] = [
   //   icon: IconWallet,
   //   href: '/operations/sale-unit',
   // },
+  {
+    id: uniqueId(),
+    title: 'Settings',
+    icon: IconSection,
+    href: '/vehicle-operation/',
+    children: [
+      {
+        id: uniqueId(),
+        title: 'Branches',
+        icon: IconBrandEtsy,
+        href: '/vehicle-operation/branches',
+      },
+      {
+        id: uniqueId(),
+        title: 'Courses',
+        icon: IconBookFilled,
+        href: '/vehicle-operation/courses',
+      },
+      {
+        id: uniqueId(),
+        title: 'Website Settings',
+        icon: IconAdjustmentsCode,
+        href: '/vehicle-operation/website-setting',
+      },
+    ],
+  },
+
   // {
   //   id: uniqueId(),
   //   title: 'Change Grade',

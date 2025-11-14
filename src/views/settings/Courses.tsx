@@ -1,17 +1,17 @@
 import PageContainer from '@components/container/PageContainer';
-import VehicleInComponent from '@components/vehicle-operation/vehicle-in';
+import CoursesIn from 'src/components/settings/Courses';
 import Box from '@mui/material/Box';
 
-const VehicleIn = () => {
+const Courses = () => {
   return (
-    <PageContainer title="VehicleIn" description="this is VehicleIn">
+    <PageContainer title="Courses" description="this is Courses">
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
         <Box sx={{ width: '100%' }}>
-          <VehicleInComponent />
+          <CoursesIn />
         </Box>
       </Box>
     </PageContainer>
   );
 };
 
-export default VehicleIn;
+export default Courses;

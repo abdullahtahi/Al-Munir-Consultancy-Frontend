@@ -1,10 +1,10 @@
 import Grid from '@mui/material/Grid2';
-import AdmissionsList from './AdmissionsList';
+import BranchList from './BranchesList';
 
 const AdmissionsComponent = () => {
   return (
     <Grid container spacing={3}>
-      <AdmissionsList/>
+      <BranchList/>
       </Grid>
   );
 };

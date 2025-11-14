@@ -60,6 +60,9 @@ const ShippingLineSelector: React.FC<Props> = ({
 
     return (
       <Autocomplete
+      sx={{
+        height:"2.7rem"
+      }}
         options={userData?.rows.map((row: any) => ({
           label: row.firstName + row.lastName,
         }))}

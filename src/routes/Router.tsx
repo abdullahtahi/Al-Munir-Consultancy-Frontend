@@ -58,17 +58,17 @@ const FasahPayment = Loadable(
 const FasahBulkPayment = Loadable(
   lazy(() => import('../views/fasah/BulkPayment'))
 );
-const VehicleIn = Loadable(
-  lazy(() => import('../views/vehicle-operation/VehicleIn'))
+const Branches = Loadable(
+  lazy(() => import('../views/settings/Branches'))
 );
-const VehicleOut = Loadable(
-  lazy(() => import('../views/vehicle-operation/VehicleOut'))
+const Courses = Loadable(
+  lazy(() => import('../views/settings/Courses'))
 );
-const VehicleOutside = Loadable(
-  lazy(() => import('../views/vehicle-operation/VehicleOutside'))
+const WebsiteSetting = Loadable(
+  lazy(() => import('../views/settings/WebsiteSetting'))
 );
 const VehiclePickupSlip = Loadable(
-  lazy(() => import('../views/vehicle-operation/VehiclePickupSlip'))
+  lazy(() => import('../views/settings/VehiclePickupSlip'))
 );
 
 const SummaryReport = Loadable(lazy(() => import('../views/reports/Summary')));
@@ -234,9 +234,9 @@ const Router = [
       // { path: '/fasah/bulk-download', element: <FasahBulkDownload /> },
       // { path: '/fasah/payment', element: <FasahPayment /> },
       // { path: '/fasah/bulk-payment', element: <FasahBulkPayment /> },
-      // { path: '/vehicle-operation/in', element: <VehicleIn /> },
-      // { path: '/vehicle-operation/out', element: <VehicleOut /> },
-      // { path: '/vehicle-operation/outside', element: <VehicleOutside /> },
+      { path: '/vehicle-operation/branches', element: <Branches /> },
+      { path: '/vehicle-operation/courses', element: <Courses /> },
+      { path: '/vehicle-operation/website-setting', element: <WebsiteSetting /> },
       // {
       //   path: '/vehicle-operation/pickup-slip',
       //   element: <VehiclePickupSlip />,

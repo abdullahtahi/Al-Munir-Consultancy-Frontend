@@ -1,17 +1,18 @@
-import PageContainer from '@components/container/PageContainer';
-import VehicleOutComponent from '@components/vehicle-operation/vehicle-out';
-import Box from '@mui/material/Box';
 
-const VehicleOut = () => {
+import PageContainer from '@components/container/PageContainer';
+import Box from '@mui/material/Box';
+import WebsiteSettingComponent from 'src/components/settings/website-setting';
+
+const WebsiteSetting = () => {
   return (
-    <PageContainer title="VehicleOut" description="this is VehicleOut">
+    <PageContainer title="Website Setting" description="this is Website Setting">
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
         <Box sx={{ width: '100%' }}>
-          <VehicleOutComponent />
+          <WebsiteSettingComponent />
         </Box>
       </Box>
     </PageContainer>
   );
 };
 
-export default VehicleOut;
+export default WebsiteSetting;

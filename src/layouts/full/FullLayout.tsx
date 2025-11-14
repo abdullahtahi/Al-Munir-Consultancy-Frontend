@@ -16,7 +16,7 @@ import Sidebar from './vertical/sidebar/Sidebar';
 const MainWrapper = styled('div')(() => ({
   display: 'flex',
   minHeight: '100vh',
-  width: '100%',
+  width: '100vw !important',
 }));
 
 const PageWrapper = styled('div')(() => ({

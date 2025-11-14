@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { Add, FilterList } from '@mui/icons-material';
 import { IconPencil, IconTrash } from '@tabler/icons-react';
 
-import { Alert, Box, Button, Collapse, Snackbar, Typography, useTheme } from '@mui/material';
+import { Alert, Box, Button, Chip, Collapse, Snackbar, Stack, useTheme } from '@mui/material';
 import PageContainer from '@components/layout/PageContainer';
 import GenericTable from 'src/components/generic-table';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/store';
 import { baseUrl, destroy, get, post, put } from 'src/services/default';
-import AdmissionsFilter from './AdmissionsFilters';
-import AdmissionsDialog from './dialog/NewAdmissionDialog';
+import AdmissionsFilter from './CoursesFilters';
+import NewCoursesDialog from './dialog/NewCoursesDialog';
 import { DeleteDialog } from 'src/components/delete-dialog/DeleteDialog';
 import Grid from '@mui/material/Grid2';
 interface TableColumn {
@@ -23,7 +23,7 @@ interface TableColumn {
   render?: (row: any, index: number) => React.ReactNode;
 }
 
-const AdmissionsList: React.FC = () => {
+const CoursesList: React.FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const [singleUser, setSingleUser] = useState<any>({});
@@ -41,14 +41,14 @@ const AdmissionsList: React.FC = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(20);
-  const [admissionsData, setAdmissionsData] = useState<any[]>([]);
+  const [branchData, setBranchData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   // Add/Edit dialog state
-  const [admissionDialogOpen, setAdmissionDialogOpen] = useState(false);
-  const [admissionDialogMode, setAdmissionDialogMode] = useState<
+  const [courseDialogOpen, setCourseOpenDialog] = useState(false);
+  const [courseDialogMode, setCourseDialogMode] = useState<
     'Add' | 'Edit'
   >('Add');
 
@@ -69,59 +69,33 @@ const AdmissionsList: React.FC = () => {
       render: (_, index) => index + 1,
     },
     {
-      id: 'studentName',
-      label: 'Student Name',
+      id: 'name',
+      label: 'Name',
       align: 'left',
       minWidth: 80,
       classNames: 'pr-0 text-nowrap',
       key: 'Student.studentName',
-      render: (row) => row?.Student.studentName || '-',
+      render: (row) => row?.name || '-',
     },
     {
-      id: 'Class',
-      label: 'Class',
+      id: 'isActive',
+      label: 'status',
       align: 'left',
       minWidth: 80,
       classNames: 'pr-0 text-nowrap',
-      key: 'Student.phone',
-      render: (row) => row?.admissionInClass || '-',
+      key: 'status',
+      render: (row:any) =>
+        row.isActive == true ? (
+          <Stack direction="row" spacing={1}>
+            <Chip label="Active" color="success" />
+          </Stack>
+        ) : (
+          <Stack direction="row" spacing={1}>
+            <Chip label="In Active" color="error" />
+          </Stack>
+        )
     },
-    {
-      id: 'DependOn',
-      label: 'Depend On',
-      align: 'left',
-      minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'DependOn.relation',
-      render: (row) => row.DependOn.relation,
-    },
-    {
-      id: 'feeAmount',
-      label: 'feeAmount',
-      align: 'left',
-      minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'feeAmount',
-      render: (row) => row.feeAmount,
-    },
-    {
-      id: 'admissionNumber',
-      label: 'Admission Number',
-      align: 'left',
-      minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'grade',
-      render: (row) => row.admissionNumber,
-    },
-    {
-      id: 'admissionType',
-      label: 'Admission Type',
-      align: 'left',
-      minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'grade',
-      render: (row) => row.admissionType,
-    },
+   
     {
       id: 'Edit',
       label: 'Edit',
@@ -160,20 +134,21 @@ const AdmissionsList: React.FC = () => {
 
   const handleOpenEdit = (row: any) => {
     setSingleUser(row);
-    setAdmissionDialogMode('Edit');
-    setAdmissionDialogOpen(true);
+    setCourseDialogMode('Edit');
+    setCourseOpenDialog(true);
   };
 
-  const getAdmissions = useCallback(
+  const getCourses = useCallback(
     async (values: any) => {
       try {
         setLoading(true);
+        console.log("values",values)
         const queryString = new URLSearchParams(values).toString();
         const admissions: any = await get(
-          `${baseUrl}/api/v1/admissions?page=${page}&limit=${rowsPerPage}&${queryString}`
+          `${baseUrl}/api/v1/courses?page=${page}&limit=${rowsPerPage}&${queryString}`
         );
         if(admissions.data){
-          setAdmissionsData(admissions.data.rows);
+          setBranchData(admissions.data.rows);
           setTotalCount(admissions.data.count);
         } else{
           setSnackbar({
@@ -182,8 +157,6 @@ const AdmissionsList: React.FC = () => {
           severity: 'error',
         })
       }
-      console.log("admissions",admissions)
-
         return admissions;
       } catch (error: any) {
         setSnackbar({
@@ -199,10 +172,12 @@ const AdmissionsList: React.FC = () => {
   );
   const handleSubmit = async (values: any) => {
     try {
-      if (admissionDialogMode == 'Edit') {
+      if (courseDialogMode == 'Edit') {
+        const {isActive,...rest}=values
+        console.log("")
         const user: any = await put(
-          `${baseUrl}/api/v1/admissions/${singleUser.id}`,
-          values
+          `${baseUrl}/api/v1/courses/${singleUser.id}`,
+          {...rest,isActive:isActive== "Active" ?true:false}
         );
 
         setSnackbar({
@@ -211,19 +186,19 @@ const AdmissionsList: React.FC = () => {
           severity: 'success',
         });
       } else {
-        const admission: any = await post(
-          `${baseUrl}/api/v1/admissions/create`,
+        const courses: any = await post(
+          `${baseUrl}/api/v1/courses`,
           values
         );
-        console.log('admission', admission);
+        console.log('courses', courses);
         setSnackbar({
           open: true,
-          message: admission.message || 'Admission created SuccessFully',
+          message: courses.message || 'Course Created SuccessFully',
           severity: 'success',
         });
       }
 
-      setAdmissionDialogOpen(false);
+      setCourseOpenDialog(false);
     } catch (error: any) {
       error.map((row: any) => {
         setSnackbar({
@@ -237,14 +212,14 @@ const AdmissionsList: React.FC = () => {
 
   const deleteImg = async () => {
     try {
-      await destroy(`${baseUrl}/api/v1/admissions/${singleUser.id}`);
+      await destroy(`${baseUrl}/api/v1/courses/${singleUser.id}`);
       setSnackbar({
         open: true,
         message: 'Deleted Successfull',
         severity: 'success',
       });
       hanldCloseDeleteModal();
-      getAdmissions({});
+      getCourses({});
     } catch (error: any) {
       setSnackbar({
         open: true,
@@ -254,14 +229,14 @@ const AdmissionsList: React.FC = () => {
     }
   };
   useEffect(() => {
-    getAdmissions({});
-  }, [rowsPerPage, page, admissionDialogOpen]);
+    getCourses({});
+  }, [rowsPerPage, page, courseDialogOpen]);
 
  
   return (
     <>
       <PageContainer
-        heading={<span>Admissions ({totalCount})</span>}
+        heading={<span>Courses ({totalCount})</span>}
         breadcrumbs={[
           { title: t('home'), to: '/' },
           { title: t('Admissions'), to: '/admissions' },
@@ -270,8 +245,8 @@ const AdmissionsList: React.FC = () => {
           <Button
             variant="contained"
             onClick={() => {
-              setAdmissionDialogMode('Add');
-              setAdmissionDialogOpen(true);
+              setCourseDialogMode('Add');
+              setCourseOpenDialog(true);
             }}
             color="primary"
             size="small"
@@ -299,14 +274,14 @@ const AdmissionsList: React.FC = () => {
         <Collapse in={showFilters} timeout="auto" unmountOnExit>
           <Box mb={2} width="100%">
             <AdmissionsFilter
-            getAdmissions={getAdmissions}
+            getCourses={getCourses}
             />
           </Box>
         </Collapse>
 
     <Grid size={12}>
             <GenericTable
-              data={admissionsData}
+              data={branchData}
               columns={columns}
               page={page}
               rowsPerPage={rowsPerPage}
@@ -319,11 +294,11 @@ const AdmissionsList: React.FC = () => {
         
       </PageContainer>
 
-      <AdmissionsDialog
-        open={admissionDialogOpen}
-        onClose={() => setAdmissionDialogOpen(false)}
+      <NewCoursesDialog
+        open={courseDialogOpen}
+        onClose={() => setCourseOpenDialog(false)}
         handleSubmit={handleSubmit}
-        mode={admissionDialogMode}
+        mode={courseDialogMode}
         singleUser={singleUser}
       />
       <DeleteDialog
@@ -351,4 +326,4 @@ const AdmissionsList: React.FC = () => {
   );
 };
 
-export default AdmissionsList;
+export default CoursesList;

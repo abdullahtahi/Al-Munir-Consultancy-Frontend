@@ -30,10 +30,10 @@ const FileUploadField: React.FC<FileUploadProps> = ({ name, label }) => {
         await setFieldValue(name, '');
       }
       
-      // Use Formik's built-in touch function
+
       setFieldTouched(name, true);
       
-      // Validate the field after a short delay to ensure state is updated
+
       setTimeout(() => {
         validateField(name);
       }, 100);
@@ -50,9 +50,10 @@ const FileUploadField: React.FC<FileUploadProps> = ({ name, label }) => {
 
   return (
     <>
-      <Typography variant="h6" sx={{ mb: 2 }}>
+   {label !=="" && <Typography variant="h6" sx={{ mb: 2 }}>
         {label}
       </Typography>
+        }
       <TextField
         name={name}
         type="file"

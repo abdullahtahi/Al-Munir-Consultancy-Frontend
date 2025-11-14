@@ -45,7 +45,9 @@ import {
   IconUserCog,
   IconUserPlus,
   IconWallet,
-  IconWindmill
+  IconWindmill,
+  IconBrandEtsy
+
 } from '@tabler/icons-react';
 import { uniqueId } from 'lodash';
 
@@ -107,7 +109,7 @@ const Menuitems: MenuItemsType[] = [
           {
             id: uniqueId(),
             title: 'Vehicle - IN',
-            icon: IconArrowDownLeft,
+            icon: IconBrandEtsy,
             href: '/vehicle-operation/in',
           },
           {

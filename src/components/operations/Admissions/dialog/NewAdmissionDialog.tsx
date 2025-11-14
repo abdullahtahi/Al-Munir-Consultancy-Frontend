@@ -77,15 +77,15 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
       gender: Yup.string().required('Gender is required'),
       phone: Yup.string().required('Phone number is required'),
       residentNumber: Yup.string(),
-      // profileImg: Yup.string().required('Profile image is required'),
-      // birthCertificate: Yup.string().required('Birth certificate is required'),
+      birthCertificate: Yup.string().required('Birth certificate is required'),
+      profileImg: Yup.string().required('Profile image is required'),
       schoolLeavingCertificate: Yup.string(),
-      // fatherCnicImgFront: Yup.string().required(
-      //   'Father CNIC front image is required'
-      // ),
-      // fatherCnicImgBack: Yup.string().required(
-      //   'Father CNIC back image is required'
-      // ),
+      fatherCnicImgFront: Yup.string().required(
+        'Father CNIC front image is required'
+      ),
+      fatherCnicImgBack: Yup.string().required(
+        'Father CNIC back image is required'
+      ),
       dateOfBirth: Yup.string().required('Date of birth is required'),
       fatherName: Yup.string().required('Father name is required'),
       fatherEducation: Yup.string().required('Father education is required'),
@@ -116,6 +116,20 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
     {
       key: 'Female',
       value: 'Female',
+    },
+  ];
+  const status = [
+    {
+      key: 'Pending',
+      value: 'Pending',
+    },
+    {
+      key: 'Active',
+      value: 'Active',
+    },
+    {
+      key: 'In Active',
+      value: 'In Active',
     },
   ];
 
@@ -182,6 +196,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                 residentNumber: singleUser.Student?.residentNumber || '',
                 admissionNumber: singleUser.admissionNumber || '',
                 name: singleUser?.DependOn?.name,
+                status:singleUser.status,
                 relation: singleUser?.DependOn?.relation,
                 address: singleUser?.DependOn?.address,
                 profileImg: singleUser.Student?.profileImg || '',
@@ -201,6 +216,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
         enableReinitialize
       >
         {({ handleSubmit, errors }) => {
+          console.log("errors 210",errors)
           return (
             <Form onSubmit={handleSubmit}>
               <DialogContent>
@@ -381,7 +397,15 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                       type="number"
                     />
                   </Grid>
-
+             { mode === 'Edit' &&     <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                    <CustomSelect
+                      name="status"
+                      label="status"
+                      placeholder="Enter Status"
+                      options={status}
+                    />
+                  </Grid>
+}
                   <Grid size={{ xs: 12 }}>
                     <Typography variant="h3">Depend On </Typography>
                   </Grid>
