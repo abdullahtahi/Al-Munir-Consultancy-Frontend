@@ -190,8 +190,8 @@ const BranchList: React.FC = () => {
   );
   const handleSubmit = async (values: any) => {
     try {
+      const {isActive,...rest}=values
       if (branchDialogMode == 'Edit') {
-        const {isActive,...rest}=values
         console.log("")
         const user: any = await put(
           `${baseUrl}/api/v1/branches/${singleUser.id}`,
@@ -206,7 +206,7 @@ const BranchList: React.FC = () => {
       } else {
         const branches: any = await post(
           `${baseUrl}/api/v1/branches`,
-          values
+          {...rest,isActive:isActive== "Active" ?true:false}
         );
         console.log('branches', branches);
         setSnackbar({
