@@ -24,7 +24,7 @@ export const signIn = async (
   password: string,
 ): Promise<ApiResponse<SignInResponse>> => {
   try {
-    const response = await post<SignInResponse>(`${baseUrl}api/v1/auth/login`, {
+    const response = await post<SignInResponse>(`${baseUrl}/api/v1/auth/login`, {
       email,
       password,
     }, true);
