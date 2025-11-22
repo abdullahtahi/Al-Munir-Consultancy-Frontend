@@ -12,7 +12,7 @@ interface VersionCheckCallback {
   (serverVersion: string | null): void;
 }
 
-const baseUrl = import.meta.env.VITE_API_BASE_URL || '/api/v1';
+const baseUrl = import.meta.env.VITE_API_BASE_URL
 
 const headers = (): HeadersInit => {
   const xToken = localStorage.getItem('token');
