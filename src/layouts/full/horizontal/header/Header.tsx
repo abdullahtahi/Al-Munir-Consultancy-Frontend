@@ -16,7 +16,6 @@ import { setActiveMode, setIsMobileSidebar } from '@store/slices/themeCustomizer
 import { IconMenu2, IconMoon, IconSun } from '@tabler/icons-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from 'src/store';
-import Depots from '../../vertical/header/Depots';
 
 const Header = () => {
   const lgDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'));
@@ -79,13 +78,6 @@ const Header = () => {
 
         <Box flexGrow={1} />
         <Stack spacing={1} direction="row" alignItems="center">
-          {lgUp ? (
-            <>
-              <Depots
-                depots={terminals.rows || []}
-              />
-            </>
-          ) : null}
 
           <Language />
           {/* ------------------------------------------- */}

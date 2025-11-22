@@ -66,7 +66,7 @@ export const signIn = async (
 };
 export const signOutMe = async () => {
   try {
-    const response = await get(`${baseUrl.replace(/\/$/, '')}/auth/logout`);
+    const response = await get(`${baseUrl}/api/v1/auth/logout`);
     localStorage.removeItem('token');
     return response;
   } catch (error) {

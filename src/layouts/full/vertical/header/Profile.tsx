@@ -19,7 +19,6 @@ const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
   const userDetail = useSelector(
     (state: RootState) => state?.auth?.user);
-    console.log("userDetail",userDetail?.data?.firstName)
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const handleClick2 = (event: any) => {
