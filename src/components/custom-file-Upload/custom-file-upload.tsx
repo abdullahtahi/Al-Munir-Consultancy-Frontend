@@ -24,7 +24,7 @@ const FileUploadField: React.FC<FileUploadProps> = ({ name, label }) => {
       setLoading(true);
       
       if (file) {
-        const response: any = await upload(`${baseUrl}/upload/image`, file);
+        const response: any = await upload(`/upload/image`, file);
         await setFieldValue(name, response?.path);
       } else {
         await setFieldValue(name, '');
