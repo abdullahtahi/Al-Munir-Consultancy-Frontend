@@ -52,7 +52,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api/v1': {
-          target: 'https://backend.the-al-munir.com/api/v1',
+          target: 'https://backend.the-al-munir.com',
           // http://localhost:3000
           changeOrigin: true,
           secure: false,

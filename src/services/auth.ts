@@ -24,7 +24,7 @@ export const signIn = async (
   password: string,
 ): Promise<ApiResponse<SignInResponse>> => {
   try {
-    const response = await post<SignInResponse>(`${baseUrl}/api/v1/auth/login`, {
+    const response = await post<SignInResponse>(`${baseUrl.replace(/\/$/, '')}/auth/login`, {
       email,
       password,
     }, true);
@@ -66,7 +66,7 @@ export const signIn = async (
 };
 export const signOutMe = async () => {
   try {
-    const response = await get(`${baseUrl}/api/v1/auth/logout`);
+    const response = await get(`${baseUrl.replace(/\/$/, '')}/auth/logout`);
     localStorage.removeItem('token');
     return response;
   } catch (error) {
@@ -81,7 +81,7 @@ export const signOutMe = async () => {
 };
 export const getUserContext = async (): Promise<ApiResponse<User>> => {
   try {
-    const response = await get(`${baseUrl}/api/v1/auth/profile`);
+    const response = await get(`${baseUrl.replace(/\/$/, '')}/auth/profile`);
     if (!response) {
       return {
         error: {
@@ -103,7 +103,7 @@ export const getUserContext = async (): Promise<ApiResponse<User>> => {
 };
 export const getTerminals = async (): Promise<ApiResponse<User>> => {
   try {
-    const response = await get(`${baseUrl}/api/companies/${import.meta.env.VITE_COMPANY_ID}/terminals`);
+    const response = await get(`${baseUrl.replace(/\/$/, '')}/companies/${import.meta.env.VITE_COMPANY_ID}/terminals`);
     if (!response) {
       return {
         error: {
@@ -125,7 +125,7 @@ export const getTerminals = async (): Promise<ApiResponse<User>> => {
 };
 export const getLookup = async (terminalId: any): Promise<ApiResponse<User>> => {
   try {
-    const response = await get(`${baseUrl}/api/lookup?companyId=${import.meta.env.VITE_COMPANY_ID}&terminalId=${terminalId}`);
+    const response = await get(`${baseUrl.replace(/\/$/, '')}/lookup?companyId=${import.meta.env.VITE_COMPANY_ID}&terminalId=${terminalId}`);
     if (!response) {
       return {
         error: {
@@ -147,7 +147,7 @@ export const getLookup = async (terminalId: any): Promise<ApiResponse<User>> => 
 };
 export const getCompanies = async (): Promise<ApiResponse<User>> => {
   try {
-    const response = await get(`${baseUrl}/api/companies`);
+    const response = await get(`${baseUrl.replace(/\/$/, '')}/companies`);
     if (!response) {
       return {
         error: {
@@ -171,7 +171,7 @@ export const forgotPassword = async (
   username: string,
 ): Promise<ApiResponse<SignInResponse>> => {
   try {
-    const response = await post<SignInResponse>(`${baseUrl}/api/user/forgot-password`, {
+    const response = await post<SignInResponse>(`${baseUrl.replace(/\/$/, '')}/user/forgot-password`, {
       username,
     }, true);
     if (!response) {
