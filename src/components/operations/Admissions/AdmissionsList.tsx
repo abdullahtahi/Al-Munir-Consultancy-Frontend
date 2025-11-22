@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Add, FilterList } from '@mui/icons-material';
 import { IconPencil, IconTrash } from '@tabler/icons-react';
 
-import { Alert, Box, Button, Collapse, Snackbar, Typography, useTheme } from '@mui/material';
+import { Alert, Box, Button, Collapse, Snackbar, useTheme } from '@mui/material';
 import PageContainer from '@components/layout/PageContainer';
 import GenericTable from 'src/components/generic-table';
 import { useSelector } from 'react-redux';
@@ -182,8 +182,6 @@ const AdmissionsList: React.FC = () => {
           severity: 'error',
         })
       }
-      console.log("admissions",admissions)
-
         return admissions;
       } catch (error: any) {
         setSnackbar({
