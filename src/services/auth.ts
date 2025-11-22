@@ -81,7 +81,7 @@ export const signOutMe = async () => {
 };
 export const getUserContext = async (): Promise<ApiResponse<User>> => {
   try {
-    const response = await get(`${baseUrl.replace(/\/$/, '')}/auth/profile`);
+    const response = await get(`${baseUrl}api/v1/auth/profile`);
     if (!response) {
       return {
         error: {
