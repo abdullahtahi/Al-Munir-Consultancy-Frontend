@@ -1,4 +1,3 @@
-import ProfileImg from '@assets/images/profile/user-1.jpg';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -8,7 +7,6 @@ import Menu from '@mui/material/Menu';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { signOutMe } from '@services/auth';
-import { resetDepot } from '@store/slices/depotSlice';
 import { IconMail } from '@tabler/icons-react';
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,6 +17,7 @@ const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
   const userDetail = useSelector(
     (state: RootState) => state?.auth?.user);
+    console.log("userDetail",userDetail)
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const handleClick2 = (event: any) => {

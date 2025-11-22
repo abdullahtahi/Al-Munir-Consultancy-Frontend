@@ -7,7 +7,29 @@ import { defineConfig, loadEnv } from 'vite';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   const apiUrl = env.VITE_API_BASE_URL;
+  
   return {
+    base: '/',
+    server: {
+      port: 3000,
+      host: true,
+      strictPort: true,
+      // Handle SPA fallback for development
+      historyApiFallback: true,
+      proxy: {
+        '/api/v1': {
+          target: apiUrl || 'http://localhost:3000',
+          changeOrigin: true,
+          secure: false,
+          rewrite: (path) => path.replace(/^\/api\/v1/, '')
+        },
+      },
+    },
+    preview: {
+      port: 3000,
+      strictPort: true,
+      historyApiFallback: true,
+    },
     resolve: {
       alias: {
         src: resolve(__dirname, 'src'),
@@ -47,17 +69,6 @@ export default defineConfig(({ mode }) => {
             },
           },
         ],
-      },
-    },
-    server: {
-      proxy: {
-        '/api/v1': {
-          target: 'https://backend.the-al-munir.com',
-          // http://localhost:3000
-          changeOrigin: true,
-          secure: false,
-          rewrite: path => path.replace(/^\/api\/v1/, '')
-        },
       },
     },
     plugins: [
