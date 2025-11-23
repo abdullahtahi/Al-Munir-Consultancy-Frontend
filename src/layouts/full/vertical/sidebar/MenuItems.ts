@@ -67,7 +67,7 @@ export interface MenuitemsType {
 const Menuitems: MenuitemsType[] = [
   {
     navlabel: true,
-    subheader: 'Operations',
+    subheader: 'al-munir-system',
   },
 
   {
@@ -80,49 +80,49 @@ const Menuitems: MenuitemsType[] = [
     id: uniqueId(),
     title: 'Admissions',
     icon: IconAutomaticGearbox,
-    href: '/operations/admissions',
+    href: '/al-munir-system/admissions',
   },
   {
     id: uniqueId(),
     title: 'Bonus',
     icon: IconGiftFilled,
-    href: '/operations/bonus',
+    href: '/al-munir-system/bonus',
   },
   // {
   //   id: uniqueId(),
   //   title: 'Pickup Slips',
   //   icon: IconPrinter,
-  //   href: '/operations/pickup-slips',
+  //   href: '/al-munir-system/pickup-slips',
   // },
   // {
   //   id: uniqueId(),
   //   title: 'Sale Unit',
   //   icon: IconWallet,
-  //   href: '/operations/sale-unit',
+  //   href: '/al-munir-system/sale-unit',
   // },
   {
     id: uniqueId(),
     title: 'Settings',
     icon: IconSection,
-    href: '/vehicle-operation/',
+    href: '/al-munir-system/',
     children: [
       {
         id: uniqueId(),
         title: 'Branches',
         icon: IconBrandEtsy,
-        href: '/vehicle-operation/branches',
+        href: '/al-munir-system/branches',
       },
       {
         id: uniqueId(),
         title: 'Courses',
         icon: IconBookFilled,
-        href: '/vehicle-operation/courses',
+        href: '/al-munir-system/courses',
       },
       {
         id: uniqueId(),
         title: 'Website Settings',
         icon: IconAdjustmentsCode,
-        href: '/vehicle-operation/website-setting',
+        href: '/al-munir-system/website-setting',
       },
     ],
   },
