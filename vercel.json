@@ -1,0 +1,11 @@
+{
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/" },
+      { "source": "/al-munir-system/users", "destination": "/" },
+      { "source": "/al-munir-system/admissions", "destination": "/" },
+      { "source": "/al-munir-system/bonus", "destination": "/" },
+      { "source": "/al-munir-system/branches", "destination": "/" },
+      { "source": "/al-munir-system/courses", "destination": "/" },
+      { "source": "/al-munir-system/website-setting", "destination": "/" }
+    ]
+  }

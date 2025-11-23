@@ -210,8 +210,8 @@ const Router = [
     children: [
       { path: '/', element: <Navigate to="/al-munir-system/users" /> },
       { path: '/al-munir-system/users', exact: true, element: <EirIn /> },
-      { path: '/operations/admissions', element: <Admissions /> },
-      { path: '/operations/bonus', element: <Cro /> },
+      { path: '/al-munir-system/admissions', element: <Admissions /> },
+      { path: '/al-munir-system/bonus', element: <Cro /> },
       // { path: '/operations/pickup-slips', element: <PickupSlip /> },
       // { path: '/operations/sale-unit', element: <SaleUnit /> },
       // { path: '/operations/change-grade', element: <ChangeGrade /> },
@@ -234,9 +234,9 @@ const Router = [
       // { path: '/fasah/bulk-download', element: <FasahBulkDownload /> },
       // { path: '/fasah/payment', element: <FasahPayment /> },
       // { path: '/fasah/bulk-payment', element: <FasahBulkPayment /> },
-      { path: '/vehicle-operation/branches', element: <Branches /> },
-      { path: '/vehicle-operation/courses', element: <Courses /> },
-      { path: '/vehicle-operation/website-setting', element: <WebsiteSetting /> },
+      { path: '/al-munir-system/branches', element: <Branches /> },
+      { path: '/al-munir-system/courses', element: <Courses /> },
+      { path: '/al-munir-system/website-setting', element: <WebsiteSetting /> },
       // {
       //   path: '/vehicle-operation/pickup-slip',
       //   element: <VehiclePickupSlip />,
