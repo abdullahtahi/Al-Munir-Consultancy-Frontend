@@ -28,7 +28,6 @@ interface NewAdmissionsDialogProps {
 }
 
 export const initialValues = {
-  consultantId: '',
   admissionInClass: '',
   feeAmount: '',
   studentName: '',
@@ -70,41 +69,36 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
 }) => {
   const getValidationSchema = () =>
     Yup.object().shape({
-      consultantId: Yup.string(),
       admissionInClass: Yup.string().required('Admission in class is required'),
       feeAmount: Yup.string().required('Fee amount is required'),
       studentName: Yup.string().required('Student name is required'),
       gender: Yup.string().required('Gender is required'),
       phone: Yup.string().required('Phone number is required'),
       residentNumber: Yup.string(),
-      birthCertificate: Yup.string().required('Birth certificate is required'),
+      birthCertificate: Yup.string(),
       profileImg: Yup.string().required('Profile image is required'),
       schoolLeavingCertificate: Yup.string(),
-      fatherCnicImgFront: Yup.string().required(
-        'Father CNIC front image is required'
-      ),
-      fatherCnicImgBack: Yup.string().required(
-        'Father CNIC back image is required'
-      ),
+      fatherCnicImgFront: Yup.string(),
+      fatherCnicImgBack: Yup.string(),
       dateOfBirth: Yup.string().required('Date of birth is required'),
-      fatherName: Yup.string().required('Father name is required'),
-      fatherEducation: Yup.string().required('Father education is required'),
-      fatherOccupation: Yup.string().required('Father occupation is required'),
-      fatherCnic: Yup.string().required('Father CNIC is required'),
-      motherName: Yup.string().required('Mother name is required'),
-      motherEducation: Yup.string().required('Mother education is required'),
-      motherOccupation: Yup.string().required('Mother occupation is required'),
-      motherCnic: Yup.string().required('Mother CNIC is required'),
-      permanentAddress: Yup.string().required('Permanent address is required'),
+      fatherName: Yup.string(),
+      fatherEducation: Yup.string(),
+      fatherOccupation: Yup.string(),
+      fatherCnic: Yup.string(),
+      motherName: Yup.string(),
+      motherEducation: Yup.string(),
+       motherOccupation: Yup.string(),
+      motherCnic: Yup.string(),
+      permanentAddress: Yup.string(),
       secondaryAddress: Yup.string(),
       admissionType: Yup.string().required('Admission type is required'),
       commissionAmount: Yup.string(),
       admissionDate: Yup.string().required('Admission Date is required'),
       admissionNumber: Yup.string().required('Admission Number is required'),
-      name: Yup.string().required('Name is required'),
-      relation: Yup.string().required('Relation is required'),
-      address: Yup.string().required('Address is required'),
-      sponsorId: Yup.string()
+      name: Yup.string(),
+      relation: Yup.string(),
+      address: Yup.string(),
+      sponsorId: Yup.string().required('Consultant is required')
     });
   const title: any = mode === 'Add' ? 'Add Admission' : 'Edit Admission';
   const actionLabel = mode === 'Add' ? 'Add' : 'Edit';
@@ -286,8 +280,8 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="feeAmount"
-                      label="Monthly Fee"
-                      placeholder="Enter Monthly Fee"
+                      label="Admission Fee"
+                      placeholder="Enter Admission Fee"
                       type="number"
                     />
                   </Grid>
