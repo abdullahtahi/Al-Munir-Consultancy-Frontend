@@ -388,7 +388,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                       name="admissionNumber"
                       label="Admission Number"
                       placeholder="Enter Admission Number"
-                      type="number"
+                      type="string"
                     />
                   </Grid>
              { mode === 'Edit' &&     <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>

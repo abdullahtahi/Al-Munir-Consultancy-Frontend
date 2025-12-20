@@ -81,7 +81,7 @@ const Profile = () => {
           <Avatar src={userDetail?.data?.profile} alt={userDetail?.data?.profile} sx={{ width: 95, height: 95 }} />
           <Box>
             <Typography variant="subtitle2" color="textPrimary" fontWeight={600}>
-              Al-Munir Sysystem
+              Al-Munir System
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
             {userDetail?.data?.firstName} {userDetail?.data?.lastName}

@@ -2,6 +2,7 @@ import { lazy, ReactElement } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import RouteErrorBoundary from 'src/RouteErrorBoundary';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
+import RolesList from 'src/views/roles/RolesList';
 
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
@@ -237,6 +238,7 @@ const Router = [
       { path: '/al-munir-system/branches', element: <Branches /> },
       { path: '/al-munir-system/courses', element: <Courses /> },
       { path: '/al-munir-system/website-setting', element: <WebsiteSetting /> },
+      { path: '/al-munir-system/role', element: <RolesList /> },
       // {
       //   path: '/vehicle-operation/pickup-slip',
       //   element: <VehiclePickupSlip />,
