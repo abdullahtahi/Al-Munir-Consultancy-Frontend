@@ -17,12 +17,12 @@ import AddEditRoleDialog from './dialog/AddEditRoleDialog';
 import AssignRolePermissionDialog from './dialog/AssignRolePermissionDialog';
 import ChangeRoleStatusConfirmationDialog from './dialog/ChangeRoleStatusConfirmationDialog';
 import RevertRoleConfirmationDialog from './dialog/RevertRoleConfirmationDialog';
+import { Alert, Snackbar } from '@mui/material';
 // import AuthorizeComponent from 'src/utils/AuthorizeComponent';
 // import { get } from 'https';
 // import { baseUrl } from 'src/services/default';
 
 const RolesList = () => {
-  const { t } = useTranslation();
 
   // States for API response
   const [rolesData, setRolesData] = useState<any>();
@@ -40,8 +40,11 @@ const RolesList = () => {
   const [openRoleStatusChangeDialog, setOpenRoleStatusChangeDialog] = useState<boolean>(false);
   const [openAssignRolePermissionDialog, setOpenAssignRolePermissionDialog] = useState<boolean>(false);
   const [roleDialogMode, setRoleDialogMode] = useState<'add' | 'edit'>('add');
-
-
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'error' as 'error' | 'success' | 'info' | 'warning',
+  });
 
   const breadcrumbs = [
     { title: 'Home' },
@@ -90,33 +93,30 @@ const RolesList = () => {
         limit: rowsPerPage,
         ...newFilters
       });
-      
+      console.log("response",response)
       if (response && response.data) {
-        setRolesData(response.data.data || []);
+        setRolesData(response.data || []);
+        
       }
 
     } catch (error: any) {
-      console.error(error);
-      // dispatch(showSnackbar({ message: error?.message, severity: 'error' }));
-    } finally {
-      // dispatch(hideLoader('allRoles'));
-    }
+      setSnackbar({
+        open: true,
+        message: error.message || error,
+        severity: 'error',
+      });
+    } 
   };
 
-  const handleFiltersChange = useCallback((newFilters: RolesFiltersSchemaType) => {
-    setFilters(newFilters);
-    setPage(0);
-  }, [filters]);
 
   useEffect(() => {
-    fetchRolesData(filters);
-  }, [page, rowsPerPage, filters]);
-
+    fetchRolesData({});
+  }, [page, rowsPerPage,]);
   return (
     <>
       <PageContainer
         heading={
-          <span> Roles {rolesData?.count}
+          <span> Roles ({rolesData?.count})
           </span>
         }
         breadcrumbs={breadcrumbs}
@@ -144,8 +144,8 @@ const RolesList = () => {
             data={rolesData?.rows}
             columns={rolesColumns}
             page={page}
-            rowsPerPage={rowsPerPage}
             setPage={setPage}
+            rowsPerPage={rowsPerPage}
             setRowsPerPage={setRowsPerPage}
             totalCount={rolesData?.count}
           />
@@ -157,8 +157,8 @@ const RolesList = () => {
         title={roleDialogMode === 'add' ? "Add" : "Edit"}
         onClose={() => setOpenRoleAddEditDialog(false)}
         onSave={() => {
+          fetchRolesData({});
           setOpenRoleAddEditDialog(false);
-          handleFiltersChange(filters);
         }}
         mode={roleDialogMode}
         {...(selectedRow
@@ -171,7 +171,8 @@ const RolesList = () => {
         onClose={() => setOpenRoleRevertDialog(false)}
         onConfirm={() => {
           setOpenRoleRevertDialog(false);
-          handleFiltersChange(filters);
+
+          fetchRolesData({});
         }}
         selectedRoleRow={selectedRow}
       />
@@ -181,7 +182,6 @@ const RolesList = () => {
         onClose={() => setOpenRoleStatusChangeDialog(false)}
         onConfirm={() => {
           setOpenRoleStatusChangeDialog(false);
-          handleFiltersChange(filters);
         }}
         selectedRoleRow={selectedRow}
       />
@@ -191,10 +191,24 @@ const RolesList = () => {
         onClose={() => setOpenAssignRolePermissionDialog(false)}
         onSuccess={() => {
           setOpenAssignRolePermissionDialog(false);
-          handleFiltersChange(filters);
         }}
         roleId={selectedRowId}
       />
+
+<Snackbar
+        open={snackbar.open}
+        autoHideDuration={4000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      >
+        <Alert
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+          severity={snackbar.severity}
+          variant="filled"
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
 
     </>
   );

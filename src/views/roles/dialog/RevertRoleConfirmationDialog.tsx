@@ -14,6 +14,7 @@ import GenericButton from '@components/generic-button';
 import { deleteRole } from 'src/api/role';
 
 import type { AppDispatch, RootState } from 'src/store';
+import { Alert, Snackbar } from '@mui/material';
 // import type { any } from 'src/types/components/users';
 
 interface RevertRoleConfirmationDialogProps {
@@ -32,46 +33,36 @@ const RevertRoleConfirmationDialog: React.FC<RevertRoleConfirmationDialogProps> 
   // isLoading,
 }) => {
   const { t } = useTranslation();
-  // const dispatch: AppDispatch = useDispatch();
-  // const selectedDepot = useSelector((state: RootState) => state.depot.selectedDepot);
-  // if (!selectedDepot?.id) {
-  //   dispatch(openDialog('No depot selected. Please select a depot first.'));
-  //   return null;
-  // }
-  // const [snackbar, setSnackbar] = useState({
-  //   open: false,
-  //   message: '',
-  //   severity: 'error' as 'error' | 'success' | 'info' | 'warning',
-  // });
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'error' as 'error' | 'success' | 'info' | 'warning',
+  });
 
 
   const handleAgreeRevertClick = async () => {
     if (!selectedRoleRow) { return; }
     try {
-      // dispatch(showLoader('revertRole'));
       const response = await deleteRole(selectedRoleRow?.id);
-      if (response && response.resStatus === 200) {
-        // dispatch(showSnackbar({ message: 'Role deleted successfully', severity: 'success' }));
-        onConfirm?.();
+      if (response) {
+        onConfirm();
       }
     } catch (error: any) {
       console.error(error);
-      // setSnackbar({
-      //   open: true,
-      //   message: error?.message || '',
-      //   severity: 'error',
-      // })
-    } finally {
-      // dispatch(hideLoader('revertRole'));
+      setSnackbar({
+        open: true,
+        message: error?.message || '',
+        severity: 'error',
+      })
     }
   };
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
       <DialogTitle>
-        {t('role.delete')}
+        Role Delete
       </DialogTitle>
-      <DialogContent>{t('appModule.revertMessage')}</DialogContent>
+      <DialogContent>Are you agree to Delete it</DialogContent>
       <DialogActions>
         <GenericButton
           label="Disagree"
@@ -90,7 +81,22 @@ const RevertRoleConfirmationDialog: React.FC<RevertRoleConfirmationDialogProps> 
           sx={{ textTransform: 'uppercase' }}
         />
       </DialogActions>
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={4000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      >
+        <Alert
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+          severity={snackbar.severity}
+          variant="filled"
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Dialog>
+
   );
 };
 

@@ -124,12 +124,12 @@ const Menuitems: MenuitemsType[] = [
         icon: IconAdjustmentsCode,
         href: '/al-munir-system/website-setting',
       },
-      // {
-      //   id: uniqueId(),
-      //   title: 'Role',
-      //   icon: IconAdjustmentsCode,
-      //   href: '/al-munir-system/role',
-      // },
+      {
+        id: uniqueId(),
+        title: 'Role',
+        icon: IconAdjustmentsCode,
+        href: '/al-munir-system/role',
+      },
     ],
   },
 

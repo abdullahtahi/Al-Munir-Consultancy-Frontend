@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { IconDeviceFloppy, IconX } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
@@ -21,6 +21,7 @@ import * as Yup from 'yup';
 import { addRole, updateRole } from 'src/api/role';
 
 import type { AppDispatch, RootState } from 'src/store';
+import { Alert, Snackbar } from '@mui/material';
 // import type { IRoleFormValues, IRoleResponseRow } from 'src/types/components/users';
 
 interface AddEditRoleDialogProps {
@@ -45,6 +46,11 @@ const AddEditRoleDialog: React.FC<AddEditRoleDialogProps> = ({
   const { t } = useTranslation();
   // const dispatch: AppDispatch = useDispatch();
   const isEdit = mode === 'edit';
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'error' as 'error' | 'success' | 'info' | 'warning',
+  });
   
   const initialValues: any = useMemo(() => {
     if (isEdit && selectedRow) {
@@ -66,32 +72,33 @@ const AddEditRoleDialog: React.FC<AddEditRoleDialogProps> = ({
   });
 
   const handleSubmit = async (values: any) => {
-    // dispatch(showLoader('saveRole'));
-
     try {
 
-      let response;
+      let response:any;
 
       if (isEdit && selectedRow?.id) {
+
         response = await updateRole(selectedRow.id, values);
       } else {
         response = await addRole(values);
       }
 
-      if (response && (response.resStatus === 200 || response.resStatus === 201)) {
-        // const message =
-        //   isEdit
-        //     ? t('role.updatedSuccessfully')
-        //     : t('role.createdSuccessfully');
+      if (response?.data) {
+            setSnackbar({
+              open: true,
+              message:isEdit ? 'Updated Successfull': 'Created Successfull',
+              severity: 'success',
+            });
 
-        // dispatch(showSnackbar({ message, severity: 'success' }));
-        onSave?.();
+        onSave();
         handleClose();
       }
     } catch (error: any) {
-      // dispatch(showSnackbar({ message: error?.message || t('appModule.genericError'), severity: 'error' }));
-    } finally {
-      // dispatch(hideLoader('saveRole'));
+      setSnackbar({
+        open: true,
+        message:error?.message,
+        severity: 'error',
+      });
     }
   };
 
@@ -100,6 +107,9 @@ const AddEditRoleDialog: React.FC<AddEditRoleDialogProps> = ({
   };
 
   const transformedTitle = title ? t(title) : t('role.add');
+  console.log(
+    "wprling",snackbar
+  )
 
   return (
     <Dialog
@@ -121,8 +131,8 @@ const AddEditRoleDialog: React.FC<AddEditRoleDialogProps> = ({
         validationSchema={validationSchema()}
         onSubmit={handleSubmit}
       >
-        {({ errors, touched, handleChange, values }) => (
-          <Form>
+        {({ errors, touched, handleChange,handleSubmit, values }) => (
+          <Form onSubmit={handleSubmit}>
             <DialogContent>
               <Grid container spacing={2}>
 
@@ -167,7 +177,7 @@ const AddEditRoleDialog: React.FC<AddEditRoleDialogProps> = ({
                 sx={{ textTransform: 'uppercase' }}
               />
               <GenericButton
-                label={mode === 'add' ? t('appModule.save') : t('appModule.update')}
+                label={mode === 'add' ? "Save" : "Update"}
                 color="primary"
                 variant="contained"
                 size="medium"
@@ -179,6 +189,21 @@ const AddEditRoleDialog: React.FC<AddEditRoleDialogProps> = ({
           </Form>
         )}
       </Formik>
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={4000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      >
+        <Alert
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+          severity={snackbar.severity}
+          variant="filled"
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Dialog>
   );
 };

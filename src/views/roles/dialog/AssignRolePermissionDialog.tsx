@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import { IconCaretDown, IconCaretUp, IconDeviceFloppy, IconX } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -24,10 +23,10 @@ import GenericButton from '@components/generic-button';
 import _ from 'lodash';
 
 
-import { AssignRolePermissionConfirmationDialog } from './AssignRolePermissionConfirmationDialog';
 
-import type { AppDispatch, RootState } from 'src/store';
-// import { getAllPermissions, getPermissionsAgainstRoles } from 'src/constants/Permissions';
+import { getAllPermissions } from 'src/api/permission';
+import { getPermissionsByRole } from 'src/api/rolePermission';
+import { AssignRolePermissionConfirmationDialog } from './AssignRolePermissionConfirmationDialog';
 
 interface AssignRolePermissionDialogProps {
   open: boolean;
@@ -43,44 +42,46 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
   roleId,
 }) => {
   const { t } = useTranslation();
-  const dispatch: AppDispatch = useDispatch();
-  const selectedDepot = useSelector((state: RootState) => state.depot.selectedDepot);
-
-  if (!selectedDepot?.id) {
-    return null;
-  }
 
   const [permissions, setPermissions] = useState<any[]>([]);
   const [optionsGroup, setOptionsGroup] = useState<Record<number | string, any[]>>({});
   const [checkList, setCheckList] = useState<number[]>([]);
   const [expanded, setExpanded] = useState<number | null>(null);
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   if (!open || !roleId) { return; }
+  useEffect(() => {
+    if (!open || !roleId) { return; }
 
-  //   (async () => {
-  //     try {
-  //       const [allPermissions, rolePermissions] = await Promise.all([
-  //         getAllPermissions(selectedDepot.id),
-  //         getPermissionsAgainstRoles(selectedDepot.id, roleId),
-  //       ]);
+    (async () => {
+      setLoading(true);
+      try {
+        const [allPermissionsRes, rolePermissionsRes] = await Promise.all([
+          getAllPermissions(),
+          getPermissionsByRole(roleId),
+        ]);
 
-  //       setPermissions(allPermissions || []);
-  //       const grouped = _.groupBy(allPermissions || [], (p: any) => p.parentId ?? 'root');
-  //       setOptionsGroup(grouped);
+        const allPermissions = allPermissionsRes?.data?.rows || [];
+        const rolePermissions = rolePermissionsRes?.data?.rows || [];
 
-  //       const permissionIds: number[] = (rolePermissions.rows || []).map(
-  //         (r: ) => r.permissionId,
-  //       );
-  //       setCheckList(permissionIds);
-  //     } catch (error: any) {
-  //       dispatch(showSnackbar({ message: error?.message || 'Failed to load permissions', severity: 'error' }));
-  //     } finally {
-  //       dispatch(hideLoader('permissions'));
-  //     }
-  //   })();
-  // }, [open, roleId]);
+        setPermissions(allPermissions);
+        
+        // Group by parent or moduleName. Based on your screenshot/code, it seems parent is a string or ID.
+        // If parent is empty, use moduleName as the grouping criteria
+        const grouped = _.groupBy(allPermissions, (p: any) => p.parent || 'Other');
+        setOptionsGroup(grouped);
+
+        const permissionIds: number[] = rolePermissions.map(
+          (r: any) => r.fkPermissionId,
+        );
+        setCheckList(permissionIds);
+      } catch (error: any) {
+        console.error('Failed to load permissions', error);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [open, roleId]);
 
   const handleToggleExpand = (index: number) => {
     setExpanded(expanded === index ? null : index);
@@ -92,24 +93,26 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
   };
 
   const checkedAll = (checked: boolean, parentId: number | string) => {
-    const childIds = (optionsGroup[parentId] || []).map(c => c.id);
+    const childIds = (optionsGroup[parentId] || []).map(c => pId(c));
     if (checked) { setCheckList(prev => _.uniq([...prev, ...childIds])); }
     else { setCheckList(prev => prev.filter(id => !childIds.includes(id))); }
   };
 
+  const pId = (p: any) => p.id;
+
   const checkIfChecked = (parentId: number | string) => {
-    const childIds = (optionsGroup[parentId] || []).map(c => c.id);
+    const childIds = (optionsGroup[parentId] || []).map(c => pId(c));
     const included = checkList.filter(id => childIds.includes(id));
     return childIds.length > 0 && included.length === childIds.length;
   };
 
   const checkIfPartialChecked = (parentId: number | string) => {
-    const childIds = (optionsGroup[parentId] || []).map(c => c.id);
+    const childIds = (optionsGroup[parentId] || []).map(c => pId(c));
     const included = checkList.filter(id => childIds.includes(id));
     return included.length > 0 && included.length < childIds.length;
   };
 
-  const parents = (permissions || []).filter(p => p.moduleName === 'subModule');
+  const parentKeys = Object.keys(optionsGroup);
 
   return (
     <>
@@ -126,17 +129,17 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
           },
         }}
       >
-        <DialogTitle>Roles Permissions for Depot Manager</DialogTitle>
+        <DialogTitle>Role Permissions Management</DialogTitle>
 
         <DialogContent sx={{ display: 'flex', flexDirection: 'column', height: '80vh' }}>
           <Box my={1}>
             <Typography variant="h5" display="flex" alignItems="center" gap={1}>
-              {t('appModule.permissions')}
-              {/* {permissionsLoader ? (
+            Permissions
+              {loading ? (
                 <CircularProgress size={20} thickness={4} />
               ) : (
                 <>({checkList.length}/{permissions.length})</>
-              )} */}
+              )}
             </Typography>
 
           </Box>
@@ -149,7 +152,7 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
             borderRadius={1}
             p={1}
           >
-            {/* {permissionsLoader ?
+            {loading ?
               <Box
                 display="flex"
                 justifyContent="center"
@@ -161,10 +164,9 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
               </Box>
               :
               <List disablePadding>
-                {parents.map((permission, idx) => {
-                  const parentKey = permission.id as number | string;
+                {parentKeys.map((parentKey, idx) => {
                   return (
-                    <Box key={permission.id}>
+                    <Box key={parentKey}>
                       <ListItem disablePadding>
                         <ListItemButton onClick={() => handleToggleExpand(idx)}>
                           <FormControlLabel
@@ -173,9 +175,10 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
                                 checked={checkIfChecked(parentKey)}
                                 indeterminate={checkIfPartialChecked(parentKey)}
                                 onChange={(_e, v) => checkedAll(v, parentKey)}
+                                onClick={(e) => e.stopPropagation()}
                               />
                             }
-                            label={<strong>{permission.title}</strong>}
+                            label={<strong>{parentKey}</strong>}
                           />
                           <Box flexGrow={1} />
                           <IconButton size="small" onClick={() => handleToggleExpand(idx)}>
@@ -195,7 +198,7 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
                                     onChange={(_e, v) => onChildChange(v, child.id)}
                                   />
                                 }
-                                label={child.title}
+                                label={child.name || child.permission}
                               />
                             </Box>
                           ))}
@@ -206,7 +209,7 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
                   );
                 })}
               </List>
-            } */}
+            }
           </Box>
         </DialogContent>
 
@@ -221,7 +224,7 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
             sx={{ textTransform: 'uppercase' }}
           />
           <GenericButton
-            label={t('appModule.save')}
+            label={"Save"}
             onClick={() => setConfirmOpen(true)}
             color='primary'
             variant='contained'
