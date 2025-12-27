@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import RouteErrorBoundary from 'src/RouteErrorBoundary';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 import RolesList from 'src/views/roles/RolesList';
+import Dashboard from 'src/views/operations/Dashboard';
 
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
@@ -209,8 +210,9 @@ const Router = [
     ),
     errorElement: <RouteErrorBoundary />,
     children: [
-      { path: '/', element: <Navigate to="/al-munir-system/users" /> },
-      { path: '/al-munir-system/users', exact: true, element: <EirIn /> },
+      { path: '/', element: <Navigate to="/al-munir-system/dashboard" /> },
+      { path: '/al-munir-system/dashboard',exact: true,  element: <Dashboard />},
+      { path: '/al-munir-system/users', element: <EirIn /> },
       { path: '/al-munir-system/admissions', element: <Admissions /> },
       { path: '/al-munir-system/bonus', element: <Cro /> },
       // { path: '/operations/pickup-slips', element: <PickupSlip /> },

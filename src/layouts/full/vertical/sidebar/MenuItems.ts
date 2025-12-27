@@ -72,6 +72,12 @@ const Menuitems: MenuitemsType[] = [
 
   {
     id: uniqueId(),
+    title: 'Dashboard',
+    icon: IconFileAnalytics,
+    href: '/al-munir-system/dashboard',
+  },
+  {
+    id: uniqueId(),
     title: 'Users & Members',
     icon: IconUserFilled,
     href: '/al-munir-system/users',
