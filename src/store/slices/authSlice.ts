@@ -108,6 +108,9 @@ export const loadUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const user = await getUserContext();
+      if (user.error || !user.data) {
+        return rejectWithValue(user.error?.message || 'Failed to load user');
+      }
       return user;
     } catch (error) {
       return rejectWithValue(error instanceof Error ? error.message : 'Failed to load user');

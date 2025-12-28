@@ -7,6 +7,7 @@ import Menuitems from './MenuItems';
 import NavCollapse from './NavCollapse';
 import NavGroup from './NavGroup/NavGroup';
 import NavItem from './NavItem';
+import AuthorizeComponent from 'src/utils/AuthorizeComponent';
 
 const SidebarItems = () => {
   const { pathname } = useLocation();
@@ -31,20 +32,58 @@ const SidebarItems = () => {
       <List sx={{ pt: 0 }} className="sidebarNav">
         {Menuitems.map((item) => {
           if (item.subheader) {
-            return <NavGroup item={item} hideMenu={hideMenu} key={item.subheader} />;
+            if (item.permission) {
+              return (
+                <AuthorizeComponent
+                  permission={item.permission}
+                  key={item.subheader}
+                >
+                  <NavGroup item={item} hideMenu={hideMenu} />
+                </AuthorizeComponent>
+              );
+            }
+            return (
+              <NavGroup item={item} hideMenu={hideMenu} key={item.subheader} />
+            );
           } else if (item.children) {
+            if (item.permission) {
+              return (
+                <AuthorizeComponent permission={item.permission} key={item.id}>
+                  <NavCollapse
+                    menu={item}
+                    pathDirect={pathDirect}
+                    hideMenu={hideMenu}
+                    pathWithoutLastPart={pathWithoutLastPart}
+                    level={1}
+                    onClick={handleItemClick}
+                  />
+                </AuthorizeComponent>
+              );
+            }
             return (
               <NavCollapse
+                key={item.id}
                 menu={item}
                 pathDirect={pathDirect}
                 hideMenu={hideMenu}
                 pathWithoutLastPart={pathWithoutLastPart}
                 level={1}
-                key={item.id}
                 onClick={handleItemClick}
               />
             );
           } else {
+            if (item.permission) {
+              return (
+                <AuthorizeComponent permission={item.permission} key={item.id}>
+                  <NavItem
+                    item={item}
+                    pathDirect={pathDirect}
+                    hideMenu={hideMenu}
+                    onClick={handleItemClick}
+                  />
+                </AuthorizeComponent>
+              );
+            }
             return (
               <NavItem
                 item={item}

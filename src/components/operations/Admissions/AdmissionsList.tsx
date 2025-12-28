@@ -13,6 +13,9 @@ import AdmissionsFilter from './AdmissionsFilters';
 import AdmissionsDialog from './dialog/NewAdmissionDialog';
 import { DeleteDialog } from 'src/components/delete-dialog/DeleteDialog';
 import Grid from '@mui/material/Grid2';
+import AuthorizeComponent from 'src/utils/AuthorizeComponent';
+import { CAN_ADD_ADMISSION, CAN_DELETE_ADMISSION, CAN_EDIT_ADMISSION } from 'src/constants/Permissions';
+
 interface TableColumn {
   id: string;
   label: React.ReactNode;
@@ -130,13 +133,15 @@ const AdmissionsList: React.FC = () => {
       classNames: 'pr-0 text-nowrap',
       key: 'Edit',
       render: (row) => (
-        <Button
-          variant="outlined"
-          size="small"
-          startIcon={<IconPencil size={18} />}
-          onClick={() => handleOpenEdit(row)}
-          sx={{ minWidth: 'auto' }}
-        />
+        <AuthorizeComponent permission={CAN_EDIT_ADMISSION}>
+          <Button
+            variant="outlined"
+            size="small"
+            startIcon={<IconPencil size={18} />}
+            onClick={() => handleOpenEdit(row)}
+            sx={{ minWidth: 'auto' }}
+          />
+        </AuthorizeComponent>
       ),
     },
     {
@@ -147,13 +152,15 @@ const AdmissionsList: React.FC = () => {
       classNames: 'pr-0 text-nowrap',
       key: 'Edit',
       render: (row) => (
-        <Button
-          variant="outlined"
-          size="small"
-          startIcon={<IconTrash size={18} />}
-          onClick={() => hanldOpenDeleteModal(row)}
-          sx={{ minWidth: 'auto' }}
-        />
+        <AuthorizeComponent permission={CAN_DELETE_ADMISSION}>
+          <Button
+            variant="outlined"
+            size="small"
+            startIcon={<IconTrash size={18} />}
+            onClick={() => hanldOpenDeleteModal(row)}
+            sx={{ minWidth: 'auto' }}
+          />
+        </AuthorizeComponent>
       ),
     },
   ];
@@ -266,17 +273,19 @@ const AdmissionsList: React.FC = () => {
           { title: t('Admissions'), to: '/admissions' },
         ]}
         action={
-          <Button
-            variant="contained"
-            onClick={() => {
-              setAdmissionDialogMode('Add');
-              setAdmissionDialogOpen(true);
-            }}
-            color="primary"
-            size="small"
-            startIcon={<Add />}
-            sx={{ '& .MuiButton-startIcon': { marginRight: 0 } }}
-          />
+          <AuthorizeComponent permission={CAN_ADD_ADMISSION}>
+            <Button
+              variant="contained"
+              onClick={() => {
+                setAdmissionDialogMode('Add');
+                setAdmissionDialogOpen(true);
+              }}
+              color="primary"
+              size="small"
+              startIcon={<Add />}
+              sx={{ '& .MuiButton-startIcon': { marginRight: 0 } }}
+            />
+          </AuthorizeComponent>
         }
       >
         <Box display="flex" justifyContent="flex-end" mb={1} width="100%">

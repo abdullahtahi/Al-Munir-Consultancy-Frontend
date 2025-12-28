@@ -22,6 +22,8 @@ import { useSelector } from 'react-redux';
 import ConsultantDialog from './dialog/ConsultantDialog/ConsultantDialog';
 import { DeleteDialog } from 'src/components/delete-dialog/DeleteDialog';
 import { INACTIVE_STATUS, PENDING_STATUS } from 'src/constants/AppConstants';
+import AuthorizeComponent from 'src/utils/AuthorizeComponent';
+import { CAN_ADD_CONSULTANT, CAN_DELETE_CONSULTANT, CAN_EDIT_CONSULTANT } from 'src/constants/Permissions';
 
 interface UserData {
   id: number;
@@ -100,10 +102,12 @@ const EirInList = () => {
       align: 'center' as const,
       width: 100,
       render: (row: UserData) => (
-        <IconPencil
-          onClick={() => handleOpenEdit(row)}
-          style={{ cursor: 'pointer' }}
-        />
+        <AuthorizeComponent permission={CAN_EDIT_CONSULTANT}>
+          <IconPencil
+            onClick={() => handleOpenEdit(row)}
+            style={{ cursor: 'pointer' }}
+          />
+        </AuthorizeComponent>
       ),
     },
     {
@@ -112,10 +116,12 @@ const EirInList = () => {
       align: 'center' as const,
       width: 100,
       render: (row: UserData) => (
-        <IconTrash
-          onClick={() => hanldOpenDeleteModal(row)}
-          style={{ cursor: 'pointer' }}
-        />
+        <AuthorizeComponent permission={CAN_DELETE_CONSULTANT}>
+          <IconTrash
+            onClick={() => hanldOpenDeleteModal(row)}
+            style={{ cursor: 'pointer' }}
+          />
+        </AuthorizeComponent>
       ),
     },
   ];
@@ -217,18 +223,20 @@ const EirInList = () => {
         heading={<span> Consultants ({userData.count})</span>}
         breadcrumbs={breadcrumbs}
         action={
-          <Button
-            variant="contained"
-            onClick={handleOpenAdd}
-            color="primary"
-            size="small"
-            startIcon={<Add />}
-            sx={{
-              '& .MuiButton-startIcon': {
-                marginRight: 0,
-              },
-            }}
-          />
+          <AuthorizeComponent permission={CAN_ADD_CONSULTANT}>
+            <Button
+              variant="contained"
+              onClick={handleOpenAdd}
+              color="primary"
+              size="small"
+              startIcon={<Add />}
+              sx={{
+                '& .MuiButton-startIcon': {
+                  marginRight: 0,
+                },
+              }}
+            />
+          </AuthorizeComponent>
         }
       >
         {/* Toggle Button */}

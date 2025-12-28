@@ -13,7 +13,6 @@ interface AuthorizeComponentProps {
 
 const AuthorizeComponent = ({ permission, children }: AuthorizeComponentProps) => {
   const [render, setRender] = useState(false);
-  const selectedDepot = useSelector((state: RootState) => state.depot.selectedDepot);
   const authUser = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
@@ -22,8 +21,9 @@ const AuthorizeComponent = ({ permission, children }: AuthorizeComponentProps) =
       return;
     }
 
-    const { terminals = {} } = authUser;
-    const terminalPermissions = terminals[`${selectedDepot?.id}`]?.permissions || [];
+    const directPermissions = authUser?.data?.permissions || [];
+    // Combine permissions from direct user permissions and terminal specific permissions
+    const userPermissions = [...new Set(directPermissions.map((p: any) => p.permission))];
 
     // normalize permission into an array
     const permissionArray = Array.isArray(permission)
@@ -31,23 +31,20 @@ const AuthorizeComponent = ({ permission, children }: AuthorizeComponentProps) =
       : _split(permission, ',');
 
     const hasAdminAccess =
-      authUser.isSuperAdmin ||
-      authUser.isCompanyAdmin ||
-      authUser.isShippingLineAdmin ||
-      authUser.isTerminalAdmin;
-
+      authUser?.data?.role=="super_admin"
+      
     if (hasAdminAccess) {
-      setRender(true);
-    } else if (
-      permissionArray.length > 0 &&
-      _intersection(terminalPermissions, permissionArray).length > 0
-    ) {
+        setRender(true);
+      } else if (
+        permissionArray.length > 0 &&
+        _intersection(userPermissions, permissionArray).length > 0
+      ) {
+      
       setRender(true);
     } else {
       setRender(false);
     }
-  }, [authUser, permission, selectedDepot]);
-
+  }, [authUser, permission]);
   return render ? children : null;
 };
 

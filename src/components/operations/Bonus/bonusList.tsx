@@ -11,6 +11,8 @@ import { RootState } from 'src/store';
 import { baseUrl, get } from 'src/services/default';
 import BonusFilters from './bonusFilters';
 import ViewBonusDialog from './dialog/ViewBonusDialog';
+import AuthorizeComponent from 'src/utils/AuthorizeComponent';
+import { CAN_VIEW_BONUS } from 'src/constants/Permissions';
 
 interface TableColumn {
   id: string;
@@ -127,14 +129,16 @@ const BonusList: React.FC = () => {
       classNames: 'pr-0 text-nowrap',
       key: 'Edit',
       render: (row) => (
-        <Button
-          variant="outlined"
-          size="small"
-          startIcon={<IconEye
-            size={18} />}
-          onClick={() => handleOpenModal(row)}
-          sx={{ minWidth: 'auto' }}
-        />
+        <AuthorizeComponent permission={CAN_VIEW_BONUS}>
+          <Button
+            variant="outlined"
+            size="small"
+            startIcon={<IconEye
+              size={18} />}
+            onClick={() => handleOpenModal(row)}
+            sx={{ minWidth: 'auto' }}
+          />
+        </AuthorizeComponent>
       ),
     }
   ];

@@ -40,25 +40,25 @@ const TopCards = () => {
     {
       icon: icon2,
       title: 'Consutant',
-      digits: res?.activeConsultants,
+      digits: res?.activeConsultants || 0,
       bgcolor: 'primary',
     },
     {
       icon: icon3,
       title: 'Admissions',
-      digits: res?.totalAdmissions,
+      digits: res?.totalAdmissions || 0,
       bgcolor: 'warning',
     },
     {
       icon: icon4,
       title: 'Bonuses',
-      digits: res?.totalBonus +" .Rs",
+      digits: res?.totalBonus !==undefined ? res?.totalBonus +" .Rs" : 0,
       bgcolor: 'secondary',
     },
     {
       icon: icon5,
       title: 'Branches',
-      digits: res?.totalBranches,
+      digits: res?.totalBranches || 0,
       bgcolor: 'error',
     },
     // {

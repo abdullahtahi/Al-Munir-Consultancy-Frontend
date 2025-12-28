@@ -28,8 +28,7 @@ function App() {
         try {
           await dispatch(loadUser()).unwrap();
         } catch (error) {
-          console.error('Initialization error:', error);
-          localStorage.removeItem('token');
+          // localStorage.removeItem('token'); 
         }
       }
     };

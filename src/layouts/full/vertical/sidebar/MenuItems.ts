@@ -62,7 +62,10 @@ export interface MenuitemsType {
   chipColor?: string;
   variant?: string;
   external?: boolean;
+  permission?: string;
 }
+
+import { CAN_VIEW_ADMISSION, CAN_VIEW_BONUS, CAN_VIEW_CONSULTANT, CAN_VIEW_SETTING } from 'src/constants/Permissions';
 
 const Menuitems: MenuitemsType[] = [
   {
@@ -81,18 +84,21 @@ const Menuitems: MenuitemsType[] = [
     title: 'Users & Members',
     icon: IconUserFilled,
     href: '/al-munir-system/users',
+    permission: CAN_VIEW_CONSULTANT,
   },
   {
     id: uniqueId(),
     title: 'Admissions',
     icon: IconAutomaticGearbox,
     href: '/al-munir-system/admissions',
+    permission: CAN_VIEW_ADMISSION,
   },
   {
     id: uniqueId(),
     title: 'Bonus',
     icon: IconGiftFilled,
     href: '/al-munir-system/bonus',
+    permission: CAN_VIEW_BONUS,
   },
   // {
   //   id: uniqueId(),
@@ -111,6 +117,7 @@ const Menuitems: MenuitemsType[] = [
     title: 'Settings',
     icon: IconSection,
     href: '/al-munir-system/',
+    permission: CAN_VIEW_SETTING,
     children: [
       {
         id: uniqueId(),

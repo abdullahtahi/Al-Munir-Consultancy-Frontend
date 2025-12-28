@@ -51,11 +51,12 @@ const defaultResponse = async <T = any>(res: Response, onVersionMismatch?: Versi
     const data = await res.json();
 
     if (status === 403) {
-      localStorage.removeItem('user_id');
-      localStorage.removeItem('token');
+      console.warn(`[default.ts] Received 403 Forbidden from ${res.url}. NOT removing token (fixed).`);
+      // localStorage.removeItem('user_id'); 
+      // localStorage.removeItem('token');
       return {
         resStatus: status,
-        message: 'Your token has expired, please login again.'
+        message: 'You do not have permission to access this resource.'
       };
     }
 
@@ -84,6 +85,7 @@ const get = async <T = any>(api: string, onVersionMismatch?: VersionCheckCallbac
       credentials: 'include',
       method: 'GET'
     });
+    console.log(`[GET] ${api} - Status: ${res.status}`);
     return await defaultResponse<T>(res, onVersionMismatch);
   } catch (error) {
     return {

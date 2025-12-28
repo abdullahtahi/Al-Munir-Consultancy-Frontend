@@ -32,6 +32,7 @@ export const initialValues = {
   lastName: '',
   email: '',
   password: '',
+  role:'',
   phone: '',
   cnic: '',
   address: '',
@@ -58,6 +59,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
       firstName: Yup.string().required('First Name is required'),
       lastName: Yup.string().required('Last Name is required'),
       email: Yup.string().required('Email is required'),
+      role: Yup.string().required('User Type is required'),
       password:
         mode == 'Add'
           ? Yup.string().required('Password is required').min(8)
@@ -125,6 +127,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                 password: singleUser.password,
                 phone: singleUser.phone || '',
                 cnic: singleUser.cnic || '',
+                role:singleUser.role || '',
                 address: singleUser.address || '',
                 city: singleUser.city || '',
                 sponsorId: singleUser.sponsorId || '',
@@ -199,6 +202,13 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                     ''
                   )}
 
+                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                    <CustomFields
+                      name="role"
+                      label="User Type"
+                      placeholder="Enter User Type"
+                    />
+                  </Grid>
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="phone"
