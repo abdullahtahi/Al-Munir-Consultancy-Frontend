@@ -213,20 +213,21 @@ const AdmissionsList: React.FC = () => {
           `${baseUrl}/api/v1/admissions/create`,
           values
         );
-        console.log('admission', admission);
-        setSnackbar({
-          open: true,
-          message: admission.message || 'Admission created SuccessFully',
-          severity: 'success',
-        });
+        if(admission.data){
+          setSnackbar({
+            open: true,
+            message: admission.message || 'Admission created SuccessFully',
+            severity: 'success',
+          });
+          setAdmissionDialogOpen(false);
+        }
       }
 
-      setAdmissionDialogOpen(false);
     } catch (error: any) {
       error.map((row: any) => {
         setSnackbar({
           open: true,
-          message: row.message,
+          message: row.message || error.message ,
           severity: 'error',
         });
       });

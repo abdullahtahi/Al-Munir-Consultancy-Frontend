@@ -69,18 +69,20 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
 }) => {
   const getValidationSchema = () =>
     Yup.object().shape({
-      admissionInClass: Yup.string().required('Admission in class is required'),
-      feeAmount: Yup.string().required('Fee amount is required'),
       studentName: Yup.string().required('Student name is required'),
+      feeAmount: Yup.string().required('Fee amount is required'),
+      admissionInClass: Yup.string().required('Admission in class is required'),
       gender: Yup.string().required('Gender is required'),
-      phone: Yup.string().required('Phone number is required'),
+      sponsorId: Yup.string().required('Consultant is required'),
+      admissionType: Yup.string().required('Admission type is required'),
+      phone: Yup.string(),
       residentNumber: Yup.string(),
       birthCertificate: Yup.string(),
-      profileImg: Yup.string().required('Profile image is required'),
+      profileImg: Yup.string(),
       schoolLeavingCertificate: Yup.string(),
       fatherCnicImgFront: Yup.string(),
       fatherCnicImgBack: Yup.string(),
-      dateOfBirth: Yup.string().required('Date of birth is required'),
+      dateOfBirth: Yup.string(),
       fatherName: Yup.string(),
       fatherEducation: Yup.string(),
       fatherOccupation: Yup.string(),
@@ -91,14 +93,12 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
       motherCnic: Yup.string(),
       permanentAddress: Yup.string(),
       secondaryAddress: Yup.string(),
-      admissionType: Yup.string().required('Admission type is required'),
       commissionAmount: Yup.string(),
-      admissionDate: Yup.string().required('Admission Date is required'),
-      admissionNumber: Yup.string().required('Admission Number is required'),
+      admissionDate: Yup.string(),
+      admissionNumber: Yup.string(),
       name: Yup.string(),
       relation: Yup.string(),
       address: Yup.string(),
-      sponsorId: Yup.string().required('Consultant is required')
     });
   const title: any = mode === 'Add' ? 'Add Admission' : 'Edit Admission';
   const actionLabel = mode === 'Add' ? 'Add' : 'Edit';
@@ -223,7 +223,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="studentName"
-                      label="Student Name"
+                      label="Student Name*"
                       placeholder="Enter Student Name"
                     />
                   </Grid>
@@ -231,7 +231,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomSelect
                       name="gender"
-                      label="Gender"
+                      label="Gender*"
                       placeholder="Enter Gender"
                       options={gender}
                     />
@@ -255,7 +255,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomSelect
                       name="admissionType"
-                      label="Admission Type"
+                      label="Admission Type*"
                       placeholder="Enter Admission Type"
                       options={admissionType}
                     />
@@ -264,7 +264,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomDatePicker
                       name="dateOfBirth"
-                      label=" Date Of birth"
+                      label="Date Of birth"
                       defaultValue={dayjs()}
                     />
                   </Grid>
@@ -272,7 +272,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="admissionInClass"
-                      label=" Admission in Class"
+                      label=" Admission in Class*"
                       placeholder="Enter admission in Class"
                     />
                   </Grid>
@@ -280,7 +280,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="feeAmount"
-                      label="Admission Fee"
+                      label="Admission Fee*"
                       placeholder="Enter Admission Fee"
                       type="number"
                     />

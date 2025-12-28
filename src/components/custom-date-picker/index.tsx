@@ -58,7 +58,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
 
   return (
     <DatePicker
-      label={`${label}${formik && name ? ' *' : ''}`}
+      label={label}
       value={
         formik && name
           ? formik.values[name]
