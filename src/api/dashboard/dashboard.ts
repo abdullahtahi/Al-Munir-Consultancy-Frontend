@@ -18,6 +18,9 @@ export const getBonusGrowth = async () => {
 export const topEarner = async () => {
   return await get(api+'/top-earners');
 };
+export const UserTeamStructure = async () => {
+  return await get(api+'/my-team-and-bonus');
+};
 
 export const deleteRole = async (id: number) => {
   return await destroy(`${api}/${id}`);
