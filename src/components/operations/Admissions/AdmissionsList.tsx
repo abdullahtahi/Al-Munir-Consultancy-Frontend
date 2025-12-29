@@ -215,6 +215,8 @@ const AdmissionsList: React.FC = () => {
           message: user.message || 'Updated SuccessFully',
           severity: 'success',
         });
+          setAdmissionDialogOpen(false);
+
       } else {
         const admission: any = await post(
           `${baseUrl}/api/v1/admissions/create`,

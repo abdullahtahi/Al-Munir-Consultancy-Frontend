@@ -10,7 +10,8 @@ import Typography from '@mui/material/Typography';
 import { IconDeviceFloppy, IconLetterX, IconX } from '@tabler/icons-react';
 import dayjs from 'dayjs';
 import { Form, Formik } from 'formik';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getAllRoles } from 'src/api/role';
 import CustomDatePicker from 'src/components/custom-date-picker';
 import CustomFields from 'src/components/custom-fields/custom-fields';
 import FileUploadField from 'src/components/custom-file-Upload/custom-file-upload';
@@ -54,6 +55,8 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
   handleSubmit,
   singleUser,
 }) => {
+  const [rolesData, setRolesData] = useState<any>();
+
   const getValidationSchema = () =>
     Yup.object().shape({
       firstName: Yup.string().required('First Name is required'),
@@ -94,6 +97,27 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
       value: 'inactive',
     },
   ];
+
+  const roles=rolesData?.rows?.map((row:any)=>({
+    key:row?.name,
+    value:row?.name
+  }))
+  const fetchRolesData = async () => {
+    try {
+      const response = await getAllRoles({});
+      console.log("response",response)
+      if (response && response.data) {
+        setRolesData(response.data || []);
+        
+      }
+
+    } catch (error: any) {
+    } 
+  };
+  useEffect(()=>{
+    fetchRolesData()
+  },[])
+  console.log("rolesData",rolesData)
 
   return (
     <Dialog
@@ -203,10 +227,11 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                   )}
 
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
-                    <CustomFields
+                    <CustomSelect
                       name="role"
                       label="User Type"
                       placeholder="Enter User Type"
+                      options={roles}
                     />
                   </Grid>
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
