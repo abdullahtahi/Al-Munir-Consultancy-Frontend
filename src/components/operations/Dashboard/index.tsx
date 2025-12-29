@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import BonusUpdate from 'src/components/dashboards/modern/BonusUpdate';
-import AdmissionUpdate from 'src/components/dashboards/modern/AdmissionUpdate';
+import BonusUpdate from 'src/components/dashboards/modern/MonthlyEarnings';
+import AdmissionUpdate from 'src/components/dashboards/modern/RevenueUpdates';
 import TopCards from 'src/components/dashboards/modern/TopCards';
 import TopPerformers from 'src/components/dashboards/modern/TopPerformers';
 import PageContainer from 'src/components/layout/PageContainer';
@@ -24,20 +24,6 @@ const Dashboard = () => {
             lg: 12
           }}>
           <TopCards />
-        </Grid>
-        <Grid
-          size={{
-            xs: 12,
-            lg: 12
-          }}>
-          <AdmissionUpdate />
-        </Grid>
-        <Grid
-          size={{
-            xs: 12,
-            lg: 12
-          }}>
-          <BonusUpdate />
         </Grid>
         {/* column */}
         <Grid

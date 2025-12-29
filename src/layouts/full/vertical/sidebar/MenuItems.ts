@@ -65,7 +65,7 @@ export interface MenuitemsType {
   permission?: string;
 }
 
-import { CAN_VIEW_ADMISSION, CAN_VIEW_BONUS, CAN_VIEW_CONSULTANT, CAN_VIEW_SETTING, OVERVIEW } from 'src/constants/Permissions';
+import { CAN_VIEW_ADMISSION, CAN_VIEW_BONUS, CAN_VIEW_CONSULTANT, CAN_VIEW_SETTING } from 'src/constants/Permissions';
 
 const Menuitems: MenuitemsType[] = [
   {
@@ -78,7 +78,6 @@ const Menuitems: MenuitemsType[] = [
     title: 'Dashboard',
     icon: IconFileAnalytics,
     href: '/al-munir-system/dashboard',
-    permission: OVERVIEW,
   },
   {
     id: uniqueId(),
