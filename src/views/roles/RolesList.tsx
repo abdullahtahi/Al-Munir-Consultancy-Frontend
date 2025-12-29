@@ -1,8 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { IconPlus } from '@tabler/icons-react';
-import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid2';
@@ -12,15 +10,12 @@ import PageContainer from '@components/layout/PageContainer';
 
 import { getAllRoles } from 'src/api/role';
 
-import { rolesFiltersSchema, useRolesColumns, type RolesFiltersSchemaType } from './Constants';
+import { useRolesColumns, type RolesFiltersSchemaType } from './Constants';
 import AddEditRoleDialog from './dialog/AddEditRoleDialog';
 import AssignRolePermissionDialog from './dialog/AssignRolePermissionDialog';
 import ChangeRoleStatusConfirmationDialog from './dialog/ChangeRoleStatusConfirmationDialog';
 import RevertRoleConfirmationDialog from './dialog/RevertRoleConfirmationDialog';
 import { Alert, Snackbar } from '@mui/material';
-// import AuthorizeComponent from 'src/utils/AuthorizeComponent';
-// import { get } from 'https';
-// import { baseUrl } from 'src/services/default';
 
 const RolesList = () => {
 
@@ -28,9 +23,8 @@ const RolesList = () => {
   const [rolesData, setRolesData] = useState<any>();
 
   // Filters | Pagination
-  const [filters, setFilters] = useState<RolesFiltersSchemaType>(rolesFiltersSchema);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(20);
+  const [page, setPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   // Dialog state
   const [selectedRow, setSelectedRow] = useState<any | null>(null);
@@ -140,7 +134,6 @@ const RolesList = () => {
         <Grid size={{ xs: 12 }}>
 
           <GenericTable
-            title="Roles"
             data={rolesData?.rows}
             columns={rolesColumns}
             page={page}

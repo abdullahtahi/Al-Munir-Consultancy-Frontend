@@ -28,6 +28,7 @@ function App() {
         try {
           await dispatch(loadUser()).unwrap();
         } catch (error) {
+          console.error('Initialization error (persisting token):', error);
           // localStorage.removeItem('token'); 
         }
       }

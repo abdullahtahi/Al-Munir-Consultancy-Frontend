@@ -52,8 +52,6 @@ const defaultResponse = async <T = any>(res: Response, onVersionMismatch?: Versi
 
     if (status === 403) {
       console.warn(`[default.ts] Received 403 Forbidden from ${res.url}. NOT removing token (fixed).`);
-      // localStorage.removeItem('user_id'); 
-      // localStorage.removeItem('token');
       return {
         resStatus: status,
         message: 'You do not have permission to access this resource.'
