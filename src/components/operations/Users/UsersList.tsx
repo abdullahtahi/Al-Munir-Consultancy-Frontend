@@ -24,6 +24,9 @@ import { DeleteDialog } from 'src/components/delete-dialog/DeleteDialog';
 import { INACTIVE_STATUS, PENDING_STATUS } from 'src/constants/AppConstants';
 import AuthorizeComponent from 'src/utils/AuthorizeComponent';
 import { CAN_ADD_CONSULTANT, CAN_DELETE_CONSULTANT, CAN_EDIT_CONSULTANT } from 'src/constants/Permissions';
+import { Tooltip } from '@mui/material';
+import { IconLock } from '@tabler/icons-react';
+import ChangePasswordDialog from './dialog/ChangePasswordDialog/ChangePasswordDialog';
 
 interface UserData {
   id: number;
@@ -48,6 +51,7 @@ const EirInList = () => {
   const [consultantDialogMode, setConsultantDialogMode] = useState<
     'Add' | 'Edit'
   >('Add');
+  const [changePasswordDialogOpen, setChangePasswordDialogOpen] = useState(false);
 
   const [snackbar, setSnackbar] = useState({
     open: false,
@@ -69,6 +73,11 @@ const EirInList = () => {
     setSingleUser(row);
     setConsultantDialogMode('Edit');
     setConsultantModeDialogOpen(true);
+  };
+
+  const handleOpenChangePassword = (row: any) => {
+    setSingleUser(row);
+    setChangePasswordDialogOpen(true);
   };
   const columns = [
     { key: 'id', label: 'S.No.', width: 80 },
@@ -121,6 +130,22 @@ const EirInList = () => {
             onClick={() => hanldOpenDeleteModal(row)}
             style={{ cursor: 'pointer' }}
           />
+        </AuthorizeComponent>
+      ),
+    },
+    {
+      key: 'changePassword',
+      label: 'PASSWORD',
+      align: 'center' as const,
+      width: 100,
+      render: (row: UserData) => (
+        <AuthorizeComponent permission={CAN_EDIT_CONSULTANT}>
+          <Tooltip title="Change Password">
+            <IconLock
+              onClick={() => handleOpenChangePassword(row)}
+              style={{ cursor: 'pointer' }}
+            />
+          </Tooltip>
         </AuthorizeComponent>
       ),
     },
@@ -213,6 +238,28 @@ const EirInList = () => {
     }
   };
 
+  const handleChangePasswordSubmit = async (values: any) => {
+    try {
+      const response: any = await put(
+        `${baseUrl}/api/v1/users/${singleUser.id}/change-password`,
+        values
+      );
+
+      setSnackbar({
+        open: true,
+        message: response.message || 'Password Changed SuccessFully',
+        severity: 'success',
+      });
+      setChangePasswordDialogOpen(false);
+    } catch (error: any) {
+      setSnackbar({
+        open: true,
+        message: error.message || 'Failed to change password',
+        severity: 'error',
+      });
+    }
+  };
+
   useEffect(() => {
     getUsers({});
   }, [rowsPerPage, page, consultantDialogOpen]);
@@ -283,6 +330,12 @@ const EirInList = () => {
         onClose={() => setConsultantModeDialogOpen(false)}
         handleSubmit={handleSubmit}
         mode={consultantDialogMode}
+        singleUser={singleUser}
+      />
+      <ChangePasswordDialog
+        open={changePasswordDialogOpen}
+        onClose={() => setChangePasswordDialogOpen(false)}
+        handleSubmit={handleChangePasswordSubmit}
         singleUser={singleUser}
       />
       <DeleteDialog
