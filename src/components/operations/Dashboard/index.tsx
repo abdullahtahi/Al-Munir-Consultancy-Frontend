@@ -29,8 +29,16 @@ const Dashboard = () => {
         <Grid
           size={{
             xs: 12,
-            lg: 4
+            lg: 12
           }}>
+            <BonusUpdate/>
+        </Grid>
+        <Grid
+          size={{
+            xs: 12,
+            lg: 12
+          }}>
+            <AdmissionUpdate/>
         </Grid>
         <Grid
           size={{
