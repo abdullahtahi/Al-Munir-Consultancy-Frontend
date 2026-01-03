@@ -43,7 +43,7 @@ const UserDashboard = () => {
             xs: 12,
             lg: 12
           }}>
-            <WelcomeCard authUser={authUser}/>
+            <WelcomeCard authUser={authUser} statsInfo={res?.bonusInfo?.summary} />
         </Grid>
         <Grid
           size={{

@@ -104,7 +104,6 @@ const EirInList = () => {
         ),
     },
     { key: 'level', label: 'Level', width: 250 },
-    { key: 'availableBalance', label: 'Available Balance', width: 250 },
     {
       key: 'edit',
       label: 'EDIT',

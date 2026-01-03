@@ -15,7 +15,7 @@ import {
 import Grid from "@mui/material/Grid2";
 import welcomeImg from "src/assets/images/backgrounds/welcome-bg2.png";
 
-const WelcomeCard = ({ authUser }: any) => {
+const WelcomeCard = ({ authUser,statsInfo }: any) => {
   const theme = useTheme();
 const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -70,11 +70,11 @@ const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
                 {[
                   { value: authUser?.data?.level, label: "Level" },
                   {
-                    value: authUser?.data?.totalEarnings,
+                    value: statsInfo?.totalEarned,
                     label: "Total Earnings",
                   },
                   {
-                    value: authUser?.data?.availableBalance,
+                    value: statsInfo?.availableBalance,
                     label: "Available Balance",
                   },
                   {
