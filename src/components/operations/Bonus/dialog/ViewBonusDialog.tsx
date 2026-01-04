@@ -6,25 +6,54 @@ import Grid from '@mui/material/Grid2';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { IconX } from '@tabler/icons-react';
-import dayjs from 'dayjs';
 import { Form, Formik } from 'formik';
 import React from 'react';
-import CustomDatePicker from 'src/components/custom-date-picker';
 import CustomFields from 'src/components/custom-fields/custom-fields';
+import FileUploadField from 'src/components/custom-file-Upload/custom-file-upload';
+import { baseUrl, put } from 'src/services/default';
+import * as Yup from 'yup';
+import Button from '@mui/material/Button';
+import DialogActions from '@mui/material/DialogActions';
 
 interface ViewBonusDialogProps {
   open: boolean;
   onClose: () => void;
   singleUser: any;
+  onSuccess?: () => void;
 }
 
 const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
   open,
   onClose,
   singleUser,
+  onSuccess,
 }) => {
   const title: any = 'View Bonus Detail';
-  const onSubmit = () => {};
+  const onSubmit = async (values: any, { setSubmitting }: any) => {
+    try {
+      const response = await put(`${baseUrl}/api/v1/bonuses/processable`, {
+        id: singleUser.id,
+        paymentProof: values.paymentProof,
+        status: 'processed'
+      });
+
+      if (response?.data) {
+        if (onSuccess) onSuccess();
+        onClose();
+      } else {
+        console.error('Failed to process bonus', response?.message);
+        // Optionally handle error feedback here if needed, but for now console.error
+      }
+    } catch (error) {
+       console.error('Error processing bonus:', error);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const validationSchema = Yup.object().shape({
+    paymentProof: Yup.string().required('Payment proof is required'),
+  });
 
   return (
     <Dialog
@@ -66,6 +95,9 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                 baseAmount: singleUser.baseAmount || '',
                 levelDepth: singleUser.levelDepth || '',
                 description: singleUser.description || '',
+                paymentProof: '',
+                bankName: singleUser.fkConsultant?.Bank?.name || '',
+                bankAccount: singleUser.fkConsultant?.Bank?.accountNumber || '',
               }
             : {
                 studentName: '',
@@ -77,11 +109,15 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                 baseAmount: '',
                 levelDepth: '',
                 description: '',
+                paymentProof: '',
+                bankName: '',
+                bankAccount: '',
               }
         }
+        validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        {({ handleSubmit, errors }) => {
+        {({ handleSubmit, values, isSubmitting }) => {
           return (
             <Form onSubmit={handleSubmit}>
               <DialogContent>
@@ -165,6 +201,30 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                     />
                   </Grid>
 
+                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                    <CustomFields
+                      name="bankName"
+                      label="Bank Name"
+                      placeholder=""
+                      disabled={true}
+                    />
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                    <CustomFields
+                      name="bankAccount"
+                      label="Bank Account"
+                      placeholder=""
+                      disabled={true}
+                    />
+                  </Grid>
+
+                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                    <FileUploadField
+                      name="paymentProof"
+                      label="Payment Proof"
+                    />
+                  </Grid>
+
                   <Grid size={{ xs: 12}}>
                     <CustomFields
                       name="description"
@@ -176,6 +236,12 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                   </Grid>
                 </Grid>
               </DialogContent>
+              <DialogActions>
+                <Button variant="outlined" color="error" onClick={onClose} disabled={isSubmitting}>Cancel</Button>
+                <Button disabled={!values.paymentProof || isSubmitting} type="submit" variant="contained">
+                  {isSubmitting ? 'Submitting...' : 'Submit'}
+                </Button>
+              </DialogActions>
             </Form>
           );
         }}

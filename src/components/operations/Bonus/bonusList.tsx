@@ -230,9 +230,17 @@ const BonusList: React.FC = () => {
         </Box>
       </PageContainer>
       <ViewBonusDialog
-       open={bonusDialogOpen}
-  onClose={hanldBonusCloseModal}
-       singleUser={singleUser}
+        open={bonusDialogOpen}
+        onClose={hanldBonusCloseModal}
+        singleUser={singleUser}
+        onSuccess={() => {
+          getBonus({});
+          setSnackbar({
+            open: true,
+            message: 'Bonus processed successfully',
+            severity: 'success',
+          });
+        }}
       />
 
        <Snackbar
