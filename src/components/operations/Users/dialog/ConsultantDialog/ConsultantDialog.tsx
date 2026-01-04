@@ -105,7 +105,6 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
   const fetchRolesData = async () => {
     try {
       const response = await getAllRoles({});
-      console.log("response",response)
       if (response && response.data) {
         setRolesData(response.data || []);
         
@@ -117,7 +116,6 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
   useEffect(()=>{
     fetchRolesData()
   },[])
-  console.log("rolesData",rolesData)
 
   return (
     <Dialog

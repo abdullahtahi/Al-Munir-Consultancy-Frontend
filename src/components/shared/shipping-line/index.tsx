@@ -32,7 +32,7 @@ const ShippingLineSelector: React.FC<Props> = ({
 
   // ---- API Call ----
   const getUsers = useCallback(async () => {
-    const params = { status: 'active' };
+    const params:any = { isAll:true,status: 'active' };
     const queryString = new URLSearchParams(params).toString();
     const users: any = await get(`${baseUrl}/api/v1/users?${queryString}`);
 
