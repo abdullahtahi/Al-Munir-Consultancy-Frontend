@@ -46,6 +46,7 @@ export const initialValues = {
   accountAddress: '',
   dateOfBirth: '',
   status: '',
+  licenseNumber: '',
 };
 
 const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
@@ -79,6 +80,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
       accountAddress: Yup.string().required('Account Address is required'),
       dateOfBirth: Yup.string().required('Date of Birth is required'),
       status: Yup.string(),
+      licenseNumber: Yup.string().required('licenseNumber field is required'),
     });
   const title: any =
     mode === 'Add' ? 'Add User / Member' : 'Edit User / Member';
@@ -105,7 +107,6 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
   const fetchRolesData = async () => {
     try {
       const response = await getAllRoles({});
-      console.log("response",response)
       if (response && response.data) {
         setRolesData(response.data || []);
         
@@ -117,7 +118,6 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
   useEffect(()=>{
     fetchRolesData()
   },[])
-  console.log("rolesData",rolesData)
 
   return (
     <Dialog
@@ -164,6 +164,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                 dateOfBirth: singleUser?.dateOfBirth,
                 consultantId: singleUser.id,
                 status: singleUser.status,
+                licenseNumber: singleUser.licenseNumber || '',
               }
             : initialValues
         }
@@ -251,6 +252,26 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                       type="number"
                     />
                   </Grid>
+
+                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                    <CustomFields
+                      name="licenseNumber"
+                      label="License Number"
+                      placeholder="Enter License Number"
+                    />
+                  </Grid>
+
+                  {mode === 'Edit' && (
+                    <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                      <CustomFields
+                        name="joiningDate"
+                        label="Joining Date"
+                        placeholder=""
+                        value={dayjs(singleUser?.createdAt).format('DD-MM-YYYY')}
+                        disabled={true}
+                      />
+                    </Grid>
+                  )}
 
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields

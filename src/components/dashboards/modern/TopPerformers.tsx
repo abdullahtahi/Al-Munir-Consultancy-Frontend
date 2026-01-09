@@ -76,24 +76,23 @@ const TopPerformers = () => {
               <TableRow key={basic.id}>
                 <TableCell>
                   <Stack direction="row" spacing={2}>
-                    <Avatar src={`${BASE_URL + '/' + basic.profile}`} alt={`${BASE_URL + '/' + basic.profile}`} sx={{ width: 40, height: 40 }} />
+                    <Avatar src={`${BASE_URL + '/' + basic?.fkConsultant?.profile}`} alt={`${BASE_URL + '/' + basic?.fkConsultant?.profile}`} sx={{ width: 40, height: 40 }} />
                     <Box>
                       <Typography variant="subtitle2" fontWeight={600}>
-                        {basic.firstName + " "+ basic.lastName}
+                        {basic?.fkConsultant?.firstName + " "+ basic?.fkConsultant?.lastName}
                       </Typography>
                       <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
-                        {basic.role =="user" ?"Consultant":basic.role}
+                        {basic?.fkConsultant?.role}
                       </Typography>
                     </Box>
                   </Stack>
                 </TableCell>
                 <TableCell>
                   <Typography color="textSecondary" variant="subtitle2" fontWeight={400}>
-                    {basic.level}
+                    {basic?.fkConsultant?.level}
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  {/* <Chip chipcolor={basic.status == 'Active' ? 'success' : basic.status == 'Pending' ? 'warning' : basic.status == 'Completed' ? 'primary' : basic.status == 'Cancel' ? 'error' : 'secondary'} */}
                   <Chip
                     sx={{
                       bgcolor:
@@ -115,7 +114,7 @@ const TopPerformers = () => {
                       borderRadius: '8px',
                     }}
                     size="small"
-                    label={basic.totalEarnings +" .Rs"}
+                    label={basic.totalBonus +" .Rs"}
                   />
                 </TableCell>
                 {/* <TableCell>
