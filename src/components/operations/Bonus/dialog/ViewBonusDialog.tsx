@@ -161,7 +161,26 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                       label="Level Depth"
                       placeholder=""
                       disabled={true}
+                    />
+                  </Grid>
 
+                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                    <CustomFields
+                      name="joiningDate"
+                      label="Joining Date"
+                      placeholder=""
+                      value={dayjs(singleUser?.createdAt).format('DD-MM-YYYY')}
+                      disabled={true}
+                    />
+                  </Grid>
+
+                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                    <CustomFields
+                      name="processDate"
+                      label="Process Date"
+                      placeholder=""
+                      value={singleUser?.processedAt ? dayjs(singleUser?.processedAt).format('DD-MM-YYYY') : '-'}
+                      disabled={true}
                     />
                   </Grid>
 

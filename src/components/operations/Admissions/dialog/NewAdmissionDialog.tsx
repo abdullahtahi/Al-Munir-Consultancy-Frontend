@@ -400,6 +400,17 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                     />
                   </Grid>
 }
+                  {mode === 'Edit' && (
+                    <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                      <CustomFields
+                        name="joiningDate"
+                        label="Joining Date"
+                        placeholder=""
+                        value={dayjs(singleUser?.createdAt).format('DD-MM-YYYY')}
+                        disabled={true}
+                      />
+                    </Grid>
+                  )}
                   <Grid size={{ xs: 12 }}>
                     <Typography variant="h3">Depend On </Typography>
                   </Grid>
