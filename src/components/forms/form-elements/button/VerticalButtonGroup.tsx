@@ -1,4 +1,3 @@
-
 import { Button, ButtonGroup, Stack } from '@mui/material';
 
 const VerticalButtonGroup = () => (
@@ -13,13 +12,21 @@ const VerticalButtonGroup = () => (
       <Button>Three</Button>
     </ButtonGroup>
 
-    <ButtonGroup orientation="vertical" variant="outlined" aria-label="outlined button group">
+    <ButtonGroup
+      orientation="vertical"
+      variant="outlined"
+      aria-label="outlined button group"
+    >
       <Button>One</Button>
       <Button>Two</Button>
       <Button>Three</Button>
     </ButtonGroup>
 
-    <ButtonGroup orientation="vertical" variant="text" aria-label="text button group">
+    <ButtonGroup
+      orientation="vertical"
+      variant="text"
+      aria-label="text button group"
+    >
       <Button>One</Button>
       <Button>Two</Button>
       <Button>Three</Button>

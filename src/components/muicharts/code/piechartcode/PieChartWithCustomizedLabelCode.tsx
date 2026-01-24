@@ -1,10 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function PieChartWithCustomizedLabelCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
 
@@ -61,8 +60,8 @@ const getArcLabel = (params: { value: number; }) => {
             );
 }
             `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default PieChartWithCustomizedLabelCode
+export default PieChartWithCustomizedLabelCode;

@@ -17,9 +17,15 @@ const Sidebar = () => {
   const theme = useTheme();
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
 
-  const isCollapse = useSelector((state: RootState) => state.themeCustomizer.isCollapse);
-  const isSidebarHover = useSelector((state: RootState) => state.themeCustomizer.isSidebarHover);
-  const isMobileSidebar = useSelector((state: RootState) => state.themeCustomizer.isMobileSidebar);
+  const isCollapse = useSelector(
+    (state: RootState) => state.themeCustomizer.isCollapse
+  );
+  const isSidebarHover = useSelector(
+    (state: RootState) => state.themeCustomizer.isSidebarHover
+  );
+  const isMobileSidebar = useSelector(
+    (state: RootState) => state.themeCustomizer.isMobileSidebar
+  );
 
   const MiniSidebarWidth = config.miniSidebarWidth;
   const SidebarWidth = config.sidebarWidth;
@@ -48,21 +54,21 @@ const Sidebar = () => {
       console.log('Page was clicked!');
       mutate(); // Optional: Track clicks in SWR cache
     };
-  //   const timeSpentTimer = setTimeout(() => {
-  //   console.log('User has been on the page for 10 seconds!');
-  //   mutate()
-  // }, 10000);
+    //   const timeSpentTimer = setTimeout(() => {
+    //   console.log('User has been on the page for 10 seconds!');
+    //   mutate()
+    // }, 10000);
 
     // Add click event to entire document
     // document.addEventListener('click', handleClick);
-    window.addEventListener('focus',handleClick);
+    window.addEventListener('focus', handleClick);
 
     // Cleanup
     return () => {
       window.removeEventListener('focus', handleClick);
       // document.removeEventListener('click', handleClick);
       // clearTimeout(timeSpentTimer);
-    }
+    };
   }, [mutate]);
 
   if (lgUp) {

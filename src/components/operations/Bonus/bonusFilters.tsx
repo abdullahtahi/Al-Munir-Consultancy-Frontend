@@ -1,14 +1,14 @@
-import GenericButton from "@components/generic-button";
-import ShippingLineSelector from "@components/shared/shipping-line";
-import Grid from "@mui/material/Grid2";
-import Stack from "@mui/material/Stack";
-import { IconLetterX, IconSearch } from "@tabler/icons-react";
-import CustomFields from "src/components/custom-fields/custom-fields";
-import * as Yup from "yup";
-import { Formik } from "formik";
-import CustomSelect from "src/components/custom-select/custom-select";
-import CustomDatePicker from "src/components/custom-date-picker";
-import dayjs from "dayjs";
+import GenericButton from '@components/generic-button';
+import ShippingLineSelector from '@components/shared/shipping-line';
+import Grid from '@mui/material/Grid2';
+import Stack from '@mui/material/Stack';
+import { IconLetterX, IconSearch } from '@tabler/icons-react';
+import CustomFields from 'src/components/custom-fields/custom-fields';
+import * as Yup from 'yup';
+import { Formik } from 'formik';
+import CustomSelect from 'src/components/custom-select/custom-select';
+import CustomDatePicker from 'src/components/custom-date-picker';
+import dayjs from 'dayjs';
 
 interface AdmissionFiltersDialogProps {
   getBonus: (values: any) => void;
@@ -35,13 +35,13 @@ const BonusFilters: React.FC<AdmissionFiltersDialogProps> = ({ getBonus }) => {
       consultantId: Yup.string(),
     });
   const initialValues = {
-    studentName: "",
-    admissionType: "",
-    admissionNumber: "",
-    admissionDateFrom: "",
-    admissionDateTo: "",
-    status: "",
-    consultantId: "",
+    studentName: '',
+    admissionType: '',
+    admissionNumber: '',
+    admissionDateFrom: '',
+    admissionDateTo: '',
+    status: '',
+    consultantId: '',
   };
 
   return (
@@ -74,16 +74,16 @@ const BonusFilters: React.FC<AdmissionFiltersDialogProps> = ({ getBonus }) => {
               placeholder="Enter Admission Type"
               options={[
                 {
-                  key: "school",
-                  value: "school",
+                  key: 'school',
+                  value: 'school',
                 },
                 {
-                  key: "academy",
-                  value: "academy",
+                  key: 'academy',
+                  value: 'academy',
                 },
                 {
-                  key: "technical",
-                  value: "technical",
+                  key: 'technical',
+                  value: 'technical',
                 },
               ]}
             />
@@ -96,16 +96,16 @@ const BonusFilters: React.FC<AdmissionFiltersDialogProps> = ({ getBonus }) => {
               placeholder="Status"
               options={[
                 {
-                  key: "Pending",
-                  value: "Pending",
+                  key: 'Pending',
+                  value: 'Pending',
                 },
                 {
-                  key: "Active",
-                  value: "Active",
+                  key: 'Active',
+                  value: 'Active',
                 },
                 {
-                  key: "In Active",
-                  value: "In Active",
+                  key: 'In Active',
+                  value: 'In Active',
                 },
               ]}
             />
@@ -121,28 +121,28 @@ const BonusFilters: React.FC<AdmissionFiltersDialogProps> = ({ getBonus }) => {
           <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
             <Stack direction="row" spacing={2}>
               <GenericButton
-                label={"Clear"}
+                label={'Clear'}
                 icon={IconLetterX}
                 onClick={() => handleCancel(resetForm)}
                 color="error"
                 variant="outlined"
                 sx={{
-                  textTransform: "uppercase",
-                  "&:hover": {
-                    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
-                    backgroundColor: "#ff9800",
+                  textTransform: 'uppercase',
+                  '&:hover': {
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+                    backgroundColor: '#ff9800',
                   },
                 }}
               />
               <GenericButton
-                label={"Search"}
+                label={'Search'}
                 icon={IconSearch}
                 onClick={handleSubmit}
                 variant="contained"
                 color="primary"
                 sx={{
-                  textTransform: "uppercase",
-                  "&:hover": (theme) => ({
+                  textTransform: 'uppercase',
+                  '&:hover': (theme) => ({
                     backgroundColor: theme.palette.primary.dark,
                     boxShadow: `0 4px 10px ${theme.palette.primary.dark}66`,
                   }),

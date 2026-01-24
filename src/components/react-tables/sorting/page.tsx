@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import {
   TableContainer,
@@ -20,7 +19,10 @@ import {
 } from '@mui/material';
 import { Stack } from '@mui/system';
 import DownloadCard from '@components/shared/DownloadCard';
-import { basicsTableData, BasicsTableDataType } from '../filter/FilterTableData';
+import {
+  basicsTableData,
+  BasicsTableDataType,
+} from '../filter/FilterTableData';
 
 import {
   flexRender,
@@ -119,7 +121,11 @@ const columns = [
     cell: (info) => (
       <Stack direction="row" alignItems="center" spacing={2}>
         <Box width="50%">
-          <LinearProgress variant="determinate" value={info.getValue()} color="primary" />
+          <LinearProgress
+            variant="determinate"
+            value={info.getValue()}
+            color="primary"
+          />
         </Box>
         <Typography variant="subtitle2" color="textSecondary">
           {info.getValue()}%
@@ -153,9 +159,17 @@ const ReactSortingTable = () => {
 
   const handleDownload = () => {
     const headers = ['Invoice', 'Status', 'Customer', 'Progress'];
-    const rows = data.map((item) => [item.invoiceno, item.status, item.name, item.progress]);
+    const rows = data.map((item) => [
+      item.invoiceno,
+      item.status,
+      item.name,
+      item.progress,
+    ]);
 
-    const csvContent = [headers.join(','), ...rows.map((e) => e.join(','))].join('\n');
+    const csvContent = [
+      headers.join(','),
+      ...rows.map((e) => e.join(',')),
+    ].join('\n');
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
@@ -169,7 +183,7 @@ const ReactSortingTable = () => {
   };
 
   return (
-    (<DownloadCard title="Sorting Table" onDownload={handleDownload}>
+    <DownloadCard title="Sorting Table" onDownload={handleDownload}>
       <Grid container spacing={3}>
         <Grid size={12}>
           <Box>
@@ -188,13 +202,18 @@ const ReactSortingTable = () => {
                             variant="h6"
                             mb={1}
                             className={
-                              header.column.getCanSort() ? 'cursor-pointer select-none' : ''
+                              header.column.getCanSort()
+                                ? 'cursor-pointer select-none'
+                                : ''
                             }
                             onClick={header.column.getToggleSortingHandler()}
                           >
                             {header.isPlaceholder
                               ? null
-                              : flexRender(header.column.columnDef.header, header.getContext())}
+                              : flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext()
+                                )}
                             {(() => {
                               const sortState = header.column.getIsSorted();
                               if (sortState === 'asc') return ' 🔼';
@@ -212,7 +231,10 @@ const ReactSortingTable = () => {
                     <TableRow key={row.id}>
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id}>
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
                         </TableCell>
                       ))}
                     </TableRow>
@@ -229,7 +251,11 @@ const ReactSortingTable = () => {
               justifyContent="space-between"
             >
               <Box display="flex" alignItems="center" gap={1}>
-                <Button variant="contained" color="primary" onClick={() => rerender()}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => rerender()}
+                >
                   Force Rerender
                 </Button>
                 <Typography variant="body1">
@@ -249,7 +275,8 @@ const ReactSortingTable = () => {
                 <Stack direction="row" alignItems="center" gap={1}>
                   <Typography variant="body1">Page</Typography>
                   <Typography variant="body1" fontWeight={600}>
-                    {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+                    {table.getState().pagination.pageIndex + 1} of{' '}
+                    {table.getPageCount()}
                   </Typography>
                 </Stack>
                 <Stack direction="row" alignItems="center" gap={1}>
@@ -260,7 +287,9 @@ const ReactSortingTable = () => {
                     max={table.getPageCount()}
                     defaultValue={table.getState().pagination.pageIndex + 1}
                     onChange={(e: { target: { value: any } }) => {
-                      const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                      const page = e.target.value
+                        ? Number(e.target.value) - 1
+                        : 0;
                       table.setPageIndex(page);
                     }}
                   />
@@ -311,7 +340,7 @@ const ReactSortingTable = () => {
           </Box>
         </Grid>
       </Grid>
-    </DownloadCard>)
+    </DownloadCard>
   );
 };
 

@@ -11,9 +11,8 @@ import Logo from '@layouts/full/shared/logo/Logo';
 import AuthLogin from '../authForms/AuthLogin';
 
 const Login2 = () => {
-
   return (
-    (<PageContainer title="Login" description="this is Login page">
+    <PageContainer title="Login" description="this is Login page">
       <Box
         sx={{
           position: 'relative',
@@ -29,7 +28,12 @@ const Login2 = () => {
           },
         }}
       >
-        <Grid container spacing={0} justifyContent="center" sx={{ height: '100vh' }}>
+        <Grid
+          container
+          spacing={0}
+          justifyContent="center"
+          sx={{ height: '100vh' }}
+        >
           <Grid
             display="flex"
             justifyContent="center"
@@ -38,16 +42,29 @@ const Login2 = () => {
               xs: 12,
               sm: 12,
               lg: 5,
-              xl: 4
-            }}>
-            <Card elevation={9} sx={{ p: 4, zIndex: 1, width: '100%', maxWidth: '450px' }}>
+              xl: 4,
+            }}
+          >
+            <Card
+              elevation={9}
+              sx={{ p: 4, zIndex: 1, width: '100%', maxWidth: '450px' }}
+            >
               <Box display="flex" alignItems="center" justifyContent="center">
                 <Logo />
               </Box>
               <AuthLogin
                 subtitle={
-                  <Stack direction="row" spacing={1} justifyContent="center" mt={3}>
-                    <Typography color="textSecondary" variant="h6" fontWeight="500">
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    justifyContent="center"
+                    mt={3}
+                  >
+                    <Typography
+                      color="textSecondary"
+                      variant="h6"
+                      fontWeight="500"
+                    >
                       New to Modernize?
                     </Typography>
                     <Typography
@@ -68,7 +85,7 @@ const Login2 = () => {
           </Grid>
         </Grid>
       </Box>
-    </PageContainer>)
+    </PageContainer>
   );
 };
 

@@ -4,9 +4,9 @@ import React from 'react';
 interface GenericPaginationProps {
   count: number;
   page: number;
-  setPage: (page:number) => void;
+  setPage: (page: number) => void;
   rowsPerPage: number;
-  setRowsPerPage: any
+  setRowsPerPage: any;
 }
 
 const GenericPagination: React.FC<GenericPaginationProps> = ({
@@ -14,13 +14,15 @@ const GenericPagination: React.FC<GenericPaginationProps> = ({
   page,
   setPage,
   rowsPerPage,
-  setRowsPerPage
+  setRowsPerPage,
 }) => {
   const handleChangePage = (_: unknown, newPage: number) => {
     setPage(newPage + 1);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(1);
   };
@@ -29,12 +31,12 @@ const GenericPagination: React.FC<GenericPaginationProps> = ({
     <TablePagination
       component="div"
       count={count}
-      page={page-1}
+      page={page - 1}
       defaultValue={10}
       rowsPerPage={rowsPerPage}
       onPageChange={handleChangePage}
       onRowsPerPageChange={handleChangeRowsPerPage}
-      rowsPerPageOptions={[5, 10, 25, 50,100,150]} // ✅ optional
+      rowsPerPageOptions={[5, 10, 25, 50, 100, 150]} // ✅ optional
     />
   );
 };

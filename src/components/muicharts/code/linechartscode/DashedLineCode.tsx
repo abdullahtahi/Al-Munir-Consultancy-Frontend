@@ -1,11 +1,10 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
-import { markElementClasses } from '@mui/x-charts'
+import CodeDialog from '@components/shared/CodeDialog';
+import { markElementClasses } from '@mui/x-charts';
 
 function DashedLineCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
     
 'use client'
 import * as React from 'react';
@@ -63,8 +62,8 @@ title: 'DashedLineChart ',
       );
 }
   `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default DashedLineCode
+export default DashedLineCode;

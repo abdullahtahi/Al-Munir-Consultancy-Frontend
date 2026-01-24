@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 
-import { IconDotsVertical, IconEye, IconLayoutBoard, IconPencil, IconRotate, IconTrash } from '@tabler/icons-react';
+import {
+  IconDotsVertical,
+  IconEye,
+  IconLayoutBoard,
+  IconPencil,
+  IconRotate,
+  IconTrash,
+} from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 
 import IconButton from '@mui/material/IconButton';
@@ -8,9 +15,11 @@ import Menu from '@mui/material/Menu';
 import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
-import { CAN_DELETE_ROLE, CAN_EDIT_ROLE, CAN_VIEW_ROLE_DASHBOARD } from 'src/constants/Permissions';
-
-
+import {
+  CAN_DELETE_ROLE,
+  CAN_EDIT_ROLE,
+  CAN_VIEW_ROLE_DASHBOARD,
+} from 'src/constants/Permissions';
 
 interface RolesTableColumn {
   id: string;
@@ -29,8 +38,12 @@ interface RolesColumnGradeProps {
   onStatusToggle: (row: any) => void;
 }
 
-export const useRolesColumns = ({ onAssignPermission, onEdit, onRevert, onStatusToggle }: RolesColumnGradeProps) => {
-
+export const useRolesColumns = ({
+  onAssignPermission,
+  onEdit,
+  onRevert,
+  onStatusToggle,
+}: RolesColumnGradeProps) => {
   const ActionMenu = ({ row }: { row: any }) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -48,22 +61,22 @@ export const useRolesColumns = ({ onAssignPermission, onEdit, onRevert, onStatus
       {
         permission: CAN_VIEW_ROLE_DASHBOARD,
         key: 'view_role',
-        title: "view Permissions",
+        title: 'view Permissions',
         icon: <IconLayoutBoard size={22} />,
         onClick: () => onAssignPermission(row?.id),
       },
       {
         permission: CAN_EDIT_ROLE,
         key: 'edit_role',
-        title: "Edit",
+        title: 'Edit',
         icon: <IconPencil size={22} />,
         onClick: () => onEdit(row),
       },
       {
         permission: CAN_DELETE_ROLE,
         key: 'revert_role',
-        title: "Delete",
-        icon:  <IconTrash size={22} />,
+        title: 'Delete',
+        icon: <IconTrash size={22} />,
         onClick: () => onRevert(row),
       },
     ];
@@ -109,7 +122,7 @@ export const useRolesColumns = ({ onAssignPermission, onEdit, onRevert, onStatus
   const rolesColumns: RolesTableColumn[] = [
     {
       id: '1',
-      label: "S.No",
+      label: 'S.No',
       align: 'left',
       minWidth: 50,
       classNames: 'pr-0',
@@ -118,7 +131,7 @@ export const useRolesColumns = ({ onAssignPermission, onEdit, onRevert, onStatus
     },
     {
       id: '2',
-      label: "Name",
+      label: 'Name',
       align: 'left',
       minWidth: 150,
       classNames: 'pr-0',
@@ -127,7 +140,7 @@ export const useRolesColumns = ({ onAssignPermission, onEdit, onRevert, onStatus
     },
     {
       id: '3',
-      label: "Description",
+      label: 'Description',
       align: 'left',
       minWidth: 150,
       classNames: 'pr-0',

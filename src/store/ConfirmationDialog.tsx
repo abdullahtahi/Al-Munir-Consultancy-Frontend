@@ -94,7 +94,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
         cloneElement(children, {
           onClick: handleOpen,
           disabled: isLoading,
-          ...children.props
+          ...children.props,
         })}
     </>
   );

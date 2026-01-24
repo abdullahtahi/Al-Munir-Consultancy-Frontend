@@ -1,10 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function StraightAnglePieCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
   
@@ -43,8 +42,7 @@ title: 'StraightAnglePieChart ',
   )
 }
   `}
-
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
-export default StraightAnglePieCode
+export default StraightAnglePieCode;

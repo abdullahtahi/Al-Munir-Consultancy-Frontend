@@ -1,5 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function TwoLevelPieCode() {
   return (
@@ -71,7 +70,7 @@ function TwoLevelPieChart() {
   
 `}
     </CodeDialog>
-  )
+  );
 }
 
-export default TwoLevelPieCode
+export default TwoLevelPieCode;

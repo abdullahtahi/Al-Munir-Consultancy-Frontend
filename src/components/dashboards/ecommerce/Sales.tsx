@@ -24,7 +24,7 @@ const Sales = () => {
         show: false,
       },
       height: 90,
-      width:'100%',
+      width: '100%',
       stacked: true,
       stackType: '100%',
       sparkline: {
@@ -59,7 +59,9 @@ const Sales = () => {
         show: false,
       },
     },
-    responsive: [{ breakpoint: 1025, options: { chart: { height: 150, width: 250 } } }],
+    responsive: [
+      { breakpoint: 1025, options: { chart: { height: 150, width: 250 } } },
+    ],
   };
   const seriescolumnchart = [
     {
@@ -87,7 +89,12 @@ const Sales = () => {
           Sales
         </Typography>
         <Box className="rounded-bars">
-        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="90px" />
+          <Chart
+            options={optionscolumnchart}
+            series={seriescolumnchart}
+            type="bar"
+            height="90px"
+          />
         </Box>
       </>
     </DashboardCard>

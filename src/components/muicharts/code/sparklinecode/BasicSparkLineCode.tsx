@@ -1,5 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function BasicSparkLineCode() {
   return (
@@ -48,7 +47,7 @@ export default BasicSparkLine
 
 `}
     </CodeDialog>
-  )
+  );
 }
 
-export default BasicSparkLineCode
+export default BasicSparkLineCode;

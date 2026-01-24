@@ -1,11 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
-
+import CodeDialog from '@components/shared/CodeDialog';
 
 function ControlledExpansionTreeCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -86,8 +84,8 @@ function ControlledExpansionTree() {
 
 export default ControlledExpansionTree
               `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default ControlledExpansionTreeCode
+export default ControlledExpansionTreeCode;

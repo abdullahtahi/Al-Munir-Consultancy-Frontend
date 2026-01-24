@@ -45,7 +45,7 @@ const HpHeader = () => {
   };
 
   return (
-    (<AppBarStyled position="sticky" elevation={0}>
+    <AppBarStyled position="sticky" elevation={0}>
       <Container
         sx={{
           maxWidth: '1400px !important',
@@ -54,7 +54,11 @@ const HpHeader = () => {
         <ToolbarStyled>
           <Logo />
           {lgDown ? (
-            <IconButton color="inherit" aria-label="menu" onClick={handleDrawerOpen}>
+            <IconButton
+              color="inherit"
+              aria-label="menu"
+              onClick={handleDrawerOpen}
+            >
               <IconMenu2 size="20" />
             </IconButton>
           ) : null}
@@ -82,12 +86,12 @@ const HpHeader = () => {
               border: '0 !important',
               boxShadow: (theme) => theme.shadows[8],
             },
-          }
+          },
         }}
       >
         <MobileSidebar />
       </Drawer>
-    </AppBarStyled>)
+    </AppBarStyled>
   );
 };
 

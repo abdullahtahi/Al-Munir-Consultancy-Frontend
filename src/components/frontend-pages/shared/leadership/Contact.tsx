@@ -1,4 +1,12 @@
-import { Box, Stack, Typography, Link, AvatarGroup, Container, Avatar } from '@mui/material';
+import {
+  Box,
+  Stack,
+  Typography,
+  Link,
+  AvatarGroup,
+  Container,
+  Avatar,
+} from '@mui/material';
 
 import user1 from '@assets/images/profile/user-1.jpg';
 import user2 from '@assets/images/profile/user-2.jpg';
@@ -21,8 +29,16 @@ const Contact = () => {
           alignItems="center"
         >
           <AvatarGroup>
-            <Avatar alt="Remy Sharp" src={user1} sx={{ width: 44, height: 44 }} />
-            <Avatar alt="Travis Howard" src={user2} sx={{ width: 44, height: 44 }} />
+            <Avatar
+              alt="Remy Sharp"
+              src={user1}
+              sx={{ width: 44, height: 44 }}
+            />
+            <Avatar
+              alt="Travis Howard"
+              src={user2}
+              sx={{ width: 44, height: 44 }}
+            />
           </AvatarGroup>
           <Typography variant="body1" color="white" fontSize="16px">
             Save valuable time and effort spent searching for a solution.
@@ -34,7 +50,12 @@ const Contact = () => {
               textDecorationColor: 'white',
             }}
           >
-            <Typography component="span" fontWeight={600} color="white" fontSize="16px">
+            <Typography
+              component="span"
+              fontWeight={600}
+              color="white"
+              fontSize="16px"
+            >
               Contact us now
             </Typography>
           </Link>

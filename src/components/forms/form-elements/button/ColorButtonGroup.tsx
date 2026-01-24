@@ -1,12 +1,25 @@
-
 import { Button, ButtonGroup, Stack } from '@mui/material';
-import { IconAlignCenter, IconAlignLeft, IconAlignRight, IconPlayerPlay, IconPlayerSkipBack, IconPlayerSkipForward } from '@tabler/icons-react';
+import {
+  IconAlignCenter,
+  IconAlignLeft,
+  IconAlignRight,
+  IconPlayerPlay,
+  IconPlayerSkipBack,
+  IconPlayerSkipForward,
+} from '@tabler/icons-react';
 
 const ColorButtonGroup = () => (
-  <Stack spacing={2} direction={{ xs: 'column', sm: 'row', lg: 'column' }} justifyContent="center">
+  <Stack
+    spacing={2}
+    direction={{ xs: 'column', sm: 'row', lg: 'column' }}
+    justifyContent="center"
+  >
     {/* item 1 */}
     <Stack spacing={1} direction={{ xs: 'column', sm: 'column', lg: 'row' }}>
-      <ButtonGroup variant="contained" aria-label="outlined primary button group">
+      <ButtonGroup
+        variant="contained"
+        aria-label="outlined primary button group"
+      >
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
@@ -22,8 +35,11 @@ const ColorButtonGroup = () => (
         <Button>Three</Button>
       </ButtonGroup>
 
-
-      <ButtonGroup variant="contained" color="error" aria-label="outlined primary button group">
+      <ButtonGroup
+        variant="contained"
+        color="error"
+        aria-label="outlined primary button group"
+      >
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
@@ -52,7 +68,11 @@ const ColorButtonGroup = () => (
           <IconPlayerSkipForward width={18} />
         </Button>
       </ButtonGroup>
-      <ButtonGroup variant="outlined" color="secondary" aria-label="outlined button group">
+      <ButtonGroup
+        variant="outlined"
+        color="secondary"
+        aria-label="outlined button group"
+      >
         <Button>
           <IconPlayerSkipBack width={18} />
         </Button>
@@ -64,7 +84,11 @@ const ColorButtonGroup = () => (
         </Button>
       </ButtonGroup>
 
-      <ButtonGroup variant="outlined" color="warning" aria-label="outlined button group">
+      <ButtonGroup
+        variant="outlined"
+        color="warning"
+        aria-label="outlined button group"
+      >
         <Button>
           <IconPlayerSkipBack width={18} />
         </Button>
@@ -76,7 +100,11 @@ const ColorButtonGroup = () => (
         </Button>
       </ButtonGroup>
 
-      <ButtonGroup variant="outlined" color="error" aria-label="outlined button group">
+      <ButtonGroup
+        variant="outlined"
+        color="error"
+        aria-label="outlined button group"
+      >
         <Button>
           <IconPlayerSkipBack width={18} />
         </Button>
@@ -88,7 +116,11 @@ const ColorButtonGroup = () => (
         </Button>
       </ButtonGroup>
 
-      <ButtonGroup variant="outlined" color="success" aria-label="outlined button group">
+      <ButtonGroup
+        variant="outlined"
+        color="success"
+        aria-label="outlined button group"
+      >
         <Button>
           <IconPlayerSkipBack width={18} />
         </Button>
@@ -113,7 +145,11 @@ const ColorButtonGroup = () => (
           <IconAlignRight width={18} />
         </Button>
       </ButtonGroup>
-      <ButtonGroup color="secondary" variant="text" aria-label="text button group">
+      <ButtonGroup
+        color="secondary"
+        variant="text"
+        aria-label="text button group"
+      >
         <Button>
           <IconAlignLeft width={18} />
         </Button>
@@ -124,7 +160,11 @@ const ColorButtonGroup = () => (
           <IconAlignRight width={18} />
         </Button>
       </ButtonGroup>
-      <ButtonGroup color="warning" variant="text" aria-label="text button group">
+      <ButtonGroup
+        color="warning"
+        variant="text"
+        aria-label="text button group"
+      >
         <Button>
           <IconAlignLeft width={18} />
         </Button>
@@ -146,7 +186,11 @@ const ColorButtonGroup = () => (
           <IconAlignRight width={18} />
         </Button>
       </ButtonGroup>
-      <ButtonGroup color="success" variant="text" aria-label="text button group">
+      <ButtonGroup
+        color="success"
+        variant="text"
+        aria-label="text button group"
+      >
         <Button>
           <IconAlignLeft width={18} />
         </Button>

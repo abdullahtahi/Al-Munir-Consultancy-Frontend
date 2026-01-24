@@ -1,8 +1,12 @@
-
 import { Button, Stack } from '@mui/material';
 
 const TextSizeButton = () => (
-  <Stack spacing={1} direction="row" alignItems="center" justifyContent="center">
+  <Stack
+    spacing={1}
+    direction="row"
+    alignItems="center"
+    justifyContent="center"
+  >
     <Button size="small">Small</Button>
     <Button size="medium">Medium</Button>
     <Button size="large">Large</Button>

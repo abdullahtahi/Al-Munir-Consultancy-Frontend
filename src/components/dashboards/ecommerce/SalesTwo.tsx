@@ -41,7 +41,7 @@ const SalesTwo = () => {
         columnWidth: '100%',
         borderRadius: 3,
         distributed: true,
-    }
+      },
     },
     dataLabels: {
       enabled: false,
@@ -49,8 +49,8 @@ const SalesTwo = () => {
     stroke: {
       show: true,
       width: 5,
-      colors: ['rgba(0,0,0,0.01)']
-  },
+      colors: ['rgba(0,0,0,0.01)'],
+    },
     xaxis: {
       axisBorder: {
         show: false,
@@ -80,22 +80,21 @@ const SalesTwo = () => {
       },
       responsive: [
         {
-            breakpoint: 767,
-            options: {
-                chart: { height: 60 },
-                plotOptions: {
-                    bar: { columnWidth: "60%" }
-                }
-                
-            }
-        }
-    ],
+          breakpoint: 767,
+          options: {
+            chart: { height: 60 },
+            plotOptions: {
+              bar: { columnWidth: '60%' },
+            },
+          },
+        },
+      ],
     },
   };
   const seriescolumnchart = [
     {
       name: '',
-      data: [100, 60, 35, 90, 35, 100]
+      data: [100, 60, 35, 90, 35, 100],
     },
   ];
 
@@ -121,10 +120,20 @@ const SalesTwo = () => {
         </Box>
 
         <Box mt={3} mb={2}>
-          <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="25px" />
+          <Chart
+            options={optionscolumnchart}
+            series={seriescolumnchart}
+            type="bar"
+            height="25px"
+          />
         </Box>
 
-        <Typography variant="h4">$16.5k<span><IconArrowUpRight width={18} color="#39B69A" /></span></Typography>
+        <Typography variant="h4">
+          $16.5k
+          <span>
+            <IconArrowUpRight width={18} color="#39B69A" />
+          </span>
+        </Typography>
         <Typography variant="subtitle2" color="textSecondary">
           Sales
         </Typography>

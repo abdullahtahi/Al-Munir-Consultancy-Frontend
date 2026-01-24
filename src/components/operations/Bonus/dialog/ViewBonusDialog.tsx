@@ -12,6 +12,7 @@ import CustomFields from 'src/components/custom-fields/custom-fields';
 import FileUploadField from 'src/components/custom-file-Upload/custom-file-upload';
 import { baseUrl, put } from 'src/services/default';
 import * as Yup from 'yup';
+import dayjs from 'dayjs';
 import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
 
@@ -34,7 +35,7 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
       const response = await put(`${baseUrl}/api/v1/bonuses/processable`, {
         id: singleUser.id,
         paymentProof: values.paymentProof,
-        status: 'processed'
+        status: 'processed',
       });
 
       if (response?.data) {
@@ -45,7 +46,7 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
         // Optionally handle error feedback here if needed, but for now console.error
       }
     } catch (error) {
-       console.error('Error processing bonus:', error);
+      console.error('Error processing bonus:', error);
     } finally {
       setSubmitting(false);
     }
@@ -81,13 +82,14 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
         initialValues={
           singleUser
             ? {
-                studentName:
-                  singleUser?.admission?.Student?.studentName || '',
+                studentName: singleUser?.admission?.Student?.studentName || '',
                 consultantId:
-                  singleUser.fkConsultant?.firstName +" "+
+                  singleUser.fkConsultant?.firstName +
+                    ' ' +
                     singleUser.fkConsultant?.lastName || '',
                 fromConsultant:
-                  singleUser.fkFromConsultant?.firstName +" "+
+                  singleUser.fkFromConsultant?.firstName +
+                    ' ' +
                     singleUser.fkFromConsultant?.lastName || '',
                 bonusType: singleUser?.bonusType || '',
                 amount: singleUser.amount,
@@ -130,13 +132,12 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                       disabled={true}
                     />
                   </Grid>
- <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="consultantId"
                       label="Consultant"
                       placeholder=""
                       disabled={true}
-
                     />
                   </Grid>
 
@@ -146,8 +147,6 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                       label="Consultant From"
                       placeholder=""
                       disabled={true}
-
-
                     />
                   </Grid>
 
@@ -157,7 +156,6 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                       label="Bonus Type"
                       placeholder=""
                       disabled={true}
-
                     />
                   </Grid>
 
@@ -167,7 +165,6 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                       label="Amount"
                       placeholder=""
                       disabled={true}
-
                     />
                   </Grid>
 
@@ -176,7 +173,6 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                       name="percentage"
                       label="Percentage"
                       disabled={true}
-
                       placeholder=""
                     />
                   </Grid>
@@ -187,7 +183,6 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                       label="Base Amount"
                       placeholder=""
                       disabled={true}
-
                     />
                   </Grid>
 
@@ -215,7 +210,11 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                       name="processDate"
                       label="Process Date"
                       placeholder=""
-                      value={singleUser?.processedAt ? dayjs(singleUser?.processedAt).format('DD-MM-YYYY') : '-'}
+                      value={
+                        singleUser?.processedAt
+                          ? dayjs(singleUser?.processedAt).format('DD-MM-YYYY')
+                          : '-'
+                      }
                       disabled={true}
                     />
                   </Grid>
@@ -244,20 +243,30 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                     />
                   </Grid>
 
-                  <Grid size={{ xs: 12}}>
+                  <Grid size={{ xs: 12 }}>
                     <CustomFields
                       name="description"
                       label="Description"
                       placeholder=""
                       disabled={true}
-
                     />
                   </Grid>
                 </Grid>
               </DialogContent>
               <DialogActions>
-                <Button variant="outlined" color="error" onClick={onClose} disabled={isSubmitting}>Cancel</Button>
-                <Button disabled={!values.paymentProof || isSubmitting} type="submit" variant="contained">
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={onClose}
+                  disabled={isSubmitting}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  disabled={!values.paymentProof || isSubmitting}
+                  type="submit"
+                  variant="contained"
+                >
                   {isSubmitting ? 'Submitting...' : 'Submit'}
                 </Button>
               </DialogActions>

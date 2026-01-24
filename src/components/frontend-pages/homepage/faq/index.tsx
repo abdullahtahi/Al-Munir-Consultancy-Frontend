@@ -21,7 +21,10 @@ const FAQ = () => {
   const StyledAccordian = styled(Accordion)(() => ({
     borderRadius: '8px',
     marginBottom: '16px !important',
-    boxShadow: theme.palette.mode == 'light' ? '0px 3px 0px rgba(235, 241, 246, 0.25)' : 'unset',
+    boxShadow:
+      theme.palette.mode == 'light'
+        ? '0px 3px 0px rgba(235, 241, 246, 0.25)'
+        : 'unset',
     border: `1px solid ${theme.palette.divider}`,
     '&:before': {
       display: 'none',
@@ -65,7 +68,7 @@ const FAQ = () => {
   };
 
   return (
-    (<Container
+    <Container
       maxWidth="lg"
       sx={{
         pb: {
@@ -78,8 +81,9 @@ const FAQ = () => {
         <Grid
           size={{
             xs: 12,
-            lg: 8
-          }}>
+            lg: 8,
+          }}
+        >
           <Typography
             variant="h4"
             textAlign="center"
@@ -110,8 +114,9 @@ const FAQ = () => {
                 What is included with my purchase?
               </AccordionSummary>
               <AccordionDetails>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
-                ex, sit amet blandit leo lobortis eget.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
               </AccordionDetails>
             </StyledAccordian>
             <StyledAccordian expanded={expanded2} onChange={handleChange2}>
@@ -129,8 +134,9 @@ const FAQ = () => {
                 Are there any recurring fees?
               </AccordionSummary>
               <AccordionDetails>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
-                ex, sit amet blandit leo lobortis eget.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
               </AccordionDetails>
             </StyledAccordian>
             <StyledAccordian expanded={expanded3} onChange={handleChange3}>
@@ -148,8 +154,9 @@ const FAQ = () => {
                 Can I use the template on multiple projects?
               </AccordionSummary>
               <AccordionDetails>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
-                ex, sit amet blandit leo lobortis eget.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
               </AccordionDetails>
             </StyledAccordian>
             <StyledAccordian expanded={expanded4} onChange={handleChange4}>
@@ -167,8 +174,9 @@ const FAQ = () => {
                 Can I customize the admin dashboard template to match my brand?
               </AccordionSummary>
               <AccordionDetails>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
-                ex, sit amet blandit leo lobortis eget.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
               </AccordionDetails>
             </StyledAccordian>
             <StyledAccordian expanded={expanded5} onChange={handleChange5}>
@@ -186,8 +194,9 @@ const FAQ = () => {
                 Are there any restrictions on using the template?
               </AccordionSummary>
               <AccordionDetails>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
-                ex, sit amet blandit leo lobortis eget.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
               </AccordionDetails>
             </StyledAccordian>
             <StyledAccordian expanded={expanded6} onChange={handleChange6}>
@@ -205,8 +214,9 @@ const FAQ = () => {
                 How can I get support after purchase?
               </AccordionSummary>
               <AccordionDetails>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
-                ex, sit amet blandit leo lobortis eget.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
               </AccordionDetails>
             </StyledAccordian>
           </Box>
@@ -216,8 +226,9 @@ const FAQ = () => {
         <Grid
           size={{
             xs: 12,
-            lg: 5
-          }}>
+            lg: 5,
+          }}
+        >
           <Box
             mt={5}
             borderRadius="8px"
@@ -265,7 +276,7 @@ const FAQ = () => {
           </Box>
         </Grid>
       </Grid>
-    </Container>)
+    </Container>
   );
 };
 export default FAQ;

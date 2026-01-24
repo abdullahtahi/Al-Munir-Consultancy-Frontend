@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -36,7 +36,12 @@ const FVCheckbox = () => {
             color="secondary"
             onChange={formik.handleChange}
           />
-          <CustomCheckbox value="error" name="color" color="error" onChange={formik.handleChange} />
+          <CustomCheckbox
+            value="error"
+            name="color"
+            color="error"
+            onChange={formik.handleChange}
+          />
           {formik.errors.color && (
             <FormHelperText error id="standard-weight-helper-text-email-login">
               {' '}

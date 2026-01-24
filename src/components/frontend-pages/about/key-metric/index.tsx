@@ -4,7 +4,7 @@ import Key from './Key';
 
 const KeyMetric = () => {
   return (
-    (<Box
+    <Box
       sx={{
         paddingTop: {
           xs: '40px',
@@ -22,20 +22,22 @@ const KeyMetric = () => {
           <Grid
             size={{
               xs: 12,
-              lg: 5
-            }}>
+              lg: 5,
+            }}
+          >
             <ContentArea />
           </Grid>
           <Grid
             size={{
               xs: 12,
-              lg: 5
-            }}>
+              lg: 5,
+            }}
+          >
             <Key />
           </Grid>
         </Grid>
       </Container>
-    </Box>)
+    </Box>
   );
 };
 

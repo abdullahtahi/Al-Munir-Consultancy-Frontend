@@ -45,7 +45,7 @@ import {
   IconGiftFilled,
   IconBrandEtsy,
   IconBookFilled,
-  IconAdjustmentsCode
+  IconAdjustmentsCode,
 } from '@tabler/icons-react';
 import { uniqueId } from 'lodash';
 
@@ -65,7 +65,12 @@ export interface MenuitemsType {
   permission?: string;
 }
 
-import { CAN_VIEW_ADMISSION, CAN_VIEW_BONUS, CAN_VIEW_CONSULTANT, CAN_VIEW_SETTING } from 'src/constants/Permissions';
+import {
+  CAN_VIEW_ADMISSION,
+  CAN_VIEW_BONUS,
+  CAN_VIEW_CONSULTANT,
+  CAN_VIEW_SETTING,
+} from 'src/constants/Permissions';
 
 const Menuitems: MenuitemsType[] = [
   {

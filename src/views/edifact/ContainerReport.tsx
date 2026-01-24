@@ -4,7 +4,10 @@ import Box from '@mui/material/Box';
 
 const ContainerReport = () => {
   return (
-    <PageContainer title="ContainerReport" description="this is ContainerReport">
+    <PageContainer
+      title="ContainerReport"
+      description="this is ContainerReport"
+    >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
         <Box sx={{ width: '100%' }}>
           <ContainerReportComponent />

@@ -1,5 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function StackedAreaCode() {
   return (
@@ -61,7 +60,7 @@ export default function StackedAreaChart() {
 }
 `}
     </CodeDialog>
-  )
+  );
 }
 
-export default StackedAreaCode
+export default StackedAreaCode;

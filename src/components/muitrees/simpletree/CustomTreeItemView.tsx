@@ -1,5 +1,4 @@
-
-'use client'
+'use client';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -24,11 +23,11 @@ const CustomTreeItemContent = styled(TreeItemContent)(({ theme }) => ({
   padding: theme.spacing(0.5, 1),
 }));
 
-
-
-const CustomTreeItem = React.forwardRef(function CustomTreeItem(props: any, ref) {
+const CustomTreeItem = React.forwardRef(function CustomTreeItem(
+  props: any,
+  ref
+) {
   const { id, itemId, label, disabled, children, ...other } = props;
-
 
   const {
     getContextProviderProps,
@@ -39,8 +38,15 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(props: any, ref)
     getLabelProps,
     getGroupTransitionProps,
     status,
-  } = useTreeItem({ id, itemId, children, label, disabled, rootRef: ref, ...other });
-
+  } = useTreeItem({
+    id,
+    itemId,
+    children,
+    label,
+    disabled,
+    rootRef: ref,
+    ...other,
+  });
 
   return (
     <TreeItemProvider {...getContextProviderProps()}>
@@ -59,7 +65,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(props: any, ref)
                 fontSize: '0.8rem',
               })}
             >
-              {(label)[0]}
+              {label[0]}
             </Avatar>
             <TreeItemLabel {...getLabelProps()} />
           </Box>
@@ -72,11 +78,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(props: any, ref)
 
 export default function CustomTreeItemView() {
   return (
-    <ParentCard
-      title="CustomTreeItem"
-      codeModel={<CustomTreeItemCode />}
-    >
-
+    <ParentCard title="CustomTreeItem" codeModel={<CustomTreeItemCode />}>
       <Box sx={{ minHeight: 200, minWidth: 250 }}>
         <SimpleTreeView defaultExpandedItems={['3']}>
           <CustomTreeItem itemId="1" label="Amelia Hart">

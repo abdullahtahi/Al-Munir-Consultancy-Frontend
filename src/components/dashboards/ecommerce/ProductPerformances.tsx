@@ -257,19 +257,32 @@ const ProductPerformances = () => {
             <TableRow>
               <TableCell sx={{ pl: 0 }}>
                 <Stack direction="row" spacing={2}>
-                  <Avatar src={img1} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
+                  <Avatar
+                    src={img1}
+                    variant="rounded"
+                    alt={img1}
+                    sx={{ width: 48, height: 48 }}
+                  />
                   <Box>
                     <Typography variant="subtitle2" fontWeight={600}>
                       Gaming Console
                     </Typography>
-                    <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
+                    <Typography
+                      color="textSecondary"
+                      fontSize="12px"
+                      variant="subtitle2"
+                    >
                       Electronics
                     </Typography>
                   </Box>
                 </Stack>
               </TableCell>
               <TableCell>
-                <Typography color="textSecondary" variant="subtitle2" fontWeight={400}>
+                <Typography
+                  color="textSecondary"
+                  variant="subtitle2"
+                  fontWeight={400}
+                >
                   78.5%
                 </Typography>
               </TableCell>
@@ -302,19 +315,32 @@ const ProductPerformances = () => {
             <TableRow>
               <TableCell sx={{ pl: 0 }}>
                 <Stack direction="row" spacing={2}>
-                  <Avatar src={img2} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
+                  <Avatar
+                    src={img2}
+                    variant="rounded"
+                    alt={img1}
+                    sx={{ width: 48, height: 48 }}
+                  />
                   <Box>
                     <Typography variant="subtitle2" fontWeight={600}>
                       Leather Purse
                     </Typography>
-                    <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
+                    <Typography
+                      color="textSecondary"
+                      fontSize="12px"
+                      variant="subtitle2"
+                    >
                       Fashion
                     </Typography>
                   </Box>
                 </Stack>
               </TableCell>
               <TableCell>
-                <Typography color="textSecondary" variant="subtitle2" fontWeight={400}>
+                <Typography
+                  color="textSecondary"
+                  variant="subtitle2"
+                  fontWeight={400}
+                >
                   58.6%
                 </Typography>
               </TableCell>
@@ -347,19 +373,32 @@ const ProductPerformances = () => {
             <TableRow>
               <TableCell sx={{ pl: 0 }}>
                 <Stack direction="row" spacing={2}>
-                  <Avatar src={img3} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
+                  <Avatar
+                    src={img3}
+                    variant="rounded"
+                    alt={img1}
+                    sx={{ width: 48, height: 48 }}
+                  />
                   <Box>
                     <Typography variant="subtitle2" fontWeight={600}>
                       Red Velvate Dress
                     </Typography>
-                    <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
+                    <Typography
+                      color="textSecondary"
+                      fontSize="12px"
+                      variant="subtitle2"
+                    >
                       Womens Fashion
                     </Typography>
                   </Box>
                 </Stack>
               </TableCell>
               <TableCell>
-                <Typography color="textSecondary" variant="subtitle2" fontWeight={400}>
+                <Typography
+                  color="textSecondary"
+                  variant="subtitle2"
+                  fontWeight={400}
+                >
                   25%
                 </Typography>
               </TableCell>
@@ -392,19 +431,32 @@ const ProductPerformances = () => {
             <TableRow>
               <TableCell sx={{ pl: 0 }}>
                 <Stack direction="row" spacing={2}>
-                  <Avatar src={img4} variant="rounded" alt={img1} sx={{ width: 48, height: 48 }} />
+                  <Avatar
+                    src={img4}
+                    variant="rounded"
+                    alt={img1}
+                    sx={{ width: 48, height: 48 }}
+                  />
                   <Box>
                     <Typography variant="subtitle2" fontWeight={600}>
                       Headphone Boat
                     </Typography>
-                    <Typography color="textSecondary" fontSize="12px" variant="subtitle2">
+                    <Typography
+                      color="textSecondary"
+                      fontSize="12px"
+                      variant="subtitle2"
+                    >
                       Electronics
                     </Typography>
                   </Box>
                 </Stack>
               </TableCell>
               <TableCell>
-                <Typography color="textSecondary" variant="subtitle2" fontWeight={400}>
+                <Typography
+                  color="textSecondary"
+                  variant="subtitle2"
+                  fontWeight={400}
+                >
                   96.3%
                 </Typography>
               </TableCell>

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Autocomplete from '@mui/material/Autocomplete';
 import CustomTextField from '../../theme-elements/CustomTextField';
@@ -73,7 +73,8 @@ const top100Films = [
   { label: 'Alien', year: 1979 },
   { label: 'Sunset Boulevard', year: 1950 },
   {
-    label: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    label:
+      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
     year: 1964,
   },
   { label: 'The Great Dictator', year: 1940 },
@@ -131,7 +132,6 @@ const top100Films = [
   { label: 'Monty Python and the Holy Grail', year: 1975 },
 ];
 
-
 const SizesAutocomplete = () => (
   <>
     <Autocomplete
@@ -143,7 +143,11 @@ const SizesAutocomplete = () => (
         mb: 2,
       }}
       renderInput={(params) => (
-        <CustomTextField {...params} placeholder="Size Medium" aria-label="Size Medium" />
+        <CustomTextField
+          {...params}
+          placeholder="Size Medium"
+          aria-label="Size Medium"
+        />
       )}
     />
 
@@ -154,7 +158,11 @@ const SizesAutocomplete = () => (
       fullWidth
       size="small"
       renderInput={(params) => (
-        <CustomTextField {...params} placeholder="Size Small" aria-label="Size Small" />
+        <CustomTextField
+          {...params}
+          placeholder="Size Small"
+          aria-label="Size Small"
+        />
       )}
     />
   </>

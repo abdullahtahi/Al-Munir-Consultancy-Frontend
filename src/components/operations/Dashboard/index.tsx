@@ -6,51 +6,48 @@ import TopCards from 'src/components/dashboards/modern/TopCards';
 import TopPerformers from 'src/components/dashboards/modern/TopPerformers';
 import PageContainer from 'src/components/layout/PageContainer';
 const Dashboard = () => {
-  const breadcrumbs = [
-    { title: "Home", to: '/' },
-    { title: 'Dashboard' },
-  ];
+  const breadcrumbs = [{ title: 'Home', to: '/' }, { title: 'Dashboard' }];
   return (
-    <PageContainer
-    heading={"Dashboard"}
-    breadcrumbs={breadcrumbs}>
-
-    <Box>
-      <Grid container spacing={3}>
-        {/* column */}
-        <Grid
-          size={{
-            xs: 12,
-            lg: 12
-          }}>
-          <TopCards />
+    <PageContainer heading={'Dashboard'} breadcrumbs={breadcrumbs}>
+      <Box>
+        <Grid container spacing={3}>
+          {/* column */}
+          <Grid
+            size={{
+              xs: 12,
+              lg: 12,
+            }}
+          >
+            <TopCards />
+          </Grid>
+          {/* column */}
+          <Grid
+            size={{
+              xs: 12,
+              lg: 12,
+            }}
+          >
+            <BonusUpdate />
+          </Grid>
+          <Grid
+            size={{
+              xs: 12,
+              lg: 12,
+            }}
+          >
+            <AdmissionUpdate />
+          </Grid>
+          <Grid
+            size={{
+              xs: 12,
+              lg: 12,
+            }}
+          >
+            <TopPerformers />
+          </Grid>
         </Grid>
-        {/* column */}
-        <Grid
-          size={{
-            xs: 12,
-            lg: 12
-          }}>
-            <BonusUpdate/>
-        </Grid>
-        <Grid
-          size={{
-            xs: 12,
-            lg: 12
-          }}>
-            <AdmissionUpdate/>
-        </Grid>
-        <Grid
-          size={{
-            xs: 12,
-            lg: 12
-          }}>
-          <TopPerformers />
-        </Grid>
-      </Grid>
-    </Box>
-  </PageContainer>
-    
+      </Box>
+    </PageContainer>
   );
 };
 

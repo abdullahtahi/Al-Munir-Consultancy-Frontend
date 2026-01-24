@@ -1,10 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function BasicGaugesCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import { Gauge } from '@mui/x-charts/Gauge';
@@ -31,8 +30,8 @@ export default function BasicGaugesChart() {
 
 
 `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default BasicGaugesCode
+export default BasicGaugesCode;

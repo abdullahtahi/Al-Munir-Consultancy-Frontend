@@ -3,7 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { Add, FilterList } from '@mui/icons-material';
 import { IconPencil, IconTrash } from '@tabler/icons-react';
 
-import { Alert, Box, Button, Chip, Collapse, Snackbar, Stack, useTheme } from '@mui/material';
+import {
+  Alert,
+  Box,
+  Button,
+  Chip,
+  Collapse,
+  Snackbar,
+  Stack,
+  useTheme,
+} from '@mui/material';
 import PageContainer from '@components/layout/PageContainer';
 import GenericTable from 'src/components/generic-table';
 import { useSelector } from 'react-redux';
@@ -48,9 +57,9 @@ const BranchList: React.FC = () => {
 
   // Add/Edit dialog state
   const [branchDialogOpen, setBranchOpenDialog] = useState(false);
-  const [branchDialogMode, setbranchDialogMode] = useState<
-    'Add' | 'Edit'
-  >('Add');
+  const [branchDialogMode, setbranchDialogMode] = useState<'Add' | 'Edit'>(
+    'Add'
+  );
 
   const hanldOpenDeleteModal = (row: any) => {
     setSingleUser(row);
@@ -102,7 +111,7 @@ const BranchList: React.FC = () => {
       minWidth: 80,
       classNames: 'pr-0 text-nowrap',
       key: 'status',
-      render: (row:any) =>
+      render: (row: any) =>
         row.isActive == true ? (
           <Stack direction="row" spacing={1}>
             <Chip label="Active" color="success" />
@@ -111,9 +120,9 @@ const BranchList: React.FC = () => {
           <Stack direction="row" spacing={1}>
             <Chip label="In Active" color="error" />
           </Stack>
-        )
+        ),
     },
-   
+
     {
       id: 'Edit',
       label: 'Edit',
@@ -160,21 +169,21 @@ const BranchList: React.FC = () => {
     async (values: any) => {
       try {
         setLoading(true);
-        console.log("values",values)
+        console.log('values', values);
         const queryString = new URLSearchParams(values).toString();
         const admissions: any = await get(
           `${baseUrl}/api/v1/branches?page=${page}&limit=${rowsPerPage}&${queryString}`
         );
-        if(admissions.data){
+        if (admissions.data) {
           setBranchData(admissions.data.rows);
           setTotalCount(admissions.data.count);
-        } else{
+        } else {
           setSnackbar({
-          open: true,
-          message: admissions.message || '',
-          severity: 'error',
-        })
-      }
+            open: true,
+            message: admissions.message || '',
+            severity: 'error',
+          });
+        }
         return admissions;
       } catch (error: any) {
         setSnackbar({
@@ -190,12 +199,12 @@ const BranchList: React.FC = () => {
   );
   const handleSubmit = async (values: any) => {
     try {
-      const {isActive,...rest}=values
+      const { isActive, ...rest } = values;
       if (branchDialogMode == 'Edit') {
-        console.log("")
+        console.log('');
         const user: any = await put(
           `${baseUrl}/api/v1/branches/${singleUser.id}`,
-          {...rest,isActive:isActive== "Active" ?true:false}
+          { ...rest, isActive: isActive == 'Active' ? true : false }
         );
 
         setSnackbar({
@@ -204,10 +213,10 @@ const BranchList: React.FC = () => {
           severity: 'success',
         });
       } else {
-        const branches: any = await post(
-          `${baseUrl}/api/v1/branches`,
-          {...rest,isActive:isActive== "Active" ?true:false}
-        );
+        const branches: any = await post(`${baseUrl}/api/v1/branches`, {
+          ...rest,
+          isActive: isActive == 'Active' ? true : false,
+        });
         console.log('branches', branches);
         setSnackbar({
           open: true,
@@ -250,7 +259,6 @@ const BranchList: React.FC = () => {
     getBranches({});
   }, [rowsPerPage, page, branchDialogOpen]);
 
- 
   return (
     <>
       <PageContainer
@@ -291,25 +299,22 @@ const BranchList: React.FC = () => {
 
         <Collapse in={showFilters} timeout="auto" unmountOnExit>
           <Box mb={2} width="100%">
-            <AdmissionsFilter
-            getBranches={getBranches}
-            />
+            <AdmissionsFilter getBranches={getBranches} />
           </Box>
         </Collapse>
 
-    <Grid size={12}>
-            <GenericTable
-              data={branchData}
-              columns={columns}
-              page={page}
-              rowsPerPage={rowsPerPage}
-              setPage={setPage}
-              setRowsPerPage={setRowsPerPage}
-              totalCount={totalCount}
-              isLoading={loading}
-              />
-    </Grid>
-        
+        <Grid size={12}>
+          <GenericTable
+            data={branchData}
+            columns={columns}
+            page={page}
+            rowsPerPage={rowsPerPage}
+            setPage={setPage}
+            setRowsPerPage={setRowsPerPage}
+            totalCount={totalCount}
+            isLoading={loading}
+          />
+        </Grid>
       </PageContainer>
 
       <NewBranchesDialog
@@ -326,7 +331,7 @@ const BranchList: React.FC = () => {
         subText="Are you sure to delete Admission"
         open={openDeleteModal}
       />
-       <Snackbar
+      <Snackbar
         open={snackbar.open}
         autoHideDuration={4000}
         onClose={() => setSnackbar({ ...snackbar, open: false })}

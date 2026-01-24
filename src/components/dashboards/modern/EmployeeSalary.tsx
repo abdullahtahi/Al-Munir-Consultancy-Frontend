@@ -25,7 +25,14 @@ const EmployeeSalary = () => {
       },
       height: 280,
     },
-    colors: [primarylight, primarylight, primary, primarylight, primarylight, primarylight],
+    colors: [
+      primarylight,
+      primarylight,
+      primary,
+      primarylight,
+      primarylight,
+      primarylight,
+    ],
     plotOptions: {
       bar: {
         borderRadius: 4,
@@ -79,7 +86,12 @@ const EmployeeSalary = () => {
       dataItem2="$5,296"
     >
       <>
-        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="280px" />
+        <Chart
+          options={optionscolumnchart}
+          series={seriescolumnchart}
+          type="bar"
+          height="280px"
+        />
       </>
     </DashboardWidgetCard>
   );

@@ -6,7 +6,7 @@ const Summary = () => {
   return (
     <PageContainer title="Summary" description="this is Summary">
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-        <Box     sx={{ width: '100%' }}>
+        <Box sx={{ width: '100%' }}>
           <SummaryComponent />
         </Box>
       </Box>

@@ -4,8 +4,8 @@ import AdmissionsList from './AdmissionsList';
 const AdmissionsComponent = () => {
   return (
     <Grid container spacing={3}>
-      <AdmissionsList/>
-      </Grid>
+      <AdmissionsList />
+    </Grid>
   );
 };
 

@@ -1,5 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function BiaxialLineCode() {
   return (
@@ -51,7 +50,7 @@ export default function BiaxialLineChart() {
 }
 `}
     </CodeDialog>
-  )
+  );
 }
 
-export default BiaxialLineCode
+export default BiaxialLineCode;

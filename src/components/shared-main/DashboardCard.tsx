@@ -5,7 +5,6 @@ import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, Typography, Stack, Box } from '@mui/material';
 import { CustomizerContext } from 'src/context/CustomizerContext';
 
-
 type Props = {
   title?: string;
   subtitle?: string;
@@ -32,8 +31,7 @@ const DashboardCard = ({
   const theme = useTheme();
 
   return (
-    <Card
-    >
+    <Card>
       {cardheading ? (
         <CardContent>
           <Typography variant="h5">{headtitle}</Typography>
@@ -42,7 +40,7 @@ const DashboardCard = ({
           </Typography>
         </CardContent>
       ) : (
-        <CardContent sx={{ p: "30px" }}>
+        <CardContent sx={{ p: '30px' }}>
           {title ? (
             <Stack
               direction="row"

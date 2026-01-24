@@ -18,7 +18,6 @@ import RevertRoleConfirmationDialog from './dialog/RevertRoleConfirmationDialog'
 import { Alert, Snackbar } from '@mui/material';
 
 const RolesList = () => {
-
   // States for API response
   const [rolesData, setRolesData] = useState<any>();
 
@@ -29,10 +28,14 @@ const RolesList = () => {
   // Dialog state
   const [selectedRow, setSelectedRow] = useState<any | null>(null);
   const [selectedRowId, setSelectedRowId] = useState<number>();
-  const [openRoleAddEditDialog, setOpenRoleAddEditDialog] = useState<boolean>(false);
-  const [openRoleRevertDialog, setOpenRoleRevertDialog] = useState<boolean>(false);
-  const [openRoleStatusChangeDialog, setOpenRoleStatusChangeDialog] = useState<boolean>(false);
-  const [openAssignRolePermissionDialog, setOpenAssignRolePermissionDialog] = useState<boolean>(false);
+  const [openRoleAddEditDialog, setOpenRoleAddEditDialog] =
+    useState<boolean>(false);
+  const [openRoleRevertDialog, setOpenRoleRevertDialog] =
+    useState<boolean>(false);
+  const [openRoleStatusChangeDialog, setOpenRoleStatusChangeDialog] =
+    useState<boolean>(false);
+  const [openAssignRolePermissionDialog, setOpenAssignRolePermissionDialog] =
+    useState<boolean>(false);
   const [roleDialogMode, setRoleDialogMode] = useState<'add' | 'edit'>('add');
   const [snackbar, setSnackbar] = useState({
     open: false,
@@ -79,60 +82,52 @@ const RolesList = () => {
     onStatusToggle: handleStatusChangeClick,
   });
 
-  
   const fetchRolesData = async (newFilters: any) => {
     try {
       const response = await getAllRoles({
         page: page + 1,
         limit: rowsPerPage,
-        ...newFilters
+        ...newFilters,
       });
-      console.log("response",response)
+      console.log('response', response);
       if (response && response.data) {
         setRolesData(response.data || []);
-        
       }
-
     } catch (error: any) {
       setSnackbar({
         open: true,
         message: error.message || error,
         severity: 'error',
       });
-    } 
+    }
   };
-
 
   useEffect(() => {
     fetchRolesData({});
-  }, [page, rowsPerPage,]);
+  }, [page, rowsPerPage]);
   return (
     <>
       <PageContainer
-        heading={
-          <span> Roles ({rolesData?.count})
-          </span>
-        }
+        heading={<span> Roles ({rolesData?.count})</span>}
         breadcrumbs={breadcrumbs}
         action={
           // <AuthorizeComponent permission={CAN_ADD_ROLE}>
-            <Button
-              variant="contained"
-              onClick={handleOpenAdd}
-              color="primary"
-              size="small"
-              startIcon={<IconPlus size={16} />}
-              sx={{
-                '& .MuiButton-startIcon': {
-                  marginRight: 0,
-                },
-              }}
-            />
+          <Button
+            variant="contained"
+            onClick={handleOpenAdd}
+            color="primary"
+            size="small"
+            startIcon={<IconPlus size={16} />}
+            sx={{
+              '& .MuiButton-startIcon': {
+                marginRight: 0,
+              },
+            }}
+          />
           //  </AuthorizeComponent>
         }
       >
         <Grid size={{ xs: 12 }}>
-
           <GenericTable
             data={rolesData?.rows}
             columns={rolesColumns}
@@ -147,16 +142,14 @@ const RolesList = () => {
 
       <AddEditRoleDialog
         open={openRoleAddEditDialog}
-        title={roleDialogMode === 'add' ? "Add" : "Edit"}
+        title={roleDialogMode === 'add' ? 'Add' : 'Edit'}
         onClose={() => setOpenRoleAddEditDialog(false)}
         onSave={() => {
           fetchRolesData({});
           setOpenRoleAddEditDialog(false);
         }}
         mode={roleDialogMode}
-        {...(selectedRow
-          ? { selectedRow: selectedRow }
-          : {})}
+        {...(selectedRow ? { selectedRow: selectedRow } : {})}
       />
 
       <RevertRoleConfirmationDialog
@@ -188,7 +181,7 @@ const RolesList = () => {
         roleId={selectedRowId}
       />
 
-<Snackbar
+      <Snackbar
         open={snackbar.open}
         autoHideDuration={4000}
         onClose={() => setSnackbar({ ...snackbar, open: false })}
@@ -202,7 +195,6 @@ const RolesList = () => {
           {snackbar.message}
         </Alert>
       </Snackbar>
-
     </>
   );
 };

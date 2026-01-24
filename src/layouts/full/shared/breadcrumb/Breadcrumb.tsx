@@ -9,7 +9,12 @@ interface BreadCrumbType {
   children?: React.ReactNode;
 }
 
-const Breadcrumb = ({ subtitle, items = [], title, children }: BreadCrumbType) => {
+const Breadcrumb = ({
+  subtitle,
+  items = [],
+  title,
+  children,
+}: BreadCrumbType) => {
   const theme = useTheme();
   const { t, i18n } = useTranslation();
   const isRTL = i18n.dir() === 'rtl';
@@ -50,7 +55,11 @@ const Breadcrumb = ({ subtitle, items = [], title, children }: BreadCrumbType) =
           {items.map((item, index) => {
             const isLast = index === items.length - 1;
             return isLast || !item.to ? (
-              <Typography key={item.title} color="text.primary" fontWeight={600}>
+              <Typography
+                key={item.title}
+                color="text.primary"
+                fontWeight={600}
+              >
                 {t(item.title)}
               </Typography>
             ) : (

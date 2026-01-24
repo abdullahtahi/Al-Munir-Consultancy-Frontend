@@ -22,10 +22,11 @@ const components: any = (theme: Theme) => {
           padding: 0,
         },
         '.ql-container.ql-snow, .ql-toolbar.ql-snow': {
-          border: '0 !important', borderRadius: '7px'
+          border: '0 !important',
+          borderRadius: '7px',
         },
         '.ql-editor, .ql-snow *': {
-          fontFamiy: 'inherit !important'
+          fontFamiy: 'inherit !important',
         },
         '#root': {
           height: '100%',
@@ -39,7 +40,7 @@ const components: any = (theme: Theme) => {
             border: '0px',
           },
         },
-        'pre': {
+        pre: {
           background: `${theme.palette.grey[100]} !important`,
         },
         '.btn-xs': {
@@ -105,36 +106,36 @@ const components: any = (theme: Theme) => {
             transform: 'translate3d(-2086px, 0, 0)',
           },
         },
-        "@keyframes marquee": {
-          "0%": {
-            transform: "translateZ(0)",
+        '@keyframes marquee': {
+          '0%': {
+            transform: 'translateZ(0)',
           },
-          "100%": {
-            transform: "translate3d(-2086px,0,0)",
-          },
-        },
-        "@keyframes marquee2": {
-          "0%": {
-            transform: "translate3d(-2086px,0,0)",
-          },
-          "100%": {
-            transform: "translateZ(0)",
+          '100%': {
+            transform: 'translate3d(-2086px,0,0)',
           },
         },
-        "@keyframes marqueeRtl": {
-          "0%": {
-            transform: "translateZ(0)",
+        '@keyframes marquee2': {
+          '0%': {
+            transform: 'translate3d(-2086px,0,0)',
           },
-          "100%": {
-            transform: "translate3d(2086px,0,0)",
+          '100%': {
+            transform: 'translateZ(0)',
           },
         },
-        "@keyframes marquee2Rtl": {
-          "0%": {
-            transform: "translate3d(2086px,0,0)",
+        '@keyframes marqueeRtl': {
+          '0%': {
+            transform: 'translateZ(0)',
           },
-          "100%": {
-            transform: "translateZ(0)",
+          '100%': {
+            transform: 'translate3d(2086px,0,0)',
+          },
+        },
+        '@keyframes marquee2Rtl': {
+          '0%': {
+            transform: 'translate3d(2086px,0,0)',
+          },
+          '100%': {
+            transform: 'translateZ(0)',
           },
         },
       },
@@ -458,11 +459,14 @@ const components: any = (theme: Theme) => {
         root: {
           '& .MuiOutlinedInput-notchedOutline': {
             borderColor:
-              theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[300],
+              theme.palette.mode === 'dark'
+                ? theme.palette.grey[200]
+                : theme.palette.grey[300],
           },
-          '&.Mui-focused .MuiOutlinedInput-notchedOutline, &:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: theme.palette.primary.main,
-          }
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline, &:hover .MuiOutlinedInput-notchedOutline':
+            {
+              borderColor: theme.palette.primary.main,
+            },
         },
         input: {
           padding: '12px 14px',
@@ -476,13 +480,13 @@ const components: any = (theme: Theme) => {
       styleOverrides: {
         root: {
           '& .MuiOutlinedInput-root': {
-            padding: '4px 9px'
+            padding: '4px 9px',
           },
           '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
             padding: '12px 14px',
           },
-        }
-      }
+        },
+      },
     },
     MuiTooltip: {
       styleOverrides: {

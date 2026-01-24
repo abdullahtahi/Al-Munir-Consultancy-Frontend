@@ -8,7 +8,7 @@ import './utils/i18n';
 import Spinner from './views/spinner/Spinner';
 
 async function deferRender() {
-  const { worker } = await import("./api/mocks/browser");
+  const { worker } = await import('./api/mocks/browser');
   return worker.start({
     onUnhandledRequest: 'bypass',
   });

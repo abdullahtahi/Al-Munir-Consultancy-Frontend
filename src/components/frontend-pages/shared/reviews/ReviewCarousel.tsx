@@ -1,5 +1,13 @@
 import { useState, useRef } from 'react';
-import { Avatar, CardContent, Divider, Stack, Typography, Box, Paper } from '@mui/material';
+import {
+  Avatar,
+  CardContent,
+  Divider,
+  Stack,
+  Typography,
+  Box,
+  Paper,
+} from '@mui/material';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
@@ -133,7 +141,13 @@ const ReviewCarousel = () => {
           <div key={i}>
             <Paper variant="outlined" sx={{ borderRadius: '16px' }}>
               <CardContent sx={{ p: '48px !important' }}>
-                <Typography variant="h4" lineHeight={1.4} mb={3} fontWeight={600} fontSize="24px">
+                <Typography
+                  variant="h4"
+                  lineHeight={1.4}
+                  mb={3}
+                  fontWeight={600}
+                  fontSize="24px"
+                >
                   Features avaibility
                 </Typography>
                 <Stack direction="row" alignItems="center" gap={3} mb={3}>

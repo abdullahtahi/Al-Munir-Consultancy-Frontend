@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React from 'react';
 import { Box } from '@mui/material';
@@ -19,7 +19,11 @@ const CustomEleCheckbox = () => {
         inputProps={{ 'aria-label': 'primary checkbox' }}
       />
 
-      <CustomCheckbox disabled checked inputProps={{ 'aria-label': 'disabled checked checkbox' }} />
+      <CustomCheckbox
+        disabled
+        checked
+        inputProps={{ 'aria-label': 'disabled checked checkbox' }}
+      />
       <CustomCheckbox
         defaultChecked
         indeterminate

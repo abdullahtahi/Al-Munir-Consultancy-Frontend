@@ -124,7 +124,12 @@ const WeeklyStats: React.FC = () => {
               <Stack direction="row" alignItems="center" spacing={2}>
                 <Avatar
                   variant="rounded"
-                  sx={{ bgcolor: stat.lightcolor, color: stat.color, width: 40, height: 40 }}
+                  sx={{
+                    bgcolor: stat.lightcolor,
+                    color: stat.color,
+                    width: 40,
+                    height: 40,
+                  }}
                 >
                   {stat.icon}
                 </Avatar>

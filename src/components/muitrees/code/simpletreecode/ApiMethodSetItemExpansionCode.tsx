@@ -1,11 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
-
+import CodeDialog from '@components/shared/CodeDialog';
 
 function ApiMethodSetItemExpansionCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -71,8 +69,8 @@ export default function ApiMethodSetItemExpansion() {
 
 
 `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default ApiMethodSetItemExpansionCode
+export default ApiMethodSetItemExpansionCode;

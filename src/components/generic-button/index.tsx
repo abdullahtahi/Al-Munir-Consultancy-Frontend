@@ -7,7 +7,14 @@ interface GenericButtonProps {
   label: string;
   icon?: React.ElementType<IconProps>; // for Tabler icons
   onClick?: () => void;
-  color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning';
+  color?:
+    | 'inherit'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'error'
+    | 'info'
+    | 'warning';
   variant?: 'text' | 'outlined' | 'contained';
   size?: 'small' | 'medium' | 'large';
   type?: 'button' | 'submit' | 'reset';

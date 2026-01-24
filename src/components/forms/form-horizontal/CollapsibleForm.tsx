@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   Accordion,
@@ -54,11 +54,16 @@ const CollapsibleForm = () => {
     };
 
   return (
-    (<div>
+    <div>
       {/* ------------------------------------------------------------------------------------------------ */}
       {/* Basic Layout */}
       {/* ------------------------------------------------------------------------------------------------ */}
-      <Accordion elevation={9} sx={{ mb: 2 }} expanded={expanded === 'panel1'} onChange={handleChange4('panel1')}>
+      <Accordion
+        elevation={9}
+        sx={{ mb: 2 }}
+        expanded={expanded === 'panel1'}
+        onChange={handleChange4('panel1')}
+      >
         <AccordionSummary
           expandIcon={<IconChevronDown size="20" />}
           aria-controls="panel1a-content"
@@ -72,8 +77,9 @@ const CollapsibleForm = () => {
             <Grid
               size={{
                 xs: 12,
-                lg: 6
-              }}>
+                lg: 6,
+              }}
+            >
               <Grid container spacing={3}>
                 {/* 1 */}
                 <Grid
@@ -82,18 +88,27 @@ const CollapsibleForm = () => {
                   justifyContent="end"
                   size={{
                     xs: 12,
-                    sm: 3
-                  }}>
-                  <CustomFormLabel htmlFor="cs-fname" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                    sm: 3,
+                  }}
+                >
+                  <CustomFormLabel
+                    htmlFor="cs-fname"
+                    sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                  >
                     Full Name
                   </CustomFormLabel>
                 </Grid>
                 <Grid
                   size={{
                     xs: 12,
-                    sm: 9
-                  }}>
-                  <CustomTextField id="cs-fname" placeholder="John Deo" fullWidth />
+                    sm: 9,
+                  }}
+                >
+                  <CustomTextField
+                    id="cs-fname"
+                    placeholder="John Deo"
+                    fullWidth
+                  />
                 </Grid>
                 {/* 2 */}
                 <Grid
@@ -102,17 +117,22 @@ const CollapsibleForm = () => {
                   justifyContent="end"
                   size={{
                     xs: 12,
-                    sm: 3
-                  }}>
-                  <CustomFormLabel htmlFor="cs-address" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                    sm: 3,
+                  }}
+                >
+                  <CustomFormLabel
+                    htmlFor="cs-address"
+                    sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                  >
                     Address
                   </CustomFormLabel>
                 </Grid>
                 <Grid
                   size={{
                     xs: 12,
-                    sm: 9
-                  }}>
+                    sm: 9,
+                  }}
+                >
                   <CustomTextField
                     multiline
                     id="cs-address"
@@ -127,18 +147,27 @@ const CollapsibleForm = () => {
                   justifyContent="end"
                   size={{
                     xs: 12,
-                    sm: 3
-                  }}>
-                  <CustomFormLabel htmlFor="cs-city" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                    sm: 3,
+                  }}
+                >
+                  <CustomFormLabel
+                    htmlFor="cs-city"
+                    sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                  >
                     City
                   </CustomFormLabel>
                 </Grid>
                 <Grid
                   size={{
                     xs: 12,
-                    sm: 9
-                  }}>
-                  <CustomTextField id="cs-city" placeholder="Jackson" fullWidth />
+                    sm: 9,
+                  }}
+                >
+                  <CustomTextField
+                    id="cs-city"
+                    placeholder="Jackson"
+                    fullWidth
+                  />
                 </Grid>
                 {/* 37*/}
                 <Grid
@@ -147,8 +176,9 @@ const CollapsibleForm = () => {
                   justifyContent="end"
                   size={{
                     xs: 12,
-                    sm: 3
-                  }}>
+                    sm: 3,
+                  }}
+                >
                   <CustomFormLabel htmlFor="cs-address" sx={{ mt: 1 }}>
                     Address Type
                   </CustomFormLabel>
@@ -156,10 +186,15 @@ const CollapsibleForm = () => {
                 <Grid
                   size={{
                     xs: 12,
-                    sm: 9
-                  }}>
+                    sm: 9,
+                  }}
+                >
                   <FormControl component="fieldset">
-                    <RadioGroup name="cs-address" value={value} onChange={handleChange}>
+                    <RadioGroup
+                      name="cs-address"
+                      value={value}
+                      onChange={handleChange}
+                    >
                       <FormControlLabel
                         value="radio1"
                         control={<CustomRadio />}
@@ -180,8 +215,9 @@ const CollapsibleForm = () => {
             <Grid
               size={{
                 xs: 12,
-                lg: 6
-              }}>
+                lg: 6,
+              }}
+            >
               <Grid container spacing={3}>
                 {/* 4 */}
                 <Grid
@@ -190,18 +226,27 @@ const CollapsibleForm = () => {
                   justifyContent="end"
                   size={{
                     xs: 12,
-                    sm: 3
-                  }}>
-                  <CustomFormLabel htmlFor="cs-phone" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                    sm: 3,
+                  }}
+                >
+                  <CustomFormLabel
+                    htmlFor="cs-phone"
+                    sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                  >
                     Phone no
                   </CustomFormLabel>
                 </Grid>
                 <Grid
                   size={{
                     xs: 12,
-                    sm: 9
-                  }}>
-                  <CustomTextField id="cs-phone" placeholder="1340 2154 123" fullWidth />
+                    sm: 9,
+                  }}
+                >
+                  <CustomTextField
+                    id="cs-phone"
+                    placeholder="1340 2154 123"
+                    fullWidth
+                  />
                 </Grid>
                 {/* 5 */}
                 <Grid
@@ -210,17 +255,22 @@ const CollapsibleForm = () => {
                   justifyContent="end"
                   size={{
                     xs: 12,
-                    sm: 3
-                  }}>
-                  <CustomFormLabel htmlFor="cs-pin" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                    sm: 3,
+                  }}
+                >
+                  <CustomFormLabel
+                    htmlFor="cs-pin"
+                    sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                  >
                     Pincode
                   </CustomFormLabel>
                 </Grid>
                 <Grid
                   size={{
                     xs: 12,
-                    sm: 9
-                  }}>
+                    sm: 9,
+                  }}
+                >
                   <CustomTextField id="cs-pin" placeholder="120125" fullWidth />
                 </Grid>
                 {/* 6 */}
@@ -230,25 +280,39 @@ const CollapsibleForm = () => {
                   justifyContent="end"
                   size={{
                     xs: 12,
-                    sm: 3
-                  }}>
-                  <CustomFormLabel htmlFor="cs-landmark" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                    sm: 3,
+                  }}
+                >
+                  <CustomFormLabel
+                    htmlFor="cs-landmark"
+                    sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                  >
                     Landmark
                   </CustomFormLabel>
                 </Grid>
                 <Grid
                   size={{
                     xs: 12,
-                    sm: 9
-                  }}>
-                  <CustomTextField id="cs-landmark" placeholder="Nr. Wall Street" fullWidth />
+                    sm: 9,
+                  }}
+                >
+                  <CustomTextField
+                    id="cs-landmark"
+                    placeholder="Nr. Wall Street"
+                    fullWidth
+                  />
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
         </AccordionDetails>
       </Accordion>
-      <Accordion elevation={9} sx={{ mb: 2 }} expanded={expanded === 'panel2'} onChange={handleChange4('panel2')}>
+      <Accordion
+        elevation={9}
+        sx={{ mb: 2 }}
+        expanded={expanded === 'panel2'}
+        onChange={handleChange4('panel2')}
+      >
         <AccordionSummary
           expandIcon={<IconChevronDown size="20" />}
           aria-controls="panel2a-content"
@@ -257,14 +321,36 @@ const CollapsibleForm = () => {
           <Typography variant="h6">Delivery Options</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <RadioGroup row name="delivery-opt" value={value2} onChange={handleChange2}>
-            <FormControlLabel value="radio1" control={<CustomRadio />} label="Standard 3-5 Days" />
-            <FormControlLabel value="radio2" control={<CustomRadio />} label="Express" />
-            <FormControlLabel value="radio3" control={<CustomRadio />} label="Overnight" />
+          <RadioGroup
+            row
+            name="delivery-opt"
+            value={value2}
+            onChange={handleChange2}
+          >
+            <FormControlLabel
+              value="radio1"
+              control={<CustomRadio />}
+              label="Standard 3-5 Days"
+            />
+            <FormControlLabel
+              value="radio2"
+              control={<CustomRadio />}
+              label="Express"
+            />
+            <FormControlLabel
+              value="radio3"
+              control={<CustomRadio />}
+              label="Overnight"
+            />
           </RadioGroup>
         </AccordionDetails>
       </Accordion>
-      <Accordion elevation={9} sx={{ mb: 2 }} expanded={expanded === 'panel3'} onChange={handleChange4('panel3')}>
+      <Accordion
+        elevation={9}
+        sx={{ mb: 2 }}
+        expanded={expanded === 'panel3'}
+        onChange={handleChange4('panel3')}
+      >
         <AccordionSummary
           expandIcon={<IconChevronDown size="20" />}
           aria-controls="panel3a-content"
@@ -277,9 +363,15 @@ const CollapsibleForm = () => {
             <Grid
               size={{
                 xs: 12,
-                sm: 8
-              }}>
-              <RadioGroup row name="payment-method" value={value3} onChange={handleChange3}>
+                sm: 8,
+              }}
+            >
+              <RadioGroup
+                row
+                name="payment-method"
+                value={value3}
+                onChange={handleChange3}
+              >
                 <FormControlLabel
                   value="radio1"
                   control={<CustomRadio />}
@@ -295,40 +387,67 @@ const CollapsibleForm = () => {
             <Grid
               size={{
                 xs: 12,
-                sm: 8
-              }}>
+                sm: 8,
+              }}
+            >
               <Box>
                 <Grid container spacing={3}>
                   <Grid size={12}>
-                    <CustomFormLabel htmlFor="cs-co" sx={{ mt: 0 }}>Card Number</CustomFormLabel>
-                    <CustomTextField id="cs-co" placeholder="1250 4521 5630 1540" fullWidth />
+                    <CustomFormLabel htmlFor="cs-co" sx={{ mt: 0 }}>
+                      Card Number
+                    </CustomFormLabel>
+                    <CustomTextField
+                      id="cs-co"
+                      placeholder="1250 4521 5630 1540"
+                      fullWidth
+                    />
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 6
-                    }}>
-                    <CustomFormLabel htmlFor="cs-name" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 6,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="cs-name"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Name
                     </CustomFormLabel>
-                    <CustomTextField id="cs-name" placeholder="John Deo" fullWidth />
+                    <CustomTextField
+                      id="cs-name"
+                      placeholder="John Deo"
+                      fullWidth
+                    />
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="cs-exdate" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="cs-exdate"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Exp. Date
                     </CustomFormLabel>
-                    <CustomTextField id="cs-exdate" placeholder="MM/YY" fullWidth />
+                    <CustomTextField
+                      id="cs-exdate"
+                      placeholder="MM/YY"
+                      fullWidth
+                    />
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="cs-code" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="cs-code"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       CCV Code
                     </CustomFormLabel>
                     <CustomOutlinedInput
@@ -344,8 +463,12 @@ const CollapsibleForm = () => {
                   </Grid>
                   <Grid size={12}>
                     <Stack direction="row" spacing={2}>
-                      <Button variant="contained" color="primary">Submit</Button>
-                      <Button variant="text" color="error">Cancel</Button>
+                      <Button variant="contained" color="primary">
+                        Submit
+                      </Button>
+                      <Button variant="text" color="error">
+                        Cancel
+                      </Button>
                     </Stack>
                   </Grid>
                 </Grid>
@@ -354,7 +477,7 @@ const CollapsibleForm = () => {
           </Grid>
         </AccordionDetails>
       </Accordion>
-    </div>)
+    </div>
   );
 };
 

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Slider } from "@mui/material";
-import ChildCard from '@components/shared/ChildCard'
-import DiscreteSliderCode from "@components/forms/form-elements/slider/code/DiscreteSliderCode";
+import { Slider } from '@mui/material';
+import ChildCard from '@components/shared/ChildCard';
+import DiscreteSliderCode from '@components/forms/form-elements/slider/code/DiscreteSliderCode';
 
 const valuetext = (value: any) => `${value}°C`;
 

@@ -1,7 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from 'react';
-import { Box, CardContent, Chip, Paper, Stack, Typography, LinearProgress } from '@mui/material';
+import {
+  Box,
+  CardContent,
+  Chip,
+  Paper,
+  Stack,
+  Typography,
+  LinearProgress,
+} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import SavingsImg from '../../../assets/images/backgrounds/piggy.png';
 
@@ -36,7 +44,10 @@ const SellingProducts = () => {
   const borderColor = theme.palette.divider;
 
   return (
-    <Paper sx={{ bgcolor: 'primary.main', border: `1px solid ${borderColor}` }} variant="outlined">
+    <Paper
+      sx={{ bgcolor: 'primary.main', border: `1px solid ${borderColor}` }}
+      variant="outlined"
+    >
       <CardContent>
         <Typography variant="h5" color="white">
           Best selling products
@@ -49,7 +60,14 @@ const SellingProducts = () => {
           <img src={SavingsImg} alt={SavingsImg} width={'300px'} />
         </Box>
       </CardContent>
-      <Paper sx={{ overflow: 'hidden', zIndex: '1', position: 'relative', margin: '10px' }}>
+      <Paper
+        sx={{
+          overflow: 'hidden',
+          zIndex: '1',
+          position: 'relative',
+          margin: '10px',
+        }}
+      >
         <Box p={3}>
           <Stack spacing={3}>
             {sells.map((sell: any, i: number) => (
@@ -69,7 +87,10 @@ const SellingProducts = () => {
                   </Box>
                   <Chip
                     sx={{
-                      backgroundColor: sell.color === 'primary' ? primarylight : secondarylight,
+                      backgroundColor:
+                        sell.color === 'primary'
+                          ? primarylight
+                          : secondarylight,
                       color: sell.color === 'primary' ? primary : secondary,
                       borderRadius: '4px',
                       width: 55,
@@ -78,7 +99,11 @@ const SellingProducts = () => {
                     label={sell.percent + '%'}
                   />
                 </Stack>
-                <LinearProgress value={sell.percent} variant="determinate" color={sell.color} />
+                <LinearProgress
+                  value={sell.percent}
+                  variant="determinate"
+                  color={sell.color}
+                />
               </Box>
             ))}
           </Stack>

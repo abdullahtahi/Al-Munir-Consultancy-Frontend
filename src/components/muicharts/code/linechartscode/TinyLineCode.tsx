@@ -1,10 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function TinyLineChart() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 'use client';
 ;
 import { useTheme } from '@mui/material';
@@ -46,8 +45,8 @@ function TinyLineChart() {
 
 export default TinyLineChart;
 `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default TinyLineChart
+export default TinyLineChart;

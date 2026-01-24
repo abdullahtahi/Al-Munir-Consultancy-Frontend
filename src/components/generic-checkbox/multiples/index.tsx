@@ -21,7 +21,9 @@ interface GenericMultipleCheckboxGroupProps {
   isValueSelected?: (selectedItem: any, optionValue: string) => boolean;
 }
 
-const GenericMultipleCheckboxGroup: React.FC<GenericMultipleCheckboxGroupProps> = ({
+const GenericMultipleCheckboxGroup: React.FC<
+  GenericMultipleCheckboxGroupProps
+> = ({
   name,
   options,
   value,
@@ -42,7 +44,9 @@ const GenericMultipleCheckboxGroup: React.FC<GenericMultipleCheckboxGroupProps> 
   const isValueSelectedFn =
     isValueSelected || ((selectedItem, val) => selectedItem === val);
 
-  const selectedValues: any[] = isFormik ? formik.values[name] || [] : value || [];
+  const selectedValues: any[] = isFormik
+    ? formik.values[name] || []
+    : value || [];
 
   const handleToggle = (optionValue: string) => {
     let updatedValues;

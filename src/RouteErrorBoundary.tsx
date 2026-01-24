@@ -1,12 +1,12 @@
 // src/RouteErrorBoundary.tsx
-import { Box, Button, Typography } from "@mui/material";
-import { isRouteErrorResponse, useRouteError } from "react-router-dom";
+import { Box, Button, Typography } from '@mui/material';
+import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 
 export default function RouteErrorBoundary() {
   const error = useRouteError();
 
-  let title = "Unexpected Application Error!";
-  let message = "Something went wrong.";
+  let title = 'Unexpected Application Error!';
+  let message = 'Something went wrong.';
 
   if (isRouteErrorResponse(error)) {
     title = `${error.status} - ${error.statusText}`;

@@ -4,7 +4,7 @@ import BonusList from './bonusList';
 const Bonus = () => {
   return (
     <Grid container spacing={3}>
-     <BonusList/>
+      <BonusList />
     </Grid>
   );
 };

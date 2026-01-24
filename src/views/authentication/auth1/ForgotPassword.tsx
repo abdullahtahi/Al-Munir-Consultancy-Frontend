@@ -10,8 +10,16 @@ import img1 from '@assets/images/backgrounds/login-bg.svg';
 import AuthForgotPassword from '../authForms/AuthForgotPassword';
 
 const ForgotPassword = () => (
-  <PageContainer title="Forgot Password" description="this is Forgot Password page">
-    <Grid container justifyContent="center" spacing={0} sx={{ overflowX: 'hidden' }}>
+  <PageContainer
+    title="Forgot Password"
+    description="this is Forgot Password page"
+  >
+    <Grid
+      container
+      justifyContent="center"
+      spacing={0}
+      sx={{ overflowX: 'hidden' }}
+    >
       <Grid
         sx={{
           position: 'relative',
@@ -30,8 +38,9 @@ const ForgotPassword = () => (
           xs: 12,
           sm: 12,
           lg: 8,
-          xl: 9
-        }}>
+          xl: 9,
+        }}
+      >
         <Box position="relative">
           <Box px={3}>
             <Logo />
@@ -66,16 +75,22 @@ const ForgotPassword = () => (
           xs: 12,
           sm: 12,
           lg: 4,
-          xl: 3
-        }}>
+          xl: 3,
+        }}
+      >
         <Box p={4}>
           <Typography variant="h4" fontWeight="700">
             Forgot your password?
           </Typography>
 
-          <Typography color="textSecondary" variant="subtitle2" fontWeight="400" mt={2}>
-            Please enter the email address associated with your account and We will email you a link
-            to reset your password.
+          <Typography
+            color="textSecondary"
+            variant="subtitle2"
+            fontWeight="400"
+            mt={2}
+          >
+            Please enter the email address associated with your account and We
+            will email you a link to reset your password.
           </Typography>
           <AuthForgotPassword />
         </Box>

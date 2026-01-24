@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-import { IconCaretDown, IconCaretUp, IconDeviceFloppy, IconX } from '@tabler/icons-react';
+import {
+  IconCaretDown,
+  IconCaretUp,
+  IconDeviceFloppy,
+  IconX,
+} from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
@@ -22,8 +27,6 @@ import CustomCheckbox from '@components/forms/theme-elements/CustomCheckbox';
 import GenericButton from '@components/generic-button';
 import _ from 'lodash';
 
-
-
 import { getAllPermissions } from 'src/api/permission';
 import { getPermissionsByRole } from 'src/api/rolePermission';
 import { AssignRolePermissionConfirmationDialog } from './AssignRolePermissionConfirmationDialog';
@@ -44,14 +47,18 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
   const { t } = useTranslation();
 
   const [permissions, setPermissions] = useState<any[]>([]);
-  const [optionsGroup, setOptionsGroup] = useState<Record<number | string, any[]>>({});
+  const [optionsGroup, setOptionsGroup] = useState<
+    Record<number | string, any[]>
+  >({});
   const [checkList, setCheckList] = useState<number[]>([]);
   const [expanded, setExpanded] = useState<number | null>(null);
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!open || !roleId) { return; }
+    if (!open || !roleId) {
+      return;
+    }
 
     (async () => {
       setLoading(true);
@@ -65,14 +72,17 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
         const rolePermissions = rolePermissionsRes?.data?.rows || [];
 
         setPermissions(allPermissions);
-        
+
         // Group by parent or moduleName. Based on your screenshot/code, it seems parent is a string or ID.
         // If parent is empty, use moduleName as the grouping criteria
-        const grouped = _.groupBy(allPermissions, (p: any) => p.parent || 'Other');
+        const grouped = _.groupBy(
+          allPermissions,
+          (p: any) => p.parent || 'Other'
+        );
         setOptionsGroup(grouped);
 
         const permissionIds: number[] = rolePermissions.map(
-          (r: any) => r.fkPermissionId,
+          (r: any) => r.fkPermissionId
         );
         setCheckList(permissionIds);
       } catch (error: any) {
@@ -88,27 +98,33 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
   };
 
   const onChildChange = (checked: boolean, permissionId: number) => {
-    if (checked) { setCheckList(prev => _.uniq([...prev, permissionId])); }
-    else { setCheckList(prev => prev.filter(id => id !== permissionId)); }
+    if (checked) {
+      setCheckList((prev) => _.uniq([...prev, permissionId]));
+    } else {
+      setCheckList((prev) => prev.filter((id) => id !== permissionId));
+    }
   };
 
   const checkedAll = (checked: boolean, parentId: number | string) => {
-    const childIds = (optionsGroup[parentId] || []).map(c => pId(c));
-    if (checked) { setCheckList(prev => _.uniq([...prev, ...childIds])); }
-    else { setCheckList(prev => prev.filter(id => !childIds.includes(id))); }
+    const childIds = (optionsGroup[parentId] || []).map((c) => pId(c));
+    if (checked) {
+      setCheckList((prev) => _.uniq([...prev, ...childIds]));
+    } else {
+      setCheckList((prev) => prev.filter((id) => !childIds.includes(id)));
+    }
   };
 
   const pId = (p: any) => p.id;
 
   const checkIfChecked = (parentId: number | string) => {
-    const childIds = (optionsGroup[parentId] || []).map(c => pId(c));
-    const included = checkList.filter(id => childIds.includes(id));
+    const childIds = (optionsGroup[parentId] || []).map((c) => pId(c));
+    const included = checkList.filter((id) => childIds.includes(id));
     return childIds.length > 0 && included.length === childIds.length;
   };
 
   const checkIfPartialChecked = (parentId: number | string) => {
-    const childIds = (optionsGroup[parentId] || []).map(c => pId(c));
-    const included = checkList.filter(id => childIds.includes(id));
+    const childIds = (optionsGroup[parentId] || []).map((c) => pId(c));
+    const included = checkList.filter((id) => childIds.includes(id));
     return included.length > 0 && included.length < childIds.length;
   };
 
@@ -119,7 +135,7 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
       <Dialog
         open={open}
         onClose={onClose}
-        maxWidth='lg'
+        maxWidth="lg"
         fullWidth={true}
         slotProps={{
           paper: {
@@ -131,17 +147,20 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
       >
         <DialogTitle>Role Permissions Management</DialogTitle>
 
-        <DialogContent sx={{ display: 'flex', flexDirection: 'column', height: '80vh' }}>
+        <DialogContent
+          sx={{ display: 'flex', flexDirection: 'column', height: '80vh' }}
+        >
           <Box my={1}>
             <Typography variant="h5" display="flex" alignItems="center" gap={1}>
-            Permissions
+              Permissions
               {loading ? (
                 <CircularProgress size={20} thickness={4} />
               ) : (
-                <>({checkList.length}/{permissions.length})</>
+                <>
+                  ({checkList.length}/{permissions.length})
+                </>
               )}
             </Typography>
-
           </Box>
 
           <Box
@@ -152,7 +171,7 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
             borderRadius={1}
             p={1}
           >
-            {loading ?
+            {loading ? (
               <Box
                 display="flex"
                 justifyContent="center"
@@ -162,7 +181,7 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
               >
                 <CircularProgress size={60} />
               </Box>
-              :
+            ) : (
               <List disablePadding>
                 {parentKeys.map((parentKey, idx) => {
                   return (
@@ -181,21 +200,34 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
                             label={<strong>{parentKey}</strong>}
                           />
                           <Box flexGrow={1} />
-                          <IconButton size="small" onClick={() => handleToggleExpand(idx)}>
-                            {expanded === idx ? <IconCaretUp /> : <IconCaretDown />}
+                          <IconButton
+                            size="small"
+                            onClick={() => handleToggleExpand(idx)}
+                          >
+                            {expanded === idx ? (
+                              <IconCaretUp />
+                            ) : (
+                              <IconCaretDown />
+                            )}
                           </IconButton>
                         </ListItemButton>
                       </ListItem>
 
-                      <Collapse in={expanded === idx} timeout="auto" unmountOnExit>
+                      <Collapse
+                        in={expanded === idx}
+                        timeout="auto"
+                        unmountOnExit
+                      >
                         <Box display="flex" flexWrap="wrap" gap={2} p={2}>
-                          {(optionsGroup[parentKey] || []).map(child => (
+                          {(optionsGroup[parentKey] || []).map((child) => (
                             <Box key={child.id} minWidth={200}>
                               <FormControlLabel
                                 control={
                                   <CustomCheckbox
                                     checked={checkList.includes(child.id)}
-                                    onChange={(_e, v) => onChildChange(v, child.id)}
+                                    onChange={(_e, v) =>
+                                      onChildChange(v, child.id)
+                                    }
                                   />
                                 }
                                 label={child.name || child.permission}
@@ -209,7 +241,7 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
                   );
                 })}
               </List>
-            }
+            )}
           </Box>
         </DialogContent>
 
@@ -217,19 +249,19 @@ const AssignRolePermissionDialog: React.FC<AssignRolePermissionDialogProps> = ({
           <GenericButton
             label={t('appModule.cancel')}
             onClick={onClose}
-            color='error'
-            variant='contained'
+            color="error"
+            variant="contained"
             icon={IconX}
-            size='medium'
+            size="medium"
             sx={{ textTransform: 'uppercase' }}
           />
           <GenericButton
-            label={"Save"}
+            label={'Save'}
             onClick={() => setConfirmOpen(true)}
-            color='primary'
-            variant='contained'
+            color="primary"
+            variant="contained"
             icon={IconDeviceFloppy}
-            size='medium'
+            size="medium"
             sx={{ textTransform: 'uppercase' }}
           />
         </DialogActions>

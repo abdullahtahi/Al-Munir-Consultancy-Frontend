@@ -48,9 +48,11 @@ const NavCollapse = ({
   pathWithoutLastPart,
   pathDirect,
   hideMenu,
-  onClick
+  onClick,
 }: NavCollapseProps) => {
-  const isBorderRadius = useSelector((state: RootState) => state.themeCustomizer.isBorderRadius)
+  const isBorderRadius = useSelector(
+    (state: RootState) => state.themeCustomizer.isBorderRadius
+  );
 
   const Icon = menu?.icon;
   const theme = useTheme();
@@ -58,7 +60,11 @@ const NavCollapse = ({
   const { t } = useTranslation();
   const [open, setOpen] = useState(true);
   const menuIcon =
-    level > 1 ? <Icon stroke={1.5} size="1rem" /> : <Icon stroke={1.5} size="1.3rem" />;
+    level > 1 ? (
+      <Icon stroke={1.5} size="1rem" />
+    ) : (
+      <Icon stroke={1.5} size="1.3rem" />
+    );
 
   const handleClick = () => {
     setOpen(!open);
@@ -81,10 +87,14 @@ const NavCollapse = ({
     backgroundColor: open && level < 2 ? theme.palette.primary.main : '',
     whiteSpace: 'nowrap',
     '&:hover': {
-      backgroundColor: pathname.includes(menu.href) || open
-        ? theme.palette.primary.main
-        : theme.palette.primary.light,
-      color: pathname.includes(menu.href) || open ? 'white' : theme.palette.primary.main,
+      backgroundColor:
+        pathname.includes(menu.href) || open
+          ? theme.palette.primary.main
+          : theme.palette.primary.light,
+      color:
+        pathname.includes(menu.href) || open
+          ? 'white'
+          : theme.palette.primary.main,
     },
     color:
       open && level < 2
@@ -139,8 +149,14 @@ const NavCollapse = ({
         >
           {menuIcon}
         </ListItemIcon>
-        <ListItemText color="inherit">{hideMenu ? '' : <>{t(`${menu.title}`)}</>}</ListItemText>
-        {!open ? <IconChevronDown size="1rem" /> : <IconChevronUp size="1rem" />}
+        <ListItemText color="inherit">
+          {hideMenu ? '' : <>{t(`${menu.title}`)}</>}
+        </ListItemText>
+        {!open ? (
+          <IconChevronDown size="1rem" />
+        ) : (
+          <IconChevronUp size="1rem" />
+        )}
       </ListItemStyled>
       <Collapse in={open} timeout="auto" unmountOnExit>
         {submenus}

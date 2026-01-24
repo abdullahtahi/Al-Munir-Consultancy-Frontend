@@ -65,8 +65,8 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
             ? dayjs(formik.values[name]) // ✅ ensure it's a Dayjs instance
             : null
           : selectedDate
-          ? dayjs(selectedDate)
-          : null
+            ? dayjs(selectedDate)
+            : null
       }
       onChange={handleChange}
       disabled={disabled}

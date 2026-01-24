@@ -4,7 +4,7 @@ import BranchList from 'src/components/operations/Branches/BranchesList';
 const BranchesIn = () => {
   return (
     <Grid container spacing={3}>
-      <BranchList/>
+      <BranchList />
     </Grid>
   );
 };

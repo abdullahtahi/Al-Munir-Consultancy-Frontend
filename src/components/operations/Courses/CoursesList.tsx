@@ -3,7 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { Add, FilterList } from '@mui/icons-material';
 import { IconPencil, IconTrash } from '@tabler/icons-react';
 
-import { Alert, Box, Button, Chip, Collapse, Snackbar, Stack, useTheme } from '@mui/material';
+import {
+  Alert,
+  Box,
+  Button,
+  Chip,
+  Collapse,
+  Snackbar,
+  Stack,
+  useTheme,
+} from '@mui/material';
 import PageContainer from '@components/layout/PageContainer';
 import GenericTable from 'src/components/generic-table';
 import { useSelector } from 'react-redux';
@@ -48,9 +57,9 @@ const CoursesList: React.FC = () => {
 
   // Add/Edit dialog state
   const [courseDialogOpen, setCourseOpenDialog] = useState(false);
-  const [courseDialogMode, setCourseDialogMode] = useState<
-    'Add' | 'Edit'
-  >('Add');
+  const [courseDialogMode, setCourseDialogMode] = useState<'Add' | 'Edit'>(
+    'Add'
+  );
 
   const hanldOpenDeleteModal = (row: any) => {
     setSingleUser(row);
@@ -84,7 +93,7 @@ const CoursesList: React.FC = () => {
       minWidth: 80,
       classNames: 'pr-0 text-nowrap',
       key: 'status',
-      render: (row:any) =>
+      render: (row: any) =>
         row.isActive == true ? (
           <Stack direction="row" spacing={1}>
             <Chip label="Active" color="success" />
@@ -93,9 +102,9 @@ const CoursesList: React.FC = () => {
           <Stack direction="row" spacing={1}>
             <Chip label="In Active" color="error" />
           </Stack>
-        )
+        ),
     },
-   
+
     {
       id: 'Edit',
       label: 'Edit',
@@ -142,21 +151,21 @@ const CoursesList: React.FC = () => {
     async (values: any) => {
       try {
         setLoading(true);
-        console.log("values",values)
+        console.log('values', values);
         const queryString = new URLSearchParams(values).toString();
         const admissions: any = await get(
           `${baseUrl}/api/v1/courses?page=${page}&limit=${rowsPerPage}&${queryString}`
         );
-        if(admissions.data){
+        if (admissions.data) {
           setBranchData(admissions.data.rows);
           setTotalCount(admissions.data.count);
-        } else{
+        } else {
           setSnackbar({
-          open: true,
-          message: admissions.message || '',
-          severity: 'error',
-        })
-      }
+            open: true,
+            message: admissions.message || '',
+            severity: 'error',
+          });
+        }
         return admissions;
       } catch (error: any) {
         setSnackbar({
@@ -173,11 +182,11 @@ const CoursesList: React.FC = () => {
   const handleSubmit = async (values: any) => {
     try {
       if (courseDialogMode == 'Edit') {
-        const {isActive,...rest}=values
-        console.log("")
+        const { isActive, ...rest } = values;
+        console.log('');
         const user: any = await put(
           `${baseUrl}/api/v1/courses/${singleUser.id}`,
-          {...rest,isActive:isActive== "Active" ?true:false}
+          { ...rest, isActive: isActive == 'Active' ? true : false }
         );
 
         setSnackbar({
@@ -186,10 +195,7 @@ const CoursesList: React.FC = () => {
           severity: 'success',
         });
       } else {
-        const courses: any = await post(
-          `${baseUrl}/api/v1/courses`,
-          values
-        );
+        const courses: any = await post(`${baseUrl}/api/v1/courses`, values);
         console.log('courses', courses);
         setSnackbar({
           open: true,
@@ -232,7 +238,6 @@ const CoursesList: React.FC = () => {
     getCourses({});
   }, [rowsPerPage, page, courseDialogOpen]);
 
- 
   return (
     <>
       <PageContainer
@@ -273,25 +278,22 @@ const CoursesList: React.FC = () => {
 
         <Collapse in={showFilters} timeout="auto" unmountOnExit>
           <Box mb={2} width="100%">
-            <AdmissionsFilter
-            getCourses={getCourses}
-            />
+            <AdmissionsFilter getCourses={getCourses} />
           </Box>
         </Collapse>
 
-    <Grid size={12}>
-            <GenericTable
-              data={branchData}
-              columns={columns}
-              page={page}
-              rowsPerPage={rowsPerPage}
-              setPage={setPage}
-              setRowsPerPage={setRowsPerPage}
-              totalCount={totalCount}
-              isLoading={loading}
-              />
-    </Grid>
-        
+        <Grid size={12}>
+          <GenericTable
+            data={branchData}
+            columns={columns}
+            page={page}
+            rowsPerPage={rowsPerPage}
+            setPage={setPage}
+            setRowsPerPage={setRowsPerPage}
+            totalCount={totalCount}
+            isLoading={loading}
+          />
+        </Grid>
       </PageContainer>
 
       <NewCoursesDialog
@@ -308,7 +310,7 @@ const CoursesList: React.FC = () => {
         subText="Are you sure to delete Admission"
         open={openDeleteModal}
       />
-       <Snackbar
+      <Snackbar
         open={snackbar.open}
         autoHideDuration={4000}
         onClose={() => setSnackbar({ ...snackbar, open: false })}

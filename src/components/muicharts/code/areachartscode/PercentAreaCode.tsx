@@ -1,10 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function PercentAreaCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 
 "use client";
 import * as React from 'react';
@@ -90,8 +89,8 @@ export default function PercentAreaChart() {
     );
 }
 `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default PercentAreaCode
+export default PercentAreaCode;

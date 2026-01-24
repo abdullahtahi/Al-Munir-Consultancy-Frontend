@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import {
   TableContainer,
@@ -60,7 +59,11 @@ const columns = [
     header: () => 'Users',
     cell: (info) => (
       <Stack direction="row" spacing={2}>
-        <Avatar src={info.getValue()} alt={info.getValue()} sx={{ width: 40, height: 40 }} />
+        <Avatar
+          src={info.getValue()}
+          alt={info.getValue()}
+          sx={{ width: 40, height: 40 }}
+        />
         <Box>
           <Typography variant="h6" fontWeight="600">
             {info.row.original.name}
@@ -135,14 +138,17 @@ const columns = [
   }),
   columnHelper.accessor('budget', {
     header: () => 'Budget',
-    cell: (info) => <Typography variant="h6">${info.row.original.budget}k</Typography>,
+    cell: (info) => (
+      <Typography variant="h6">${info.row.original.budget}k</Typography>
+    ),
   }),
 ];
 
 const DraggableRow = ({ row }: any) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
-    id: row.original.id,
-  });
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({
+      id: row.original.id,
+    });
 
   const style: any = {
     transform: CSS.Translate.toString(transform),
@@ -183,22 +189,31 @@ const Rowdragdrop = () => {
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),
-    useSensor(KeyboardSensor),
+    useSensor(KeyboardSensor)
   );
 
   const handleDownload = () => {
     const headers = ['Users', 'Project Name', 'Team', 'Status', 'Budget'];
     const rows = data.map(
-      (item: { name: any; pname: any; teams: any[]; status: any; budget: any }) => [
+      (item: {
+        name: any;
+        pname: any;
+        teams: any[];
+        status: any;
+        budget: any;
+      }) => [
         item.name,
         item.pname,
         item.teams.map((team: { text: any }) => team.text).join(', '),
         item.status,
         item.budget,
-      ],
+      ]
     );
 
-    const csvContent = [headers.join(','), ...rows.map((e: any[]) => e.join(','))].join('\n');
+    const csvContent = [
+      headers.join(','),
+      ...rows.map((e: any[]) => e.join(',')),
+    ].join('\n');
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
@@ -212,7 +227,11 @@ const Rowdragdrop = () => {
   };
 
   return (
-    (<DndContext onDragEnd={handleDragEnd} sensors={sensors} collisionDetection={closestCenter}>
+    <DndContext
+      onDragEnd={handleDragEnd}
+      sensors={sensors}
+      collisionDetection={closestCenter}
+    >
       <DownloadCard title="Row Drag & Drop Table" onDownload={handleDownload}>
         <Grid container spacing={3}>
           <Grid size={12}>
@@ -231,7 +250,10 @@ const Rowdragdrop = () => {
                             <Typography variant="h6">
                               {header.isPlaceholder
                                 ? null
-                                : flexRender(header.column.columnDef.header, header.getContext())}
+                                : flexRender(
+                                    header.column.columnDef.header,
+                                    header.getContext()
+                                  )}
                             </Typography>
                           </TableCell>
                         ))}
@@ -254,7 +276,7 @@ const Rowdragdrop = () => {
           </Grid>
         </Grid>
       </DownloadCard>
-    </DndContext>)
+    </DndContext>
   );
 };
 export default Rowdragdrop;

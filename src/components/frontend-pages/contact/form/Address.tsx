@@ -29,7 +29,8 @@ const Address = () => {
           Our Location
         </Typography>
         <Typography variant="body1" color="white" lineHeight={1.6}>
-          Visit us in person or find our contact details to connect with us directly.
+          Visit us in person or find our contact details to connect with us
+          directly.
         </Typography>
       </Box>
     </Box>

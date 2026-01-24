@@ -10,7 +10,6 @@ import CustomFormLabel from '../../../components/forms/theme-elements/CustomForm
 import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
 import AuthSocialButtons from './AuthSocialButtons';
 
-
 const AuthRegister = ({ title, subtitle, subtext }: registerType) => (
   <>
     {title ? (
@@ -46,7 +45,14 @@ const AuthRegister = ({ title, subtitle, subtext }: registerType) => (
         <CustomFormLabel htmlFor="password">Password</CustomFormLabel>
         <CustomTextField id="password" variant="outlined" fullWidth />
       </Stack>
-      <Button color="primary" variant="contained" size="large" fullWidth component={Link} to="/auth/login">
+      <Button
+        color="primary"
+        variant="contained"
+        size="large"
+        fullWidth
+        component={Link}
+        to="/auth/login"
+      >
         Sign Up
       </Button>
     </Box>

@@ -65,13 +65,26 @@ const MonthlyEarnings = () => {
       action={
         <Avatar
           variant="rounded"
-          sx={{ bgcolor: (theme) => theme.palette.primary.light, width: 40, height: 40 }}
+          sx={{
+            bgcolor: (theme) => theme.palette.primary.light,
+            width: 40,
+            height: 40,
+          }}
         >
-          <Avatar src={icon1Img} alt={icon1Img} sx={{ width: 24, height: 24 }} />
+          <Avatar
+            src={icon1Img}
+            alt={icon1Img}
+            sx={{ width: 24, height: 24 }}
+          />
         </Avatar>
       }
       footer={
-        <Chart options={optionscolumnchart} series={seriescolumnchart} type="area" height="70px" />
+        <Chart
+          options={optionscolumnchart}
+          series={seriescolumnchart}
+          type="area"
+          height="70px"
+        />
       }
     >
       <>

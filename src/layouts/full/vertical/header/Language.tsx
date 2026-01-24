@@ -31,7 +31,9 @@ const Language = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const open = Boolean(anchorEl);
-  const isLanguage = useSelector((state: RootState) => state.themeCustomizer.isLanguage)
+  const isLanguage = useSelector(
+    (state: RootState) => state.themeCustomizer.isLanguage
+  );
 
   const currentLang =
     Languages.find((_lang) => _lang.value === isLanguage) || Languages[1];
@@ -57,7 +59,11 @@ const Language = () => {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <Avatar src={currentLang.icon} alt={currentLang.value} sx={{ width: 20, height: 20 }} />
+        <Avatar
+          src={currentLang.icon}
+          alt={currentLang.value}
+          sx={{ width: 20, height: 20 }}
+        />
       </IconButton>
       <Menu
         id="long-menu"
@@ -77,7 +83,11 @@ const Language = () => {
             onClick={() => dispatch(setIsLanguage(option.value))}
           >
             <Stack direction="row" spacing={1} alignItems="center">
-              <Avatar src={option.icon} alt={option.icon} sx={{ width: 20, height: 20 }} />
+              <Avatar
+                src={option.icon}
+                alt={option.icon}
+                sx={{ width: 20, height: 20 }}
+              />
               <Typography> {option.flagname}</Typography>
             </Stack>
           </MenuItem>

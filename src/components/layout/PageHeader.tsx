@@ -20,7 +20,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   return (
     <Box
       display="flex"
-      flexDirection='row'
+      flexDirection="row"
       alignItems={isXs ? 'center' : 'flex-start'}
       mb={{ xs: 4 }}
       className="page-header"

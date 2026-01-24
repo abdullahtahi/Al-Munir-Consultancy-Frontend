@@ -1,5 +1,4 @@
-
-import CodeDialog from '@components/shared/CodeDialog'
+import CodeDialog from '@components/shared/CodeDialog';
 
 function StackedBarCode() {
   return (
@@ -54,7 +53,7 @@ function StackedBarChart() {
 export default StackedBarChart;
 `}
     </CodeDialog>
-  )
+  );
 }
 
-export default StackedBarCode
+export default StackedBarCode;

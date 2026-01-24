@@ -25,7 +25,9 @@ interface RevertRoleConfirmationDialogProps {
   isLoading?: boolean;
 }
 
-const RevertRoleConfirmationDialog: React.FC<RevertRoleConfirmationDialogProps> = ({
+const RevertRoleConfirmationDialog: React.FC<
+  RevertRoleConfirmationDialogProps
+> = ({
   open,
   onClose,
   onConfirm,
@@ -39,9 +41,10 @@ const RevertRoleConfirmationDialog: React.FC<RevertRoleConfirmationDialogProps> 
     severity: 'error' as 'error' | 'success' | 'info' | 'warning',
   });
 
-
   const handleAgreeRevertClick = async () => {
-    if (!selectedRoleRow) { return; }
+    if (!selectedRoleRow) {
+      return;
+    }
     try {
       const response = await deleteRole(selectedRoleRow?.id);
       if (response) {
@@ -53,22 +56,20 @@ const RevertRoleConfirmationDialog: React.FC<RevertRoleConfirmationDialogProps> 
         open: true,
         message: error?.message || '',
         severity: 'error',
-      })
+      });
     }
   };
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
-      <DialogTitle>
-        Role Delete
-      </DialogTitle>
+      <DialogTitle>Role Delete</DialogTitle>
       <DialogContent>Are you agree to Delete it</DialogContent>
       <DialogActions>
         <GenericButton
           label="Disagree"
           onClick={onClose}
           color="error"
-          size='medium'
+          size="medium"
           variant="contained"
           sx={{ textTransform: 'uppercase' }}
         />
@@ -76,7 +77,7 @@ const RevertRoleConfirmationDialog: React.FC<RevertRoleConfirmationDialogProps> 
           label="Agree"
           onClick={handleAgreeRevertClick}
           color="primary"
-          size='medium'
+          size="medium"
           variant="contained"
           sx={{ textTransform: 'uppercase' }}
         />
@@ -96,7 +97,6 @@ const RevertRoleConfirmationDialog: React.FC<RevertRoleConfirmationDialogProps> 
         </Alert>
       </Snackbar>
     </Dialog>
-
   );
 };
 

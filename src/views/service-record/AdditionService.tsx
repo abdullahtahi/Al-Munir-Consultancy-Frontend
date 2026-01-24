@@ -4,7 +4,10 @@ import Box from '@mui/material/Box';
 
 const AdditionService = () => {
   return (
-    <PageContainer title="AdditionService" description="this is AdditionService">
+    <PageContainer
+      title="AdditionService"
+      description="this is AdditionService"
+    >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
         <Box sx={{ width: '100%' }}>
           <AdditionServiceComponent />

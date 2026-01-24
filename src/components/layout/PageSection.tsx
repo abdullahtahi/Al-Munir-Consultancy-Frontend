@@ -15,7 +15,9 @@ const PageSection = ({
   elevation = 1,
 }: PageSectionProps) => {
   const theme = useTheme();
-  const isBorderRadius = useSelector((state: RootState) => state.themeCustomizer.isBorderRadius)
+  const isBorderRadius = useSelector(
+    (state: RootState) => state.themeCustomizer.isBorderRadius
+  );
 
   return (
     <Box width="100%">

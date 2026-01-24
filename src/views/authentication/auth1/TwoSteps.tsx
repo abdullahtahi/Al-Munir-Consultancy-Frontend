@@ -10,7 +10,12 @@ import AuthTwoSteps from '../authForms/AuthTwoSteps';
 
 const TwoSteps = () => (
   <PageContainer title="Two Steps" description="this is Two Steps page">
-    <Grid container spacing={0} justifyContent="center" sx={{ overflowX: 'hidden' }}>
+    <Grid
+      container
+      spacing={0}
+      justifyContent="center"
+      sx={{ overflowX: 'hidden' }}
+    >
       <Grid
         sx={{
           position: 'relative',
@@ -29,8 +34,9 @@ const TwoSteps = () => (
           xs: 12,
           sm: 12,
           lg: 8,
-          xl: 9
-        }}>
+          xl: 9,
+        }}
+      >
         <Box position="relative">
           <Box px={3}>
             <Logo />
@@ -65,16 +71,17 @@ const TwoSteps = () => (
           xs: 12,
           sm: 12,
           lg: 4,
-          xl: 3
-        }}>
+          xl: 3,
+        }}
+      >
         <Box p={4}>
           <Typography variant="h4" fontWeight="700">
             Two Step Verification
           </Typography>
 
           <Typography variant="subtitle1" color="textSecondary" mt={2} mb={1}>
-            We sent a verification code to your mobile. Enter the code from the mobile in the field
-            below.
+            We sent a verification code to your mobile. Enter the code from the
+            mobile in the field below.
           </Typography>
           <Typography variant="subtitle1" fontWeight="700" mb={1}>
             ******1234

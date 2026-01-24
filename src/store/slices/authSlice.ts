@@ -1,5 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getCompanies, getLookup, getTerminals, getUserContext, signIn, signOutMe } from '../../services/auth';
+import {
+  getCompanies,
+  getLookup,
+  getTerminals,
+  getUserContext,
+  signIn,
+  signOutMe,
+} from '../../services/auth';
 import { RootState } from '../../store';
 
 interface AuthState {
@@ -10,7 +17,7 @@ interface AuthState {
   isAuthenticated: boolean;
   companies: any | null;
   lookups: any;
-  terminals: any | null
+  terminals: any | null;
 }
 
 const initialState: AuthState = {
@@ -21,17 +28,14 @@ const initialState: AuthState = {
   isAuthenticated: false,
   companies: null, // Initialize
   lookups: null,
-  terminals: null
+  terminals: null,
 };
 
 // Async thunks
 export const signInUser = createAsyncThunk(
   '/login',
   async (
-    {
-      username,
-      password,
-    }: { username: string; password: string },
+    { username, password }: { username: string; password: string },
     { rejectWithValue }
   ) => {
     try {
@@ -43,11 +47,12 @@ export const signInUser = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Login failed');
+      return rejectWithValue(
+        error instanceof Error ? error.message : 'Login failed'
+      );
     }
   }
 );
-
 
 export const signOutUser = createAsyncThunk(
   'auth/logout',
@@ -56,7 +61,9 @@ export const signOutUser = createAsyncThunk(
       await signOutMe();
       return true;
     } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Logout failed');
+      return rejectWithValue(
+        error instanceof Error ? error.message : 'Logout failed'
+      );
     }
   }
 );
@@ -66,15 +73,17 @@ export const getAllTerminals = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await getTerminals();
-      if (!(response.data)) {
+      if (!response.data) {
         throw new Error('Invalid terminals data format');
       }
       return response.data;
     } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Failed to fetch terminals');
+      return rejectWithValue(
+        error instanceof Error ? error.message : 'Failed to fetch terminals'
+      );
     }
   }
-)
+);
 
 export const lookUpAllThings = createAsyncThunk(
   `auth/lookUpAllThings`,
@@ -86,10 +95,12 @@ export const lookUpAllThings = createAsyncThunk(
       const response = await getLookup(selectedDepot);
       return response;
     } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Fetching failed')
+      return rejectWithValue(
+        error instanceof Error ? error.message : 'Fetching failed'
+      );
     }
   }
-)
+);
 
 export const getAllCompanies = createAsyncThunk(
   '/companies',
@@ -98,10 +109,12 @@ export const getAllCompanies = createAsyncThunk(
       await getCompanies();
       return true;
     } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Fetching failed')
+      return rejectWithValue(
+        error instanceof Error ? error.message : 'Fetching failed'
+      );
     }
   }
-)
+);
 
 export const loadUser = createAsyncThunk(
   'auth/profile',
@@ -113,7 +126,9 @@ export const loadUser = createAsyncThunk(
       }
       return user;
     } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Failed to load user');
+      return rejectWithValue(
+        error instanceof Error ? error.message : 'Failed to load user'
+      );
     }
   }
 );
@@ -180,7 +195,7 @@ const authSlice = createSlice({
       })
       .addCase(lookUpAllThings.fulfilled, (state, action) => {
         state.loading = false;
-        state.lookups = action.payload
+        state.lookups = action.payload;
       })
       .addCase(lookUpAllThings.rejected, (state, action) => {
         state.loading = false;
@@ -190,7 +205,7 @@ const authSlice = createSlice({
         state.loading = true;
       })
       .addCase(getAllCompanies.fulfilled, (state, action) => {
-        state.companies = action.payload
+        state.companies = action.payload;
         state.loading = false;
       })
       .addCase(getAllCompanies.rejected, (state, action) => {

@@ -36,7 +36,12 @@ const PaymentMethods = () => {
         </Link>
         <Link href="#">
           <Tooltip title="American express">
-            <img src={IconAmericanExpress} width={80} height={34} alt="payment" />
+            <img
+              src={IconAmericanExpress}
+              width={80}
+              height={34}
+              alt="payment"
+            />
           </Tooltip>
         </Link>
         <Link href="#">

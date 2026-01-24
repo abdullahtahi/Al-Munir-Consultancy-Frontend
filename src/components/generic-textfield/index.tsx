@@ -3,15 +3,17 @@ import { useFormikContext } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-interface GenericTextFieldProps
-  extends Omit<TextFieldProps, 'name' | 'value' | 'onChange' | 'label'> {
+interface GenericTextFieldProps extends Omit<
+  TextFieldProps,
+  'name' | 'value' | 'onChange' | 'label'
+> {
   name?: string;
   label?: string; // translation key or plain text
   value?: string; // standalone mode
   onChange?: (value: string) => void; // standalone mode
   disabled?: boolean;
   isSearchFilter?: boolean; // skip Formik binding for search inputs
-  isRequired?: boolean
+  isRequired?: boolean;
 }
 
 const GenericTextField: React.FC<GenericTextFieldProps> = ({

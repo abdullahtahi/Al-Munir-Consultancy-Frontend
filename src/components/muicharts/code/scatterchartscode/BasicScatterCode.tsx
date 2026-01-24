@@ -1,10 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function BasicScatterCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import { ScatterChart } from '@mui/x-charts/ScatterChart';
 import { useTheme } from "@mui/material";
@@ -212,8 +211,8 @@ export default function BasicScatterChart() {
 }
 
 `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default BasicScatterCode
+export default BasicScatterCode;

@@ -1,5 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function SimpleLineCode() {
   return (
@@ -49,7 +48,7 @@ function SimpleLineChart() {
 export default SimpleLineChart
 `}
     </CodeDialog>
-  )
+  );
 }
 
-export default SimpleLineCode
+export default SimpleLineCode;

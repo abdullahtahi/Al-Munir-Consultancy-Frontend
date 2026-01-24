@@ -9,7 +9,10 @@ import Logo from '@layouts/full/shared/logo/Logo';
 import AuthForgotPassword from '../authForms/AuthForgotPassword';
 
 const ForgotPassword2 = () => (
-  <PageContainer title="Forgot Password" description="this is Forgot Password page">
+  <PageContainer
+    title="Forgot Password"
+    description="this is Forgot Password page"
+  >
     <Box
       sx={{
         position: 'relative',
@@ -25,7 +28,12 @@ const ForgotPassword2 = () => (
         },
       }}
     >
-      <Grid container spacing={0} justifyContent="center" sx={{ height: '100vh' }}>
+      <Grid
+        container
+        spacing={0}
+        justifyContent="center"
+        sx={{ height: '100vh' }}
+      >
         <Grid
           display="flex"
           justifyContent="center"
@@ -34,9 +42,13 @@ const ForgotPassword2 = () => (
             xs: 12,
             sm: 12,
             lg: 4,
-            xl: 3
-          }}>
-          <Card elevation={9} sx={{ p: 4, zIndex: 1, width: '100%', maxWidth: '500px' }}>
+            xl: 3,
+          }}
+        >
+          <Card
+            elevation={9}
+            sx={{ p: 4, zIndex: 1, width: '100%', maxWidth: '500px' }}
+          >
             <Box display="flex" alignItems="center" justifyContent="center">
               <Logo />
             </Box>
@@ -46,8 +58,8 @@ const ForgotPassword2 = () => (
               variant="subtitle2"
               fontWeight="400"
             >
-              Please enter the email address associated with your account and We will email you a
-              link to reset your password.
+              Please enter the email address associated with your account and We
+              will email you a link to reset your password.
             </Typography>
             <AuthForgotPassword />
           </Card>

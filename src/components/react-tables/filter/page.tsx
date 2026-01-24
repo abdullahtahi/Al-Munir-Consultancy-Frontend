@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import {
   TableContainer,
@@ -120,7 +119,11 @@ const columns = [
     cell: (info) => (
       <Stack direction="row" alignItems="center" spacing={2}>
         <Box width="50%">
-          <LinearProgress variant="determinate" value={info.getValue()} color="primary" />
+          <LinearProgress
+            variant="determinate"
+            value={info.getValue()}
+            color="primary"
+          />
         </Box>
         <Typography variant="subtitle2" color="textSecondary">
           {info.getValue()}%
@@ -136,7 +139,9 @@ function Filter({ column }: any) {
 
   return filterVariant === 'select' ? (
     <CustomSelect
-      onChange={(e: { target: { value: any } }) => column.setFilterValue(e.target.value)}
+      onChange={(e: { target: { value: any } }) =>
+        column.setFilterValue(e.target.value)
+      }
       value={columnFilterValue ? columnFilterValue.toString() : ''}
     >
       {/* See faceted column filters example for dynamic select options */}
@@ -146,17 +151,20 @@ function Filter({ column }: any) {
       <MenuItem value="Refunded">Refunded</MenuItem>
     </CustomSelect>
   ) : (
-    (<DebouncedInput
+    <DebouncedInput
       onChange={(value: any) => column.setFilterValue(value)}
       placeholder={`Search...`}
       type="text"
       value={columnFilterValue || ''}
-    />)
+    />
     // See faceted column filters example for datalist search suggestions
   );
 }
 
-interface DebouncedInputProps extends Omit<TextFieldProps, 'onChange' | 'value'> {
+interface DebouncedInputProps extends Omit<
+  TextFieldProps,
+  'onChange' | 'value'
+> {
   value: string;
   onChange: (value: string) => void;
   debounce?: number;
@@ -220,9 +228,17 @@ const ReactFilterTable = () => {
 
   const handleDownload = () => {
     const headers = ['Invoice', 'Status', 'Customer', 'Progress'];
-    const rows = data.map((item) => [item.invoiceno, item.status, item.name, item.progress]);
+    const rows = data.map((item) => [
+      item.invoiceno,
+      item.status,
+      item.name,
+      item.progress,
+    ]);
 
-    const csvContent = [headers.join(','), ...rows.map((e) => e.join(','))].join('\n');
+    const csvContent = [
+      headers.join(','),
+      ...rows.map((e) => e.join(',')),
+    ].join('\n');
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
@@ -236,7 +252,7 @@ const ReactFilterTable = () => {
   };
 
   return (
-    (<DownloadCard title="Filter Table" onDownload={handleDownload}>
+    <DownloadCard title="Filter Table" onDownload={handleDownload}>
       <Grid container spacing={3}>
         <Grid size={12}>
           <Box>
@@ -263,7 +279,10 @@ const ReactFilterTable = () => {
                           >
                             {header.isPlaceholder
                               ? null
-                              : flexRender(header.column.columnDef.header, header.getContext())}
+                              : flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext()
+                                )}
                           </Typography>
                           {header.column.getCanFilter() ? (
                             <div>
@@ -280,7 +299,10 @@ const ReactFilterTable = () => {
                     <TableRow key={row.id}>
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id}>
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
                         </TableCell>
                       ))}
                     </TableRow>
@@ -297,7 +319,11 @@ const ReactFilterTable = () => {
               justifyContent="space-between"
             >
               <Box display="flex" alignItems="center" gap={1}>
-                <Button variant="contained" color="primary" onClick={() => rerender()}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => rerender()}
+                >
                   Force Rerender
                 </Button>
                 <Typography variant="body1">
@@ -317,7 +343,8 @@ const ReactFilterTable = () => {
                 <Stack direction="row" alignItems="center" gap={1}>
                   <Typography variant="body1">Page</Typography>
                   <Typography variant="body1" fontWeight={600}>
-                    {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+                    {table.getState().pagination.pageIndex + 1} of{' '}
+                    {table.getPageCount()}
                   </Typography>
                 </Stack>
                 <Stack direction="row" alignItems="center" gap={1}>
@@ -328,7 +355,9 @@ const ReactFilterTable = () => {
                     max={table.getPageCount()}
                     defaultValue={table.getState().pagination.pageIndex + 1}
                     onChange={(e: { target: { value: any } }) => {
-                      const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                      const page = e.target.value
+                        ? Number(e.target.value) - 1
+                        : 0;
                       table.setPageIndex(page);
                     }}
                   />
@@ -379,7 +408,7 @@ const ReactFilterTable = () => {
           </Box>
         </Grid>
       </Grid>
-    </DownloadCard>)
+    </DownloadCard>
   );
 };
 

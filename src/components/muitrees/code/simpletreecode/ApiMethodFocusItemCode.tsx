@@ -1,11 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
-
+import CodeDialog from '@components/shared/CodeDialog';
 
 function ApiMethodFocusItemCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -61,8 +59,8 @@ export default function ApiMethodFocusItem() {
 }
 
             `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default ApiMethodFocusItemCode
+export default ApiMethodFocusItemCode;

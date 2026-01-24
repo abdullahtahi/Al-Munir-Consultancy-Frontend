@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { FormControl } from "@mui/material";
-import CustomTextField from "../theme-elements/CustomTextField";
-import CustomFormLabel from "../theme-elements/CustomFormLabel";
-import ParentCard from "../../shared/ParentCard";
+import { FormControl } from '@mui/material';
+import CustomTextField from '../theme-elements/CustomTextField';
+import CustomFormLabel from '../theme-elements/CustomFormLabel';
+import ParentCard from '../../shared/ParentCard';
 
-import InputVariantsCode from "@components/forms/form-layouts/code/InputVariantsCode";
+import InputVariantsCode from '@components/forms/form-layouts/code/InputVariantsCode';
 
 const FbInputVariants = () => {
   return (
@@ -26,11 +26,11 @@ const FbInputVariants = () => {
           fullWidth
           required
           sx={{
-            "& input:valid + fieldset": {
-              borderColor: "#39cb7f",
+            '& input:valid + fieldset': {
+              borderColor: '#39cb7f',
             },
-            "& input:invalid + fieldset": {
-              borderColor: "#fc4b6c",
+            '& input:invalid + fieldset': {
+              borderColor: '#fc4b6c',
             },
           }}
         />

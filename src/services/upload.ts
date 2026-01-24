@@ -20,7 +20,13 @@ const defaultResponse = async (res: Response): Promise<ApiResponse> => {
 };
 
 export const uploadImageCategory = (
-  files: Array<File & { fkImageCategoryId: number; transitionId?: number; eirOutId?: number }>,
+  files: Array<
+    File & {
+      fkImageCategoryId: number;
+      transitionId?: number;
+      eirOutId?: number;
+    }
+  >,
   directory: string = ''
 ): Promise<ApiResponse> => {
   const fd = new FormData();
@@ -37,17 +43,18 @@ export const uploadImageCategory = (
 
   const firstFile = files[0];
   const queryParams = `imgType=${firstFile.fkImageCategoryId}&${
-    firstFile.eirOutId ? `eirOutId=${firstFile.eirOutId}` : `transitionId=${firstFile.transitionId}`
+    firstFile.eirOutId
+      ? `eirOutId=${firstFile.eirOutId}`
+      : `transitionId=${firstFile.transitionId}`
   }`;
 
   return fetch(`${baseUrl}/api/uploads/transition-images?${queryParams}`, {
     headers: head,
     credentials: 'include',
     method: 'POST',
-    body: fd
+    body: fd,
   }).then(defaultResponse);
 };
-
 
 export const uploadServiceImages = async (
   file: Array<File & { transitionId: number; serviceId: number }>,
@@ -62,18 +69,21 @@ export const uploadServiceImages = async (
   const head = headers();
 
   const res = await fetch(
-        `${baseUrl}/uploads/transition-service-images?transitionId=${file[0].transitionId}&serviceId=${file[0].serviceId}`,
-        {
-            headers: head,
-            credentials: 'include',
-            method: 'POST',
-            body: fd
-        }
-    );
-    return defaultResponse(res);
+    `${baseUrl}/uploads/transition-service-images?transitionId=${file[0].transitionId}&serviceId=${file[0].serviceId}`,
+    {
+      headers: head,
+      credentials: 'include',
+      method: 'POST',
+      body: fd,
+    }
+  );
+  return defaultResponse(res);
 };
 
-export const uploadImage = (file: File, directory: string = ''): Promise<ApiResponse> => {
+export const uploadImage = (
+  file: File,
+  directory: string = ''
+): Promise<ApiResponse> => {
   const fd = new FormData();
   fd.append('directory', directory);
   fd.append('upload-file', file);
@@ -84,11 +94,14 @@ export const uploadImage = (file: File, directory: string = ''): Promise<ApiResp
     headers: head,
     credentials: 'include',
     method: 'POST',
-    body: fd
+    body: fd,
   }).then(defaultResponse);
 };
 
-export const uploadFavicon = (file: File, directory: string = ''): Promise<ApiResponse> => {
+export const uploadFavicon = (
+  file: File,
+  directory: string = ''
+): Promise<ApiResponse> => {
   const fd = new FormData();
   fd.append('directory', directory);
   fd.append('upload-file', file);
@@ -99,7 +112,7 @@ export const uploadFavicon = (file: File, directory: string = ''): Promise<ApiRe
     headers: head,
     credentials: 'include',
     method: 'POST',
-    body: fd
+    body: fd,
   }).then(defaultResponse);
 };
 
@@ -119,7 +132,7 @@ export const uploadDocument = (
     headers: head,
     credentials: 'include',
     method: 'POST',
-    body: fd
+    body: fd,
   }).then(defaultResponse);
 };
 
@@ -141,7 +154,7 @@ export const uploadShippingLineDocuments = (
     headers: head,
     credentials: 'include',
     method: 'POST',
-    body: fd
+    body: fd,
   }).then(defaultResponse);
 };
 
@@ -165,21 +178,27 @@ export const uploadFasahDocument = (
     headers: head,
     credentials: 'include',
     method: 'POST',
-    body: fd
+    body: fd,
   }).then(defaultResponse);
 };
 
-export const deleteDocument = (file: string, directory: string): Promise<ApiResponse> => {
+export const deleteDocument = (
+  file: string,
+  directory: string
+): Promise<ApiResponse> => {
   const head = headers();
   return fetch(`${baseUrl}/uploads/delete`, {
     headers: head,
     credentials: 'include',
     method: 'DELETE',
-    body: JSON.stringify({ deleteFile: file, directory })
+    body: JSON.stringify({ deleteFile: file, directory }),
   }).then(defaultResponse);
 };
 
-export const uploadEdi = (file: File, params: Record<string, string>): Promise<ApiResponse> => {
+export const uploadEdi = (
+  file: File,
+  params: Record<string, string>
+): Promise<ApiResponse> => {
   const qs = new URLSearchParams(params).toString();
   const fd = new FormData();
   fd.append('upload-file', file);
@@ -190,6 +209,6 @@ export const uploadEdi = (file: File, params: Record<string, string>): Promise<A
     headers: head,
     credentials: 'include',
     method: 'POST',
-    body: fd
+    body: fd,
   }).then(defaultResponse);
 };

@@ -34,15 +34,25 @@ const FullLayout: FC = () => {
   const MiniSidebarWidth = config.miniSidebarWidth;
 
   // Redux selectors
-  const activeLayout = useSelector((state: RootState) => state.themeCustomizer.activeLayout);
-  const isLayout = useSelector((state: RootState) => state.themeCustomizer.isLayout);
-  const activeMode = useSelector((state: RootState) => state.themeCustomizer.activeMode);
-  const isCollapse = useSelector((state: RootState) => state.themeCustomizer.isCollapse);
+  const activeLayout = useSelector(
+    (state: RootState) => state.themeCustomizer.activeLayout
+  );
+  const isLayout = useSelector(
+    (state: RootState) => state.themeCustomizer.isLayout
+  );
+  const activeMode = useSelector(
+    (state: RootState) => state.themeCustomizer.activeMode
+  );
+  const isCollapse = useSelector(
+    (state: RootState) => state.themeCustomizer.isCollapse
+  );
 
   return (
     <>
       <LoadingBar />
-      <MainWrapper className={activeMode === 'dark' ? 'darkbg mainwrapper' : 'mainwrapper'}>
+      <MainWrapper
+        className={activeMode === 'dark' ? 'darkbg mainwrapper' : 'mainwrapper'}
+      >
         {/* Sidebar */}
         {activeLayout === 'horizontal' ? '' : <Sidebar />}
 

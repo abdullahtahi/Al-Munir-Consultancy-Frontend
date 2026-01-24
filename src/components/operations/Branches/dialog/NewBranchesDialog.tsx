@@ -1,36 +1,36 @@
-import Box from "@mui/material/Box";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import Grid from "@mui/material/Grid2";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { IconDeviceFloppy, IconLetterX, IconX } from "@tabler/icons-react";
-import { Form, Formik } from "formik";
-import React from "react";
-import CustomFields from "src/components/custom-fields/custom-fields";
-import FileUploadField from "src/components/custom-file-Upload/custom-file-upload";
-import CustomSelect from "src/components/custom-select/custom-select";
-import GenericButton from "src/components/generic-button";
-import { BASE_URL } from "src/constants/AppConstants";
-import * as Yup from "yup";
+import Box from '@mui/material/Box';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Grid from '@mui/material/Grid2';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import { IconDeviceFloppy, IconLetterX, IconX } from '@tabler/icons-react';
+import { Form, Formik } from 'formik';
+import React from 'react';
+import CustomFields from 'src/components/custom-fields/custom-fields';
+import FileUploadField from 'src/components/custom-file-Upload/custom-file-upload';
+import CustomSelect from 'src/components/custom-select/custom-select';
+import GenericButton from 'src/components/generic-button';
+import { BASE_URL } from 'src/constants/AppConstants';
+import * as Yup from 'yup';
 
 interface NewBranchesDialogProps {
   open: boolean;
   onClose: () => void;
   handleSubmit: (values: any) => void;
-  mode: "Add" | "Edit";
+  mode: 'Add' | 'Edit';
   singleUser: any;
 }
 
 export const initialValues = {
-  name: "",
-  principleName: "",
-  principleEducation: "",
-  logo: "",
-  address: "",
-  isActive: "Active",
+  name: '',
+  principleName: '',
+  principleEducation: '',
+  logo: '',
+  address: '',
+  isActive: 'Active',
 };
 
 const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
@@ -42,31 +42,31 @@ const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
 }) => {
   const getValidationSchema = () =>
     Yup.object().shape({
-      name: Yup.string().required("name is required"),
+      name: Yup.string().required('name is required'),
       principleName: Yup.string().required(
-        "Principle Name in class is required"
+        'Principle Name in class is required'
       ),
       principleEducation: Yup.string().required(
-        "Principle Education is required"
+        'Principle Education is required'
       ),
-      logo: Yup.string().required("logo is required"),
-      address: Yup.string().required("address is required"),
+      logo: Yup.string().required('logo is required'),
+      address: Yup.string().required('address is required'),
       isActive: Yup.string(),
     });
-  const title: any = mode === "Add" ? "Add Branch" : "Edit Branch";
-  const actionLabel = mode === "Add" ? "Add" : "Edit";
+  const title: any = mode === 'Add' ? 'Add Branch' : 'Edit Branch';
+  const actionLabel = mode === 'Add' ? 'Add' : 'Edit';
 
   const status = [
     {
-      key: "Active",
-      value: "Active",
+      key: 'Active',
+      value: 'Active',
     },
     {
-      key: "In Active",
-      value: "In Active",
+      key: 'In Active',
+      value: 'In Active',
     },
   ];
- 
+
   return (
     <Dialog
       open={open}
@@ -75,8 +75,8 @@ const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
       fullWidth
       PaperProps={{
         sx: {
-          width: { xs: "calc(100% - 20px)", md: 1200 },
-          mx: "auto",
+          width: { xs: 'calc(100% - 20px)', md: 1200 },
+          mx: 'auto',
         },
       }}
     >
@@ -91,14 +91,14 @@ const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
 
       <Formik
         initialValues={
-          mode === "Edit" && singleUser
+          mode === 'Edit' && singleUser
             ? {
                 name: singleUser?.name,
                 principleName: singleUser?.principleName,
-                principleEducation: singleUser?.principleEducation || "",
-                logo: singleUser?.logo || "",
-                address: singleUser.address || "",
-                isActive: singleUser.isActive == true ? "Active" : "In Active",
+                principleEducation: singleUser?.principleEducation || '',
+                logo: singleUser?.logo || '',
+                address: singleUser.address || '',
+                isActive: singleUser.isActive == true ? 'Active' : 'In Active',
               }
             : initialValues
         }
@@ -140,14 +140,13 @@ const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
                     />
                   </Grid>
 
-                  {mode === "Edit" && (
+                  {mode === 'Edit' && (
                     <Grid size={{ xs: 12 }}>
                       <CustomSelect
                         name="isActive"
                         label="isActive"
                         placeholder="Enter Status"
                         options={status}
-                        
                       />
                     </Grid>
                   )}
@@ -162,13 +161,13 @@ const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
 
                   <Grid size={{ xs: 12 }}>
                     <FileUploadField
-                      key={"logo"}
-                      name={"logo"}
-                      label={"Branch Image"}
+                      key={'logo'}
+                      name={'logo'}
+                      label={'Branch Image'}
                     />
-                    {mode === "Edit" && (
+                    {mode === 'Edit' && (
                       <img
-                        src={`${BASE_URL + "/" + singleUser.logo}`}
+                        src={`${BASE_URL + '/' + singleUser.logo}`}
                         className="admissionImgs"
                         alt="Branch Image"
                       />
@@ -179,7 +178,7 @@ const NewBranchesDialog: React.FC<NewBranchesDialogProps> = ({
 
               <DialogActions sx={{ px: 3, pb: 2 }}>
                 <GenericButton
-                  label={"Cancel"}
+                  label={'Cancel'}
                   onClick={onClose}
                   color="error"
                   icon={IconLetterX}

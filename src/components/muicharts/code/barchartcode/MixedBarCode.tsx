@@ -1,6 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
-
+import CodeDialog from '@components/shared/CodeDialog';
 
 function MixedBarCode() {
   return (
@@ -55,7 +53,7 @@ function MixedBarChart() {
 export default MixedBarChart
 `}
     </CodeDialog>
-  )
+  );
 }
 
-export default MixedBarCode
+export default MixedBarCode;

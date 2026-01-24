@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   Button,
@@ -24,22 +24,21 @@ const FbRightIconForm = () => {
   };
 
   return (
-    <ParentCard title="Form with Right Icon" footer={
-      <>
-        <Stack direction="row" spacing={1}>
-          <Button
-            color="primary"
-            variant="contained"
-          >
-            Submit
-          </Button>
-          <Button variant="contained" color="error">
-            Cancel
-          </Button>
-        </Stack>
-
-      </>
-    }>
+    <ParentCard
+      title="Form with Right Icon"
+      footer={
+        <>
+          <Stack direction="row" spacing={1}>
+            <Button color="primary" variant="contained">
+              Submit
+            </Button>
+            <Button variant="contained" color="error">
+              Cancel
+            </Button>
+          </Stack>
+        </>
+      }
+    >
       <form>
         <FormControl fullWidth>
           <CustomFormLabel
@@ -92,7 +91,9 @@ const FbRightIconForm = () => {
         </FormControl>
 
         <FormControl fullWidth>
-          <CustomFormLabel htmlFor="cpwd2-text">Confirm Password</CustomFormLabel>
+          <CustomFormLabel htmlFor="cpwd2-text">
+            Confirm Password
+          </CustomFormLabel>
           <OutlinedInput
             endAdornment={
               <InputAdornment position="end">
@@ -106,7 +107,11 @@ const FbRightIconForm = () => {
         </FormControl>
         <FormControlLabel
           control={
-            <CustomCheckbox checked={state.checkedB} onChange={handleChange} name="checkedB" />
+            <CustomCheckbox
+              checked={state.checkedB}
+              onChange={handleChange}
+              name="checkedB"
+            />
           }
           sx={{
             mt: '10px',

@@ -1,5 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function LineChartWithReferenceLinesCode() {
   return (
@@ -69,7 +68,7 @@ export default function LineChartWithReferenceLines() {
 
 `}
     </CodeDialog>
-  )
+  );
 }
 
-export default LineChartWithReferenceLinesCode
+export default LineChartWithReferenceLinesCode;

@@ -33,7 +33,7 @@ export const initialValues = {
   lastName: '',
   email: '',
   password: '',
-  role:'',
+  role: '',
   phone: '',
   cnic: '',
   address: '',
@@ -47,6 +47,38 @@ export const initialValues = {
   dateOfBirth: '',
   status: '',
   licenseNumber: '',
+};
+
+const LicenseGenerator = ({ values, setFieldValue, mode }: any) => {
+  useEffect(() => {
+    if (values.firstName && values.lastName) {
+      const firstLetter = values.firstName.charAt(0).toUpperCase();
+      const lastLetter = values.lastName.charAt(0).toUpperCase();
+      const prefix = `${firstLetter}${lastLetter}`;
+
+      const shouldGenerate =
+        mode === 'Add'
+          ? !values.licenseNumber || !values.licenseNumber.startsWith(prefix)
+          : !values.licenseNumber;
+
+      if (shouldGenerate) {
+        const randomNum = Math.floor(100000 + Math.random() * 900000);
+        const code = `${prefix}${randomNum}`;
+        setFieldValue('licenseNumber', code);
+      }
+    } else {
+      if (mode === 'Add' && values.licenseNumber) {
+        setFieldValue('licenseNumber', '');
+      }
+    }
+  }, [
+    values.firstName,
+    values.lastName,
+    setFieldValue,
+    mode,
+    values.licenseNumber,
+  ]);
+  return null;
 };
 
 const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
@@ -100,24 +132,21 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
     },
   ];
 
-  const roles=rolesData?.rows?.map((row:any)=>({
-    key:row?.name,
-    value:row?.name
-  }))
+  const roles = rolesData?.rows?.map((row: any) => ({
+    key: row?.name,
+    value: row?.name,
+  }));
   const fetchRolesData = async () => {
     try {
       const response = await getAllRoles({});
       if (response && response.data) {
         setRolesData(response.data || []);
-        
       }
-
-    } catch (error: any) {
-    } 
+    } catch (error: any) {}
   };
-  useEffect(()=>{
-    fetchRolesData()
-  },[])
+  useEffect(() => {
+    fetchRolesData();
+  }, []);
 
   return (
     <Dialog
@@ -151,7 +180,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                 password: singleUser.password,
                 phone: singleUser.phone || '',
                 cnic: singleUser.cnic || '',
-                role:singleUser.role || '',
+                role: singleUser.role || '',
                 address: singleUser.address || '',
                 city: singleUser.city || '',
                 sponsorId: singleUser.sponsorId || '',
@@ -172,10 +201,16 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
         onSubmit={handleSubmit}
         enableReinitialize
       >
-        {({ handleSubmit, errors }) => {
+        {({ handleSubmit, errors, values, setFieldValue }) => {
           console.log('error', errors);
           return (
             <Form onSubmit={handleSubmit}>
+              <LicenseGenerator
+                values={values}
+                setFieldValue={setFieldValue}
+                mode={mode}
+              />
+
               <DialogContent>
                 <Grid container spacing={2}>
                   <Grid size={{ xs: 12 }}>
@@ -253,13 +288,19 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                     />
                   </Grid>
 
-                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
-                    <CustomFields
-                      name="licenseNumber"
-                      label="License Number"
-                      placeholder="Enter License Number"
-                    />
-                  </Grid>
+                  {(values.firstName && values.lastName) || mode === 'Edit' ? (
+                    <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                      <CustomFields
+                        name="licenseNumber"
+                        label="License Number"
+                        placeholder="Enter License Number"
+                        value={values.licenseNumber}
+                        disabled={true}
+                      />
+                    </Grid>
+                  ) : (
+                    ''
+                  )}
 
                   {mode === 'Edit' && (
                     <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
@@ -267,7 +308,9 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                         name="joiningDate"
                         label="Joining Date"
                         placeholder=""
-                        value={dayjs(singleUser?.createdAt).format('DD-MM-YYYY')}
+                        value={dayjs(singleUser?.createdAt).format(
+                          'DD-MM-YYYY'
+                        )}
                         disabled={true}
                       />
                     </Grid>

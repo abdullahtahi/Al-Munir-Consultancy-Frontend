@@ -59,18 +59,18 @@ const DarkThemeColors = [
     name: 'GREEN_THEME',
     palette: {
       primary: {
-        main: '#4EB966',        // Your main color
-        light: '#124154',       // Lighter variant
-        dark: '#379F50',        // Darker variant
-        contrastText: '#FFFFFF' // White text for contrast
+        main: '#4EB966', // Your main color
+        light: '#124154', // Lighter variant
+        dark: '#379F50', // Darker variant
+        contrastText: '#FFFFFF', // White text for contrast
       },
       secondary: {
-        main: '#60CE79',        // Complementary teal tone
+        main: '#60CE79', // Complementary teal tone
         light: '#124154',
         dark: '#33BF54',
-        contrastText: '#FFFFFF'
+        contrastText: '#FFFFFF',
       },
-    }
+    },
   },
   {
     name: 'CYAN_THEME',
@@ -109,4 +109,3 @@ const DarkThemeColors = [
 ];
 
 export { DarkThemeColors };
-

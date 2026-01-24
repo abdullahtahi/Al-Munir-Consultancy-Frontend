@@ -58,7 +58,12 @@ const Message = () => {
           },
         }}
       >
-        <Stack direction="row" p={2} justifyContent="space-between" alignItems="center">
+        <Stack
+          direction="row"
+          p={2}
+          justifyContent="space-between"
+          alignItems="center"
+        >
           <Box>
             <Typography variant="h5">Messages</Typography>
             <Typography variant="subtitle2" color="textSecondary">

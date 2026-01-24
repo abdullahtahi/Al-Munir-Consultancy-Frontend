@@ -14,7 +14,6 @@ import { IconChevronDown } from '@tabler/icons-react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/store';
 
-
 type NavGroupProps = {
   [x: string]: any;
   navlabel?: boolean;
@@ -34,15 +33,27 @@ interface NavCollapseProps {
 }
 
 // FC Component For Dropdown Menu
-const NavCollapse = ({ menu, level, pathWithoutLastPart, pathDirect, hideMenu }: NavCollapseProps) => {
+const NavCollapse = ({
+  menu,
+  level,
+  pathWithoutLastPart,
+  pathDirect,
+  hideMenu,
+}: NavCollapseProps) => {
   const Icon = menu.icon;
   const theme = useTheme();
   const { pathname } = useLocation();
   const [open, setOpen] = React.useState(false);
-  const isBorderRadius = useSelector((state: RootState) => state.themeCustomizer.isBorderRadius)
+  const isBorderRadius = useSelector(
+    (state: RootState) => state.themeCustomizer.isBorderRadius
+  );
 
   const menuIcon =
-    level > 1 ? <Icon stroke={1.5} size="1rem" /> : <Icon stroke={1.5} size="1.1rem" />;
+    level > 1 ? (
+      <Icon stroke={1.5} size="1rem" />
+    ) : (
+      <Icon stroke={1.5} size="1.1rem" />
+    );
 
   React.useEffect(() => {
     setOpen(false);
@@ -61,8 +72,12 @@ const NavCollapse = ({ menu, level, pathWithoutLastPart, pathDirect, hideMenu }:
     gap: '10px',
     borderRadius: `${isBorderRadius}px`,
     whiteSpace: 'nowrap',
-    color: open || pathname.includes(menu.href) || level < 1 ? 'white' : theme.palette.text.secondary,
-    backgroundColor: open || pathname.includes(menu.href) ? theme.palette.primary.main : '',
+    color:
+      open || pathname.includes(menu.href) || level < 1
+        ? 'white'
+        : theme.palette.text.secondary,
+    backgroundColor:
+      open || pathname.includes(menu.href) ? theme.palette.primary.main : '',
 
     '&:hover': {
       backgroundColor:
@@ -101,7 +116,9 @@ const NavCollapse = ({ menu, level, pathWithoutLastPart, pathDirect, hideMenu }:
           level={level + 1}
           pathWithoutLastPart={pathWithoutLastPart}
           pathDirect={pathDirect}
-          hideMenu={hideMenu} onClick={undefined} />
+          hideMenu={hideMenu}
+          onClick={undefined}
+        />
       );
     } else {
       return (
@@ -110,9 +127,11 @@ const NavCollapse = ({ menu, level, pathWithoutLastPart, pathDirect, hideMenu }:
           item={item}
           level={level + 1}
           pathDirect={pathDirect}
-          hideMenu={hideMenu} onClick={function (): void {
+          hideMenu={hideMenu}
+          onClick={function (): void {
             throw new Error('Function not implemented.');
-          }} />
+          }}
+        />
       );
     }
   });

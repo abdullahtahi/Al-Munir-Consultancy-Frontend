@@ -30,11 +30,11 @@ const ThemeColors = [
         contrastText: '#FFFFFF',
       },
       background: {
-        default: '#f8fffc',     // Deep forest green for dark UI
-        dark: '#ffffff',        // Even darker variant
-        paper: '#ffffff'        // Card/paper-like surfaces
-      }
-    }
+        default: '#f8fffc', // Deep forest green for dark UI
+        dark: '#ffffff', // Even darker variant
+        paper: '#ffffff', // Card/paper-like surfaces
+      },
+    },
   },
   {
     name: 'PURPLE_THEME',

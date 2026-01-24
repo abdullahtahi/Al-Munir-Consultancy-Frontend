@@ -7,12 +7,17 @@ import {
   DialogActions,
   Button,
   Box,
-  CircularProgress
+  CircularProgress,
 } from '@mui/material';
 import { CheckCircle, Error, Warning, Info } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 
-export type NotificationType = 'success' | 'error' | 'warning' | 'info' | 'loading';
+export type NotificationType =
+  | 'success'
+  | 'error'
+  | 'warning'
+  | 'info'
+  | 'loading';
 
 interface NotificationModalProps {
   open: boolean;
@@ -29,30 +34,30 @@ interface NotificationModalProps {
 
 const iconStyles = {
   fontSize: 60,
-  mb: 2
+  mb: 2,
 };
 
 const typeStyles = {
   success: {
     icon: <CheckCircle color="success" sx={iconStyles} />,
-    color: 'success.main'
+    color: 'success.main',
   },
   error: {
     icon: <Error color="error" sx={iconStyles} />,
-    color: 'error.main'
+    color: 'error.main',
   },
   warning: {
     icon: <Warning color="warning" sx={iconStyles} />,
-    color: 'warning.main'
+    color: 'warning.main',
   },
   info: {
     icon: <Info color="info" sx={iconStyles} />,
-    color: 'info.main'
+    color: 'info.main',
   },
   loading: {
     icon: <CircularProgress size={60} sx={iconStyles} />,
-    color: 'primary.main'
-  }
+    color: 'primary.main',
+  },
 };
 
 const NotificationModal: React.FC<NotificationModalProps> = ({
@@ -65,7 +70,7 @@ const NotificationModal: React.FC<NotificationModalProps> = ({
   confirmButtonText,
   onConfirm,
   showCancelButton = true,
-  cancelButtonText
+  cancelButtonText,
 }) => {
   const { t } = useTranslation();
 
@@ -86,7 +91,10 @@ const NotificationModal: React.FC<NotificationModalProps> = ({
       >
         {typeStyles[type].icon}
         {title && (
-          <DialogTitle id="notification-dialog-title" sx={{ color: typeStyles[type].color }}>
+          <DialogTitle
+            id="notification-dialog-title"
+            sx={{ color: typeStyles[type].color }}
+          >
             {title}
           </DialogTitle>
         )}
