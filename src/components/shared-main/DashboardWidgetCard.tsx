@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Card, CardContent, Typography, Box, Stack } from '@mui/material';
 import { IconGridDots } from '@tabler/icons-react';
-import { CustomizerContext } from "src/context/CustomizerContext";
+import { CustomizerContext } from 'src/context/CustomizerContext';
 
 type Props = {
   title: string;
@@ -25,15 +25,16 @@ const DashboardWidgetCard = ({
   dataLabel2,
   dataItem2,
 }: Props) => {
-
   const theme = useTheme();
   const borderColor = theme.palette.grey[100];
   const { isCardShadow } = useContext(CustomizerContext);
 
-
   return (
     <Card
-      sx={{ padding: 0, border: !isCardShadow ? `1px solid ${borderColor}` : 'none' }}
+      sx={{
+        padding: 0,
+        border: !isCardShadow ? `1px solid ${borderColor}` : 'none',
+      }}
       elevation={isCardShadow ? 9 : 0}
       variant={!isCardShadow ? 'outlined' : undefined}
     >
@@ -54,7 +55,12 @@ const DashboardWidgetCard = ({
 
         {children}
 
-        <Stack direction="row" spacing={2} justifyContent="space-between" mt={2}>
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="space-between"
+          mt={2}
+        >
           <Stack direction="row" spacing={2} alignItems="center">
             <Box
               width={38}

@@ -3,7 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { Add, FilterList } from '@mui/icons-material';
 import { IconPencil, IconTrash } from '@tabler/icons-react';
 
-import { Alert, Box, Button, Collapse, Snackbar, useTheme } from '@mui/material';
+import {
+  Alert,
+  Box,
+  Button,
+  Collapse,
+  Snackbar,
+  useTheme,
+} from '@mui/material';
 import PageContainer from '@components/layout/PageContainer';
 import GenericTable from 'src/components/generic-table';
 import { useSelector } from 'react-redux';
@@ -14,7 +21,11 @@ import AdmissionsDialog from './dialog/NewAdmissionDialog';
 import { DeleteDialog } from 'src/components/delete-dialog/DeleteDialog';
 import Grid from '@mui/material/Grid2';
 import AuthorizeComponent from 'src/utils/AuthorizeComponent';
-import { CAN_ADD_ADMISSION, CAN_DELETE_ADMISSION, CAN_EDIT_ADMISSION } from 'src/constants/Permissions';
+import {
+  CAN_ADD_ADMISSION,
+  CAN_DELETE_ADMISSION,
+  CAN_EDIT_ADMISSION,
+} from 'src/constants/Permissions';
 
 interface TableColumn {
   id: string;
@@ -179,16 +190,16 @@ const AdmissionsList: React.FC = () => {
         const admissions: any = await get(
           `${baseUrl}/api/v1/admissions?page=${page}&limit=${rowsPerPage}&${queryString}`
         );
-        if(admissions.data){
+        if (admissions.data) {
           setAdmissionsData(admissions.data.rows);
           setTotalCount(admissions.data.count);
-        } else{
+        } else {
           setSnackbar({
-          open: true,
-          message: admissions.message || '',
-          severity: 'error',
-        })
-      }
+            open: true,
+            message: admissions.message || '',
+            severity: 'error',
+          });
+        }
         return admissions;
       } catch (error: any) {
         setSnackbar({
@@ -215,14 +226,13 @@ const AdmissionsList: React.FC = () => {
           message: user.message || 'Updated SuccessFully',
           severity: 'success',
         });
-          setAdmissionDialogOpen(false);
-
+        setAdmissionDialogOpen(false);
       } else {
         const admission: any = await post(
           `${baseUrl}/api/v1/admissions/create`,
           values
         );
-        if(admission.data){
+        if (admission.data) {
           setSnackbar({
             open: true,
             message: admission.message || 'Admission created SuccessFully',
@@ -231,12 +241,11 @@ const AdmissionsList: React.FC = () => {
           setAdmissionDialogOpen(false);
         }
       }
-
     } catch (error: any) {
       error.map((row: any) => {
         setSnackbar({
           open: true,
-          message: row.message || error.message ,
+          message: row.message || error.message,
           severity: 'error',
         });
       });
@@ -265,7 +274,6 @@ const AdmissionsList: React.FC = () => {
     getAdmissions({});
   }, [rowsPerPage, page, admissionDialogOpen]);
 
- 
   return (
     <>
       <PageContainer
@@ -308,25 +316,22 @@ const AdmissionsList: React.FC = () => {
 
         <Collapse in={showFilters} timeout="auto" unmountOnExit>
           <Box mb={2} width="100%">
-            <AdmissionsFilter
-            getAdmissions={getAdmissions}
-            />
+            <AdmissionsFilter getAdmissions={getAdmissions} />
           </Box>
         </Collapse>
 
-    <Grid size={12}>
-            <GenericTable
-              data={admissionsData}
-              columns={columns}
-              page={page}
-              rowsPerPage={rowsPerPage}
-              setPage={setPage}
-              setRowsPerPage={setRowsPerPage}
-              totalCount={totalCount}
-              isLoading={loading}
-              />
-    </Grid>
-        
+        <Grid size={12}>
+          <GenericTable
+            data={admissionsData}
+            columns={columns}
+            page={page}
+            rowsPerPage={rowsPerPage}
+            setPage={setPage}
+            setRowsPerPage={setRowsPerPage}
+            totalCount={totalCount}
+            isLoading={loading}
+          />
+        </Grid>
       </PageContainer>
 
       <AdmissionsDialog
@@ -343,7 +348,7 @@ const AdmissionsList: React.FC = () => {
         subText="Are you sure to delete Admission"
         open={openDeleteModal}
       />
-       <Snackbar
+      <Snackbar
         open={snackbar.open}
         autoHideDuration={4000}
         onClose={() => setSnackbar({ ...snackbar, open: false })}

@@ -46,8 +46,7 @@ import {
   IconUserPlus,
   IconWallet,
   IconWindmill,
-  IconBrandEtsy
-
+  IconBrandEtsy,
 } from '@tabler/icons-react';
 import { uniqueId } from 'lodash';
 
@@ -130,7 +129,7 @@ const Menuitems: MenuItemsType[] = [
             icon: IconPrinter,
             href: '/vehicle-operation/pickup-slip',
           },
-        ]
+        ],
       },
     ],
   },
@@ -181,9 +180,9 @@ const Menuitems: MenuItemsType[] = [
             icon: IconSettings,
             href: '/work-shop/service-management',
           },
-        ]
+        ],
       },
-    ]
+    ],
   },
   {
     id: uniqueId(),
@@ -242,7 +241,7 @@ const Menuitems: MenuItemsType[] = [
           },
         ],
       },
-    ]
+    ],
   },
 
   {
@@ -420,7 +419,7 @@ const Menuitems: MenuItemsType[] = [
         icon: IconPrinter,
         href: '/reports/print-eir',
       },
-    ]
+    ],
   },
   {
     id: uniqueId(),
@@ -496,12 +495,14 @@ const Menuitems: MenuItemsType[] = [
         title: 'Image',
         icon: IconPhotoScan,
         href: '/master-data/image',
-      }, {
+      },
+      {
         id: uniqueId(),
         title: 'Bank',
         icon: IconCashBanknote,
         href: '/master-data/bank',
-      }, {
+      },
+      {
         id: uniqueId(),
         title: 'Customers',
         icon: IconUserCog,
@@ -530,9 +531,9 @@ const Menuitems: MenuItemsType[] = [
             icon: IconLogin2,
             href: '/user-management/login-details',
           },
-        ]
+        ],
       },
-    ]
+    ],
   },
   {
     id: uniqueId(),
@@ -583,8 +584,7 @@ const Menuitems: MenuItemsType[] = [
           },
         ],
       },
-    ]
+    ],
   },
-
 ];
 export default Menuitems;

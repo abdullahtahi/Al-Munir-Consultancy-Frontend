@@ -23,4 +23,3 @@ export interface StoreContainerGradeType {
   shippingLineId: number;
   code: string;
 }
-

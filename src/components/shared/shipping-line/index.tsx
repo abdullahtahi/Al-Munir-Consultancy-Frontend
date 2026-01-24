@@ -26,20 +26,23 @@ const ShippingLineSelector: React.FC<Props> = ({
   disabled = false,
 }) => {
   const formik = useFormikContext<any>();
-  const token = useSelector((state: RootState) => state?.auth?.user?.data?.accessToken);
+  const token = useSelector(
+    (state: RootState) => state?.auth?.user?.data?.accessToken
+  );
   const [userData, setUserData] = useState<UserOption[]>([]);
   const translatedLabel = 'Consultant';
 
   // ---- API Call ----
   const getUsers = useCallback(async () => {
-    const params:any = { isAll:true,status: 'active' };
+    const params: any = { isAll: true, status: 'active' };
     const queryString = new URLSearchParams(params).toString();
     const users: any = await get(`${baseUrl}/api/v1/users?${queryString}`);
 
-    const formatted = users?.data?.rows?.map((row: any) => ({
-      id: row.id,
-      name: `${row.firstName} ${row.lastName}`,
-    })) || [];
+    const formatted =
+      users?.data?.rows?.map((row: any) => ({
+        id: row.id,
+        name: `${row.firstName} ${row.lastName}`,
+      })) || [];
 
     setUserData(formatted);
   }, [token]);

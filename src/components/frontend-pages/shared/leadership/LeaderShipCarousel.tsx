@@ -100,7 +100,10 @@ const LeaderShipCarousel = () => {
   };
 
   const UserBox = styled(Box)(() => ({
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.background.default : 'white',
+    backgroundColor:
+      theme.palette.mode === 'dark'
+        ? theme.palette.background.default
+        : 'white',
     maxWidth: 'calc(100% - 51px)',
     marginLeft: '15px',
     borderRadius: '8px',
@@ -112,7 +115,13 @@ const LeaderShipCarousel = () => {
   return (
     <Slider {...settings} className="leadership-carousel">
       <div style={slideStyle}>
-        <img src={user1} alt="user-img" width={270} height={290} style={{ borderRadius: '16px' }} />
+        <img
+          src={user1}
+          alt="user-img"
+          width={270}
+          height={290}
+          style={{ borderRadius: '16px' }}
+        />
         <UserBox
           bgcolor="white"
           px="10px"
@@ -128,7 +137,13 @@ const LeaderShipCarousel = () => {
         </UserBox>
       </div>
       <div style={slideStyle}>
-        <img src={user2} alt="user-img" width={270} height={290} style={{ borderRadius: '16px' }} />
+        <img
+          src={user2}
+          alt="user-img"
+          width={270}
+          height={290}
+          style={{ borderRadius: '16px' }}
+        />
         <UserBox
           bgcolor="white"
           px="10px"
@@ -144,7 +159,13 @@ const LeaderShipCarousel = () => {
         </UserBox>
       </div>
       <div style={slideStyle}>
-        <img src={user3} alt="user-img" width={270} height={290} style={{ borderRadius: '16px' }} />
+        <img
+          src={user3}
+          alt="user-img"
+          width={270}
+          height={290}
+          style={{ borderRadius: '16px' }}
+        />
         <UserBox
           bgcolor="white"
           px="10px"
@@ -160,8 +181,20 @@ const LeaderShipCarousel = () => {
         </UserBox>
       </div>
       <div style={slideStyle}>
-        <img src={user4} alt="user-img" width={270} height={290} style={{ borderRadius: '16px' }} />
-        <UserBox px="10px" py="16px" textAlign="center" position="relative" zIndex="1">
+        <img
+          src={user4}
+          alt="user-img"
+          width={270}
+          height={290}
+          style={{ borderRadius: '16px' }}
+        />
+        <UserBox
+          px="10px"
+          py="16px"
+          textAlign="center"
+          position="relative"
+          zIndex="1"
+        >
           <Typography variant="h5" mb={1}>
             Morgan Patel
           </Typography>
@@ -169,7 +202,13 @@ const LeaderShipCarousel = () => {
         </UserBox>
       </div>
       <div style={slideStyle}>
-        <img src={user5} alt="user-img" width={270} height={290} style={{ borderRadius: '16px' }} />
+        <img
+          src={user5}
+          alt="user-img"
+          width={270}
+          height={290}
+          style={{ borderRadius: '16px' }}
+        />
         <UserBox
           bgcolor="white"
           px="10px"
@@ -185,7 +224,13 @@ const LeaderShipCarousel = () => {
         </UserBox>
       </div>
       <div style={slideStyle}>
-        <img src={user1} alt="user-img" width={270} height={290} style={{ borderRadius: '16px' }} />
+        <img
+          src={user1}
+          alt="user-img"
+          width={270}
+          height={290}
+          style={{ borderRadius: '16px' }}
+        />
         <UserBox
           bgcolor="white"
           px="10px"
@@ -201,7 +246,13 @@ const LeaderShipCarousel = () => {
         </UserBox>
       </div>
       <div style={slideStyle}>
-        <img src={user2} alt="user-img" width={270} height={290} style={{ borderRadius: '16px' }} />
+        <img
+          src={user2}
+          alt="user-img"
+          width={270}
+          height={290}
+          style={{ borderRadius: '16px' }}
+        />
         <UserBox
           bgcolor="white"
           px="10px"
@@ -217,7 +268,13 @@ const LeaderShipCarousel = () => {
         </UserBox>
       </div>
       <div style={slideStyle}>
-        <img src={user3} alt="user-img" width={270} height={290} style={{ borderRadius: '16px' }} />
+        <img
+          src={user3}
+          alt="user-img"
+          width={270}
+          height={290}
+          style={{ borderRadius: '16px' }}
+        />
         <UserBox
           bgcolor="white"
           px="10px"
@@ -233,7 +290,13 @@ const LeaderShipCarousel = () => {
         </UserBox>
       </div>
       <div style={slideStyle}>
-        <img src={user4} alt="user-img" width={270} height={290} style={{ borderRadius: '16px' }} />
+        <img
+          src={user4}
+          alt="user-img"
+          width={270}
+          height={290}
+          style={{ borderRadius: '16px' }}
+        />
         <UserBox
           bgcolor="white"
           px="10px"

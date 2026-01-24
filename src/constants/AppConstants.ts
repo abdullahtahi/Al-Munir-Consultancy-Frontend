@@ -1,14 +1,14 @@
 export const SERVICE_TYPES = [
   { id: 2, name: 'DEFAULT' },
   { id: 1, name: 'ADDITIONAL' },
-  { id: 3, name: 'NORMAL' }
+  { id: 3, name: 'NORMAL' },
 ];
 export const CRO_OUT_TYPE = {
   RELEASE: 'Release',
-  SHUTTLING: 'Shuttling'
+  SHUTTLING: 'Shuttling',
 };
-export const PORT = 'Port'
-export const DEPORT = 'Deport'
+export const PORT = 'Port';
+export const DEPORT = 'Deport';
 export const READY = 'Ready';
 export const GATED_IN = 'Gated In';
 export const PENDING_ESTIMATE = 'Pending Estimate';
@@ -93,12 +93,12 @@ export const IN = 'IN';
 export const OUT = 'OUT';
 export const UNATTENDED = 'Unattended';
 export const USED_U = 'Used-U';
-export const BASE_URL = "https://al-munir.s3.us-east-1.amazonaws.com";
+export const BASE_URL = 'https://al-munir.s3.us-east-1.amazonaws.com';
 export const dateFormat = [
   { name: 'DD-MMM-YY', value: 'DD-MMM-YY' },
-  { name: 'MM-DD-YY', value: 'MM-DD-YY' }
+  { name: 'MM-DD-YY', value: 'MM-DD-YY' },
 ];
 export const BULK_FASAH_PRICE = [
   { label: 'SAR 30', value: 30 },
-  { label: 'SAR 20', value: 20 }
+  { label: 'SAR 20', value: 20 },
 ];

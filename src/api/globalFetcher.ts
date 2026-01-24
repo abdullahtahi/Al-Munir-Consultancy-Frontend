@@ -7,8 +7,8 @@ const getFetcher = (url: string) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: token ? `Bearer ${token}` : ''
-    }
+      Authorization: token ? `Bearer ${token}` : '',
+    },
   }).then((res) => {
     if (!res.ok) {
       throw new Error('Failed to fetch the data');
@@ -66,4 +66,3 @@ const deleteFetcher = (url: string, arg: any) =>
   });
 
 export { deleteFetcher, getFetcher, patchFetcher, postFetcher, putFetcher };
-

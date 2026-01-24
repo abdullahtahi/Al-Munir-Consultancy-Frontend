@@ -1,5 +1,5 @@
 // import Autocomplete from '@mui/material/Autocomplete';
-'use client'
+'use client';
 
 import CustomTextField from '../../theme-elements/CustomTextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -74,7 +74,8 @@ const top100Films = [
   { label: 'Alien', year: 1979 },
   { label: 'Sunset Boulevard', year: 1950 },
   {
-    label: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
+    label:
+      'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
     year: 1964,
   },
   { label: 'The Great Dictator', year: 1940 },
@@ -133,17 +134,19 @@ const top100Films = [
 ];
 
 const ComboBoxAutocomplete = () => (
-
   <Autocomplete
     disablePortal
     id="combo-box-demo"
     options={top100Films}
     fullWidth
     renderInput={(params) => (
-      <CustomTextField {...params} placeholder="Select movie" aria-label="Select movie" />
+      <CustomTextField
+        {...params}
+        placeholder="Select movie"
+        aria-label="Select movie"
+      />
     )}
   />
-
 );
 
 export default ComboBoxAutocomplete;

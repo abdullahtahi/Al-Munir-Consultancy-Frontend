@@ -1,9 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import {  FilterList } from '@mui/icons-material';
+import { FilterList } from '@mui/icons-material';
 import { IconEye } from '@tabler/icons-react';
 
-import { Alert, Box, Button, Collapse, Snackbar, Typography, useTheme } from '@mui/material';
+import {
+  Alert,
+  Box,
+  Button,
+  Collapse,
+  Snackbar,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import PageContainer from '@components/layout/PageContainer';
 import GenericTable from 'src/components/generic-table';
 import { useSelector } from 'react-redux';
@@ -49,13 +57,11 @@ const BonusList: React.FC = () => {
   // Add/Edit dialog state
   const [bonusDialogOpen, setBonusDialogOpen] = useState(false);
 
-
   const handleOpenModal = (row: any) => {
     setSingleUser(row);
     setBonusDialogOpen(true);
   };
   const hanldBonusCloseModal = () => setBonusDialogOpen(false);
-
 
   const columns: TableColumn[] = [
     {
@@ -83,7 +89,8 @@ const BonusList: React.FC = () => {
       minWidth: 80,
       classNames: 'pr-0 text-nowrap',
       key: 'Student.phone',
-      render: (row) => row?.fkConsultant?.firstName +" " +row?.fkConsultant?.lastName || '-',
+      render: (row) =>
+        row?.fkConsultant?.firstName + ' ' + row?.fkConsultant?.lastName || '-',
     },
     {
       id: 'DependOn',
@@ -92,7 +99,10 @@ const BonusList: React.FC = () => {
       minWidth: 80,
       classNames: 'pr-0 text-nowrap',
       key: 'DependOn.relation',
-      render: (row) => row?.fkFromConsultant?.firstName +" " +row?.fkFromConsultant?.lastName || '-',
+      render: (row) =>
+        row?.fkFromConsultant?.firstName +
+          ' ' +
+          row?.fkFromConsultant?.lastName || '-',
     },
     {
       id: 'feeAmount',
@@ -101,7 +111,11 @@ const BonusList: React.FC = () => {
       minWidth: 80,
       classNames: 'pr-0 text-nowrap',
       key: 'feeAmount',
-      render: (row) =><Typography sx={{fontWeight:600,textTransform:"capitalize"}}>{ row?.bonusType.replace(/_/g, " ")}</Typography>,
+      render: (row) => (
+        <Typography sx={{ fontWeight: 600, textTransform: 'capitalize' }}>
+          {row?.bonusType.replace(/_/g, ' ')}
+        </Typography>
+      ),
     },
     {
       id: 'admissionNumber',
@@ -110,7 +124,7 @@ const BonusList: React.FC = () => {
       minWidth: 80,
       classNames: 'pr-0 text-nowrap',
       key: 'grade',
-      render: (row) => row.amount +".RS",
+      render: (row) => row.amount + '.RS',
     },
     {
       id: 'admissionType',
@@ -119,7 +133,7 @@ const BonusList: React.FC = () => {
       minWidth: 80,
       classNames: 'pr-0 text-nowrap',
       key: 'grade',
-      render: (row) => row.baseAmount +".RS",
+      render: (row) => row.baseAmount + '.RS',
     },
     {
       id: 'Edit',
@@ -133,14 +147,13 @@ const BonusList: React.FC = () => {
           <Button
             variant="outlined"
             size="small"
-            startIcon={<IconEye
-              size={18} />}
+            startIcon={<IconEye size={18} />}
             onClick={() => handleOpenModal(row)}
             sx={{ minWidth: 'auto' }}
           />
         </AuthorizeComponent>
       ),
-    }
+    },
   ];
 
   const getBonus = useCallback(
@@ -151,17 +164,17 @@ const BonusList: React.FC = () => {
         const admissions: any = await get(
           `${baseUrl}/api/v1/bonuses?page=${page}&limit=${rowsPerPage}&${queryString}`
         );
-        if(admissions.data){
+        if (admissions.data) {
           setBonusData(admissions.data.rows);
           setTotalCount(admissions.data.count);
-        } else{
+        } else {
           setSnackbar({
-          open: true,
-          message: admissions.message || '',
-          severity: 'error',
-        })
-      }
-      console.log("admissions",admissions)
+            open: true,
+            message: admissions.message || '',
+            severity: 'error',
+          });
+        }
+        console.log('admissions', admissions);
 
         return admissions;
       } catch (error: any) {
@@ -208,9 +221,7 @@ const BonusList: React.FC = () => {
 
         <Collapse in={showFilters} timeout="auto" unmountOnExit>
           <Box mb={2} width="100%">
-            <BonusFilters
-            getBonus={getBonus}
-            />
+            <BonusFilters getBonus={getBonus} />
           </Box>
         </Collapse>
 
@@ -243,7 +254,7 @@ const BonusList: React.FC = () => {
         }}
       />
 
-       <Snackbar
+      <Snackbar
         open={snackbar.open}
         autoHideDuration={4000}
         onClose={() => setSnackbar({ ...snackbar, open: false })}

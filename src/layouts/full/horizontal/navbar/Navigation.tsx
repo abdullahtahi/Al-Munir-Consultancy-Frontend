@@ -9,7 +9,9 @@ import NavListing from './NavListing/NavListing';
 
 const Navigation = () => {
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
-  const { isLayout, isMobileSidebar } = useSelector((state: RootState) => state.themeCustomizer);
+  const { isLayout, isMobileSidebar } = useSelector(
+    (state: RootState) => state.themeCustomizer
+  );
   const SidebarWidth = config.sidebarWidth;
   const dispatch: AppDispatch = useDispatch();
 
@@ -31,7 +33,7 @@ const Navigation = () => {
   }
 
   return (
-    (<Drawer
+    <Drawer
       anchor="left"
       open={isMobileSidebar}
       onClose={() => dispatch(setIsMobileSidebar(false))}
@@ -43,7 +45,7 @@ const Navigation = () => {
             border: '0 !important',
             boxShadow: (theme) => theme.shadows[8],
           },
-        }
+        },
       }}
     >
       {/* ------------------------------------------- */}
@@ -56,7 +58,7 @@ const Navigation = () => {
       {/* Sidebar For Mobile */}
       {/* ------------------------------------------- */}
       <SidebarItems />
-    </Drawer>)
+    </Drawer>
   );
 };
 

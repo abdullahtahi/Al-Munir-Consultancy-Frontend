@@ -17,24 +17,22 @@ interface cardType {
   bgcolor: string;
 }
 
-
 const TopCards = () => {
-  const [res,setRes]=useState<any>()
-  
-  const cardOverview=async ()=>{
-    try{
-  const response:any=await getOverview();
-  setRes(response.data)
-  console.log("response",response)
-  
-    }catch(error){
-      console.log(error)
-    }
-  }
+  const [res, setRes] = useState<any>();
 
-  useEffect(()=>{
-    cardOverview()
-  },[])
+  const cardOverview = async () => {
+    try {
+      const response: any = await getOverview();
+      setRes(response.data);
+      console.log('response', response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    cardOverview();
+  }, []);
 
   const topcards: cardType[] = [
     {
@@ -52,7 +50,7 @@ const TopCards = () => {
     {
       icon: icon4,
       title: 'Bonuses',
-      digits: res?.totalBonus !==undefined ? res?.totalBonus +" .Rs" : 0,
+      digits: res?.totalBonus !== undefined ? res?.totalBonus + ' .Rs' : 0,
       bgcolor: 'secondary',
     },
     {
@@ -75,15 +73,16 @@ const TopCards = () => {
     // },
   ];
   return (
-    (<Grid container spacing={3}>
+    <Grid container spacing={3}>
       {topcards.map((topcard, i) => (
         <Grid
           key={i}
           size={{
             xs: 12,
             sm: 3,
-            lg: 3
-          }}>
+            lg: 3,
+          }}
+        >
           <Box bgcolor={topcard.bgcolor + '.light'} textAlign="center">
             <CardContent>
               <img src={topcard.icon} alt={topcard.icon} width="50" />
@@ -95,14 +94,18 @@ const TopCards = () => {
               >
                 {topcard.title}
               </Typography>
-              <Typography color={topcard.bgcolor + '.main'} variant="h4" fontWeight={600}>
+              <Typography
+                color={topcard.bgcolor + '.main'}
+                variant="h4"
+                fontWeight={600}
+              >
                 {topcard.digits}
               </Typography>
             </CardContent>
           </Box>
         </Grid>
       ))}
-    </Grid>)
+    </Grid>
   );
 };
 

@@ -1,11 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
-
+import CodeDialog from '@components/shared/CodeDialog';
 
 function CheckboxSelectionCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
@@ -47,8 +45,8 @@ export default function CheckboxSelection() {
 
 
                 `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default CheckboxSelectionCode
+export default CheckboxSelectionCode;

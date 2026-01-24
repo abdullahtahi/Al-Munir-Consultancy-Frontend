@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import {
   TableContainer,
@@ -25,7 +24,11 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-import { SortableContext, horizontalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
+import {
+  SortableContext,
+  horizontalListSortingStrategy,
+  useSortable,
+} from '@dnd-kit/sortable';
 import DownloadCard from '@components/shared/DownloadCard';
 import { basicsTableData, EnTableType } from '@components/tables/tableData';
 import { CSS } from '@dnd-kit/utilities';
@@ -47,7 +50,11 @@ const columns = [
     header: () => 'Users',
     cell: (info) => (
       <Stack direction="row" spacing={2}>
-        <Avatar src={info.getValue()} alt={info.getValue()} sx={{ width: 40, height: 40 }} />
+        <Avatar
+          src={info.getValue()}
+          alt={info.getValue()}
+          sx={{ width: 40, height: 40 }}
+        />
         <Box>
           <Typography variant="h6" fontWeight="600">
             {info.row.original.name}
@@ -126,7 +133,9 @@ const columns = [
   columnHelper.accessor('budget', {
     id: 'budget',
     header: () => 'Budget',
-    cell: (info) => <Typography variant="h6">${info.row.original.budget}</Typography>,
+    cell: (info) => (
+      <Typography variant="h6">${info.row.original.budget}</Typography>
+    ),
   }),
 ];
 
@@ -138,9 +147,10 @@ const arrayMove = (array: any, from: any, to: any) => {
   return newArray;
 };
 const DraggableTableHeader = ({ header }: any) => {
-  const { attributes, isDragging, listeners, setNodeRef, transform } = useSortable({
-    id: header.id,
-  });
+  const { attributes, isDragging, listeners, setNodeRef, transform } =
+    useSortable({
+      id: header.id,
+    });
 
   const style: any = {
     opacity: isDragging ? 0.8 : 1,
@@ -177,11 +187,14 @@ const DragAlongCell = ({ cell }: any) => {
     transition: 'width transform 0.2s ease-in-out',
     width: cell.column.getSize(),
     zIndex: isDragging ? 1 : 0,
-
   };
 
   return (
-    <TableCell style={style} ref={setNodeRef} className="whitespace-nowrap py-3 px-4">
+    <TableCell
+      style={style}
+      ref={setNodeRef}
+      className="whitespace-nowrap py-3 px-4"
+    >
       {flexRender(cell.column.columnDef.cell, cell.getContext())}
     </TableCell>
   );
@@ -189,7 +202,9 @@ const DragAlongCell = ({ cell }: any) => {
 
 const Columndragdrop = () => {
   const [data, _setData] = React.useState<any>(() => [...basics]);
-  const [columnOrder, setColumnOrder] = React.useState<any>(columns.map((c) => c.id));
+  const [columnOrder, setColumnOrder] = React.useState<any>(
+    columns.map((c) => c.id)
+  );
 
   const table = useReactTable({
     data,
@@ -218,22 +233,31 @@ const Columndragdrop = () => {
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
     useSensor(TouchSensor, {}),
-    useSensor(KeyboardSensor, {}),
+    useSensor(KeyboardSensor, {})
   );
 
   const handleDownload = () => {
     const headers = ['Users', 'Project Name', 'Team', 'Status', 'Budget'];
     const rows = data.map(
-      (item: { name: any; pname: any; teams: any[]; status: any; budget: any }) => [
+      (item: {
+        name: any;
+        pname: any;
+        teams: any[];
+        status: any;
+        budget: any;
+      }) => [
         item.name,
         item.pname,
         item.teams.map((team) => team.text).join(', '),
         item.status,
         item.budget,
-      ],
+      ]
     );
 
-    const csvContent = [headers.join(','), ...rows.map((e: any[]) => e.join(','))].join('\n');
+    const csvContent = [
+      headers.join(','),
+      ...rows.map((e: any[]) => e.join(',')),
+    ].join('\n');
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
@@ -247,8 +271,15 @@ const Columndragdrop = () => {
   };
 
   return (
-    (<DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd} sensors={sensors}>
-      <DownloadCard title="Column drag & drop Table" onDownload={handleDownload}>
+    <DndContext
+      collisionDetection={closestCenter}
+      onDragEnd={handleDragEnd}
+      sensors={sensors}
+    >
+      <DownloadCard
+        title="Column drag & drop Table"
+        onDownload={handleDownload}
+      >
         <Grid container spacing={3}>
           <Grid size={12}>
             <Box>
@@ -266,7 +297,10 @@ const Columndragdrop = () => {
                           strategy={horizontalListSortingStrategy}
                         >
                           {headerGroup.headers.map((header) => (
-                            <DraggableTableHeader key={header.id} header={header} />
+                            <DraggableTableHeader
+                              key={header.id}
+                              header={header}
+                            />
                           ))}
                         </SortableContext>
                       </TableRow>
@@ -293,7 +327,7 @@ const Columndragdrop = () => {
           </Grid>
         </Grid>
       </DownloadCard>
-    </DndContext>)
+    </DndContext>
   );
 };
 

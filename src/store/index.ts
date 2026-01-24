@@ -7,7 +7,7 @@ const store = configureStore({
   reducer: {
     auth: authReducer,
     themeCustomizer: themeCustomizerReducer,
-    depot: depotReducer
+    depot: depotReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

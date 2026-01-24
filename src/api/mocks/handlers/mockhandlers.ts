@@ -1,3 +1,1 @@
-
-export const mockHandlers = [
-];
+export const mockHandlers = [];

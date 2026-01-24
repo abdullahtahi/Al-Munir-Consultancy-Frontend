@@ -1,5 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function VoronoiInteractionCode() {
   return (
@@ -130,7 +129,7 @@ const data = [
 
             `}
     </CodeDialog>
-  )
+  );
 }
 
-export default VoronoiInteractionCode
+export default VoronoiInteractionCode;

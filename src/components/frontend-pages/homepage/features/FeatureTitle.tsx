@@ -7,8 +7,9 @@ const FeatureTitle = () => {
         textAlign="center"
         size={{
           xs: 12,
-          lg: 6
-        }}>
+          lg: 6,
+        }}
+      >
         <Typography variant="body1">
           Introducing Modernize's Light & Dark Skins,{' '}
           <Box fontWeight={500} component="span">

@@ -1,11 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
-
+import CodeDialog from '@components/shared/CodeDialog';
 
 function MultiSelectTreeViewCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
@@ -50,8 +48,8 @@ function MultiSelectTreeView() {
 export default MultiSelectTreeView
 
               `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default MultiSelectTreeViewCode
+export default MultiSelectTreeViewCode;

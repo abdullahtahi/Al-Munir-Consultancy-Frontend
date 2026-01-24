@@ -1,10 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function BasicSparkLineCustomizationCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
@@ -95,8 +94,8 @@ export default function BasicSparkLineCustomizationChart() {
     );
 }
             `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default BasicSparkLineCustomizationCode
+export default BasicSparkLineCustomizationCode;

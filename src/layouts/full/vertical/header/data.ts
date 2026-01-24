@@ -2,11 +2,16 @@ import img1 from '@assets/images/profile/user-1.jpg';
 import img2 from '@assets/images/profile/user-2.jpg';
 import img3 from '@assets/images/profile/user-3.jpg';
 import img4 from '@assets/images/profile/user-4.jpg';
-import { IconContainer, IconFile3d, IconFileFilled, IconHome, IconLogin2, IconTruckDelivery, IconUserPlus } from '@tabler/icons-react';
+import {
+  IconContainer,
+  IconFile3d,
+  IconFileFilled,
+  IconHome,
+  IconLogin2,
+  IconTruckDelivery,
+  IconUserPlus,
+} from '@tabler/icons-react';
 import { ElementType } from 'react';
-
-
-
 
 // Notifications dropdown
 
@@ -160,7 +165,6 @@ interface LinkType {
 }
 
 const pageLinks: LinkType[] = [
-
   {
     href: '/404',
     title: '404 Error Page',
@@ -172,4 +176,3 @@ const pageLinks: LinkType[] = [
 ];
 
 export { appsLink, messages, notifications, pageLinks };
-

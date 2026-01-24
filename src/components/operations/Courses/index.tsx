@@ -4,8 +4,8 @@ import BranchList from './CoursesList';
 const CoursesComponent = () => {
   return (
     <Grid container spacing={3}>
-      <BranchList/>
-      </Grid>
+      <BranchList />
+    </Grid>
   );
 };
 

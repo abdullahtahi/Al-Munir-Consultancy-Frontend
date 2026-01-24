@@ -93,13 +93,28 @@ const HeaderAlert = () => {
             {lgUp ? (
               <>
                 <NotificationBg>
-                  <img src={NotificationTopRight} alt="img" width={325} height={30} />
+                  <img
+                    src={NotificationTopRight}
+                    alt="img"
+                    width={325}
+                    height={30}
+                  />
                 </NotificationBg>
                 <NotificationBg2>
-                  <img src={NotificationRight} alt="img" width={200} height={44} />
+                  <img
+                    src={NotificationRight}
+                    alt="img"
+                    width={200}
+                    height={44}
+                  />
                 </NotificationBg2>
                 <NotificationBg3>
-                  <img src={NotificationLeft} alt="img" width={325} height={44} />
+                  <img
+                    src={NotificationLeft}
+                    alt="img"
+                    width={325}
+                    height={44}
+                  />
                 </NotificationBg3>
               </>
             ) : null}

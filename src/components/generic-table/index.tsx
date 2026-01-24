@@ -32,9 +32,9 @@ type Props<T> = {
   page?: number;
   setPage: (page: number) => void;
   rowsPerPage?: number;
-  setRowsPerPage:any;
+  setRowsPerPage: any;
   totalCount?: number;
-  isLoading?: boolean
+  isLoading?: boolean;
 };
 
 const GenericTable = <T extends object>({
@@ -46,14 +46,14 @@ const GenericTable = <T extends object>({
   rowsPerPage = 10,
   setRowsPerPage,
   totalCount,
-  isLoading = false
+  isLoading = false,
 }: Props<T>) => {
   const theme = useTheme();
 
   return (
     <BlankCard>
       <TableContainer component={Paper} sx={{ overflowX: 'auto' }}>
-        <Table size='small'>
+        <Table size="small">
           <TableHead>
             <TableRow sx={{ backgroundColor: theme.palette.primary.light }}>
               {columns.map((col) => (
@@ -61,7 +61,9 @@ const GenericTable = <T extends object>({
                   key={col.key.toString()}
                   align={col.align || 'left'}
                   sx={{
-                    color: theme.palette.getContrastText(theme.palette.primary.light),
+                    color: theme.palette.getContrastText(
+                      theme.palette.primary.light
+                    ),
                     fontWeight: 'bold',
                     minWidth: col.minWidth,
                     width: col.width,
@@ -117,7 +119,7 @@ const GenericTable = <T extends object>({
         </Table>
       </TableContainer>
       <GenericPagination
-        count={totalCount ? totalCount: data && data?.length}
+        count={totalCount ? totalCount : data && data?.length}
         page={page}
         setPage={setPage}
         rowsPerPage={rowsPerPage}

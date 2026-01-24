@@ -15,17 +15,19 @@ const AuthForgotPassword = () => {
     e.preventDefault();
     const response = await forgotPassword(username);
     if (response.error) {
-      alert("user is not registered")
+      alert('user is not registered');
       return;
     }
-    alert("success")
+    alert('success');
     navigate('/auth/login');
-  }
+  };
   return (
     <>
       <form onSubmit={handleSubmit}>
         <Stack mt={4} spacing={2}>
-          <CustomFormLabel htmlFor="reset-email">Email Adddress</CustomFormLabel>
+          <CustomFormLabel htmlFor="reset-email">
+            Email Adddress
+          </CustomFormLabel>
           <CustomTextField
             id="reset-email"
             variant="outlined"
@@ -34,16 +36,28 @@ const AuthForgotPassword = () => {
             onChange={(e: any) => setUsername(e.target.value)}
           />
 
-          <Button color="primary" variant="contained" size="large" type='submit' fullWidth>
+          <Button
+            color="primary"
+            variant="contained"
+            size="large"
+            type="submit"
+            fullWidth
+          >
             Forgot Password
           </Button>
-          <Button color="primary" size="large" fullWidth component={Link} to="/auth/login">
+          <Button
+            color="primary"
+            size="large"
+            fullWidth
+            component={Link}
+            to="/auth/login"
+          >
             Back to Login
           </Button>
         </Stack>
       </form>
     </>
-  )
+  );
 };
 
 export default AuthForgotPassword;

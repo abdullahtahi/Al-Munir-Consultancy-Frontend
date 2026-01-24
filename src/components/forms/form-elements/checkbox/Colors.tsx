@@ -1,11 +1,14 @@
-'use client'
+'use client';
 
 import { Box, FormControlLabel } from '@mui/material';
 import CustomCheckbox from '../../theme-elements/CustomCheckbox';
 
 const ColorsCheckbox = () => (
   <Box textAlign="center">
-    <FormControlLabel control={<CustomCheckbox defaultChecked />} label="Primary" />
+    <FormControlLabel
+      control={<CustomCheckbox defaultChecked />}
+      label="Primary"
+    />
     <FormControlLabel
       control={
         <CustomCheckbox

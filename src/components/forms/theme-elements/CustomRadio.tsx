@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { styled } from '@mui/material/styles';
 import Radio, { RadioProps } from '@mui/material/Radio';
 
@@ -50,7 +50,9 @@ function CustomRadio(props: RadioProps) {
       checkedIcon={
         <BpCheckedIcon
           sx={{
-            backgroundColor: props.color ? `${props.color}.main` : 'primary.main',
+            backgroundColor: props.color
+              ? `${props.color}.main`
+              : 'primary.main',
           }}
         />
       }

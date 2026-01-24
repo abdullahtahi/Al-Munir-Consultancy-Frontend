@@ -64,14 +64,15 @@ const YearlyBreakup = () => {
   const seriescolumnchart = [38, 40, 25];
 
   return (
-    (<DashboardCard title="Yearly Breakup">
-      <Grid container spacing={3}>
+    <DashboardCard title="Yearly Breakup">
+      <Grid2 container spacing={3}>
         {/* column */}
         <Grid2
           size={{
             xs: 7,
-            sm: 7
-          }}>
+            sm: 7,
+          }}
+        >
           <Typography variant="h3" fontWeight="700">
             $36,358
           </Typography>
@@ -89,7 +90,12 @@ const YearlyBreakup = () => {
           <Stack spacing={3} mt={5} direction="row">
             <Stack direction="row" spacing={1} alignItems="center">
               <Avatar
-                sx={{ width: 9, height: 9, bgcolor: primary, svg: { display: 'none' } }}
+                sx={{
+                  width: 9,
+                  height: 9,
+                  bgcolor: primary,
+                  svg: { display: 'none' },
+                }}
               ></Avatar>
               <Typography variant="subtitle2" color="textSecondary">
                 2022
@@ -97,29 +103,35 @@ const YearlyBreakup = () => {
             </Stack>
             <Stack direction="row" spacing={1} alignItems="center">
               <Avatar
-                sx={{ width: 9, height: 9, bgcolor: primarylight, svg: { display: 'none' } }}
+                sx={{
+                  width: 9,
+                  height: 9,
+                  bgcolor: primarylight,
+                  svg: { display: 'none' },
+                }}
               ></Avatar>
               <Typography variant="subtitle2" color="textSecondary">
                 2023
               </Typography>
             </Stack>
           </Stack>
-        </Grid>
+        </Grid2>
         {/* column */}
-        <Grid
+        <Grid2
           size={{
             xs: 5,
-            sm: 5
-          }}>
+            sm: 5,
+          }}
+        >
           <Chart
             options={optionscolumnchart}
             series={seriescolumnchart}
             type="donut"
             height="130px"
           />
-        </Grid>
-      </Grid>
-    </DashboardCard>)
+        </Grid2>
+      </Grid2>
+    </DashboardCard>
   );
 };
 

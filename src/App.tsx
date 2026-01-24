@@ -29,7 +29,7 @@ function App() {
           await dispatch(loadUser()).unwrap();
         } catch (error) {
           console.error('Initialization error (persisting token):', error);
-          // localStorage.removeItem('token'); 
+          // localStorage.removeItem('token');
         }
       }
     };

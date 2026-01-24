@@ -1,5 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 function SimpleAreaCode() {
   return (
     <CodeDialog>
@@ -45,7 +44,7 @@ export default function SimpleAreaChart() {
 }
 `}
     </CodeDialog>
-  )
+  );
 }
 
-export default SimpleAreaCode
+export default SimpleAreaCode;

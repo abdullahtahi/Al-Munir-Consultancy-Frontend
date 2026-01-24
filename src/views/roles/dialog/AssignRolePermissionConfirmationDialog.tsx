@@ -15,21 +15,19 @@ interface AssignRolePermissionConfirmationDialogProps {
   onConfirm?: () => void;
 }
 
-export const AssignRolePermissionConfirmationDialog: React.FC<AssignRolePermissionConfirmationDialogProps> = ({
-  open,
-  onClose,
-  checkList,
-  roleId,
-  onConfirm,
-}) => {
+export const AssignRolePermissionConfirmationDialog: React.FC<
+  AssignRolePermissionConfirmationDialogProps
+> = ({ open, onClose, checkList, roleId, onConfirm }) => {
   const { t } = useTranslation();
 
   const handleAgreeClick = async (): Promise<void> => {
-    if (!roleId) { return; }
+    if (!roleId) {
+      return;
+    }
     try {
-      const response = await assignPermissionsToRole({ 
-        roleId, 
-        permissionIds: checkList 
+      const response = await assignPermissionsToRole({
+        roleId,
+        permissionIds: checkList,
       });
 
       if (response && response.data) {
@@ -51,7 +49,7 @@ export const AssignRolePermissionConfirmationDialog: React.FC<AssignRolePermissi
           label="Disagree"
           onClick={onClose}
           color="error"
-          size='medium'
+          size="medium"
           variant="contained"
           sx={{ textTransform: 'uppercase' }}
         />
@@ -59,7 +57,7 @@ export const AssignRolePermissionConfirmationDialog: React.FC<AssignRolePermissi
           label="Agree"
           onClick={handleAgreeClick}
           color="primary"
-          size='medium'
+          size="medium"
           variant="contained"
           sx={{ textTransform: 'uppercase' }}
         />

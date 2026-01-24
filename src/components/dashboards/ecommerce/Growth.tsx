@@ -53,7 +53,9 @@ const Growth = () => {
   const seriescolumnchart = [
     {
       name: '',
-      data: [0, 10, 10, 10, 35, 45, 30, 30, 30, 50, 52, 30, 25, 45, 50, 80, 60, 65],
+      data: [
+        0, 10, 10, 10, 35, 45, 30, 30, 30, 50, 52, 30, 25, 45, 50, 80, 60, 65,
+      ],
     },
   ];
 
@@ -72,7 +74,12 @@ const Growth = () => {
         </Box>
 
         <Box mt={3} mb={2}>
-          <Chart options={optionscolumnchart} series={seriescolumnchart} type="area" height="25px" />
+          <Chart
+            options={optionscolumnchart}
+            series={seriescolumnchart}
+            type="area"
+            height="25px"
+          />
         </Box>
 
         <Typography variant="h4">

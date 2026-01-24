@@ -1,10 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function ScatterDatasetCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import { ScatterChart } from '@mui/x-charts/ScatterChart';
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
@@ -122,8 +121,8 @@ export default function ScatterDataset() {
 }
 
             `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default ScatterDatasetCode
+export default ScatterDatasetCode;

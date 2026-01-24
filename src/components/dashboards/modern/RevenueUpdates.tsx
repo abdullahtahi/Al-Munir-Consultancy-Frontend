@@ -19,9 +19,9 @@ const AdmissionUpdate = () => {
 
   // chart color
   const theme = useTheme();
-  const [res,setRes]=useState<any>()
-  const categories =res && res?.map((item:any) => item.month);
-const counts = res && res?.map((item:any) => item.count);
+  const [res, setRes] = useState<any>();
+  const categories = res && res?.map((item: any) => item.month);
+  const counts = res && res?.map((item: any) => item.count);
 
   const primary = theme.palette.primary.main;
   const secondary = theme.palette.secondary.main;
@@ -29,33 +29,33 @@ const counts = res && res?.map((item:any) => item.count);
   // chart
   const seriescolumnchart = [
     {
-      name: "Admissions",
-      data: counts
-    }
+      name: 'Admissions',
+      data: counts,
+    },
   ];
-  
-  const optionscolumnchart:ApexOptions = {
+
+  const optionscolumnchart: ApexOptions = {
     tooltip: {
       theme: theme.palette.mode === 'dark' ? 'dark' : 'light',
       fillSeriesColor: false,
     },
     chart: {
-      type: "bar",
-      toolbar: { show: false }
+      type: 'bar',
+      toolbar: { show: false },
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     xaxis: {
       categories: categories,
       labels: {
-        rotate: -45
-      }
+        rotate: -45,
+      },
     },
     yaxis: {
       title: {
-        text: "Admissions Count"
-      }
+        text: 'Admissions Count',
+      },
     },
     colors: [primary, secondary],
     plotOptions: {
@@ -69,56 +69,51 @@ const counts = res && res?.map((item:any) => item.count);
       },
     },
   };
-  
-  
 
-
-  
-  const cardAdmissionGrowth=async ()=>{
-    try{
-  const response:any=await getAdmissionGrowth();
-  setRes(response.data)
-  console.log("response",response)
-    }catch(error){
-      console.log(error)
+  const cardAdmissionGrowth = async () => {
+    try {
+      const response: any = await getAdmissionGrowth();
+      setRes(response.data);
+      console.log('response', response);
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
-  useEffect(()=>{
-    cardAdmissionGrowth()
-  },[])
+  useEffect(() => {
+    cardAdmissionGrowth();
+  }, []);
 
   return (
     <DashboardCard
-    title="Admission Updates"
-    subtitle="Overview of Admission"
-    action={
-      <CustomSelect
-        labelId="month-dd"
-        id="month-dd"
-        size="small"
-        value={month}
-        onChange={handleChange}
-      >
-        <MenuItem value="2025">Year 2025</MenuItem>
-      </CustomSelect>
-    }
-  >
-    <Grid container spacing={3}>
-      {/* Chart Column */}
-      <Grid size={{ xs: 12, sm: 12 }}>
-        <Box className="rounded-bars">
-          <Chart
-            options={optionscolumnchart}
-            series={seriescolumnchart}
-            type="bar"
-            height={370}
-          />
-        </Box>
+      title="Admission Updates"
+      subtitle="Overview of Admission"
+      action={
+        <CustomSelect
+          labelId="month-dd"
+          id="month-dd"
+          size="small"
+          value={month}
+          onChange={handleChange}
+        >
+          <MenuItem value="2025">Year 2025</MenuItem>
+        </CustomSelect>
+      }
+    >
+      <Grid container spacing={3}>
+        {/* Chart Column */}
+        <Grid size={{ xs: 12, sm: 12 }}>
+          <Box className="rounded-bars">
+            <Chart
+              options={optionscolumnchart}
+              series={seriescolumnchart}
+              type="bar"
+              height={370}
+            />
+          </Box>
+        </Grid>
       </Grid>
-    </Grid>
-  </DashboardCard>
-  
+    </DashboardCard>
   );
 };
 

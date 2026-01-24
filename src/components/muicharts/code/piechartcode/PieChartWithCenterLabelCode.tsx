@@ -1,5 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function PieChartWithCenterLabelCode() {
   return (
@@ -63,7 +62,7 @@ export default function PieChartWithCenterLabelChart() {
 
             `}
     </CodeDialog>
-  )
+  );
 }
 
-export default PieChartWithCenterLabelCode
+export default PieChartWithCenterLabelCode;

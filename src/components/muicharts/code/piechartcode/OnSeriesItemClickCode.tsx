@@ -1,5 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function OnSeriesItemClickCode() {
   return (
@@ -83,7 +82,7 @@ const formatObject = (obj: null) => {
 
       `}
     </CodeDialog>
-  )
+  );
 }
 
-export default OnSeriesItemClickCode
+export default OnSeriesItemClickCode;

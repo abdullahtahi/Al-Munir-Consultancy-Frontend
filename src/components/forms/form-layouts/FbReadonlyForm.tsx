@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { Button } from '@mui/material';
 import CustomTextField from '../theme-elements/CustomTextField';
@@ -38,7 +38,9 @@ const FbReadonlyForm = () => {
             readOnly: true,
           }}
         />
-        <CustomFormLabel htmlFor="ro-outlined-password-input">Password</CustomFormLabel>
+        <CustomFormLabel htmlFor="ro-outlined-password-input">
+          Password
+        </CustomFormLabel>
 
         <CustomTextField
           id="ro-outlined-password-input"

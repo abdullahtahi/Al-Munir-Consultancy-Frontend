@@ -1,6 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
-
+import CodeDialog from '@components/shared/CodeDialog';
 
 function PositiveAndNegativeBarCode() {
   return (
@@ -69,7 +67,7 @@ export default PositiveAndNegativeBarChart
 
 `}
     </CodeDialog>
-  )
+  );
 }
 
-export default PositiveAndNegativeBarCode
+export default PositiveAndNegativeBarCode;

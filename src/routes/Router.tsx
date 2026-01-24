@@ -60,12 +60,8 @@ const FasahPayment = Loadable(
 const FasahBulkPayment = Loadable(
   lazy(() => import('../views/fasah/BulkPayment'))
 );
-const Branches = Loadable(
-  lazy(() => import('../views/settings/Branches'))
-);
-const Courses = Loadable(
-  lazy(() => import('../views/settings/Courses'))
-);
+const Branches = Loadable(lazy(() => import('../views/settings/Branches')));
+const Courses = Loadable(lazy(() => import('../views/settings/Courses')));
 const WebsiteSetting = Loadable(
   lazy(() => import('../views/settings/WebsiteSetting'))
 );
@@ -211,7 +207,11 @@ const Router = [
     errorElement: <RouteErrorBoundary />,
     children: [
       { path: '/', element: <Navigate to="/al-munir-system/dashboard" /> },
-      { path: '/al-munir-system/dashboard',exact: true,  element: <Dashboard />},
+      {
+        path: '/al-munir-system/dashboard',
+        exact: true,
+        element: <Dashboard />,
+      },
       { path: '/al-munir-system/users', element: <EirIn /> },
       { path: '/al-munir-system/admissions', element: <Admissions /> },
       { path: '/al-munir-system/bonus', element: <Cro /> },

@@ -4,8 +4,8 @@ import BranchList from './BranchesList';
 const AdmissionsComponent = () => {
   return (
     <Grid container spacing={3}>
-      <BranchList/>
-      </Grid>
+      <BranchList />
+    </Grid>
   );
 };
 

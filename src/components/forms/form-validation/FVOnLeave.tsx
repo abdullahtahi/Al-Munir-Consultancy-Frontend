@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -9,7 +9,10 @@ import CustomTextField from '../theme-elements/CustomTextField';
 import CustomFormLabel from '../theme-elements/CustomFormLabel';
 
 const validationSchema = yup.object({
-  emailInstant: yup.string().email('Enter a valid email').required('Email is required'),
+  emailInstant: yup
+    .string()
+    .email('Enter a valid email')
+    .required('Email is required'),
   passwordInstant: yup
     .string()
     .min(8, 'Password should be of minimum 8 characters length')
@@ -40,8 +43,12 @@ const FVOnLeave = () => {
             value={formik.values.emailInstant}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched.emailInstant && Boolean(formik.errors.emailInstant)}
-            helperText={formik.touched.emailInstant && formik.errors.emailInstant}
+            error={
+              formik.touched.emailInstant && Boolean(formik.errors.emailInstant)
+            }
+            helperText={
+              formik.touched.emailInstant && formik.errors.emailInstant
+            }
           />
         </Box>
         <Box mb={3}>
@@ -54,8 +61,13 @@ const FVOnLeave = () => {
             value={formik.values.passwordInstant}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched.passwordInstant && Boolean(formik.errors.passwordInstant)}
-            helperText={formik.touched.passwordInstant && formik.errors.passwordInstant}
+            error={
+              formik.touched.passwordInstant &&
+              Boolean(formik.errors.passwordInstant)
+            }
+            helperText={
+              formik.touched.passwordInstant && formik.errors.passwordInstant
+            }
           />
         </Box>
         <Stack direction="row" justifyContent="flex-end">

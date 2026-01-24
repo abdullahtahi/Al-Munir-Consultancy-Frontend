@@ -77,7 +77,7 @@ const Banner = () => {
   };
 
   return (
-    (<Box bgcolor="primary.light" pt={7}>
+    <Box bgcolor="primary.light" pt={7}>
       <Container
         sx={{
           maxWidth: '1400px !important',
@@ -91,8 +91,9 @@ const Banner = () => {
               display="flex"
               size={{
                 xs: 12,
-                lg: 2
-              }}>
+                lg: 2,
+              }}
+            >
               <img
                 src={BannerTopLeft}
                 className="animted-img-2"
@@ -115,8 +116,9 @@ const Banner = () => {
             textAlign="center"
             size={{
               xs: 12,
-              lg: 7
-            }}>
+              lg: 7,
+            }}
+          >
             <Typography
               variant="h1"
               fontWeight={700}
@@ -153,9 +155,21 @@ const Banner = () => {
               justifyContent="center"
             >
               <AvatarGroup>
-                <Avatar alt="Remy Sharp" src={user1} sx={{ width: 40, height: 40 }} />
-                <Avatar alt="Travis Howard" src={user2} sx={{ width: 40, height: 40 }} />
-                <Avatar alt="Cindy Baker" src={user3} sx={{ width: 40, height: 40 }} />
+                <Avatar
+                  alt="Remy Sharp"
+                  src={user1}
+                  sx={{ width: 40, height: 40 }}
+                />
+                <Avatar
+                  alt="Travis Howard"
+                  src={user2}
+                  sx={{ width: 40, height: 40 }}
+                />
+                <Avatar
+                  alt="Cindy Baker"
+                  src={user3}
+                  sx={{ width: 40, height: 40 }}
+                />
               </AvatarGroup>
               <Typography variant="h6" fontWeight={500}>
                 52,589+ developers & agencies using our templates
@@ -168,7 +182,12 @@ const Banner = () => {
               mb={4}
               justifyContent="center"
             >
-              <Button color="primary" size="large" variant="contained" href="/auth/login">
+              <Button
+                color="primary"
+                size="large"
+                variant="contained"
+                href="/auth/login"
+              >
                 Log In
               </Button>
               <Button
@@ -188,7 +207,8 @@ const Banner = () => {
                   },
                 }}
               >
-                <img src={iconPlay} alt="icon" width={40} height={40} /> See how it works
+                <img src={iconPlay} alt="icon" width={40} height={40} /> See how
+                it works
               </Button>
 
               <Dialog
@@ -231,8 +251,12 @@ const Banner = () => {
                     height="54px"
                     display="flex"
                     sx={{
-                      boxShadow: theme.palette.mode === 'dark' ? null : theme.shadows[10],
-                      backgroundColor: theme.palette.mode === 'dark' ? '#1f2c4f' : 'white',
+                      boxShadow:
+                        theme.palette.mode === 'dark'
+                          ? null
+                          : theme.shadows[10],
+                      backgroundColor:
+                        theme.palette.mode === 'dark' ? '#1f2c4f' : 'white',
                     }}
                     alignItems="center"
                     justifyContent="center"
@@ -250,8 +274,9 @@ const Banner = () => {
               display="flex"
               size={{
                 xs: 12,
-                lg: 2
-              }}>
+                lg: 2,
+              }}
+            >
               <img
                 src={BannerTopRight}
                 className="animted-img-2"
@@ -284,7 +309,7 @@ const Banner = () => {
           />
         ) : null}
       </Container>
-    </Box>)
+    </Box>
   );
 };
 

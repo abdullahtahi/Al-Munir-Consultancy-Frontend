@@ -12,7 +12,12 @@ import AuthRegister from '../authForms/AuthRegister';
 
 const Register = () => (
   <PageContainer title="Register" description="this is Register page">
-    <Grid container spacing={0} justifyContent="center" sx={{ overflowX: 'hidden' }}>
+    <Grid
+      container
+      spacing={0}
+      justifyContent="center"
+      sx={{ overflowX: 'hidden' }}
+    >
       <Grid
         sx={{
           position: 'relative',
@@ -31,8 +36,9 @@ const Register = () => (
           xs: 12,
           sm: 12,
           lg: 7,
-          xl: 8
-        }}>
+          xl: 8,
+        }}
+      >
         <Box position="relative">
           <Box px={3}>
             <Logo />
@@ -67,8 +73,9 @@ const Register = () => (
           xs: 12,
           sm: 12,
           lg: 5,
-          xl: 4
-        }}>
+          xl: 4,
+        }}
+      >
         <Box p={4}>
           <AuthRegister
             title="Welcome to Modernize"

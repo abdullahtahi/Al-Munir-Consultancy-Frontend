@@ -44,17 +44,13 @@ const CustomDateTimePicker: React.FC<CustomDateTimePickerProps> = ({
   }, [defaultValue, isFormikMode]);
 
   const fieldError =
-    isFormikMode && name
-      ? formik.touched?.[name] && formik.errors?.[name]
-      : '';
+    isFormikMode && name ? formik.touched?.[name] && formik.errors?.[name] : '';
 
   return (
     <DateTimePicker
       label={`${label} *`}
       value={
-        isFormikMode
-          ? formik.values[name!] ?? defaultValue
-          : selectedDateTime
+        isFormikMode ? (formik.values[name!] ?? defaultValue) : selectedDateTime
       }
       onChange={(newValue) => {
         if (isFormikMode) {

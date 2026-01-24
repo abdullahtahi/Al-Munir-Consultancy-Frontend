@@ -21,7 +21,13 @@ const AuthSocialButtons = ({ title }: signInType) => (
             mr: 1,
           }}
         />
-        <Box sx={{ display: { xs: 'none', sm: 'flex' }, whiteSpace: 'nowrap', mr: { sm: '3px' } }}>
+        <Box
+          sx={{
+            display: { xs: 'none', sm: 'flex' },
+            whiteSpace: 'nowrap',
+            mr: { sm: '3px' },
+          }}
+        >
           {title}{' '}
         </Box>{' '}
         Google
@@ -37,7 +43,13 @@ const AuthSocialButtons = ({ title }: signInType) => (
             mr: 1,
           }}
         />
-        <Box sx={{ display: { xs: 'none', sm: 'flex' }, whiteSpace: 'nowrap', mr: { sm: '3px' } }}>
+        <Box
+          sx={{
+            display: { xs: 'none', sm: 'flex' },
+            whiteSpace: 'nowrap',
+            mr: { sm: '3px' },
+          }}
+        >
           {title}{' '}
         </Box>{' '}
         FB

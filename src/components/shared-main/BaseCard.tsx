@@ -4,7 +4,6 @@ import React, { useContext } from 'react';
 import { Card, CardHeader, CardContent, Divider } from '@mui/material';
 import { CustomizerContext } from 'src/context/CustomizerContext';
 
-
 type Props = {
   title: string;
   children: any | any[];
@@ -12,7 +11,6 @@ type Props = {
 
 const BaseCard = ({ title, children }: Props) => {
   const { isCardShadow } = useContext(CustomizerContext);
-
 
   return (
     <Card

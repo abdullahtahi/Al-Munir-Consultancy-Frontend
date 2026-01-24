@@ -1,5 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function AreaSparkLineCode() {
   return (
@@ -45,7 +44,7 @@ export default function AreaSparkLineChart() {
     }
 `}
     </CodeDialog>
-  )
+  );
 }
 
-export default AreaSparkLineCode
+export default AreaSparkLineCode;

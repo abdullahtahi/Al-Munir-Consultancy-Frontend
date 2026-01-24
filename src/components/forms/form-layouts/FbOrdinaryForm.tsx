@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { FormControlLabel, Button } from '@mui/material';
 import CustomTextField from '../theme-elements/CustomTextField';
@@ -33,7 +33,9 @@ const FbOrdinaryForm = () => {
           variant="outlined"
           fullWidth
         />
-        <CustomFormLabel htmlFor="ordinary-outlined-password-input">Password</CustomFormLabel>
+        <CustomFormLabel htmlFor="ordinary-outlined-password-input">
+          Password
+        </CustomFormLabel>
 
         <CustomTextField
           id="ordinary-outlined-password-input"

@@ -4,7 +4,10 @@ import Box from '@mui/material/Box';
 
 const ContainerWarnings = () => {
   return (
-    <PageContainer title="ContainerWarnings" description="this is ContainerWarnings">
+    <PageContainer
+      title="ContainerWarnings"
+      description="this is ContainerWarnings"
+    >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
         <Box sx={{ width: '100%' }}>
           <ContainerWarningsComponent />

@@ -1,6 +1,15 @@
-'use client'
+'use client';
 
-import { Box, Button, Grid, IconButton, InputAdornment, MenuItem, Stack, Tab } from '@mui/material';
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  InputAdornment,
+  MenuItem,
+  Stack,
+  Tab,
+} from '@mui/material';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
@@ -67,7 +76,9 @@ const FormTabs = () => {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
   };
 
@@ -77,18 +88,25 @@ const FormTabs = () => {
 
   const handleClickShowPassword2 = () => setShowPassword2((show) => !show);
 
-  const handleMouseDownPassword2 = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword2 = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
   };
 
   return (
-    (<div>
+    <div>
       {/* ------------------------------------------------------------------------------------------------ */}
       {/* Basic Layout */}
       {/* ------------------------------------------------------------------------------------------------ */}
       <BlankCard>
         <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: (theme: any) => theme.palette.divider }}>
+          <Box
+            sx={{
+              borderBottom: 1,
+              borderColor: (theme: any) => theme.palette.divider,
+            }}
+          >
             <TabList onChange={handleChange} aria-label="lab API tabs example">
               <Tab label="Personal Info" value="1" />
               <Tab label="Account Details" value="2" />
@@ -100,8 +118,9 @@ const FormTabs = () => {
               <Grid
                 size={{
                   xs: 12,
-                  lg: 6
-                }}>
+                  lg: 6,
+                }}
+              >
                 <Grid container>
                   <Grid size={12}>
                     <CustomFormLabel htmlFor="ft-fname" sx={{ mt: 0 }}>
@@ -109,11 +128,17 @@ const FormTabs = () => {
                     </CustomFormLabel>
                   </Grid>
                   <Grid size={12}>
-                    <CustomTextField id="ft-fname" placeholder="John" fullWidth />
+                    <CustomTextField
+                      id="ft-fname"
+                      placeholder="John"
+                      fullWidth
+                    />
                   </Grid>
                   {/* 4 */}
                   <Grid size={12}>
-                    <CustomFormLabel htmlFor="ft-country">Country</CustomFormLabel>
+                    <CustomFormLabel htmlFor="ft-country">
+                      Country
+                    </CustomFormLabel>
                   </Grid>
                   <Grid size={12}>
                     <CustomSelect
@@ -132,10 +157,17 @@ const FormTabs = () => {
                   </Grid>
                   {/* 4 */}
                   <Grid size={12}>
-                    <CustomFormLabel htmlFor="ft-date">Birth Date</CustomFormLabel>
+                    <CustomFormLabel htmlFor="ft-date">
+                      Birth Date
+                    </CustomFormLabel>
                   </Grid>
                   <Grid size={12}>
-                    <CustomTextField type="date" id="ft-date" placeholder="John Deo" fullWidth />
+                    <CustomTextField
+                      type="date"
+                      id="ft-date"
+                      placeholder="John Deo"
+                      fullWidth
+                    />
                   </Grid>
                 </Grid>
               </Grid>
@@ -143,8 +175,9 @@ const FormTabs = () => {
               <Grid
                 size={{
                   xs: 12,
-                  lg: 6
-                }}>
+                  lg: 6,
+                }}
+              >
                 <Grid container>
                   <Grid size={12}>
                     <CustomFormLabel htmlFor="ft-fname" sx={{ mt: { sm: 0 } }}>
@@ -152,11 +185,17 @@ const FormTabs = () => {
                     </CustomFormLabel>
                   </Grid>
                   <Grid size={12}>
-                    <CustomTextField id="ft-fname" placeholder="Deo" fullWidth />
+                    <CustomTextField
+                      id="ft-fname"
+                      placeholder="Deo"
+                      fullWidth
+                    />
                   </Grid>
                   {/* 4 */}
                   <Grid size={12}>
-                    <CustomFormLabel htmlFor="ft-lang">Language</CustomFormLabel>
+                    <CustomFormLabel htmlFor="ft-lang">
+                      Language
+                    </CustomFormLabel>
                   </Grid>
                   <Grid size={12}>
                     <CustomSelect
@@ -174,10 +213,16 @@ const FormTabs = () => {
                   </Grid>
                   {/* 4 */}
                   <Grid size={12}>
-                    <CustomFormLabel htmlFor="ft-phone">Phone no</CustomFormLabel>
+                    <CustomFormLabel htmlFor="ft-phone">
+                      Phone no
+                    </CustomFormLabel>
                   </Grid>
                   <Grid size={12}>
-                    <CustomTextField id="ft-phone" placeholder="123 4567 201" fullWidth />
+                    <CustomTextField
+                      id="ft-phone"
+                      placeholder="123 4567 201"
+                      fullWidth
+                    />
                   </Grid>
                 </Grid>
               </Grid>
@@ -198,8 +243,9 @@ const FormTabs = () => {
               <Grid
                 size={{
                   xs: 12,
-                  lg: 6
-                }}>
+                  lg: 6,
+                }}
+              >
                 <Grid container>
                   <Grid size={12}>
                     <CustomFormLabel htmlFor="ft-uname" sx={{ mt: 0 }}>
@@ -207,7 +253,11 @@ const FormTabs = () => {
                     </CustomFormLabel>
                   </Grid>
                   <Grid size={12}>
-                    <CustomTextField id="ft-uname" placeholder="John.Deo" fullWidth />
+                    <CustomTextField
+                      id="ft-uname"
+                      placeholder="John.Deo"
+                      fullWidth
+                    />
                   </Grid>
                   {/* 4 */}
                   <Grid size={12}>
@@ -224,7 +274,11 @@ const FormTabs = () => {
                             onMouseDown={handleMouseDownPassword}
                             edge="end"
                           >
-                            {showPassword ? <IconEyeOff size="20" /> : <IconEye size="20" />}
+                            {showPassword ? (
+                              <IconEyeOff size="20" />
+                            ) : (
+                              <IconEye size="20" />
+                            )}
                           </IconButton>
                         </InputAdornment>
                       }
@@ -239,8 +293,9 @@ const FormTabs = () => {
               <Grid
                 size={{
                   xs: 12,
-                  lg: 6
-                }}>
+                  lg: 6,
+                }}
+              >
                 <Grid container>
                   <Grid size={12}>
                     <CustomFormLabel htmlFor="ft-email" sx={{ mt: { sm: 0 } }}>
@@ -249,7 +304,11 @@ const FormTabs = () => {
                   </Grid>
                   <Grid size={12}>
                     <CustomOutlinedInput
-                      endAdornment={<InputAdornment position="end">@example.com</InputAdornment>}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          @example.com
+                        </InputAdornment>
+                      }
                       id="fs-email"
                       placeholder="john.deo"
                       fullWidth
@@ -270,7 +329,11 @@ const FormTabs = () => {
                             onMouseDown={handleMouseDownPassword2}
                             edge="end"
                           >
-                            {showPassword2 ? <IconEyeOff size="20" /> : <IconEye size="20" />}
+                            {showPassword2 ? (
+                              <IconEyeOff size="20" />
+                            ) : (
+                              <IconEye size="20" />
+                            )}
                           </IconButton>
                         </InputAdornment>
                       }
@@ -298,8 +361,9 @@ const FormTabs = () => {
               <Grid
                 size={{
                   xs: 12,
-                  lg: 6
-                }}>
+                  lg: 6,
+                }}
+              >
                 <Grid container>
                   <Grid size={12}>
                     <CustomFormLabel htmlFor="ft-twitter" sx={{ mt: 0 }}>
@@ -314,7 +378,9 @@ const FormTabs = () => {
                     />
                   </Grid>
                   <Grid size={12}>
-                    <CustomFormLabel htmlFor="ft-google">Google</CustomFormLabel>
+                    <CustomFormLabel htmlFor="ft-google">
+                      Google
+                    </CustomFormLabel>
                   </Grid>
                   <Grid size={12}>
                     <CustomTextField
@@ -324,7 +390,9 @@ const FormTabs = () => {
                     />
                   </Grid>
                   <Grid size={12}>
-                    <CustomFormLabel htmlFor="ft-insta">Instagram</CustomFormLabel>
+                    <CustomFormLabel htmlFor="ft-insta">
+                      Instagram
+                    </CustomFormLabel>
                   </Grid>
                   <Grid size={12}>
                     <CustomTextField
@@ -338,8 +406,9 @@ const FormTabs = () => {
               <Grid
                 size={{
                   xs: 12,
-                  lg: 6
-                }}>
+                  lg: 6,
+                }}
+              >
                 <Grid container>
                   <Grid size={12}>
                     <CustomFormLabel htmlFor="ft-fb" sx={{ mt: { sm: 0 } }}>
@@ -347,10 +416,16 @@ const FormTabs = () => {
                     </CustomFormLabel>
                   </Grid>
                   <Grid size={12}>
-                    <CustomTextField id="ft-fb" placeholder="https://facebook.com/abc" fullWidth />
+                    <CustomTextField
+                      id="ft-fb"
+                      placeholder="https://facebook.com/abc"
+                      fullWidth
+                    />
                   </Grid>
                   <Grid size={12}>
-                    <CustomFormLabel htmlFor="ft-linkedin">Linkedin</CustomFormLabel>
+                    <CustomFormLabel htmlFor="ft-linkedin">
+                      Linkedin
+                    </CustomFormLabel>
                   </Grid>
                   <Grid size={12}>
                     <CustomTextField
@@ -363,7 +438,11 @@ const FormTabs = () => {
                     <CustomFormLabel htmlFor="ft-quora">Quora</CustomFormLabel>
                   </Grid>
                   <Grid size={12}>
-                    <CustomTextField id="ft-quora" placeholder="https://quora.com/abc" fullWidth />
+                    <CustomTextField
+                      id="ft-quora"
+                      placeholder="https://quora.com/abc"
+                      fullWidth
+                    />
                   </Grid>
                 </Grid>
               </Grid>
@@ -381,7 +460,7 @@ const FormTabs = () => {
           </TabPanel>
         </TabContext>
       </BlankCard>
-    </div>)
+    </div>
   );
 };
 

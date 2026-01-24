@@ -9,7 +9,10 @@ import Logo from '@layouts/full/shared/logo/Logo';
 import AuthTwoSteps from '../authForms/AuthTwoSteps';
 
 const TwoSteps2 = () => (
-  <PageContainer title="Forgot Password" description="this is Forgot Password page">
+  <PageContainer
+    title="Forgot Password"
+    description="this is Forgot Password page"
+  >
     <Box
       sx={{
         position: 'relative',
@@ -25,7 +28,12 @@ const TwoSteps2 = () => (
         },
       }}
     >
-      <Grid container spacing={0} justifyContent="center" sx={{ height: '100vh' }}>
+      <Grid
+        container
+        spacing={0}
+        justifyContent="center"
+        sx={{ height: '100vh' }}
+      >
         <Grid
           display="flex"
           justifyContent="center"
@@ -34,17 +42,31 @@ const TwoSteps2 = () => (
             xs: 12,
             sm: 12,
             lg: 5,
-            xl: 4
-          }}>
-          <Card elevation={9} sx={{ p: 4, zIndex: 1, width: '100%', maxWidth: '450px' }}>
+            xl: 4,
+          }}
+        >
+          <Card
+            elevation={9}
+            sx={{ p: 4, zIndex: 1, width: '100%', maxWidth: '450px' }}
+          >
             <Box display="flex" alignItems="center" justifyContent="center">
               <Logo />
             </Box>
-            <Typography variant="subtitle1" textAlign="center" color="textSecondary" mb={1}>
-              We sent a verification code to your mobile. Enter the code from the mobile in the
-              field below.
+            <Typography
+              variant="subtitle1"
+              textAlign="center"
+              color="textSecondary"
+              mb={1}
+            >
+              We sent a verification code to your mobile. Enter the code from
+              the mobile in the field below.
             </Typography>
-            <Typography variant="subtitle1" textAlign="center" fontWeight="700" mb={1}>
+            <Typography
+              variant="subtitle1"
+              textAlign="center"
+              fontWeight="700"
+              mb={1}
+            >
               ******1234
             </Typography>
             <AuthTwoSteps />

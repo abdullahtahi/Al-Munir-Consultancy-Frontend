@@ -23,7 +23,11 @@ import ConsultantDialog from './dialog/ConsultantDialog/ConsultantDialog';
 import { DeleteDialog } from 'src/components/delete-dialog/DeleteDialog';
 import { INACTIVE_STATUS, PENDING_STATUS } from 'src/constants/AppConstants';
 import AuthorizeComponent from 'src/utils/AuthorizeComponent';
-import { CAN_ADD_CONSULTANT, CAN_DELETE_CONSULTANT, CAN_EDIT_CONSULTANT } from 'src/constants/Permissions';
+import {
+  CAN_ADD_CONSULTANT,
+  CAN_DELETE_CONSULTANT,
+  CAN_EDIT_CONSULTANT,
+} from 'src/constants/Permissions';
 import { Tooltip } from '@mui/material';
 import { IconLock } from '@tabler/icons-react';
 import ChangePasswordDialog from './dialog/ChangePasswordDialog/ChangePasswordDialog';
@@ -51,7 +55,8 @@ const EirInList = () => {
   const [consultantDialogMode, setConsultantDialogMode] = useState<
     'Add' | 'Edit'
   >('Add');
-  const [changePasswordDialogOpen, setChangePasswordDialogOpen] = useState(false);
+  const [changePasswordDialogOpen, setChangePasswordDialogOpen] =
+    useState(false);
 
   const [snackbar, setSnackbar] = useState({
     open: false,

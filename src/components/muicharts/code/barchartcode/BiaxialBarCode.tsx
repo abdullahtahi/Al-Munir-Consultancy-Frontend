@@ -1,11 +1,9 @@
-import CodeDialog from "@components/shared/CodeDialog";
-
-
+import CodeDialog from '@components/shared/CodeDialog';
 
 function BiaxialBarCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
   
 'use client'
 ;
@@ -68,8 +66,8 @@ function BiaxialBarChart() {
 export default BiaxialBarChart;
 
 `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default BiaxialBarCode
+export default BiaxialBarCode;

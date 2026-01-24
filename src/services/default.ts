@@ -12,7 +12,7 @@ interface VersionCheckCallback {
   (serverVersion: string | null): void;
 }
 
-const baseUrl = import.meta.env.VITE_API_BASE_URL
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 const headers = (): HeadersInit => {
   const xToken = localStorage.getItem('token');
@@ -21,9 +21,10 @@ const headers = (): HeadersInit => {
     Accept: 'application/json',
     'Content-Type': 'application/json',
     ...(xToken && { Authorization: `Bearer ${xToken}` }),
-    ...(localAppVersion && localAppVersion !== 'null' && {
-      'App-Version': localAppVersion
-    })
+    ...(localAppVersion &&
+      localAppVersion !== 'null' && {
+        'App-Version': localAppVersion,
+      }),
   };
 };
 
@@ -31,18 +32,31 @@ const isValidToken = (): boolean => {
   return !!localStorage.getItem('token');
 };
 
-const checkAppVersion = async (res: Response, onVersionMismatch?: VersionCheckCallback): Promise<void> => {
+const checkAppVersion = async (
+  res: Response,
+  onVersionMismatch?: VersionCheckCallback
+): Promise<void> => {
   const serverAppVersion = res.headers.get('App-Version');
   const localAppVersion = localStorage.getItem('app_version');
 
-  if (localAppVersion && localAppVersion !== 'null' && localAppVersion !== serverAppVersion) {
+  if (
+    localAppVersion &&
+    localAppVersion !== 'null' &&
+    localAppVersion !== serverAppVersion
+  ) {
     onVersionMismatch?.(serverAppVersion);
-  } else if ((!localAppVersion || localAppVersion === 'null') && serverAppVersion) {
+  } else if (
+    (!localAppVersion || localAppVersion === 'null') &&
+    serverAppVersion
+  ) {
     localStorage.setItem('app_version', serverAppVersion);
   }
 };
 
-const defaultResponse = async <T = any>(res: Response, onVersionMismatch?: VersionCheckCallback): Promise<ApiResponse<T>> => {
+const defaultResponse = async <T = any>(
+  res: Response,
+  onVersionMismatch?: VersionCheckCallback
+): Promise<ApiResponse<T>> => {
   const status = res.status;
 
   await checkAppVersion(res, onVersionMismatch);
@@ -51,17 +65,19 @@ const defaultResponse = async <T = any>(res: Response, onVersionMismatch?: Versi
     const data = await res.json();
 
     if (status === 403) {
-      console.warn(`[default.ts] Received 403 Forbidden from ${res.url}. NOT removing token (fixed).`);
+      console.warn(
+        `[default.ts] Received 403 Forbidden from ${res.url}. NOT removing token (fixed).`
+      );
       return {
         resStatus: status,
-        message: 'You do not have permission to access this resource.'
+        message: 'You do not have permission to access this resource.',
       };
     }
 
     if (status >= 400) {
       return {
         resStatus: status,
-        message: data.message || 'Request failed'
+        message: data.message || 'Request failed',
       };
     }
 
@@ -69,31 +85,37 @@ const defaultResponse = async <T = any>(res: Response, onVersionMismatch?: Versi
   } catch (error) {
     return {
       resStatus: 500,
-      message: 'Failed to parse response'
+      message: 'Failed to parse response',
     };
   }
 };
 
-const get = async <T = any>(api: string, onVersionMismatch?: VersionCheckCallback): Promise<ApiResponse<T> | null> => {
+const get = async <T = any>(
+  api: string,
+  onVersionMismatch?: VersionCheckCallback
+): Promise<ApiResponse<T> | null> => {
   if (!isValidToken()) return null;
 
   try {
     const res = await fetch(api, {
       headers: headers(),
       credentials: 'include',
-      method: 'GET'
+      method: 'GET',
     });
     console.log(`[GET] ${api} - Status: ${res.status}`);
     return await defaultResponse<T>(res, onVersionMismatch);
   } catch (error) {
     return {
       resStatus: 500,
-      message: 'Network error'
+      message: 'Network error',
     };
   }
 };
 
-const getDownload = async <T = any>(api: string, onVersionMismatch?: VersionCheckCallback): Promise<ApiResponse<T> | null> => {
+const getDownload = async <T = any>(
+  api: string,
+  onVersionMismatch?: VersionCheckCallback
+): Promise<ApiResponse<T> | null> => {
   if (!isValidToken()) {
     return null;
   }
@@ -101,32 +123,35 @@ const getDownload = async <T = any>(api: string, onVersionMismatch?: VersionChec
     const res = await fetch(api, {
       headers: headers(),
       credentials: 'include',
-      method: 'GET'
+      method: 'GET',
     });
     return await defaultResponse<T>(res, onVersionMismatch);
   } catch (error) {
     return {
       resStatus: 500,
-      message: 'Network error'
+      message: 'Network error',
     };
   }
 };
 
-const isValidCro = async <T = any>(api: string, onVersionMismatch?: VersionCheckCallback): Promise<ApiResponse<T> | null> => {
+const isValidCro = async <T = any>(
+  api: string,
+  onVersionMismatch?: VersionCheckCallback
+): Promise<ApiResponse<T> | null> => {
   try {
     const res = await fetch(api, {
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       credentials: 'include',
-      method: 'GET'
+      method: 'GET',
     });
     return await defaultResponse<T>(res, onVersionMismatch);
   } catch (error) {
     return {
       resStatus: 500,
-      message: 'Network error'
+      message: 'Network error',
     };
   }
 };
@@ -144,7 +169,6 @@ const post = async <T = any, D = any>(
   try {
     const xToken = localStorage.getItem('token');
     const response = await fetch(api, {
-
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -152,16 +176,16 @@ const post = async <T = any, D = any>(
       },
       credentials: 'include',
       method: 'POST',
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
-
 
     return await defaultResponse<T>(response, onVersionMismatch);
   } catch (error) {
     console.error('POST request failed:', error);
     return {
       resStatus: 500,
-      message: error instanceof Error ? error.message : 'Network request failed'
+      message:
+        error instanceof Error ? error.message : 'Network request failed',
     };
   }
 };
@@ -180,7 +204,7 @@ const put = async <T = any, D = any>(
       headers: headers(),
       credentials: 'include',
       method: 'PUT',
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
 
     return await defaultResponse<T>(response, onVersionMismatch);
@@ -188,12 +212,16 @@ const put = async <T = any, D = any>(
     console.error('PUT request failed:', error);
     return {
       resStatus: 500,
-      message: error instanceof Error ? error.message : 'Network request failed'
+      message:
+        error instanceof Error ? error.message : 'Network request failed',
     };
   }
 };
 
-const destroy = async <T = any>(api: string, onVersionMismatch?: VersionCheckCallback): Promise<ApiResponse<T> | null> => {
+const destroy = async <T = any>(
+  api: string,
+  onVersionMismatch?: VersionCheckCallback
+): Promise<ApiResponse<T> | null> => {
   if (!isValidToken()) {
     return null;
   }
@@ -202,18 +230,21 @@ const destroy = async <T = any>(api: string, onVersionMismatch?: VersionCheckCal
     const res = await fetch(api, {
       headers: headers(),
       credentials: 'include',
-      method: 'DELETE'
+      method: 'DELETE',
     });
     return await defaultResponse<T>(res, onVersionMismatch);
   } catch (error) {
     return {
       resStatus: 500,
-      message: 'Network error'
+      message: 'Network error',
     };
   }
 };
 
-const toggle = async <T = any>(api: string, onVersionMismatch?: VersionCheckCallback): Promise<ApiResponse<T> | null> => {
+const toggle = async <T = any>(
+  api: string,
+  onVersionMismatch?: VersionCheckCallback
+): Promise<ApiResponse<T> | null> => {
   if (!isValidToken()) {
     return null;
   }
@@ -221,17 +252,16 @@ const toggle = async <T = any>(api: string, onVersionMismatch?: VersionCheckCall
     const res = await fetch(api, {
       headers: headers(),
       credentials: 'include',
-      method: 'PUT'
+      method: 'PUT',
     });
     return await defaultResponse<T>(res, onVersionMismatch);
   } catch (error) {
     return {
       resStatus: 500,
-      message: 'Network error'
+      message: 'Network error',
     };
   }
 };
-
 
 export const upload = async (url: string, file: File): Promise<any> => {
   try {
@@ -259,9 +289,14 @@ export const upload = async (url: string, file: File): Promise<any> => {
   }
 };
 
-
-
 export {
-  baseUrl, destroy, get, getDownload, headers, isValidCro, post,
-  put, toggle
+  baseUrl,
+  destroy,
+  get,
+  getDownload,
+  headers,
+  isValidCro,
+  post,
+  put,
+  toggle,
 };

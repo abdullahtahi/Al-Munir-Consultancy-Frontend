@@ -11,8 +11,8 @@ export interface PaginationDataType {
   name?: string;
   project?: string;
   percent?: number;
-  users:{
-     img:string;
+  users: {
+    img: string;
   }[];
 }
 
@@ -23,7 +23,7 @@ export const basicsTableData: PaginationDataType[] = [
     name: 'Olivia Rhye',
     project: 'Xtreme admin',
     percent: 60,
-    users: [{ img: img1 }, { img: img2}],
+    users: [{ img: img1 }, { img: img2 }],
   },
   {
     status: 'cancel',
@@ -31,11 +31,7 @@ export const basicsTableData: PaginationDataType[] = [
     name: 'Barbara Steele',
     project: 'Adminpro admin',
     percent: 30,
-    users: [
-      { img: img1},
-      { img: img2 },
-      { img: img3 },
-    ],
+    users: [{ img: img1 }, { img: img2 }, { img: img3 }],
   },
   {
     status: 'pending',
@@ -59,11 +55,7 @@ export const basicsTableData: PaginationDataType[] = [
     name: 'Barbara Steele',
     project: 'Adminpro admin',
     percent: 30,
-    users: [
-      { img: img1 },
-      { img: img2},
-      { img: img3 },
-    ],
+    users: [{ img: img1 }, { img: img2 }, { img: img3 }],
   },
   {
     status: 'active',
@@ -71,83 +63,7 @@ export const basicsTableData: PaginationDataType[] = [
     name: 'Leonard Gordon',
     project: 'Monster admin',
     percent: 45,
-    users: [{ img: img3 }, { img: img2}],
-  },
-  {
-    status: 'pending',
-    avatar:img4,
-    name: 'Evelyn Pope',
-    project: 'Materialpro admin',
-    percent: 37,
-    users: [
-      { img: img1 },
-      { img: img2},
-      { img: img5 },
-    ],
-  },
-  {
-    status: 'active',
-    avatar: img3,
-    name: 'Leonard Gordon',
-    project: 'Monster admin',
-    percent: 45,
-    users: [{ img: img3 }, { img: img2}],
-  },
-  {
-    status: 'pending',
-    avatar:img4,
-    name: 'Evelyn Pope',
-    project: 'Materialpro admin',
-    percent: 37,
-    users: [
-      { img: img1 },
-      { img: img2},
-      { img: img5 },
-    ],
-  },
-  {
-    status: 'cancel',
-    avatar: img5,
-    name: 'Tommy Garza',
-    project: 'Elegant admin',
-    percent: 87,
-    users: [{ img: img5 }, { img: img6 }],
-  },
-  {
-    status: 'pending',
-    avatar: img6,
-    name: 'Isabel Vasquez',
-    project: 'Modernize admin',
-    percent: 32,
-    users: [{ img: img2}, { img:img4 }],
-  },
-  {
-    status: 'active',
-    avatar: img1,
-    name: 'Olivia Rhye',
-    project: 'Xtreme admin',
-    percent: 60,
-    users: [{ img: img1 }, { img: img2}],
-  },
-  {
-    status: 'cancel',
-    avatar: img2,
-    name: 'Barbara Steele',
-    project: 'Adminpro admin',
-    percent: 30,
-    users: [
-      { img: img1 },
-      { img: img2},
-      { img: img3 },
-    ],
-  },
-  {
-    status: 'active',
-    avatar: img3,
-    name: 'Leonard Gordon',
-    project: 'Monster admin',
-    percent: 45,
-    users: [{ img: img3 }, { img: img2}],
+    users: [{ img: img3 }, { img: img2 }],
   },
   {
     status: 'pending',
@@ -155,11 +71,23 @@ export const basicsTableData: PaginationDataType[] = [
     name: 'Evelyn Pope',
     project: 'Materialpro admin',
     percent: 37,
-    users: [
-      { img: img1 },
-      { img: img2},
-      { img: img5 },
-    ],
+    users: [{ img: img1 }, { img: img2 }, { img: img5 }],
+  },
+  {
+    status: 'active',
+    avatar: img3,
+    name: 'Leonard Gordon',
+    project: 'Monster admin',
+    percent: 45,
+    users: [{ img: img3 }, { img: img2 }],
+  },
+  {
+    status: 'pending',
+    avatar: img4,
+    name: 'Evelyn Pope',
+    project: 'Materialpro admin',
+    percent: 37,
+    users: [{ img: img1 }, { img: img2 }, { img: img5 }],
   },
   {
     status: 'cancel',
@@ -175,6 +103,54 @@ export const basicsTableData: PaginationDataType[] = [
     name: 'Isabel Vasquez',
     project: 'Modernize admin',
     percent: 32,
-    users: [{ img: img2}, { img: img4 }],
+    users: [{ img: img2 }, { img: img4 }],
+  },
+  {
+    status: 'active',
+    avatar: img1,
+    name: 'Olivia Rhye',
+    project: 'Xtreme admin',
+    percent: 60,
+    users: [{ img: img1 }, { img: img2 }],
+  },
+  {
+    status: 'cancel',
+    avatar: img2,
+    name: 'Barbara Steele',
+    project: 'Adminpro admin',
+    percent: 30,
+    users: [{ img: img1 }, { img: img2 }, { img: img3 }],
+  },
+  {
+    status: 'active',
+    avatar: img3,
+    name: 'Leonard Gordon',
+    project: 'Monster admin',
+    percent: 45,
+    users: [{ img: img3 }, { img: img2 }],
+  },
+  {
+    status: 'pending',
+    avatar: img4,
+    name: 'Evelyn Pope',
+    project: 'Materialpro admin',
+    percent: 37,
+    users: [{ img: img1 }, { img: img2 }, { img: img5 }],
+  },
+  {
+    status: 'cancel',
+    avatar: img5,
+    name: 'Tommy Garza',
+    project: 'Elegant admin',
+    percent: 87,
+    users: [{ img: img5 }, { img: img6 }],
+  },
+  {
+    status: 'pending',
+    avatar: img6,
+    name: 'Isabel Vasquez',
+    project: 'Modernize admin',
+    percent: 32,
+    users: [{ img: img2 }, { img: img4 }],
   },
 ];

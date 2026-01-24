@@ -102,7 +102,7 @@ const MobileRightSidebar = () => {
   );
 
   return (
-    (<Box>
+    <Box>
       <IconButton
         size="large"
         color="inherit"
@@ -123,7 +123,7 @@ const MobileRightSidebar = () => {
         open={showDrawer}
         onClose={() => setShowDrawer(false)}
         slotProps={{
-          paper: { sx: { width: '300px' } }
+          paper: { sx: { width: '300px' } },
         }}
       >
         <Box p={3} pb={0}>
@@ -135,7 +135,7 @@ const MobileRightSidebar = () => {
         {/* component */}
         {cartContent}
       </Drawer>
-    </Box>)
+    </Box>
   );
 };
 

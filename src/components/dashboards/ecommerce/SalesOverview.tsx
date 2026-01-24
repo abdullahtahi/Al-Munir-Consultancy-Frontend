@@ -15,7 +15,8 @@ const SalesOverview = () => {
   const primary = theme.palette.primary.main;
   const secondary = theme.palette.secondary.main;
   const primarylight = theme.palette.primary.light;
-  const textColor = theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.8)' : '#2A3547';
+  const textColor =
+    theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.8)' : '#2A3547';
 
   // chart
   const optionscolumnchart: Props = {
@@ -28,11 +29,10 @@ const SalesOverview = () => {
       },
       height: 275,
     },
-    labels: ["Profit", "Revenue", "Expance"],
+    labels: ['Profit', 'Revenue', 'Expance'],
     colors: [primary, primarylight, secondary],
     plotOptions: {
       pie: {
-        
         donut: {
           size: '89%',
           background: 'transparent',
@@ -85,7 +85,12 @@ const SalesOverview = () => {
           />
         </Box>
 
-        <Stack direction="row" spacing={2} justifyContent="space-between" mt={7}>
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="space-between"
+          mt={7}
+        >
           <Stack direction="row" spacing={2} alignItems="center">
             <Box
               width={38}

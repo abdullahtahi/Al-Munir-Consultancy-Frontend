@@ -15,9 +15,8 @@ import { AppDispatch, RootState } from 'src/store';
 import { signOutUser } from 'src/store/slices/authSlice';
 const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
-  const userDetail = useSelector(
-    (state: RootState) => state?.auth?.user);
-    console.log("userDetail",userDetail)
+  const userDetail = useSelector((state: RootState) => state?.auth?.user);
+  console.log('userDetail', userDetail);
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const handleClick2 = (event: any) => {
@@ -26,9 +25,9 @@ const Profile = () => {
   const handleClose2 = () => {
     setAnchorEl2(null);
   };
-  const handleLogout =  useCallback( async() => {
+  const handleLogout = useCallback(async () => {
     const response = await signOutMe();
-    if(response?.data){
+    if (response?.data) {
       dispatch(signOutUser());
       localStorage.clear();
       navigate('/auth/login');
@@ -78,16 +77,28 @@ const Profile = () => {
       >
         <Typography variant="h5">User Profile</Typography>
         <Stack direction="row" py={3} spacing={2} alignItems="center">
-          <Avatar src={userDetail?.data?.profile} alt={userDetail?.data?.profile} sx={{ width: 95, height: 95 }} />
+          <Avatar
+            src={userDetail?.data?.profile}
+            alt={userDetail?.data?.profile}
+            sx={{ width: 95, height: 95 }}
+          />
           <Box>
-            <Typography variant="subtitle2" color="textPrimary" fontWeight={600}>
+            <Typography
+              variant="subtitle2"
+              color="textPrimary"
+              fontWeight={600}
+            >
               Al-Munir System
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-            {userDetail?.data?.firstName} {userDetail?.data?.lastName}
-            <Typography variant="subtitle2" color="textSecondary" fontWeight={600}>
-              level:{userDetail?.data?.level}
-              </Typography> 
+              {userDetail?.data?.firstName} {userDetail?.data?.lastName}
+              <Typography
+                variant="subtitle2"
+                color="textSecondary"
+                fontWeight={600}
+              >
+                level:{userDetail?.data?.level}
+              </Typography>
             </Typography>
             <Typography
               variant="subtitle2"
@@ -97,7 +108,7 @@ const Profile = () => {
               gap={1}
             >
               <IconMail width={15} height={15} />
-              {userDetail?.data?.email} 
+              {userDetail?.data?.email}
             </Typography>
           </Box>
         </Stack>
@@ -115,5 +126,5 @@ const Profile = () => {
       </Menu>
     </Box>
   );
-}
+};
 export default Profile;

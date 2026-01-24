@@ -13,8 +13,9 @@ const AppLinks = () => {
         <Grid
           key={index}
           size={{
-            lg: 6
-          }}>
+            lg: 6,
+          }}
+        >
           <Link to={links.href} className="hover-text-primary">
             <Stack direction="row" spacing={2}>
               <Box

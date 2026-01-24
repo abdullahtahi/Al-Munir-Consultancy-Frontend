@@ -10,17 +10,18 @@ import IconFav from '@assets/images/svgs/icon-favorites.svg';
 
 const Features = () => {
   return (
-    (<Box pt={10} pb={10}>
+    <Box pt={10} pb={10}>
       <Container maxWidth="lg">
         <FeatureTitle />
 
         <Grid container spacing={3} mt={3}>
           <Grid
             size={{
-              xs: "grow",
+              xs: 'grow',
               sm: 6,
-              lg: "grow"
-            }}>
+              lg: 'grow',
+            }}
+          >
             <Box mb={3} bgcolor="warning.light" borderRadius="24px">
               <Box px={4} py="65px">
                 <Stack direction="column" spacing={2} textAlign="center">
@@ -36,7 +37,12 @@ const Features = () => {
                 </Stack>
               </Box>
             </Box>
-            <Box textAlign="center" mb={3} bgcolor="secondary.light" borderRadius="24px">
+            <Box
+              textAlign="center"
+              mb={3}
+              bgcolor="secondary.light"
+              borderRadius="24px"
+            >
               <Box px={4} py="50px">
                 <Stack direction="column" spacing={2} textAlign="center">
                   <Typography variant="h6" fontWeight={700}>
@@ -62,9 +68,15 @@ const Features = () => {
             }}
             size={{
               xs: 12,
-              lg: 5
-            }}>
-            <Box textAlign="center" mb={3} bgcolor="primary.light" borderRadius="24px">
+              lg: 5,
+            }}
+          >
+            <Box
+              textAlign="center"
+              mb={3}
+              bgcolor="primary.light"
+              borderRadius="24px"
+            >
               <Box pt="65px" pb="40px" px={5}>
                 <img src={LogoIcon} alt="logo" height="50" width="50" />
                 <Typography
@@ -106,11 +118,17 @@ const Features = () => {
               },
             }}
             size={{
-              xs: "grow",
+              xs: 'grow',
               sm: 6,
-              lg: "grow"
-            }}>
-            <Box textAlign="center" mb={3} bgcolor="success.light" borderRadius="24px">
+              lg: 'grow',
+            }}
+          >
+            <Box
+              textAlign="center"
+              mb={3}
+              bgcolor="success.light"
+              borderRadius="24px"
+            >
               <Box px={4} py="65px">
                 <Stack direction="column" spacing={2} textAlign="center">
                   <Box textAlign="center">
@@ -126,7 +144,12 @@ const Features = () => {
                 </Stack>
               </Box>
             </Box>
-            <Box textAlign="center" mb={3} bgcolor="error.light" borderRadius="24px">
+            <Box
+              textAlign="center"
+              mb={3}
+              bgcolor="error.light"
+              borderRadius="24px"
+            >
               <Box px={4} py="65px">
                 <Stack direction="column" spacing={2} textAlign="center">
                   <Box textAlign="center">
@@ -145,7 +168,7 @@ const Features = () => {
           </Grid>
         </Grid>
       </Container>
-    </Box>)
+    </Box>
   );
 };
 

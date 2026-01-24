@@ -19,11 +19,10 @@ interface cardType {
   bgcolor: string;
 }
 
-
-const UserTopCards = ({cards}:any) => {
+const UserTopCards = ({ cards }: any) => {
   const authUser = useSelector((state: RootState) => state.auth.user);
-  console.log("authUser", authUser);
-  const [res,setRes]=useState<any>()
+  console.log('authUser', authUser);
+  const [res, setRes] = useState<any>();
 
   const topcards: cardType[] = [
     {
@@ -64,15 +63,16 @@ const UserTopCards = ({cards}:any) => {
     // },
   ];
   return (
-    (<Grid container spacing={3}>
+    <Grid container spacing={3}>
       {topcards.map((topcard, i) => (
         <Grid
           key={i}
           size={{
             xs: 12,
             sm: 3,
-            lg: 3
-          }}>
+            lg: 3,
+          }}
+        >
           <Box bgcolor={topcard.bgcolor + '.light'} textAlign="center">
             <CardContent>
               <img src={topcard.icon} alt={topcard.icon} width="50" />
@@ -84,14 +84,18 @@ const UserTopCards = ({cards}:any) => {
               >
                 {topcard.title}
               </Typography>
-              <Typography color={topcard.bgcolor + '.main'} variant="h4" fontWeight={600}>
+              <Typography
+                color={topcard.bgcolor + '.main'}
+                variant="h4"
+                fontWeight={600}
+              >
                 {topcard.digits}
               </Typography>
             </CardContent>
           </Box>
         </Grid>
       ))}
-    </Grid>)
+    </Grid>
   );
 };
 

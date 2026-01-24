@@ -1,15 +1,14 @@
-'use client'
+'use client';
 
-
-import Box from '@mui/material/Box'
-import { SliderValueLabelProps } from '@mui/material/Slider'
-import { SliderThumb } from '@mui/material/Slider'
-import ChildCard from '@components/shared/ChildCard'
-import CustomRangeSlider from '@components/forms/theme-elements/CustomRangeSlider'
-import RangesliderCode from './code/RangesliderCode'
+import Box from '@mui/material/Box';
+import { SliderValueLabelProps } from '@mui/material/Slider';
+import { SliderThumb } from '@mui/material/Slider';
+import ChildCard from '@components/shared/ChildCard';
+import CustomRangeSlider from '@components/forms/theme-elements/CustomRangeSlider';
+import RangesliderCode from './code/RangesliderCode';
 
 function AirbnbThumbComponent(props: SliderValueLabelProps) {
-  const { children, ...other } = props
+  const { children, ...other } = props;
 
   return (
     <SliderThumb {...other}>
@@ -38,12 +37,12 @@ function AirbnbThumbComponent(props: SliderValueLabelProps) {
         }}
       />
     </SliderThumb>
-  )
+  );
 }
 
 const RangeDefault = () => {
   return (
-    <ChildCard title='Range' codeModel={<RangesliderCode />}>
+    <ChildCard title="Range" codeModel={<RangesliderCode />}>
       <CustomRangeSlider
         slots={{ thumb: AirbnbThumbComponent }}
         getAriaLabel={(index: any) =>
@@ -52,7 +51,7 @@ const RangeDefault = () => {
         defaultValue={[20, 40]}
       />
     </ChildCard>
-  )
-}
+  );
+};
 
-export default RangeDefault
+export default RangeDefault;

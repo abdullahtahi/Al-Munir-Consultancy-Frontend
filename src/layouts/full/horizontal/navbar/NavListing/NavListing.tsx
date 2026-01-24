@@ -14,10 +14,12 @@ const NavListing = () => {
   const pathDirect = pathname;
   const pathWithoutLastPart = pathname.slice(0, pathname.lastIndexOf('/'));
 
-  const { isCollapse, isSidebarHover } = useSelector((state: RootState) => state.themeCustomizer);
+  const { isCollapse, isSidebarHover } = useSelector(
+    (state: RootState) => state.themeCustomizer
+  );
 
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
-  const hideMenu = lgUp ? isCollapse == "mini-sidebar" && !isSidebarHover : '';
+  const hideMenu = lgUp ? isCollapse == 'mini-sidebar' && !isSidebarHover : '';
 
   return (
     <Box>
@@ -31,15 +33,23 @@ const NavListing = () => {
                 hideMenu={hideMenu}
                 pathWithoutLastPart={pathWithoutLastPart}
                 level={1}
-                key={item.id} onClick={undefined} />
+                key={item.id}
+                onClick={undefined}
+              />
             );
 
             // {/********If Sub No Menu**********/}
           } else {
             return (
-              <NavItem item={item} key={item.id} pathDirect={pathDirect} hideMenu={hideMenu} onClick={function (): void {
-                throw new Error('Function not implemented.');
-              }} />
+              <NavItem
+                item={item}
+                key={item.id}
+                pathDirect={pathDirect}
+                hideMenu={hideMenu}
+                onClick={function (): void {
+                  throw new Error('Function not implemented.');
+                }}
+              />
             );
           }
         })}

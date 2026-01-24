@@ -28,38 +28,44 @@ const Logo: FC = () => {
 
   const renderLogo = () => {
     if (isCollapse === 'mini-sidebar' && !isSidebarHover) {
-      return     <img
-      src={`${BASE_URL + '/' + 'photos/2q6y1ilvmhds047f-1761850004810.jpg'}`}
-      alt="bg"
-      style={{
-        width: '38%',
-        maxWidth: '400px',
-        height: 'auto',
-        objectFit: 'contain',
-      }}
-    />;
+      return (
+        <img
+          src={`${BASE_URL + '/' + 'photos/2q6y1ilvmhds047f-1761850004810.jpg'}`}
+          alt="bg"
+          style={{
+            width: '38%',
+            maxWidth: '400px',
+            height: 'auto',
+            objectFit: 'contain',
+          }}
+        />
+      );
     }
 
     if (activeDir === 'ltr') {
-      return activeMode === 'dark' ?    <img
-      src={`${BASE_URL + '/' + 'photos/2q6y1ilvmhds047f-1761850004810.jpg'}`}
-      alt="bg"
-      style={{
-        width: '38%',
-        maxWidth: '400px',
-        height: 'auto',
-        objectFit: 'contain',
-      }}
-    /> :   <img
-      src={`${BASE_URL + '/' + 'photos/2q6y1ilvmhds047f-1761850004810.jpg'}`}
-      alt="bg"
-      style={{
-        width: '38%',
-        maxWidth: '400px',
-        height: 'auto',
-        objectFit: 'contain',
-      }}
-    />;
+      return activeMode === 'dark' ? (
+        <img
+          src={`${BASE_URL + '/' + 'photos/2q6y1ilvmhds047f-1761850004810.jpg'}`}
+          alt="bg"
+          style={{
+            width: '38%',
+            maxWidth: '400px',
+            height: 'auto',
+            objectFit: 'contain',
+          }}
+        />
+      ) : (
+        <img
+          src={`${BASE_URL + '/' + 'photos/2q6y1ilvmhds047f-1761850004810.jpg'}`}
+          alt="bg"
+          style={{
+            width: '38%',
+            maxWidth: '400px',
+            height: 'auto',
+            objectFit: 'contain',
+          }}
+        />
+      );
     } else {
       return activeMode === 'dark' ? <LogoDarkRTL /> : <LogoLightRTL />;
     }
@@ -71,7 +77,7 @@ const Logo: FC = () => {
       style={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent:"center"
+        justifyContent: 'center',
       }}
     >
       {renderLogo()}

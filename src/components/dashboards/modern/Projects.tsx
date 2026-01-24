@@ -9,7 +9,6 @@ import { IconArrowUpLeft } from '@tabler/icons-react';
 import DashboardCard from '../../shared/DashboardCard';
 import { Props } from 'react-apexcharts';
 
-
 const Projects = () => {
   // chart color
   const theme = useTheme();
@@ -105,7 +104,12 @@ const Projects = () => {
             +9%
           </Typography>
         </Stack>
-        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="80px" />
+        <Chart
+          options={optionscolumnchart}
+          series={seriescolumnchart}
+          type="bar"
+          height="80px"
+        />
       </>
     </DashboardCard>
   );

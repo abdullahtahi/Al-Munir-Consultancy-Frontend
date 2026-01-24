@@ -1,10 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
+import CodeDialog from '@components/shared/CodeDialog';
 
 function GaugePointerCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 
 import {
     GaugeContainer,
@@ -68,8 +67,8 @@ export default function GaugePointerChart() {
     );
 }
 `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default GaugePointerCode
+export default GaugePointerCode;

@@ -1,8 +1,11 @@
-
 import { Button, Stack } from '@mui/material';
 
 const ColorButtons = () => (
-  <Stack spacing={1} direction={{ xs: 'column', sm: 'row' }} justifyContent="center">
+  <Stack
+    spacing={1}
+    direction={{ xs: 'column', sm: 'row' }}
+    justifyContent="center"
+  >
     <Button variant="contained" color="primary">
       Primary
     </Button>

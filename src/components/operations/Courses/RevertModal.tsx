@@ -16,7 +16,11 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import * as constants from 'src/constants/AppConstants';
-import { getContainerGradesByAttributes, isRevertable, revertEIROut } from 'src/services/terminals';
+import {
+  getContainerGradesByAttributes,
+  isRevertable,
+  revertEIROut,
+} from 'src/services/terminals';
 import NotificationModal from 'src/store/NotificationModal';
 
 type NotificationType = 'success' | 'error' | 'warning' | 'info' | 'loading';
@@ -67,9 +71,9 @@ const RevertModal: React.FC<RevertModalProps> = ({
   const terminalId = 1002;
 
   const showNotification = (
-    type: NotificationType, 
-    message: string, 
-    title: string = '', 
+    type: NotificationType,
+    message: string,
+    title: string = '',
     showConfirm: boolean = false
   ) => {
     setNotification({
@@ -82,18 +86,18 @@ const RevertModal: React.FC<RevertModalProps> = ({
   };
 
   const closeNotification = () => {
-    setNotification(prev => ({ ...prev, open: false }));
+    setNotification((prev) => ({ ...prev, open: false }));
   };
 
   const checkRevertibility = async () => {
     try {
       if (!containerData) return false;
-      
+
       const response = await isRevertable(terminalId, {
         containerId: containerData.containerId,
-        transitionId: containerData.transitionId
+        transitionId: containerData.transitionId,
       });
-      
+
       if (response?.data.message === 'SHIPPING_LINE_MISMATCH') {
         showNotification('error', t('container.shippingLineMismatch'));
         return 'SHIPPING_LINE_MISMATCH';
@@ -111,30 +115,34 @@ const RevertModal: React.FC<RevertModalProps> = ({
 
   const handleRevertEIROut = async () => {
     if (!containerData || !selectedGradeId) return;
-    
+
     const revertContainerData = {
       transitionId: containerData.transitionId,
       pickupSlipId: containerData.pickupSlipId,
       gradeId: selectedGradeId,
       ContainerNo: containerData.containerNumber,
       containerId: containerData.containerId,
-      senderCompanyId: containerData.senderCompanyId
+      senderCompanyId: containerData.senderCompanyId,
     };
 
     try {
       showNotification(
-        'loading', 
-        t('container.revertingInProgress'), 
+        'loading',
+        t('container.revertingInProgress'),
         t('container.pleaseWait'),
         false
       );
-      
-      const response = await revertEIROut(terminalId, containerData.eirOutId, revertContainerData);
-      
+
+      const response = await revertEIROut(
+        terminalId,
+        containerData.eirOutId,
+        revertContainerData
+      );
+
       if (response?.data) {
         showNotification(
-          'success', 
-          t('container.revertSuccess'), 
+          'success',
+          t('container.revertSuccess'),
           t('common.success'),
           false
         );
@@ -145,8 +153,8 @@ const RevertModal: React.FC<RevertModalProps> = ({
     } catch (err) {
       console.error('Error reverting EIR Out:', err);
       showNotification(
-        'error', 
-        t('container.revertFailed'), 
+        'error',
+        t('container.revertFailed'),
         t('common.error'),
         true
       );
@@ -156,7 +164,7 @@ const RevertModal: React.FC<RevertModalProps> = ({
   useEffect(() => {
     const fetchData = async () => {
       if (!containerData?.senderCompanyId || !open) return;
-      
+
       setLoading(true);
       try {
         const revertibilityStatus = await checkRevertibility();
@@ -168,14 +176,14 @@ const RevertModal: React.FC<RevertModalProps> = ({
         const result = await getContainerGradesByAttributes({
           shippingLineId: containerData.senderCompanyId,
           limit: constants.all,
-          attributes: ['id', 'grade', 'shippingLineId']
+          attributes: ['id', 'grade', 'shippingLineId'],
         });
-        
+
         if (result?.data?.rows) {
           setGrades(result.data.rows);
         }
       } catch (err) {
-        console.error("Error loading grades:", err);
+        console.error('Error loading grades:', err);
         setError(t('errors.failedToLoadGrades'));
         showNotification('error', t('errors.failedToLoadGrades'));
       } finally {
@@ -193,8 +201,10 @@ const RevertModal: React.FC<RevertModalProps> = ({
 
   const handleGradeChange = (event: SelectChangeEvent<string>) => {
     const selectedValue = event.target.value;
-    const selectedGradeObj = grades.find(grade => grade.grade === selectedValue);
-    
+    const selectedGradeObj = grades.find(
+      (grade) => grade.grade === selectedValue
+    );
+
     setSelectedGrade(selectedValue);
     setSelectedGradeId(selectedGradeObj?.id || '');
     setError('');
@@ -222,17 +232,22 @@ const RevertModal: React.FC<RevertModalProps> = ({
             <Box mb={3}>
               <Box pl={2}>
                 <Typography variant="body1">
-                  <strong>{t('eirOut.containerNumber')}:</strong> {containerData.containerNumber}
+                  <strong>{t('eirOut.containerNumber')}:</strong>{' '}
+                  {containerData.containerNumber}
                 </Typography>
                 <Typography variant="body1">
-                  <strong>{t('eirOut.croNumber')}:</strong> {containerData.croNumber}
+                  <strong>{t('eirOut.croNumber')}:</strong>{' '}
+                  {containerData.croNumber}
                 </Typography>
                 <Typography variant="body1">
-                  <strong>{t('eirOut.serviceStatus')}:</strong> {containerData.serviceStatus}
+                  <strong>{t('eirOut.serviceStatus')}:</strong>{' '}
+                  {containerData.serviceStatus}
                 </Typography>
-                
+
                 <FormControl fullWidth sx={{ mt: 2 }} error={!!error}>
-                  <InputLabel id="grade-select-label">{t('eirOut.grade')}</InputLabel>
+                  <InputLabel id="grade-select-label">
+                    {t('eirOut.grade')}
+                  </InputLabel>
                   <Select
                     labelId="grade-select-label"
                     id="grade-select"
@@ -261,9 +276,9 @@ const RevertModal: React.FC<RevertModalProps> = ({
           <Button onClick={onClose} color="primary" startIcon={<Close />}>
             {t('common.cancel')}
           </Button>
-          <Button 
-            onClick={handleSubmitClick} 
-            color="primary" 
+          <Button
+            onClick={handleSubmitClick}
+            color="primary"
             variant="contained"
             disabled={loading || !selectedGrade}
             startIcon={<CheckCircle />}
@@ -286,15 +301,12 @@ const RevertModal: React.FC<RevertModalProps> = ({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button 
-            onClick={() => setShowConfirmDialog(false)} 
-            color="secondary"
-          >
+          <Button onClick={() => setShowConfirmDialog(false)} color="secondary">
             {t('common.disagree')}
           </Button>
-          <Button 
-            onClick={handleConfirmRevert} 
-            color="primary" 
+          <Button
+            onClick={handleConfirmRevert}
+            color="primary"
             variant="contained"
           >
             {t('common.agree')}

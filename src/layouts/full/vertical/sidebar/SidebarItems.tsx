@@ -16,12 +16,20 @@ const SidebarItems = () => {
 
   const dispatch: AppDispatch = useDispatch();
 
-  const isSidebarHover = useSelector((state: RootState) => state.themeCustomizer.isSidebarHover);
-  const isCollapse = useSelector((state: RootState) => state.themeCustomizer.isCollapse);
-  const isMobileSidebar = useSelector((state: RootState) => state.themeCustomizer.isMobileSidebar);
+  const isSidebarHover = useSelector(
+    (state: RootState) => state.themeCustomizer.isSidebarHover
+  );
+  const isCollapse = useSelector(
+    (state: RootState) => state.themeCustomizer.isCollapse
+  );
+  const isMobileSidebar = useSelector(
+    (state: RootState) => state.themeCustomizer.isMobileSidebar
+  );
 
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
-  const hideMenu: any = lgUp ? isCollapse === "mini-sidebar" && !isSidebarHover : '';
+  const hideMenu: any = lgUp
+    ? isCollapse === 'mini-sidebar' && !isSidebarHover
+    : '';
 
   const handleItemClick = () => {
     dispatch(setIsMobileSidebar(!isMobileSidebar));

@@ -1,4 +1,3 @@
-
 export interface ShippingLine {
   id: number;
   name: string;

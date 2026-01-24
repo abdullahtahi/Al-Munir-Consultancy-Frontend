@@ -46,8 +46,9 @@ const TabEmbedding = () => {
       <Grid
         size={{
           xs: 12,
-          lg: 6
-        }}>
+          lg: 6,
+        }}
+      >
         <img
           src={IconAcc}
           width={500}
@@ -63,8 +64,9 @@ const TabEmbedding = () => {
       <Grid
         size={{
           xs: 12,
-          lg: 6
-        }}>
+          lg: 6,
+        }}
+      >
         <Typography
           variant="h4"
           sx={{
@@ -97,8 +99,8 @@ const TabEmbedding = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Factor in availability for required attendees, and skip checking for conflicts for
-                optional attendees.
+                Factor in availability for required attendees, and skip checking
+                for conflicts for optional attendees.
               </Typography>
             </AccordionDetails>
           </StyledAccordian>
@@ -121,8 +123,8 @@ const TabEmbedding = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Factor in availability for required attendees, and skip checking for conflicts for
-                optional attendees.
+                Factor in availability for required attendees, and skip checking
+                for conflicts for optional attendees.
               </Typography>
             </AccordionDetails>
           </StyledAccordian>
@@ -145,8 +147,8 @@ const TabEmbedding = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                Factor in availability for required attendees, and skip checking for conflicts for
-                optional attendees.
+                Factor in availability for required attendees, and skip checking
+                for conflicts for optional attendees.
               </Typography>
             </AccordionDetails>
           </StyledAccordian>

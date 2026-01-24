@@ -7,7 +7,11 @@ import { styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import config from '@store/config';
-import { setActiveMode, setIsCollapse, setIsMobileSidebar } from '@store/slices/themeCustomizerSlice';
+import {
+  setActiveMode,
+  setIsCollapse,
+  setIsMobileSidebar,
+} from '@store/slices/themeCustomizerSlice';
 import { IconMenu2, IconMoon, IconSun } from '@tabler/icons-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from 'src/store';
@@ -26,9 +30,15 @@ const Header = () => {
   const TopbarHeight = config.topbarHeight;
 
   // drawer
-  const activeMode = useSelector((state: RootState) => state.themeCustomizer.activeMode)
-  const isCollapse = useSelector((state: RootState) => state.themeCustomizer.isCollapse)
-  const isMobileSidebar = useSelector((state: RootState) => state.themeCustomizer.isMobileSidebar)
+  const activeMode = useSelector(
+    (state: RootState) => state.themeCustomizer.activeMode
+  );
+  const isCollapse = useSelector(
+    (state: RootState) => state.themeCustomizer.isCollapse
+  );
+  const isMobileSidebar = useSelector(
+    (state: RootState) => state.themeCustomizer.isMobileSidebar
+  );
 
   const AppBarStyled = styled(AppBar)(({ theme }) => ({
     boxShadow: 'none',
@@ -57,7 +67,9 @@ const Header = () => {
             // Toggle sidebar on both mobile and desktop based on screen size
             if (lgUp) {
               // For large screens, toggle between full-sidebar and mini-sidebar
-              isCollapse === "full-sidebar" ? dispatch(setIsCollapse("mini-sidebar")) : dispatch(setIsCollapse("full-sidebar"));
+              isCollapse === 'full-sidebar'
+                ? dispatch(setIsCollapse('mini-sidebar'))
+                : dispatch(setIsCollapse('full-sidebar'));
             } else {
               // For smaller screens, toggle mobile sidebar
               dispatch(setIsMobileSidebar(!isMobileSidebar));
@@ -70,15 +82,10 @@ const Header = () => {
         {/* ------------------------------------------- */}
         {/* Search Dropdown */}
         {/* ------------------------------------------- */}
-       
 
         <Box flexGrow={1} />
         <Stack spacing={1} direction="row" alignItems="center">
-
-          {lgUp ? (
-            <>
-            </>
-          ) : null}
+          {lgUp ? <></> : null}
           {/* ------------------------------------------- */}
           {/* Ecommerce Dropdown */}
           {/* ------------------------------------------- */}
@@ -90,10 +97,10 @@ const Header = () => {
             size="large"
             color="inherit"
             onClick={() =>
-              dispatch(setActiveMode(activeMode === "light" ? "dark" : "light"))
+              dispatch(setActiveMode(activeMode === 'light' ? 'dark' : 'light'))
             }
           >
-            {activeMode === "light" ? (
+            {activeMode === 'light' ? (
               <IconMoon size="21" stroke="1.5" />
             ) : (
               <IconSun size="21" stroke="1.5" />

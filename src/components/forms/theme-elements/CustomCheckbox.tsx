@@ -20,7 +20,10 @@ const BpIcon = styled('span')(({ theme }) => ({
     outlineOffset: 2,
   },
   'input:hover ~ &': {
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primary : theme.palette.primary,
+    backgroundColor:
+      theme.palette.mode === 'dark'
+        ? theme.palette.primary
+        : theme.palette.primary,
   },
   'input:disabled ~ &': {
     boxShadow: 'none',
@@ -45,25 +48,28 @@ const BpCheckedIcon = styled(BpIcon)({
 });
 
 // Use React.forwardRef to forward the ref
-const CustomCheckbox = React.forwardRef<HTMLButtonElement, CheckboxProps>((props, ref) => (
-  <Checkbox
-    color={props.color || 'default'}
-    checkedIcon={
-      <BpCheckedIcon
-        sx={{
-          backgroundColor: props.color ? `${props.color}.main` : 'primary.main',
-        }}
-      />
-    }
-    icon={<BpIcon />}
-    inputProps={{ 'aria-label': 'Checkbox demo' }}
-    ref={ref}
-    {...props}
-  />
-));
+const CustomCheckbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
+  (props, ref) => (
+    <Checkbox
+      color={props.color || 'default'}
+      checkedIcon={
+        <BpCheckedIcon
+          sx={{
+            backgroundColor: props.color
+              ? `${props.color}.main`
+              : 'primary.main',
+          }}
+        />
+      }
+      icon={<BpIcon />}
+      inputProps={{ 'aria-label': 'Checkbox demo' }}
+      ref={ref}
+      {...props}
+    />
+  )
+);
 
 // Set displayName to help with debugging
 CustomCheckbox.displayName = 'CustomCheckbox';
-
 
 export default CustomCheckbox;

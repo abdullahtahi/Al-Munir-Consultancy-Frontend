@@ -1,4 +1,3 @@
-
 import PageContainer from '@components/container/PageContainer';
 import Breadcrumb from '@layouts/full/shared/breadcrumb/Breadcrumb';
 import Grid from '@mui/material/Grid2';
@@ -17,7 +16,10 @@ const BCrumb = [
 
 function page() {
   return (
-    (<PageContainer title="Drag & drop Table" description="this is Drag & Drop Table">
+    <PageContainer
+      title="Drag & drop Table"
+      description="this is Drag & Drop Table"
+    >
       <Breadcrumb title="Drag & Drop Table" items={BCrumb} />
       <Grid container spacing={3}>
         <Grid sx={{ padding: 2 }} size={12}>
@@ -27,7 +29,7 @@ function page() {
           <Columndragdrop />
         </Grid>
       </Grid>
-    </PageContainer>)
+    </PageContainer>
   );
 }
 export default page;

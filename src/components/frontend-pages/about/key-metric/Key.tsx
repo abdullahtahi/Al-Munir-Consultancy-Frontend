@@ -38,9 +38,14 @@ const Key = () => {
           }}
           size={{
             xs: 6,
-            sm: 6
-          }}>
-          <Typography color="primary.main" textTransform="uppercase" fontSize="13px">
+            sm: 6,
+          }}
+        >
+          <Typography
+            color="primary.main"
+            textTransform="uppercase"
+            fontSize="13px"
+          >
             {key.text}
           </Typography>
           <Typography

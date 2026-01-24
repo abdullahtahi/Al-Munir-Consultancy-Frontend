@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Banner = () => {
   return (
-    (<Box
+    <Box
       bgcolor="primary.light"
       sx={{
         paddingTop: {
@@ -22,8 +22,9 @@ const Banner = () => {
             alignItems="center"
             size={{
               xs: 12,
-              lg: 6
-            }}>
+              lg: 6,
+            }}
+          >
             <Typography
               variant="h1"
               mb={3}
@@ -39,7 +40,12 @@ const Banner = () => {
               Get to know Modernize Dashboard Template
             </Typography>
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-              <Button variant="contained" size="large" component={Link} to="/auth/register">
+              <Button
+                variant="contained"
+                size="large"
+                component={Link}
+                to="/auth/register"
+              >
                 Create an account
               </Button>
               <Button variant="outlined" size="large">
@@ -52,18 +58,20 @@ const Banner = () => {
             alignItems="center"
             size={{
               xs: 12,
-              lg: 5
-            }}>
+              lg: 5,
+            }}
+          >
             <Typography lineHeight={1.9}>
-              Do you need a highly customizable and developer friendly premium next.js admin
-              template packed with numerous features? Modernize React Admin Template has
-              everything you need. This bootstrap based admin template is designed in accordance
-              with industry standards and best practices to provide you.
+              Do you need a highly customizable and developer friendly premium
+              next.js admin template packed with numerous features? Modernize
+              React Admin Template has everything you need. This bootstrap based
+              admin template is designed in accordance with industry standards
+              and best practices to provide you.
             </Typography>
           </Grid>
         </Grid>
       </Container>
-    </Box>)
+    </Box>
   );
 };
 

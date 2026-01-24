@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import {
   TableContainer,
@@ -11,7 +10,8 @@ import {
   TableHead,
   Chip,
   Box,
-  AvatarGroup, Grid
+  AvatarGroup,
+  Grid,
 } from '@mui/material';
 import { Stack } from '@mui/system';
 import DownloadCard from '@components/shared/DownloadCard';
@@ -24,18 +24,20 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-
 const basics = basicsTableData;
-
 
 const columnHelper = createColumnHelper<EnTableType>();
 
 const columns = [
   columnHelper.accessor('imgsrc', {
     header: () => 'Users',
-    cell: info => (
+    cell: (info) => (
       <Stack direction="row" spacing={2}>
-        <Avatar src={info.getValue()} alt={info.getValue()} sx={{ width: 40, height: 40 }} />
+        <Avatar
+          src={info.getValue()}
+          alt={info.getValue()}
+          sx={{ width: 40, height: 40 }}
+        />
         <Box>
           <Typography variant="h6" fontWeight="600">
             {info.row.original.name}
@@ -49,7 +51,7 @@ const columns = [
   }),
   columnHelper.accessor('pname', {
     header: () => 'Project Name',
-    cell: info => (
+    cell: (info) => (
       <Typography color="textSecondary" variant="h6" fontWeight={400}>
         {info.row.original.pname}
       </Typography>
@@ -57,7 +59,7 @@ const columns = [
   }),
   columnHelper.accessor('teams', {
     header: () => 'Team',
-    cell: info => (
+    cell: (info) => (
       <Stack direction="row">
         <AvatarGroup max={4}>
           {info.getValue().map((team) => (
@@ -78,7 +80,7 @@ const columns = [
   }),
   columnHelper.accessor('status', {
     header: () => 'Status',
-    cell: info => (
+    cell: (info) => (
       <Chip
         sx={{
           bgcolor:
@@ -110,10 +112,8 @@ const columns = [
   }),
   columnHelper.accessor('budget', {
     header: () => 'Budget',
-    cell: info => (
-      <Typography variant="h6">
-        ${info.row.original.budget}
-      </Typography>
+    cell: (info) => (
+      <Typography variant="h6">${info.row.original.budget}</Typography>
     ),
   }),
 ];
@@ -128,34 +128,41 @@ const ReactBasicTable = () => {
   });
 
   const handleDownload = () => {
-    const headers = ["Users", "Project Name", "Team", "Status", "Budget"];
-    const rows = data.map((item: { name: any; pname: any; teams: any[]; status: any; budget: any; }) => [
-
-      item.name,
-      item.pname,
-      item.teams.map(team => team.text).join(", "),
-      item.status,
-      item.budget,
-    ]);
+    const headers = ['Users', 'Project Name', 'Team', 'Status', 'Budget'];
+    const rows = data.map(
+      (item: {
+        name: any;
+        pname: any;
+        teams: any[];
+        status: any;
+        budget: any;
+      }) => [
+        item.name,
+        item.pname,
+        item.teams.map((team) => team.text).join(', '),
+        item.status,
+        item.budget,
+      ]
+    );
 
     const csvContent = [
-      headers.join(","),
-      ...rows.map((e: any[]) => e.join(","))
-    ].join("\n");
+      headers.join(','),
+      ...rows.map((e: any[]) => e.join(',')),
+    ].join('\n');
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
 
-    const link = document.createElement("a");
+    const link = document.createElement('a');
     link.href = url;
-    link.setAttribute("download", "table-data.csv");
+    link.setAttribute('download', 'table-data.csv');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
   return (
-    (<DownloadCard title="Basic Table" onDownload={handleDownload}>
+    <DownloadCard title="Basic Table" onDownload={handleDownload}>
       <Grid container spacing={3}>
         <Grid size={12}>
           <Box>
@@ -173,7 +180,10 @@ const ReactBasicTable = () => {
                           <Typography variant="h6">
                             {header.isPlaceholder
                               ? null
-                              : flexRender(header.column.columnDef.header, header.getContext())}
+                              : flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext()
+                                )}
                           </Typography>
                         </TableCell>
                       ))}
@@ -185,7 +195,10 @@ const ReactBasicTable = () => {
                     <TableRow key={row.id}>
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id}>
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
                         </TableCell>
                       ))}
                     </TableRow>
@@ -196,7 +209,7 @@ const ReactBasicTable = () => {
           </Box>
         </Grid>
       </Grid>
-    </DownloadCard>)
+    </DownloadCard>
   );
 };
 

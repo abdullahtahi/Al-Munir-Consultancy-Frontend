@@ -11,7 +11,10 @@ type Props = {
 };
 
 const ChildCard = ({ title, children, codeModel }: Props) => (
-  <Card sx={{ padding: 0, borderColor: (theme: any) => theme.palette.divider }} variant="outlined">
+  <Card
+    sx={{ padding: 0, borderColor: (theme: any) => theme.palette.divider }}
+    variant="outlined"
+  >
     {title ? (
       <>
         <CardHeader title={title} action={codeModel} />

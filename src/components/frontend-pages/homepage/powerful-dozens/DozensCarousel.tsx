@@ -47,7 +47,10 @@ const DozensCarousel = () => {
           width={380}
           height={300}
           borderRadius="16px"
-          sx={{ boxShadow: (theme) => theme.shadows[10], padding: '0 30px 16px' }}
+          sx={{
+            boxShadow: (theme) => theme.shadows[10],
+            padding: '0 30px 16px',
+          }}
         >
           <NavLink to="https://modernize-react.adminmart.com/dashboards/modern">
             <img
@@ -65,7 +68,10 @@ const DozensCarousel = () => {
           width={380}
           height={300}
           borderRadius="16px"
-          sx={{ boxShadow: (theme) => theme.shadows[10], padding: '0 30px 16px' }}
+          sx={{
+            boxShadow: (theme) => theme.shadows[10],
+            padding: '0 30px 16px',
+          }}
         >
           <NavLink to="https://modernize-react-dark.netlify.app/dashboards/ecommerce">
             <img
@@ -83,7 +89,10 @@ const DozensCarousel = () => {
           width={380}
           height={300}
           borderRadius="16px"
-          sx={{ boxShadow: (theme) => theme.shadows[10], padding: '0 30px 16px' }}
+          sx={{
+            boxShadow: (theme) => theme.shadows[10],
+            padding: '0 30px 16px',
+          }}
         >
           <NavLink to="https://modernize-react-rtl.netlify.app/dashboards/modern">
             <img
@@ -101,7 +110,10 @@ const DozensCarousel = () => {
           width={380}
           height={300}
           borderRadius="16px"
-          sx={{ boxShadow: (theme) => theme.shadows[10], padding: '0 30px 16px' }}
+          sx={{
+            boxShadow: (theme) => theme.shadows[10],
+            padding: '0 30px 16px',
+          }}
         >
           <NavLink to="https://modernize-react-horizontal.netlify.app/dashboards/modern">
             <img
@@ -119,7 +131,10 @@ const DozensCarousel = () => {
           width={380}
           height={300}
           borderRadius="16px"
-          sx={{ boxShadow: (theme) => theme.shadows[10], padding: '0 30px 16px' }}
+          sx={{
+            boxShadow: (theme) => theme.shadows[10],
+            padding: '0 30px 16px',
+          }}
         >
           <NavLink to="https://modernize-react.adminmart.com/apps/chats">
             <img
@@ -137,7 +152,10 @@ const DozensCarousel = () => {
           width={380}
           height={300}
           borderRadius="16px"
-          sx={{ boxShadow: (theme) => theme.shadows[10], padding: '0 30px 16px' }}
+          sx={{
+            boxShadow: (theme) => theme.shadows[10],
+            padding: '0 30px 16px',
+          }}
         >
           <NavLink to="https://modernize-react.adminmart.com/apps/email">
             <img

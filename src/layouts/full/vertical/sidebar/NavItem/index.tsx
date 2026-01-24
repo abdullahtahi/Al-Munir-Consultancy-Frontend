@@ -38,13 +38,19 @@ interface ItemType {
 }
 
 const NavItem = ({ item, level, pathDirect, hideMenu, onClick }: ItemType) => {
-  const isBorderRadius = useSelector((state: RootState) => state.themeCustomizer.isBorderRadius)
+  const isBorderRadius = useSelector(
+    (state: RootState) => state.themeCustomizer.isBorderRadius
+  );
 
   const Icon = item?.icon;
   const theme = useTheme();
   const { t } = useTranslation();
   const itemIcon =
-    level > 1 ? <Icon stroke={1.5} size="1rem" /> : <Icon stroke={1.5} size="1.3rem" />;
+    level > 1 ? (
+      <Icon stroke={1.5} size="1rem" />
+    ) : (
+      <Icon stroke={1.5} size="1.3rem" />
+    );
 
   const ListItemStyled = styled(ListItemButton)(() => ({
     whiteSpace: 'nowrap',
@@ -107,7 +113,9 @@ const NavItem = ({ item, level, pathDirect, hideMenu, onClick }: ItemType) => {
           {hideMenu ? '' : <>{t(`${item?.title}`)}</>}
           <br />
           {item?.subtitle ? (
-            <Typography variant="caption">{hideMenu ? '' : item?.subtitle}</Typography>
+            <Typography variant="caption">
+              {hideMenu ? '' : item?.subtitle}
+            </Typography>
           ) : (
             ''
           )}

@@ -8,7 +8,6 @@ import DashboardCard from '../../shared/DashboardCard';
 import { Props } from 'react-apexcharts';
 
 const RevenueUpdates: React.FC = () => {
-
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -49,7 +48,6 @@ const RevenueUpdates: React.FC = () => {
     },
     grid: {
       show: false,
-
     },
     yaxis: {
       min: -5,
@@ -60,7 +58,7 @@ const RevenueUpdates: React.FC = () => {
       categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
       axisTicks: {
         show: false,
-      }
+      },
     },
     tooltip: {
       theme: theme.palette.mode === 'dark' ? 'dark' : 'light',
@@ -79,34 +77,55 @@ const RevenueUpdates: React.FC = () => {
   ];
 
   return (
-    <DashboardCard
-      title="Revenue Updates"
-      subtitle="Overview of Profit">
+    <DashboardCard title="Revenue Updates" subtitle="Overview of Profit">
       <>
         <Stack direction="row" spacing={3}>
           <Stack direction="row" alignItems="center" spacing={1}>
             <Avatar
-              sx={{ width: 9, height: 9, bgcolor: primary, svg: { display: 'none' } }}
+              sx={{
+                width: 9,
+                height: 9,
+                bgcolor: primary,
+                svg: { display: 'none' },
+              }}
             ></Avatar>
             <Box>
-              <Typography variant="subtitle2" fontSize="12px" color="textSecondary">
+              <Typography
+                variant="subtitle2"
+                fontSize="12px"
+                color="textSecondary"
+              >
                 Footware
               </Typography>
             </Box>
           </Stack>
           <Stack direction="row" alignItems="center" spacing={1}>
             <Avatar
-              sx={{ width: 9, height: 9, bgcolor: secondary, svg: { display: 'none' } }}
+              sx={{
+                width: 9,
+                height: 9,
+                bgcolor: secondary,
+                svg: { display: 'none' },
+              }}
             ></Avatar>
             <Box>
-              <Typography variant="subtitle2" fontSize="12px" color="textSecondary">
+              <Typography
+                variant="subtitle2"
+                fontSize="12px"
+                color="textSecondary"
+              >
                 Fashionware
               </Typography>
             </Box>
           </Stack>
         </Stack>
         <Box className="rounded-bars">
-        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="320px" />
+          <Chart
+            options={optionscolumnchart}
+            series={seriescolumnchart}
+            type="bar"
+            height="320px"
+          />
         </Box>
       </>
     </DashboardCard>

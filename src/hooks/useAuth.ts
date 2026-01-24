@@ -2,7 +2,12 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AppDispatch, RootState } from '../store/index';
-import { clearError, loadUser, signInUser, signOutUser } from '../store/slices/authSlice';
+import {
+  clearError,
+  loadUser,
+  signInUser,
+  signOutUser,
+} from '../store/slices/authSlice';
 
 export const useAuth = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,9 +21,11 @@ export const useAuth = () => {
     }
   }, [dispatch, authState.isAuthenticated, authState.loading]);
 
-  const signIn = async (username: string, password: string, recaptchaToken: string) => {
+  const signIn = async (username: string, password: string) => {
     try {
-      const result = await dispatch(signInUser({ username, password, recaptchaToken })).unwrap();
+      const result = await dispatch(
+        signInUser({ username, password })
+      ).unwrap();
       if (result?.token) {
         navigate('/'); // Redirect on successful login
       }

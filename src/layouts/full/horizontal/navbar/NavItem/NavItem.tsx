@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { RootState } from 'src/store';
 
-
 type NavGroup = {
   [x: string]: any;
   id?: string;
@@ -34,12 +33,18 @@ interface ItemType {
 }
 
 const NavItem = ({ item, level, pathDirect, onClick }: ItemType) => {
-  const isBorderRadius = useSelector((state: RootState) => state.themeCustomizer.isBorderRadius)
+  const isBorderRadius = useSelector(
+    (state: RootState) => state.themeCustomizer.isBorderRadius
+  );
 
   const Icon = item.icon;
   const theme = useTheme();
   const itemIcon =
-    level > 1 ? <Icon stroke={1.5} size="1rem" /> : <Icon stroke={1.5} size="1.1rem" />;
+    level > 1 ? (
+      <Icon stroke={1.5} size="1rem" />
+    ) : (
+      <Icon stroke={1.5} size="1.1rem" />
+    );
 
   const ListItemStyled2 = styled(ListItemButton)(() => ({
     padding: '5px 10px',
@@ -47,7 +52,9 @@ const NavItem = ({ item, level, pathDirect, onClick }: ItemType) => {
     borderRadius: `${isBorderRadius}px`,
     marginBottom: level > 1 ? '3px' : '0px',
     color:
-      level > 1 && pathDirect === item.href ? `${theme.palette.primary.main}!important` : theme.palette.text.secondary,
+      level > 1 && pathDirect === item.href
+        ? `${theme.palette.primary.main}!important`
+        : theme.palette.text.secondary,
 
     '&:hover': {
       backgroundColor: theme.palette.primary.light,
@@ -96,6 +103,5 @@ const NavItem = ({ item, level, pathDirect, onClick }: ItemType) => {
     </List>
   );
 };
-
 
 export default NavItem;

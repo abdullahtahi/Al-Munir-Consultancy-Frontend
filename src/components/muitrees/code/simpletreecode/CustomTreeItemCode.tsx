@@ -1,6 +1,4 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
-
+import CodeDialog from '@components/shared/CodeDialog';
 
 function CustomTreeItemCode() {
   return (
@@ -103,7 +101,7 @@ const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
   }
                  `}
     </CodeDialog>
-  )
+  );
 }
 
-export default CustomTreeItemCode
+export default CustomTreeItemCode;

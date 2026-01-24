@@ -14,11 +14,15 @@ import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 import { AppDispatch, RootState } from 'src/store';
 import { lookUpAllThings } from 'src/store/slices/authSlice';
 
-const Depots= () => {
+const Depots = () => {
   const theme = useTheme();
   const dispatch: AppDispatch = useDispatch();
-  const selectedDepot = useSelector((state: RootState) => state.depot.selectedDepot);
-  const terminals = useSelector((state: RootState) => state.auth.terminals?.rows || []);
+  const selectedDepot = useSelector(
+    (state: RootState) => state.depot.selectedDepot
+  );
+  const terminals = useSelector(
+    (state: RootState) => state.auth.terminals?.rows || []
+  );
 
   useEffect(() => {
     if (terminals.length > 0 && !selectedDepot) {
@@ -70,12 +74,14 @@ const Depots= () => {
         {terminals.map((terminal: any) => (
           <MenuItem key={terminal.id} value={terminal.id}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Avatar sx={{ 
-                bgcolor: 'primary.light', 
-                width: 24, 
-                height: 24,
-                color: 'primary.main'
-              }}>
+              <Avatar
+                sx={{
+                  bgcolor: 'primary.light',
+                  width: 24,
+                  height: 24,
+                  color: 'primary.main',
+                }}
+              >
                 <IconMapPin size={16} />
               </Avatar>
               <ListItemText

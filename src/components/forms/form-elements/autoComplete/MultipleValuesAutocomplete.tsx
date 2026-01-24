@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Autocomplete from '@mui/material/Autocomplete';
 import CustomTextField from '../../theme-elements/CustomTextField';
@@ -14,7 +14,11 @@ const MultipleValuesAutocomplete = () => (
     defaultValue={[top100Films[13]]}
     filterSelectedOptions
     renderInput={(params) => (
-      <CustomTextField {...params} placeholder="Favorites" aria-label="Favorites" />
+      <CustomTextField
+        {...params}
+        placeholder="Favorites"
+        aria-label="Favorites"
+      />
     )}
   />
 );

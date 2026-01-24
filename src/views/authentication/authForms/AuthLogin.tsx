@@ -156,6 +156,7 @@ const AuthLogin = ({ title, subtitle, subtext }: AuthLoginProps) => {
               onBlur={handleBlur}
               error={touched.email && Boolean(errors.email)}
               helperText={touched.email && errors.email}
+              autoComplete="username"
             />
           </Box>
           <Box>
@@ -172,6 +173,7 @@ const AuthLogin = ({ title, subtitle, subtext }: AuthLoginProps) => {
               onBlur={handleBlur}
               error={touched.password && Boolean(errors.password)}
               helperText={touched.password && errors.password}
+              autoComplete="current-password"
             />
           </Box>
           <Stack
@@ -202,7 +204,7 @@ const AuthLogin = ({ title, subtitle, subtext }: AuthLoginProps) => {
             variant="contained"
             size="large"
             fullWidth
-              sx={{ width: '400px' }}
+            sx={{ width: '400px' }}
             type="submit"
             disabled={isSubmitting}
           >

@@ -24,7 +24,14 @@ const YearlySales = () => {
       },
       height: 295,
     },
-    colors: [primarylight, primarylight, primary, primarylight, primarylight, primarylight],
+    colors: [
+      primarylight,
+      primarylight,
+      primary,
+      primarylight,
+      primarylight,
+      primarylight,
+    ],
     plotOptions: {
       bar: {
         borderRadius: 4,
@@ -78,7 +85,12 @@ const YearlySales = () => {
       dataItem2="$5,296"
     >
       <>
-        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="295px" />
+        <Chart
+          options={optionscolumnchart}
+          series={seriescolumnchart}
+          type="bar"
+          height="295px"
+        />
       </>
     </DashboardWidgetCard>
   );

@@ -1,6 +1,15 @@
-'use client'
+'use client';
 
-import { Box, Button, Grid, IconButton, InputAdornment, MenuItem, Stack, Tab } from '@mui/material';
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  InputAdornment,
+  MenuItem,
+  Stack,
+  Tab,
+} from '@mui/material';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
@@ -67,7 +76,9 @@ const FormTabs = () => {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
   };
 
@@ -77,18 +88,25 @@ const FormTabs = () => {
 
   const handleClickShowPassword2 = () => setShowPassword2((show) => !show);
 
-  const handleMouseDownPassword2 = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword2 = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
   };
 
   return (
-    (<div>
+    <div>
       {/* ------------------------------------------------------------------------------------------------ */}
       {/* Basic Layout */}
       {/* ------------------------------------------------------------------------------------------------ */}
       <BlankCard>
         <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: (theme: any) => theme.palette.divider }}>
+          <Box
+            sx={{
+              borderBottom: 1,
+              borderColor: (theme: any) => theme.palette.divider,
+            }}
+          >
             <TabList onChange={handleChange} aria-label="lab API tabs example">
               <Tab label="Personal Info" value="1" />
               <Tab label="Account Details" value="2" />
@@ -100,26 +118,36 @@ const FormTabs = () => {
               <Grid
                 size={{
                   xs: 12,
-                  lg: 6
-                }}>
+                  lg: 6,
+                }}
+              >
                 <Grid container spacing={3}>
                   <Grid
                     display="flex"
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="ft-fname" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="ft-fname"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       First Name
                     </CustomFormLabel>
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
-                    <CustomTextField id="ft-fname" placeholder="John" fullWidth />
+                      sm: 9,
+                    }}
+                  >
+                    <CustomTextField
+                      id="ft-fname"
+                      placeholder="John"
+                      fullWidth
+                    />
                   </Grid>
                   {/* 4 */}
                   <Grid
@@ -127,8 +155,9 @@ const FormTabs = () => {
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
+                      sm: 3,
+                    }}
+                  >
                     <CustomFormLabel
                       htmlFor="ft-country"
                       sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
@@ -139,8 +168,9 @@ const FormTabs = () => {
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
+                      sm: 9,
+                    }}
+                  >
                     <CustomSelect
                       id="standard-select-currency"
                       value={country}
@@ -161,18 +191,28 @@ const FormTabs = () => {
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="ft-date" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="ft-date"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Birth Date
                     </CustomFormLabel>
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
-                    <CustomTextField type="date" id="ft-date" placeholder="John Deo" fullWidth />
+                      sm: 9,
+                    }}
+                  >
+                    <CustomTextField
+                      type="date"
+                      id="ft-date"
+                      placeholder="John Deo"
+                      fullWidth
+                    />
                   </Grid>
                 </Grid>
               </Grid>
@@ -180,26 +220,36 @@ const FormTabs = () => {
               <Grid
                 size={{
                   xs: 12,
-                  lg: 6
-                }}>
+                  lg: 6,
+                }}
+              >
                 <Grid container spacing={3}>
                   <Grid
                     display="flex"
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="ft-fname" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="ft-fname"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Last Name
                     </CustomFormLabel>
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
-                    <CustomTextField id="ft-fname" placeholder="Deo" fullWidth />
+                      sm: 9,
+                    }}
+                  >
+                    <CustomTextField
+                      id="ft-fname"
+                      placeholder="Deo"
+                      fullWidth
+                    />
                   </Grid>
                   {/* 4 */}
                   <Grid
@@ -207,17 +257,22 @@ const FormTabs = () => {
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="ft-lang" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="ft-lang"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Language
                     </CustomFormLabel>
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
+                      sm: 9,
+                    }}
+                  >
                     <CustomSelect
                       value={language}
                       onChange={handleChange3}
@@ -237,31 +292,42 @@ const FormTabs = () => {
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="ft-phone" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="ft-phone"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Phone no
                     </CustomFormLabel>
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
-                    <CustomTextField id="ft-phone" placeholder="123 4567 201" fullWidth />
+                      sm: 9,
+                    }}
+                  >
+                    <CustomTextField
+                      id="ft-phone"
+                      placeholder="123 4567 201"
+                      fullWidth
+                    />
                   </Grid>
                 </Grid>
               </Grid>
               <Grid
                 size={{
                   xs: 12,
-                  sm: 3
-                }}></Grid>
+                  sm: 3,
+                }}
+              ></Grid>
               <Grid
                 size={{
                   xs: 12,
-                  sm: 9
-                }}>
+                  sm: 9,
+                }}
+              >
                 <Stack direction="row" spacing={2}>
                   <Button variant="contained" color="primary">
                     Submit
@@ -278,26 +344,36 @@ const FormTabs = () => {
               <Grid
                 size={{
                   xs: 12,
-                  lg: 6
-                }}>
+                  lg: 6,
+                }}
+              >
                 <Grid container spacing={3}>
                   <Grid
                     display="flex"
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="ft-uname" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="ft-uname"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Username
                     </CustomFormLabel>
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
-                    <CustomTextField id="ft-uname" placeholder="John.Deo" fullWidth />
+                      sm: 9,
+                    }}
+                  >
+                    <CustomTextField
+                      id="ft-uname"
+                      placeholder="John.Deo"
+                      fullWidth
+                    />
                   </Grid>
                   {/* 4 */}
                   <Grid
@@ -305,17 +381,22 @@ const FormTabs = () => {
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="ft-pwd" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="ft-pwd"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Password
                     </CustomFormLabel>
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
+                      sm: 9,
+                    }}
+                  >
                     <CustomOutlinedInput
                       type={showPassword ? 'text' : 'password'}
                       endAdornment={
@@ -326,7 +407,11 @@ const FormTabs = () => {
                             onMouseDown={handleMouseDownPassword}
                             edge="end"
                           >
-                            {showPassword ? <IconEyeOff size="20" /> : <IconEye size="20" />}
+                            {showPassword ? (
+                              <IconEyeOff size="20" />
+                            ) : (
+                              <IconEye size="20" />
+                            )}
                           </IconButton>
                         </InputAdornment>
                       }
@@ -341,27 +426,37 @@ const FormTabs = () => {
               <Grid
                 size={{
                   xs: 12,
-                  lg: 6
-                }}>
+                  lg: 6,
+                }}
+              >
                 <Grid container spacing={3}>
                   <Grid
                     display="flex"
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="ft-email" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="ft-email"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Email
                     </CustomFormLabel>
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
+                      sm: 9,
+                    }}
+                  >
                     <CustomOutlinedInput
-                      endAdornment={<InputAdornment position="end">@example.com</InputAdornment>}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          @example.com
+                        </InputAdornment>
+                      }
                       id="fs-email"
                       placeholder="john.deo"
                       fullWidth
@@ -373,17 +468,22 @@ const FormTabs = () => {
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="ft-lang" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="ft-lang"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Confirm
                     </CustomFormLabel>
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
+                      sm: 9,
+                    }}
+                  >
                     <CustomOutlinedInput
                       type={showPassword2 ? 'text' : 'password'}
                       endAdornment={
@@ -394,7 +494,11 @@ const FormTabs = () => {
                             onMouseDown={handleMouseDownPassword2}
                             edge="end"
                           >
-                            {showPassword2 ? <IconEyeOff size="20" /> : <IconEye size="20" />}
+                            {showPassword2 ? (
+                              <IconEyeOff size="20" />
+                            ) : (
+                              <IconEye size="20" />
+                            )}
                           </IconButton>
                         </InputAdornment>
                       }
@@ -408,13 +512,15 @@ const FormTabs = () => {
               <Grid
                 size={{
                   xs: 12,
-                  sm: 3
-                }}></Grid>
+                  sm: 3,
+                }}
+              ></Grid>
               <Grid
                 size={{
                   xs: 12,
-                  sm: 9
-                }}>
+                  sm: 9,
+                }}
+              >
                 <Stack direction="row" spacing={2}>
                   <Button variant="contained" color="primary">
                     Submit
@@ -431,16 +537,18 @@ const FormTabs = () => {
               <Grid
                 size={{
                   xs: 12,
-                  lg: 6
-                }}>
+                  lg: 6,
+                }}
+              >
                 <Grid container spacing={3}>
                   <Grid
                     display="flex"
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
+                      sm: 3,
+                    }}
+                  >
                     <CustomFormLabel
                       htmlFor="ft-twitter"
                       sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
@@ -451,8 +559,9 @@ const FormTabs = () => {
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
+                      sm: 9,
+                    }}
+                  >
                     <CustomTextField
                       id="ft-twitter"
                       placeholder="https://twitter.com/abc"
@@ -464,17 +573,22 @@ const FormTabs = () => {
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="ft-google" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="ft-google"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Google
                     </CustomFormLabel>
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
+                      sm: 9,
+                    }}
+                  >
                     <CustomTextField
                       id="ft-google"
                       placeholder="https://plus.google.com/abc"
@@ -486,17 +600,22 @@ const FormTabs = () => {
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="ft-insta" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="ft-insta"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Instagram
                     </CustomFormLabel>
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
+                      sm: 9,
+                    }}
+                  >
                     <CustomTextField
                       id="ft-insta"
                       placeholder="https://instagram.com/abc"
@@ -508,34 +627,45 @@ const FormTabs = () => {
               <Grid
                 size={{
                   xs: 12,
-                  lg: 6
-                }}>
+                  lg: 6,
+                }}
+              >
                 <Grid container spacing={3}>
                   <Grid
                     display="flex"
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="ft-fb" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="ft-fb"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Facebook
                     </CustomFormLabel>
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
-                    <CustomTextField id="ft-fb" placeholder="https://facebook.com/abc" fullWidth />
+                      sm: 9,
+                    }}
+                  >
+                    <CustomTextField
+                      id="ft-fb"
+                      placeholder="https://facebook.com/abc"
+                      fullWidth
+                    />
                   </Grid>
                   <Grid
                     display="flex"
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
+                      sm: 3,
+                    }}
+                  >
                     <CustomFormLabel
                       htmlFor="ft-linkedin"
                       sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
@@ -546,8 +676,9 @@ const FormTabs = () => {
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
+                      sm: 9,
+                    }}
+                  >
                     <CustomTextField
                       id="ft-linkedin"
                       placeholder="https://linkedin.com/abc"
@@ -559,31 +690,42 @@ const FormTabs = () => {
                     alignItems="center"
                     size={{
                       xs: 12,
-                      sm: 3
-                    }}>
-                    <CustomFormLabel htmlFor="ft-quora" sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}>
+                      sm: 3,
+                    }}
+                  >
+                    <CustomFormLabel
+                      htmlFor="ft-quora"
+                      sx={{ mt: 0, mb: { xs: '-10px', sm: 0 } }}
+                    >
                       Quora
                     </CustomFormLabel>
                   </Grid>
                   <Grid
                     size={{
                       xs: 12,
-                      sm: 9
-                    }}>
-                    <CustomTextField id="ft-quora" placeholder="https://quora.com/abc" fullWidth />
+                      sm: 9,
+                    }}
+                  >
+                    <CustomTextField
+                      id="ft-quora"
+                      placeholder="https://quora.com/abc"
+                      fullWidth
+                    />
                   </Grid>
                 </Grid>
               </Grid>
               <Grid
                 size={{
                   xs: 12,
-                  sm: 3
-                }}></Grid>
+                  sm: 3,
+                }}
+              ></Grid>
               <Grid
                 size={{
                   xs: 12,
-                  sm: 9
-                }}>
+                  sm: 9,
+                }}
+              >
                 <Stack direction="row" spacing={2}>
                   <Button variant="contained" color="primary">
                     Submit
@@ -597,7 +739,7 @@ const FormTabs = () => {
           </TabPanel>
         </TabContext>
       </BlankCard>
-    </div>)
+    </div>
   );
 };
 

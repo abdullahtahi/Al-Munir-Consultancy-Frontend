@@ -14,8 +14,12 @@ import typography from './Typography';
 
 // Build theme function
 export const BuildTheme = (config: any = {}) => {
-  const themeOptions = LightThemeColors.find((theme) => theme.name === config.theme);
-  const darkthemeOptions = DarkThemeColors.find((theme) => theme.name === config.theme);
+  const themeOptions = LightThemeColors.find(
+    (theme) => theme.name === config.theme
+  );
+  const darkthemeOptions = DarkThemeColors.find(
+    (theme) => theme.name === config.theme
+  );
 
   const defaultTheme = config.mode === 'dark' ? baseDarkTheme : baselightTheme;
   const defaultShadow = config.mode === 'dark' ? darkshadows : shadows;
@@ -63,4 +67,3 @@ const ThemeSettings = () => {
 };
 
 export { ThemeSettings };
-

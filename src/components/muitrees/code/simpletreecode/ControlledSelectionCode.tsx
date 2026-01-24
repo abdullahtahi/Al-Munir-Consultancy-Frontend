@@ -1,11 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
-
+import CodeDialog from '@components/shared/CodeDialog';
 
 function ControlledSelectionCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -91,8 +89,8 @@ function ControlledSelectiontree() {
 export default ControlledSelectiontree
             
             `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default ControlledSelectionCode
+export default ControlledSelectionCode;

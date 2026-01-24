@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { Box } from '@mui/material';
 
@@ -21,7 +21,10 @@ const CustomExRadio = () => {
         inputProps={{ 'aria-label': 'primary checkbox' }}
       />
 
-      <CustomRadio disabled inputProps={{ 'aria-label': 'disabled checked checkbox' }} />
+      <CustomRadio
+        disabled
+        inputProps={{ 'aria-label': 'disabled checked checkbox' }}
+      />
       <CustomRadio
         checked={!checked}
         inputProps={{ 'aria-label': 'checkbox with default color' }}

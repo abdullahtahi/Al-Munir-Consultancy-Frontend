@@ -89,7 +89,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
       fatherCnic: Yup.string(),
       motherName: Yup.string(),
       motherEducation: Yup.string(),
-       motherOccupation: Yup.string(),
+      motherOccupation: Yup.string(),
       motherCnic: Yup.string(),
       permanentAddress: Yup.string(),
       secondaryAddress: Yup.string(),
@@ -190,7 +190,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                 residentNumber: singleUser.Student?.residentNumber || '',
                 admissionNumber: singleUser.admissionNumber || '',
                 name: singleUser?.DependOn?.name,
-                status:singleUser.status,
+                status: singleUser.status,
                 relation: singleUser?.DependOn?.relation,
                 address: singleUser?.DependOn?.address,
                 profileImg: singleUser.Student?.profileImg || '',
@@ -210,7 +210,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
         enableReinitialize
       >
         {({ handleSubmit, errors }) => {
-          console.log("errors 210",errors)
+          console.log('errors 210', errors);
           return (
             <Form onSubmit={handleSubmit}>
               <DialogContent>
@@ -391,22 +391,25 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                       type="string"
                     />
                   </Grid>
-             { mode === 'Edit' &&     <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
-                    <CustomSelect
-                      name="status"
-                      label="status"
-                      placeholder="Enter Status"
-                      options={status}
-                    />
-                  </Grid>
-}
+                  {mode === 'Edit' && (
+                    <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
+                      <CustomSelect
+                        name="status"
+                        label="status"
+                        placeholder="Enter Status"
+                        options={status}
+                      />
+                    </Grid>
+                  )}
                   {mode === 'Edit' && (
                     <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                       <CustomFields
                         name="joiningDate"
                         label="Joining Date"
                         placeholder=""
-                        value={dayjs(singleUser?.createdAt).format('DD-MM-YYYY')}
+                        value={dayjs(singleUser?.createdAt).format(
+                          'DD-MM-YYYY'
+                        )}
                         disabled={true}
                       />
                     </Grid>

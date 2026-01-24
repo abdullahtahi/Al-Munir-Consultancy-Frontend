@@ -1,11 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
-
+import CodeDialog from '@components/shared/CodeDialog';
 
 function BasicCustomIconsCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -82,8 +80,8 @@ const CustomTreeItem = styled(TreeItem)({
 
 
             `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default BasicCustomIconsCode
+export default BasicCustomIconsCode;

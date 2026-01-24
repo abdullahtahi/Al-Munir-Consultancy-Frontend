@@ -7,11 +7,10 @@ import { Card } from '@mui/material';
 import { CustomizerContext } from 'src/context/CustomizerContext';
 
 type Props = {
-  children: any | any[]
+  children: any | any[];
 };
 
 const AppCard = ({ children }: Props) => {
-
   const { isCardShadow } = useContext(CustomizerContext);
 
   return (

@@ -23,16 +23,14 @@ interface ChangeRoleStatusConfirmationDialogProps {
   isLoading?: boolean;
 }
 
-const ChangeRoleStatusConfirmationDialog: React.FC<ChangeRoleStatusConfirmationDialogProps> = ({
-  open,
-  onClose,
-  onConfirm,
-  selectedRoleRow,
-  isLoading,
-}) => {
+const ChangeRoleStatusConfirmationDialog: React.FC<
+  ChangeRoleStatusConfirmationDialogProps
+> = ({ open, onClose, onConfirm, selectedRoleRow, isLoading }) => {
   const { t } = useTranslation();
   const dispatch: AppDispatch = useDispatch();
-  const selectedDepot = useSelector((state: RootState) => state.depot.selectedDepot);
+  const selectedDepot = useSelector(
+    (state: RootState) => state.depot.selectedDepot
+  );
   if (!selectedDepot?.id) {
     // dispatch(openDialog('No depot selected. Please select a depot first.'));
     return null;
@@ -41,18 +39,20 @@ const ChangeRoleStatusConfirmationDialog: React.FC<ChangeRoleStatusConfirmationD
   // const changeStatusRoleLoader = useSelector((state: RootState) => state.loader.actions['changeStatusRole']);
 
   const handleAgreeStatusChangeClick = async () => {
-    if (!selectedRoleRow) { return; }
+    if (!selectedRoleRow) {
+      return;
+    }
     try {
       // dispatch(showLoader('changeStatusRole'));
       // const response = await toggleRoleStatus(selectedDepot?.id, selectedRoleRow?.id);
       // if (response?.id) {
-        // dispatch(showSnackbar({
-        //   message: selectedRoleRow?.isActive
-        //     ? t('role.deactivatedSuccessfully')
-        //     : t('role.activatedSuccessfully'),
-        //   severity: 'success',
-        // }));
-        // onConfirm?.();
+      // dispatch(showSnackbar({
+      //   message: selectedRoleRow?.isActive
+      //     ? t('role.deactivatedSuccessfully')
+      //     : t('role.activatedSuccessfully'),
+      //   severity: 'success',
+      // }));
+      // onConfirm?.();
       // }
     } catch (error: any) {
       // dispatch(showSnackbar({ message: error?.message || t('appModule.genericError'), severity: 'error' }));
@@ -64,9 +64,7 @@ const ChangeRoleStatusConfirmationDialog: React.FC<ChangeRoleStatusConfirmationD
   return (
     <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
       <DialogTitle>
-        {selectedRoleRow?.isActive
-          ? t('role.deactivate')
-          : t('role.activate')}
+        {selectedRoleRow?.isActive ? t('role.deactivate') : t('role.activate')}
       </DialogTitle>
       <DialogContent>{t('appModule.revertMessage')}</DialogContent>
       <DialogActions>
@@ -74,7 +72,7 @@ const ChangeRoleStatusConfirmationDialog: React.FC<ChangeRoleStatusConfirmationD
           label="Disagree"
           onClick={onClose}
           color="error"
-          size='medium'
+          size="medium"
           variant="contained"
           sx={{ textTransform: 'uppercase' }}
         />
@@ -82,7 +80,7 @@ const ChangeRoleStatusConfirmationDialog: React.FC<ChangeRoleStatusConfirmationD
           label="Agree"
           onClick={handleAgreeStatusChangeClick}
           color="primary"
-          size='medium'
+          size="medium"
           variant="contained"
           sx={{ textTransform: 'uppercase' }}
         />

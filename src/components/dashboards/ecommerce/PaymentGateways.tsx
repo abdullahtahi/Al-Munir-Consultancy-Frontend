@@ -5,11 +5,10 @@ import { useTheme } from '@mui/material/styles';
 import { Stack, Typography, Avatar, Box, Button } from '@mui/material';
 import DashboardCard from '../../shared/DashboardCard';
 
-import icon1Img from "src/assets/images/svgs/icon-paypal.svg"
-import icon2Img from "src/assets/images/svgs/icon-office-bag.svg"
-import icon3Img from "src/assets/images/svgs/icon-master-card.svg"
-import icon4Img from "src/assets/images/svgs/icon-pie.svg"
-
+import icon1Img from 'src/assets/images/svgs/icon-paypal.svg';
+import icon2Img from 'src/assets/images/svgs/icon-office-bag.svg';
+import icon3Img from 'src/assets/images/svgs/icon-master-card.svg';
+import icon4Img from 'src/assets/images/svgs/icon-pie.svg';
 
 interface statType {
   title: string;
@@ -18,10 +17,9 @@ interface statType {
   color: string;
   lightcolor: string;
   icon: string;
-  }
+}
 
-  const PaymentGateways: React.FC = () => {
-
+const PaymentGateways: React.FC = () => {
   // chart color
   const theme = useTheme();
   const primary = theme.palette.primary.main;
@@ -33,8 +31,7 @@ interface statType {
   const secondary = theme.palette.success.main;
   const secondarylight = theme.palette.success.light;
 
-
-    const stats: statType[] = [
+  const stats: statType[] = [
     {
       title: 'Paypal',
       subtitle: 'Big Brands',
@@ -84,9 +81,18 @@ interface statType {
               <Stack direction="row" alignItems="center" spacing={2}>
                 <Avatar
                   variant="rounded"
-                  sx={{ bgcolor: stat.lightcolor, color: stat.color, width: 40, height: 40 }}
+                  sx={{
+                    bgcolor: stat.lightcolor,
+                    color: stat.color,
+                    width: 40,
+                    height: 40,
+                  }}
                 >
-                    <Avatar src={stat.icon} alt={stat.icon} sx={{ width: 24, height: 24 }} />
+                  <Avatar
+                    src={stat.icon}
+                    alt={stat.icon}
+                    sx={{ width: 24, height: 24 }}
+                  />
                 </Avatar>
                 <Box>
                   <Typography variant="h6" mb="4px">
@@ -98,7 +104,11 @@ interface statType {
                 </Box>
               </Stack>
               {stat.price < 400 ? (
-                <Typography variant="subtitle2" color="textSecondary" fontWeight="600">
+                <Typography
+                  variant="subtitle2"
+                  color="textSecondary"
+                  fontWeight="600"
+                >
                   -${stat.price}
                 </Typography>
               ) : (
@@ -108,7 +118,11 @@ interface statType {
               )}
             </Stack>
           ))}
-          <Button variant="outlined" color="primary" sx={{mt: "40px !important"}}>
+          <Button
+            variant="outlined"
+            color="primary"
+            sx={{ mt: '40px !important' }}
+          >
             View all transactions
           </Button>
         </Stack>

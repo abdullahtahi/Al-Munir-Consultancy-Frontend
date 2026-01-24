@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import {
-  TextField,
-  Typography,
-  CircularProgress,
-} from '@mui/material';
+import { TextField, Typography, CircularProgress } from '@mui/material';
 import { baseUrl, upload } from 'src/services/default';
 import { useFormikContext } from 'formik';
 
@@ -17,27 +13,26 @@ const FileUploadField: React.FC<FileUploadProps> = ({ name, label }) => {
     useFormikContext<any>();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
-    
+
     try {
       setLoading(true);
-      
+
       if (file) {
         const response: any = await upload(`/api/v1/upload/image`, file);
         await setFieldValue(name, response?.path);
       } else {
         await setFieldValue(name, '');
       }
-      
 
       setFieldTouched(name, true);
-      
 
       setTimeout(() => {
         validateField(name);
       }, 100);
-      
     } catch (error) {
       console.error(`Error uploading ${name}:`, error);
       setFieldTouched(name, true);
@@ -46,14 +41,16 @@ const FileUploadField: React.FC<FileUploadProps> = ({ name, label }) => {
     }
   };
 
-  const errorText = touched[name] && errors[name] ? (errors[name] as string) : '';
+  const errorText =
+    touched[name] && errors[name] ? (errors[name] as string) : '';
 
   return (
     <>
-   {label !=="" && <Typography variant="h6" sx={{ mb: 2 }}>
-        {label}
-      </Typography>
-        }
+      {label !== '' && (
+        <Typography variant="h6" sx={{ mb: 2 }}>
+          {label}
+        </Typography>
+      )}
       <TextField
         name={name}
         type="file"

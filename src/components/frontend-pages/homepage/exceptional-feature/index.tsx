@@ -23,12 +23,6 @@ const StyledAnimationFeature = styled(Box)(() => ({
   boxSizing: 'border-box',
 }));
 
-
-
-
-
-
-
 const slide1 = [
   {
     icon: IconColor,
@@ -198,13 +192,18 @@ const ExceptionalFeature = () => {
   const theme = useTheme();
 
   const StyledAnimationContent = styled(Box)(() => ({
-    animation: theme.direction == 'ltr' ? 'marquee 25s linear infinite' : 'marqueeRtl 45s linear infinite'
+    animation:
+      theme.direction == 'ltr'
+        ? 'marquee 25s linear infinite'
+        : 'marqueeRtl 45s linear infinite',
   }));
 
   const StyledAnimationContent2 = styled(Box)(() => ({
-    animation: theme.direction == 'ltr' ? 'marquee2 25s linear infinite' : 'marquee2Rtl 45s linear infinite'
+    animation:
+      theme.direction == 'ltr'
+        ? 'marquee2 25s linear infinite'
+        : 'marquee2Rtl 45s linear infinite',
   }));
-
 
   const StyledFeatureBox = styled(Box)(() => ({
     boxShadow: theme.shadows[10],
@@ -221,91 +220,99 @@ const ExceptionalFeature = () => {
     flexShrink: 0,
   }));
 
-  return (<>
-    <Container
-      sx={{
-        maxWidth: '1400px !important',
-      }}
-    >
-      <Box
-        bgcolor="primary.light"
-        borderRadius="24px"
+  return (
+    <>
+      <Container
         sx={{
-          py: {
-            xs: '40px',
-            lg: '70px',
-          },
+          maxWidth: '1400px !important',
         }}
       >
-        <Container maxWidth="lg">
-          <Grid container spacing={3} alignItems="center" justifyContent="center">
+        <Box
+          bgcolor="primary.light"
+          borderRadius="24px"
+          sx={{
+            py: {
+              xs: '40px',
+              lg: '70px',
+            },
+          }}
+        >
+          <Container maxWidth="lg">
             <Grid
-              size={{
-                xs: 12,
-                lg: 7,
-                sm: 9
-              }}>
-              <Typography
-                variant="h4"
-                mb="55px"
-                textAlign="center"
-                fontWeight={700}
-                fontSize="40px"
-                lineHeight="1.2"
-                sx={{
-                  fontSize: {
-                    lg: '40px',
-                    xs: '30px',
-                  },
+              container
+              spacing={3}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Grid
+                size={{
+                  xs: 12,
+                  lg: 7,
+                  sm: 9,
                 }}
               >
-                Enjoy unparalleled features & exceptional flexibility.
-              </Typography>
+                <Typography
+                  variant="h4"
+                  mb="55px"
+                  textAlign="center"
+                  fontWeight={700}
+                  fontSize="40px"
+                  lineHeight="1.2"
+                  sx={{
+                    fontSize: {
+                      lg: '40px',
+                      xs: '30px',
+                    },
+                  }}
+                >
+                  Enjoy unparalleled features & exceptional flexibility.
+                </Typography>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
+          </Container>
 
-        <StyledAnimationFeature>
-          <StyledAnimationContent display="flex" gap="30px">
-            {slide1.map((slide, i) => (
-              <StyledFeatureBox key={i}>
-                <img src={slide.icon} alt="color" width={24} height={24} />
-                <Typography fontSize="15px" fontWeight={600}>
-                  {slide.text}
-                </Typography>
-              </StyledFeatureBox>
-            ))}
-          </StyledAnimationContent>
-        </StyledAnimationFeature>
+          <StyledAnimationFeature>
+            <StyledAnimationContent display="flex" gap="30px">
+              {slide1.map((slide, i) => (
+                <StyledFeatureBox key={i}>
+                  <img src={slide.icon} alt="color" width={24} height={24} />
+                  <Typography fontSize="15px" fontWeight={600}>
+                    {slide.text}
+                  </Typography>
+                </StyledFeatureBox>
+              ))}
+            </StyledAnimationContent>
+          </StyledAnimationFeature>
 
-        <StyledAnimationFeature>
-          <StyledAnimationContent2 display="flex" gap="30px">
-            {slide2.map((slide, i) => (
-              <StyledFeatureBox key={i}>
-                <img src={slide.icon} alt="color" width={24} height={24} />
-                <Typography fontSize="15px" fontWeight={600}>
-                  {slide.text}
-                </Typography>
-              </StyledFeatureBox>
-            ))}
-          </StyledAnimationContent2>
-        </StyledAnimationFeature>
+          <StyledAnimationFeature>
+            <StyledAnimationContent2 display="flex" gap="30px">
+              {slide2.map((slide, i) => (
+                <StyledFeatureBox key={i}>
+                  <img src={slide.icon} alt="color" width={24} height={24} />
+                  <Typography fontSize="15px" fontWeight={600}>
+                    {slide.text}
+                  </Typography>
+                </StyledFeatureBox>
+              ))}
+            </StyledAnimationContent2>
+          </StyledAnimationFeature>
 
-        <StyledAnimationFeature>
-          <StyledAnimationContent display="flex" gap="30px">
-            {slide3.map((slide, i) => (
-              <StyledFeatureBox key={i}>
-                <img src={slide.icon} alt="color" width={24} height={24} />
-                <Typography fontSize="15px" fontWeight={600}>
-                  {slide.text}
-                </Typography>
-              </StyledFeatureBox>
-            ))}
-          </StyledAnimationContent>
-        </StyledAnimationFeature>
-      </Box>
-    </Container>
-  </>);
+          <StyledAnimationFeature>
+            <StyledAnimationContent display="flex" gap="30px">
+              {slide3.map((slide, i) => (
+                <StyledFeatureBox key={i}>
+                  <img src={slide.icon} alt="color" width={24} height={24} />
+                  <Typography fontSize="15px" fontWeight={600}>
+                    {slide.text}
+                  </Typography>
+                </StyledFeatureBox>
+              ))}
+            </StyledAnimationContent>
+          </StyledAnimationFeature>
+        </Box>
+      </Container>
+    </>
+  );
 };
 
 export default ExceptionalFeature;

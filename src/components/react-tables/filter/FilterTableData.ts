@@ -39,7 +39,7 @@ export const basicsTableData: BasicsTableDataType[] = [
   {
     id: '3',
     invoiceno: '3068',
-    imgsrc:img3,
+    imgsrc: img3,
     name: 'Christopher Jamil',
     post: 'Project Manager',
     pname: 'MedicalPro WP Theme',
@@ -69,7 +69,7 @@ export const basicsTableData: BasicsTableDataType[] = [
   {
     id: '6',
     invoiceno: '3071',
-    imgsrc:img1,
+    imgsrc: img1,
     name: 'Sunil Joshi',
     post: 'Web Designer',
     pname: 'Elite Admin',
@@ -79,7 +79,7 @@ export const basicsTableData: BasicsTableDataType[] = [
   {
     id: '7',
     invoiceno: '3072',
-    imgsrc:img2,
+    imgsrc: img2,
     name: 'Andrew McDownland',
     post: 'Project Manager',
     pname: 'Real Homes WP Theme',
@@ -149,7 +149,7 @@ export const basicsTableData: BasicsTableDataType[] = [
   {
     id: '14',
     invoiceno: '3079',
-    imgsrc:img3,
+    imgsrc: img3,
     name: 'Christopher Jamil',
     post: 'Project Manager',
     pname: 'MedicalPro WP Theme',

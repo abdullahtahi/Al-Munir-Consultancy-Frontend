@@ -1,9 +1,8 @@
-
 import { Helmet } from 'react-helmet-async';
 
 type Props = {
   description?: string;
-  children: any | any[]
+  children: any | any[];
   title?: string;
 };
 

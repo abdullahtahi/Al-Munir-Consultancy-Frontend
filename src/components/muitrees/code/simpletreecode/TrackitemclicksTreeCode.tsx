@@ -1,11 +1,9 @@
-
-import CodeDialog from "@components/shared/CodeDialog";
-
+import CodeDialog from '@components/shared/CodeDialog';
 
 function TrackitemclicksTreeCode() {
-    return (
-        <CodeDialog>
-            {`
+  return (
+    <CodeDialog>
+      {`
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -59,8 +57,8 @@ function TrackitemclicksTree() {
 
 export default TrackitemclicksTree
     `}
-        </CodeDialog>
-    )
+    </CodeDialog>
+  );
 }
 
-export default TrackitemclicksTreeCode
+export default TrackitemclicksTreeCode;

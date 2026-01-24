@@ -30,7 +30,7 @@ interface AddEditRoleDialogProps {
   mode: 'add' | 'edit';
   onClose: () => void;
   onSave: () => void;
-  selectedRow?: any | null,
+  selectedRow?: any | null;
   isLoading?: boolean;
 }
 
@@ -51,7 +51,7 @@ const AddEditRoleDialog: React.FC<AddEditRoleDialogProps> = ({
     message: '',
     severity: 'error' as 'error' | 'success' | 'info' | 'warning',
   });
-  
+
   const initialValues: any = useMemo(() => {
     if (isEdit && selectedRow) {
       return {
@@ -66,29 +66,28 @@ const AddEditRoleDialog: React.FC<AddEditRoleDialogProps> = ({
     };
   }, [mode, selectedRow]);
 
-  const validationSchema = () => Yup.object().shape({
-    name: Yup.string().required('name is required'),
-    description: Yup.string().required('Description is required'),
-  });
+  const validationSchema = () =>
+    Yup.object().shape({
+      name: Yup.string().required('name is required'),
+      description: Yup.string().required('Description is required'),
+    });
 
   const handleSubmit = async (values: any) => {
     try {
-
-      let response:any;
+      let response: any;
 
       if (isEdit && selectedRow?.id) {
-
         response = await updateRole(selectedRow.id, values);
       } else {
         response = await addRole(values);
       }
 
       if (response?.data) {
-            setSnackbar({
-              open: true,
-              message:isEdit ? 'Updated Successfull': 'Created Successfull',
-              severity: 'success',
-            });
+        setSnackbar({
+          open: true,
+          message: isEdit ? 'Updated Successfull' : 'Created Successfull',
+          severity: 'success',
+        });
 
         onSave();
         handleClose();
@@ -96,7 +95,7 @@ const AddEditRoleDialog: React.FC<AddEditRoleDialogProps> = ({
     } catch (error: any) {
       setSnackbar({
         open: true,
-        message:error?.message,
+        message: error?.message,
         severity: 'error',
       });
     }
@@ -107,15 +106,13 @@ const AddEditRoleDialog: React.FC<AddEditRoleDialogProps> = ({
   };
 
   const transformedTitle = title ? t(title) : t('role.add');
-  console.log(
-    "wprling",snackbar
-  )
+  console.log('wprling', snackbar);
 
   return (
     <Dialog
       open={open}
       onClose={handleClose}
-      maxWidth='sm'
+      maxWidth="sm"
       fullWidth={true}
       slotProps={{
         paper: {
@@ -131,11 +128,10 @@ const AddEditRoleDialog: React.FC<AddEditRoleDialogProps> = ({
         validationSchema={validationSchema()}
         onSubmit={handleSubmit}
       >
-        {({ errors, touched, handleChange,handleSubmit, values }) => (
+        {({ errors, touched, handleChange, handleSubmit, values }) => (
           <Form onSubmit={handleSubmit}>
             <DialogContent>
               <Grid container spacing={2}>
-
                 <Grid size={{ xs: 12, sm: 6 }}>
                   <CustomTextField
                     label="Role*"
@@ -163,7 +159,6 @@ const AddEditRoleDialog: React.FC<AddEditRoleDialogProps> = ({
                     fullWidth
                   />
                 </Grid>
-
               </Grid>
             </DialogContent>
             <DialogActions>
@@ -177,7 +172,7 @@ const AddEditRoleDialog: React.FC<AddEditRoleDialogProps> = ({
                 sx={{ textTransform: 'uppercase' }}
               />
               <GenericButton
-                label={mode === 'add' ? "Save" : "Update"}
+                label={mode === 'add' ? 'Save' : 'Update'}
                 color="primary"
                 variant="contained"
                 size="medium"

@@ -18,7 +18,11 @@ const DefaultCheckbox = () => {
         inputProps={{ 'aria-label': 'primary checkbox' }}
       />
 
-      <CustomCheckbox disabled checked inputProps={{ 'aria-label': 'disabled checked checkbox' }} />
+      <CustomCheckbox
+        disabled
+        checked
+        inputProps={{ 'aria-label': 'disabled checked checkbox' }}
+      />
       <CustomCheckbox
         defaultChecked
         indeterminate

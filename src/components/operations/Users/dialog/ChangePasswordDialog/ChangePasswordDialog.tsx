@@ -72,7 +72,7 @@ const ChangePasswordDialog: React.FC<ChangePasswordDialogProps> = ({
         }}
         enableReinitialize
       >
-        {({ handleSubmit, errors, values}) => (
+        {({ handleSubmit, errors, values }) => (
           <Form onSubmit={handleSubmit}>
             <DialogContent>
               <Grid container spacing={2}>
@@ -116,8 +116,8 @@ const ChangePasswordDialog: React.FC<ChangePasswordDialogProps> = ({
                 label={'Change Password'}
                 type="submit"
                 disabled={
-                  Object.keys(errors).length > 0 || 
-                  !values.newPassword || 
+                  Object.keys(errors).length > 0 ||
+                  !values.newPassword ||
                   !values.confirmPassword
                 }
                 color="primary"

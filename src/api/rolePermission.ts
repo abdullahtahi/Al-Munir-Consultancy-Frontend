@@ -6,6 +6,9 @@ export const getPermissionsByRole = async (roleId: number) => {
   return await get(`${api}?roleId=${roleId}`);
 };
 
-export const assignPermissionsToRole = async (data: { roleId: number; permissionIds: number[] }) => {
+export const assignPermissionsToRole = async (data: {
+  roleId: number;
+  permissionIds: number[];
+}) => {
   return await post(`${api}/assign`, data);
 };

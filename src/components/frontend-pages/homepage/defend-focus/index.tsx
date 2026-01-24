@@ -5,7 +5,12 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { styled } from '@mui/material/styles';
-import { IconAppWindow, IconArrowRampLeft, IconUserCircle, IconWallet } from '@tabler/icons-react';
+import {
+  IconAppWindow,
+  IconArrowRampLeft,
+  IconUserCircle,
+  IconWallet,
+} from '@tabler/icons-react';
 import { useTheme } from '@mui/material/styles';
 import TabTeamScheduling from './TabTeamScheduling';
 import TabPayments from './TabPayments';
@@ -19,7 +24,12 @@ const COMMON_TAB = [
     label: 'Team Scheduling',
     disabled: false,
   },
-  { value: '2', icon: <IconWallet width={20} height={20} />, label: 'Payments', disabled: false },
+  {
+    value: '2',
+    icon: <IconWallet width={20} height={20} />,
+    label: 'Payments',
+    disabled: false,
+  },
   {
     value: '3',
     icon: <IconAppWindow width={20} height={20} />,
@@ -52,7 +62,7 @@ const DefendFocus = () => {
   const StyledTab = styled(Tab)(() => ({
     fontWeight: 500,
     borderRight: `1px solid ${borderColor}`,
-    "& .MuiTab-icon": {
+    '& .MuiTab-icon': {
       marginRight: '12px',
       width: '24px',
       height: '24px',

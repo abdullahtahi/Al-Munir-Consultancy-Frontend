@@ -12,7 +12,10 @@ import Navigation from '@layouts/full/vertical/header/Navigation';
 import Profile from '@layouts/full/vertical/header/Profile';
 import Search from '@layouts/full/vertical/header/Search';
 import config from '@store/config';
-import { setActiveMode, setIsMobileSidebar } from '@store/slices/themeCustomizerSlice';
+import {
+  setActiveMode,
+  setIsMobileSidebar,
+} from '@store/slices/themeCustomizerSlice';
 import { IconMenu2, IconMoon, IconSun } from '@tabler/icons-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from 'src/store';
@@ -21,10 +24,12 @@ const Header = () => {
   const lgDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'));
   const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'));
   const dispatch: AppDispatch = useDispatch();
-  const terminals = useSelector((state: RootState)=>state.auth.terminals)
+  const terminals = useSelector((state: RootState) => state.auth.terminals);
 
   // drawer
-  const { isLayout, isMobileSidebar, activeMode, } = useSelector((state: RootState) => state.themeCustomizer);
+  const { isLayout, isMobileSidebar, activeMode } = useSelector(
+    (state: RootState) => state.themeCustomizer
+  );
   const TopbarHeight = config.topbarHeight;
 
   const AppBarStyled = styled(AppBar)(({ theme }) => ({
@@ -43,7 +48,6 @@ const Header = () => {
   }));
 
   return (
-
     <AppBarStyled position="sticky" color="default" elevation={8}>
       <ToolbarStyled
         sx={{
@@ -60,7 +64,8 @@ const Header = () => {
           <IconButton
             color="inherit"
             aria-label="menu"
-            onClick={() => dispatch(setIsMobileSidebar(!isMobileSidebar))}>
+            onClick={() => dispatch(setIsMobileSidebar(!isMobileSidebar))}
+          >
             <IconMenu2 />
           </IconButton>
         ) : (
@@ -78,7 +83,6 @@ const Header = () => {
 
         <Box flexGrow={1} />
         <Stack spacing={1} direction="row" alignItems="center">
-
           <Language />
           {/* ------------------------------------------- */}
           {/* Ecommerce Dropdown */}
@@ -90,9 +94,16 @@ const Header = () => {
 
           <IconButton size="large" color="inherit">
             {activeMode === 'light' ? (
-              <IconMoon size="21" stroke="1.5" onClick={() => dispatch(setActiveMode("dark"))} />
+              <IconMoon
+                size="21"
+                stroke="1.5"
+                onClick={() => dispatch(setActiveMode('dark'))}
+              />
             ) : (
-              <IconSun size="21" stroke="1.5" onClick={() => dispatch(setActiveMode("light"))}
+              <IconSun
+                size="21"
+                stroke="1.5"
+                onClick={() => dispatch(setActiveMode('light'))}
               />
             )}
           </IconButton>
@@ -102,7 +113,6 @@ const Header = () => {
         </Stack>
       </ToolbarStyled>
     </AppBarStyled>
-
   );
 };
 

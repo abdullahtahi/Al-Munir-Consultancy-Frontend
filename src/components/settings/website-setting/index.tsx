@@ -4,7 +4,7 @@ import WebisteInforamtionComponent from 'src/components/operations/WebsiteSettin
 const WebsiteSettingComponent = () => {
   return (
     <Grid container spacing={3}>
-     <WebisteInforamtionComponent/>
+      <WebisteInforamtionComponent />
     </Grid>
   );
 };

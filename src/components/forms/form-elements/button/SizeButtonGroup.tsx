@@ -1,9 +1,12 @@
-
 import { Button, ButtonGroup, Stack } from '@mui/material';
 
 const SizeButtonGroup = () => (
   <Stack spacing={1} justifyContent="center">
-    <ButtonGroup size="small" variant="outlined" aria-label="outlined primary button group">
+    <ButtonGroup
+      size="small"
+      variant="outlined"
+      aria-label="outlined primary button group"
+    >
       <Button>One</Button>
       <Button>Two</Button>
       <Button>Three</Button>
