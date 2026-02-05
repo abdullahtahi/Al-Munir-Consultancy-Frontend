@@ -1,63 +1,63 @@
-import Box from '@mui/material/Box';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import Grid from '@mui/material/Grid2';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { IconDeviceFloppy, IconLetterX, IconX } from '@tabler/icons-react';
-import dayjs from 'dayjs';
-import { Form, Formik } from 'formik';
-import React from 'react';
-import CustomDatePicker from 'src/components/custom-date-picker';
-import CustomFields from 'src/components/custom-fields/custom-fields';
-import FileUploadField from 'src/components/custom-file-Upload/custom-file-upload';
-import CustomSelect from 'src/components/custom-select/custom-select';
-import GenericButton from 'src/components/generic-button';
-import ShippingLineSelector from 'src/components/shared/shipping-line';
-import { BASE_URL } from 'src/constants/AppConstants';
-import * as Yup from 'yup';
+import Box from "@mui/material/Box";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import Grid from "@mui/material/Grid2";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { IconDeviceFloppy, IconLetterX, IconX } from "@tabler/icons-react";
+import dayjs from "dayjs";
+import { Form, Formik } from "formik";
+import React from "react";
+import CustomDatePicker from "src/components/custom-date-picker";
+import CustomFields from "src/components/custom-fields/custom-fields";
+import FileUploadField from "src/components/custom-file-Upload/custom-file-upload";
+import CustomSelect from "src/components/custom-select/custom-select";
+import GenericButton from "src/components/generic-button";
+import ShippingLineSelector from "src/components/shared/shipping-line";
+import { BASE_URL } from "src/constants/AppConstants";
+import * as Yup from "yup";
 
 interface NewAdmissionsDialogProps {
   open: boolean;
   onClose: () => void;
   handleSubmit: (values: any) => void;
-  mode: 'Add' | 'Edit';
+  mode: "Add" | "Edit";
   singleUser: any;
 }
 
 export const initialValues = {
-  admissionInClass: '',
-  feeAmount: '',
-  studentName: '',
-  gender: '',
-  phone: '',
-  residentNumber: '',
-  profileImg: '',
-  birthCertificate: '',
-  schoolLeavingCertificate: '',
-  fatherCnicImgFront: '',
-  fatherCnicImgBack: '',
-  dateOfBirth: '',
-  fatherName: '',
-  fatherEducation: '',
-  fatherOccupation: '',
-  fatherCnic: '',
-  motherName: '',
-  motherEducation: '',
-  motherOccupation: '',
-  motherCnic: '',
-  permanentAddress: '',
-  secondaryAddress: '',
-  admissionType: '',
-  commissionAmount: '',
-  admissionDate: '',
-  admissionNumber: '',
-  name: '',
-  relation: '',
-  address: '',
-  sponsorId: '',
+  admissionInClass: "",
+  feeAmount: "",
+  studentName: "",
+  gender: "",
+  phone: "",
+  residentNumber: "",
+  profileImg: "",
+  birthCertificate: "",
+  schoolLeavingCertificate: "",
+  fatherCnicImgFront: "",
+  fatherCnicImgBack: "",
+  dateOfBirth: "",
+  fatherName: "",
+  fatherEducation: "",
+  fatherOccupation: "",
+  fatherCnic: "",
+  motherName: "",
+  motherEducation: "",
+  motherOccupation: "",
+  motherCnic: "",
+  permanentAddress: "",
+  secondaryAddress: "",
+  admissionType: "",
+  commissionAmount: "",
+  admissionDate: "",
+  admissionNumber: "",
+  name: "",
+  relation: "",
+  address: "",
+  sponsorId: "",
 };
 
 const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
@@ -69,12 +69,12 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
 }) => {
   const getValidationSchema = () =>
     Yup.object().shape({
-      studentName: Yup.string().required('Student name is required'),
-      feeAmount: Yup.string().required('Fee amount is required'),
-      admissionInClass: Yup.string().required('Admission in class is required'),
-      gender: Yup.string().required('Gender is required'),
-      sponsorId: Yup.string().required('Consultant is required'),
-      admissionType: Yup.string().required('Admission type is required'),
+      studentName: Yup.string().required("Student name is required"),
+      feeAmount: Yup.string().required("Fee amount is required"),
+      admissionInClass: Yup.string().required("Admission in class is required"),
+      gender: Yup.string().required("Gender is required"),
+      sponsorId: Yup.string().required("Consultant is required"),
+      admissionType: Yup.string().required("Admission type is required"),
       phone: Yup.string(),
       residentNumber: Yup.string(),
       birthCertificate: Yup.string(),
@@ -100,45 +100,45 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
       relation: Yup.string(),
       address: Yup.string(),
     });
-  const title: any = mode === 'Add' ? 'Add Admission' : 'Edit Admission';
-  const actionLabel = mode === 'Add' ? 'Add' : 'Edit';
+  const title: any = mode === "Add" ? "Add Admission" : "Edit Admission";
+  const actionLabel = mode === "Add" ? "Add" : "Edit";
   const gender = [
     {
-      key: 'Male',
-      value: 'Male',
+      key: "Male",
+      value: "Male",
     },
     {
-      key: 'Female',
-      value: 'Female',
+      key: "Female",
+      value: "Female",
     },
   ];
   const status = [
     {
-      key: 'Pending',
-      value: 'Pending',
+      key: "Pending",
+      value: "Pending",
     },
     {
-      key: 'Active',
-      value: 'Active',
+      key: "Active",
+      value: "Active",
     },
     {
-      key: 'In Active',
-      value: 'In Active',
+      key: "In Active",
+      value: "In Active",
     },
   ];
 
   const admissionType = [
     {
-      key: 'School',
-      value: 'school',
+      key: "School",
+      value: "school",
     },
     {
-      key: 'Academy',
-      value: 'academy',
+      key: "Academy",
+      value: "academy",
     },
     {
-      key: 'Technical',
-      value: 'technical',
+      key: "Technical",
+      value: "technical",
     },
   ];
 
@@ -150,8 +150,8 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
       fullWidth
       PaperProps={{
         sx: {
-          width: { xs: 'calc(100% - 20px)', md: 1200 },
-          mx: 'auto',
+          width: { xs: "calc(100% - 20px)", md: 1200 },
+          mx: "auto",
         },
       }}
     >
@@ -166,40 +166,40 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
 
       <Formik
         initialValues={
-          mode === 'Edit' && singleUser
+          mode === "Edit" && singleUser
             ? {
-                studentName: singleUser?.Student?.studentName || '',
-                gender: singleUser.Student?.gender || '',
-                admissionDate: singleUser?.admissionDate || '',
-                sponsorId: singleUser?.consultantId || '',
+                studentName: singleUser?.Student?.studentName || "",
+                gender: singleUser.Student?.gender || "",
+                admissionDate: singleUser?.admissionDate || "",
+                sponsorId: singleUser?.consultantId || "",
                 admissionType: singleUser.admissionType,
-                dateOfBirth: singleUser.Student?.dateOfBirth || '',
-                admissionInClass: singleUser.admissionInClass || '',
-                feeAmount: singleUser.feeAmount || '',
-                fatherName: singleUser.Student?.fatherName || '',
-                fatherEducation: singleUser.Student?.fatherEducation || '',
-                fatherOccupation: singleUser.Student?.fatherOccupation || '',
-                fatherCnic: singleUser.Student?.fatherCnic || '',
-                motherCnic: singleUser.Student?.motherCnic || '',
-                motherEducation: singleUser.Student?.motherEducation || '',
-                motherOccupation: singleUser.Student?.motherOccupation || '',
-                motherName: singleUser.Student?.motherName || '',
-                permanentAddress: singleUser.Student?.permanentAddress || '',
-                secondaryAddress: singleUser.Student?.secondaryAddress || '',
-                phone: singleUser.Student?.phone || '',
-                residentNumber: singleUser.Student?.residentNumber || '',
-                admissionNumber: singleUser.admissionNumber || '',
+                dateOfBirth: singleUser.Student?.dateOfBirth || "",
+                admissionInClass: singleUser.admissionInClass || "",
+                feeAmount: singleUser.feeAmount || "",
+                fatherName: singleUser.Student?.fatherName || "",
+                fatherEducation: singleUser.Student?.fatherEducation || "",
+                fatherOccupation: singleUser.Student?.fatherOccupation || "",
+                fatherCnic: singleUser.Student?.fatherCnic || "",
+                motherCnic: singleUser.Student?.motherCnic || "",
+                motherEducation: singleUser.Student?.motherEducation || "",
+                motherOccupation: singleUser.Student?.motherOccupation || "",
+                motherName: singleUser.Student?.motherName || "",
+                permanentAddress: singleUser.Student?.permanentAddress || "",
+                secondaryAddress: singleUser.Student?.secondaryAddress || "",
+                phone: singleUser.Student?.phone || "",
+                residentNumber: singleUser.Student?.residentNumber || "",
+                admissionNumber: singleUser.admissionNumber || "",
                 name: singleUser?.DependOn?.name,
                 status: singleUser.status,
                 relation: singleUser?.DependOn?.relation,
                 address: singleUser?.DependOn?.address,
-                profileImg: singleUser.Student?.profileImg || '',
-                birthCertificate: singleUser.Student?.birthCertificate || '',
+                profileImg: singleUser.Student?.profileImg || "",
+                birthCertificate: singleUser.Student?.birthCertificate || "",
                 schoolLeavingCertificate:
-                  singleUser.Student?.schoolLeavingCertificate || '',
+                  singleUser.Student?.schoolLeavingCertificate || "",
                 fatherCnicImgFront:
-                  singleUser.Student?.fatherCnicImgFront || '',
-                fatherCnicImgBack: singleUser?.Student?.fatherCnicImgBack || '',
+                  singleUser.Student?.fatherCnicImgFront || "",
+                fatherCnicImgBack: singleUser?.Student?.fatherCnicImgBack || "",
                 dependOnId: singleUser?.DependOn?.id,
                 studentId: singleUser?.Student?.id,
               }
@@ -210,7 +210,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
         enableReinitialize
       >
         {({ handleSubmit, errors }) => {
-          console.log('errors 210', errors);
+          console.log("errors 210", errors);
           return (
             <Form onSubmit={handleSubmit}>
               <DialogContent>
@@ -248,7 +248,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                     <ShippingLineSelector
                       name="sponsorId"
                       disabled={false}
-                      isSearchFilter={true}
+                      isSearchFilter={false}
                     />
                   </Grid>
 
@@ -391,7 +391,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                       type="string"
                     />
                   </Grid>
-                  {mode === 'Edit' && (
+                  {mode === "Edit" && (
                     <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                       <CustomSelect
                         name="status"
@@ -401,14 +401,14 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                       />
                     </Grid>
                   )}
-                  {mode === 'Edit' && (
+                  {mode === "Edit" && (
                     <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                       <CustomFields
                         name="joiningDate"
                         label="Joining Date"
                         placeholder=""
                         value={dayjs(singleUser?.createdAt).format(
-                          'DD-MM-YYYY'
+                          "DD-MM-YYYY",
                         )}
                         disabled={true}
                       />
@@ -444,14 +444,14 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                   </Grid>
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <FileUploadField
-                      key={'profileImg'}
-                      name={'profileImg'}
-                      label={'Student Image'}
+                      key={"profileImg"}
+                      name={"profileImg"}
+                      label={"Student Image"}
                     />
-                    {mode === 'Edit' && (
+                    {mode === "Edit" && (
                       <img
                         src={`${
-                          BASE_URL + '/' + singleUser.Student.profileImg
+                          BASE_URL + "/" + singleUser.Student.profileImg
                         }`}
                         className="admissionImgs"
                         alt="profile Image"
@@ -460,14 +460,14 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                   </Grid>
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <FileUploadField
-                      key={'birthCertificate'}
-                      name={'birthCertificate'}
-                      label={'Birth Certificate'}
+                      key={"birthCertificate"}
+                      name={"birthCertificate"}
+                      label={"Birth Certificate"}
                     />
-                    {mode === 'Edit' && (
+                    {mode === "Edit" && (
                       <img
                         src={`${
-                          BASE_URL + '/' + singleUser.Student.birthCertificate
+                          BASE_URL + "/" + singleUser.Student.birthCertificate
                         }`}
                         className="admissionImgs"
                         alt="birthCertificate"
@@ -476,15 +476,15 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                   </Grid>
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <FileUploadField
-                      key={'schoolLeavingCertificate'}
-                      name={'schoolLeavingCertificate'}
-                      label={'School Leaving Certificate'}
+                      key={"schoolLeavingCertificate"}
+                      name={"schoolLeavingCertificate"}
+                      label={"School Leaving Certificate"}
                     />
-                    {mode === 'Edit' && (
+                    {mode === "Edit" && (
                       <img
                         src={`${
                           BASE_URL +
-                          '/' +
+                          "/" +
                           singleUser.Student.schoolLeavingCertificate
                         }`}
                         className="admissionImgs"
@@ -494,14 +494,14 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
                   </Grid>
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <FileUploadField
-                      key={'fatherCnicImgFront'}
-                      name={'fatherCnicImgFront'}
-                      label={'Father Cnic Image Front'}
+                      key={"fatherCnicImgFront"}
+                      name={"fatherCnicImgFront"}
+                      label={"Father Cnic Image Front"}
                     />
-                    {mode === 'Edit' && (
+                    {mode === "Edit" && (
                       <img
                         src={`${
-                          BASE_URL + '/' + singleUser.Student.fatherCnicImgFront
+                          BASE_URL + "/" + singleUser.Student.fatherCnicImgFront
                         }`}
                         alt="fatherCnicImgFront"
                         className="admissionImgs"
@@ -511,14 +511,14 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
 
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <FileUploadField
-                      key={'fatherCnicImgBack'}
-                      name={'fatherCnicImgBack'}
-                      label={'Father Cnic Image Back'}
+                      key={"fatherCnicImgBack"}
+                      name={"fatherCnicImgBack"}
+                      label={"Father Cnic Image Back"}
                     />
-                    {mode === 'Edit' && (
+                    {mode === "Edit" && (
                       <img
                         src={`${
-                          BASE_URL + '/' + singleUser.Student.fatherCnicImgBack
+                          BASE_URL + "/" + singleUser.Student.fatherCnicImgBack
                         }`}
                         className="admissionImgs"
                         alt="Father Cnic Image Back"
@@ -530,7 +530,7 @@ const NewAdmissionsDialog: React.FC<NewAdmissionsDialogProps> = ({
 
               <DialogActions sx={{ px: 3, pb: 2 }}>
                 <GenericButton
-                  label={'Cancel'}
+                  label={"Cancel"}
                   onClick={onClose}
                   color="error"
                   icon={IconLetterX}

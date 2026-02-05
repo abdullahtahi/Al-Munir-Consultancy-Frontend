@@ -1,52 +1,52 @@
-import GenericButton from '@components/generic-button';
-import Box from '@mui/material/Box';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import Grid from '@mui/material/Grid2';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { IconDeviceFloppy, IconLetterX, IconX } from '@tabler/icons-react';
-import dayjs from 'dayjs';
-import { Form, Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
-import { getAllRoles } from 'src/api/role';
-import CustomDatePicker from 'src/components/custom-date-picker';
-import CustomFields from 'src/components/custom-fields/custom-fields';
-import FileUploadField from 'src/components/custom-file-Upload/custom-file-upload';
-import CustomSelect from 'src/components/custom-select/custom-select';
-import ShippingLineSelector from 'src/components/shared/shipping-line';
-import { BASE_URL } from 'src/constants/AppConstants';
-import * as Yup from 'yup';
+import GenericButton from "@components/generic-button";
+import Box from "@mui/material/Box";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import Grid from "@mui/material/Grid2";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { IconDeviceFloppy, IconLetterX, IconX } from "@tabler/icons-react";
+import dayjs from "dayjs";
+import { Form, Formik } from "formik";
+import React, { useEffect, useState } from "react";
+import { getAllRoles } from "src/api/role";
+import CustomDatePicker from "src/components/custom-date-picker";
+import CustomFields from "src/components/custom-fields/custom-fields";
+import FileUploadField from "src/components/custom-file-Upload/custom-file-upload";
+import CustomSelect from "src/components/custom-select/custom-select";
+import ShippingLineSelector from "src/components/shared/shipping-line";
+import { BASE_URL } from "src/constants/AppConstants";
+import * as Yup from "yup";
 
 interface ConsultantDialogProps {
   open: boolean;
   onClose: () => void;
-  mode: 'Add' | 'Edit';
+  mode: "Add" | "Edit";
   handleSubmit: (values: any) => void;
   singleUser: any;
 }
 
 export const initialValues = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  password: '',
-  role: '',
-  phone: '',
-  cnic: '',
-  address: '',
-  city: '',
-  sponsorId: '',
-  paymentReceipt: '',
-  profile: '',
-  bankName: '',
-  accountNumber: '',
-  accountAddress: '',
-  dateOfBirth: '',
-  status: '',
-  licenseNumber: '',
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  role: "",
+  phone: "",
+  cnic: "",
+  address: "",
+  city: "",
+  sponsorId: "",
+  paymentReceipt: "",
+  profile: "",
+  bankName: "",
+  accountNumber: "",
+  accountAddress: "",
+  dateOfBirth: "",
+  status: "",
+  licenseNumber: "",
 };
 
 const LicenseGenerator = ({ values, setFieldValue, mode }: any) => {
@@ -57,18 +57,18 @@ const LicenseGenerator = ({ values, setFieldValue, mode }: any) => {
       const prefix = `${firstLetter}${lastLetter}`;
 
       const shouldGenerate =
-        mode === 'Add'
+        mode === "Add"
           ? !values.licenseNumber || !values.licenseNumber.startsWith(prefix)
           : !values.licenseNumber;
 
       if (shouldGenerate) {
         const randomNum = Math.floor(100000 + Math.random() * 900000);
         const code = `${prefix}${randomNum}`;
-        setFieldValue('licenseNumber', code);
+        setFieldValue("licenseNumber", code);
       }
     } else {
-      if (mode === 'Add' && values.licenseNumber) {
-        setFieldValue('licenseNumber', '');
+      if (mode === "Add" && values.licenseNumber) {
+        setFieldValue("licenseNumber", "");
       }
     }
   }, [
@@ -92,43 +92,43 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
 
   const getValidationSchema = () =>
     Yup.object().shape({
-      firstName: Yup.string().required('First Name is required'),
-      lastName: Yup.string().required('Last Name is required'),
-      email: Yup.string().required('Email is required'),
-      role: Yup.string().required('User Type is required'),
+      firstName: Yup.string().required("First Name is required"),
+      lastName: Yup.string().required("Last Name is required"),
+      email: Yup.string().required("Email is required"),
+      role: Yup.string().required("User Type is required"),
       password:
-        mode == 'Add'
-          ? Yup.string().required('Password is required').min(8)
+        mode == "Add"
+          ? Yup.string().required("Password is required").min(8)
           : Yup.string(),
-      phone: Yup.string().required('Phone Number is required').max(11),
-      cnic: Yup.string().required('CNIC is required').max(13),
+      phone: Yup.string().required("Phone Number is required").max(11),
+      cnic: Yup.string().required("CNIC is required").max(13),
       address: Yup.string(),
-      city: Yup.string().required('city is required'),
+      city: Yup.string().required("city is required"),
       sponsorId: Yup.string(),
       paymentReceipt: Yup.string(),
-      profile: Yup.string().required('profile Image is required'),
-      bankName: Yup.string().required('Bank Name is required'),
-      accountNumber: Yup.string().required('Account Number is required'),
-      accountAddress: Yup.string().required('Account Address is required'),
-      dateOfBirth: Yup.string().required('Date of Birth is required'),
+      profile: Yup.string().required("profile Image is required"),
+      bankName: Yup.string().required("Bank Name is required"),
+      accountNumber: Yup.string().required("Account Number is required"),
+      accountAddress: Yup.string().required("Account Address is required"),
+      dateOfBirth: Yup.string().required("Date of Birth is required"),
       status: Yup.string(),
-      licenseNumber: Yup.string().required('licenseNumber field is required'),
+      licenseNumber: Yup.string().required("licenseNumber field is required"),
     });
   const title: any =
-    mode === 'Add' ? 'Add User / Member' : 'Edit User / Member';
-  const actionLabel = mode === 'Add' ? 'Add' : 'Edit';
+    mode === "Add" ? "Add User / Member" : "Edit User / Member";
+  const actionLabel = mode === "Add" ? "Add" : "Edit";
   const userStaus = [
     {
-      key: 'pending',
-      value: 'pending',
+      key: "pending",
+      value: "pending",
     },
     {
-      key: 'active',
-      value: 'active',
+      key: "active",
+      value: "active",
     },
     {
-      key: 'inactive',
-      value: 'inactive',
+      key: "inactive",
+      value: "inactive",
     },
   ];
 
@@ -156,8 +156,8 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
       fullWidth={false}
       PaperProps={{
         sx: {
-          width: { xs: '80%' },
-          mx: 'auto',
+          width: { xs: "80%" },
+          mx: "auto",
         },
       }}
     >
@@ -172,20 +172,20 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
 
       <Formik
         initialValues={
-          mode === 'Edit' && singleUser
+          mode === "Edit" && singleUser
             ? {
-                firstName: singleUser.firstName || '',
-                lastName: singleUser.lastName || '',
-                email: singleUser.email || '',
+                firstName: singleUser.firstName || "",
+                lastName: singleUser.lastName || "",
+                email: singleUser.email || "",
                 password: singleUser.password,
-                phone: singleUser.phone || '',
-                cnic: singleUser.cnic || '',
-                role: singleUser.role || '',
-                address: singleUser.address || '',
-                city: singleUser.city || '',
-                sponsorId: singleUser.sponsorId || '',
-                profile: singleUser.profile || '',
-                paymentReceipt: singleUser.paymentReceipt || '',
+                phone: singleUser.phone || "",
+                cnic: singleUser.cnic || "",
+                role: singleUser.role || "",
+                address: singleUser.address || "",
+                city: singleUser.city || "",
+                sponsorId: singleUser.sponsorId || "",
+                profile: singleUser.profile || "",
+                paymentReceipt: singleUser.paymentReceipt || "",
                 bankName: singleUser.Bank?.name,
                 accountNumber: singleUser.Bank?.accountNumber,
                 accountAddress: singleUser.Bank?.accountAddress,
@@ -193,7 +193,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                 dateOfBirth: singleUser?.dateOfBirth,
                 consultantId: singleUser.id,
                 status: singleUser.status,
-                licenseNumber: singleUser.licenseNumber || '',
+                licenseNumber: singleUser.licenseNumber || "",
               }
             : initialValues
         }
@@ -202,7 +202,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
         enableReinitialize
       >
         {({ handleSubmit, errors, values, setFieldValue }) => {
-          console.log('error', errors);
+          console.log("error", errors);
           return (
             <Form onSubmit={handleSubmit}>
               <LicenseGenerator
@@ -220,7 +220,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="firstName"
-                      label="First Name"
+                      label="First Name*"
                       placeholder="Enter First Name"
                     />
                   </Grid>
@@ -228,7 +228,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="lastName"
-                      label="Last Name"
+                      label="Last Name*"
                       placeholder="Enter Last Name"
                     />
                   </Grid>
@@ -244,28 +244,28 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="email"
-                      label="Email"
+                      label="Email*"
                       placeholder="Enter Email"
                     />
                   </Grid>
 
-                  {mode == 'Add' ? (
+                  {mode == "Add" ? (
                     <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                       <CustomFields
                         name="password"
-                        label="Password"
+                        label="Password*"
                         type="password"
                         placeholder="Enter password"
                       />
                     </Grid>
                   ) : (
-                    ''
+                    ""
                   )}
 
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomSelect
                       name="role"
-                      label="User Type"
+                      label="User Type*"
                       placeholder="Enter User Type"
                       options={roles}
                     />
@@ -273,7 +273,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="phone"
-                      label="Phone"
+                      label="Phone*"
                       placeholder="Enter Phone"
                       type="number"
                     />
@@ -282,34 +282,34 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="cnic"
-                      label="CNIC"
+                      label="CNIC*"
                       placeholder="Enter CNIC"
                       type="number"
                     />
                   </Grid>
 
-                  {(values.firstName && values.lastName) || mode === 'Edit' ? (
+                  {(values.firstName && values.lastName) || mode === "Edit" ? (
                     <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                       <CustomFields
                         name="licenseNumber"
-                        label="License Number"
+                        label="License Number*"
                         placeholder="Enter License Number"
                         value={values.licenseNumber}
                         disabled={true}
                       />
                     </Grid>
                   ) : (
-                    ''
+                    ""
                   )}
 
-                  {mode === 'Edit' && (
+                  {mode === "Edit" && (
                     <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                       <CustomFields
                         name="joiningDate"
                         label="Joining Date"
                         placeholder=""
                         value={dayjs(singleUser?.createdAt).format(
-                          'DD-MM-YYYY'
+                          "DD-MM-YYYY",
                         )}
                         disabled={true}
                       />
@@ -319,7 +319,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="city"
-                      label="City"
+                      label="City*"
                       placeholder="Enter City"
                     />
                   </Grid>
@@ -332,13 +332,13 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                   </Grid>
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <FileUploadField
-                      key={'profile'}
-                      name={'profile'}
-                      label={'Consultant Profile Image'}
+                      key={"profile"}
+                      name={"profile"}
+                      label={"Consultant Profile Image*"}
                     />
-                    {mode === 'Edit' && (
+                    {mode === "Edit" && (
                       <img
-                        src={`${BASE_URL + '/' + singleUser.profile}`}
+                        src={`${BASE_URL + "/" + singleUser.profile}`}
                         className="admissionImgs"
                         alt="Profile Image"
                       />
@@ -346,13 +346,13 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                   </Grid>
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <FileUploadField
-                      key={'paymentReceipt'}
-                      name={'paymentReceipt'}
-                      label={'Payment Reciept'}
+                      key={"paymentReceipt"}
+                      name={"paymentReceipt"}
+                      label={"Payment Reciept"}
                     />
-                    {mode === 'Edit' && (
+                    {mode === "Edit" && (
                       <img
-                        src={`${BASE_URL + '/' + singleUser.paymentReceipt}`}
+                        src={`${BASE_URL + "/" + singleUser.paymentReceipt}`}
                         className="admissionImgs"
                         alt="payment image"
                       />
@@ -361,11 +361,11 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomDatePicker
                       name="dateOfBirth"
-                      label=" Date Of birth"
+                      label=" Date Of birth*"
                       defaultValue={dayjs()}
                     />
                   </Grid>
-                  {mode == 'Edit' ? (
+                  {mode == "Edit" ? (
                     <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                       <CustomSelect
                         name="status"
@@ -375,7 +375,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                       />
                     </Grid>
                   ) : (
-                    ''
+                    ""
                   )}
                   <Grid size={{ xs: 12 }}>
                     <Typography variant="h3">Bank Information</Typography>
@@ -383,14 +383,14 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="bankName"
-                      label="Bank Name"
+                      label="Bank Name*"
                       placeholder="Enter Bank Name"
                     />
                   </Grid>
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="accountNumber"
-                      label="Account Number"
+                      label="Account Number*"
                       placeholder="Enter Bank Number"
                     />
                   </Grid>
@@ -398,7 +398,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
                       name="accountAddress"
-                      label="Account Address"
+                      label="Account Address*"
                       placeholder="Enter Account Address"
                     />
                   </Grid>
@@ -407,7 +407,7 @@ const ConsultantDialog: React.FC<ConsultantDialogProps> = ({
 
               <DialogActions sx={{ px: 3, pb: 2 }}>
                 <GenericButton
-                  label={'Cancel'}
+                  label={"Cancel"}
                   onClick={onClose}
                   color="error"
                   icon={IconLetterX}

@@ -1,196 +1,199 @@
-import { lazy, ReactElement } from 'react';
-import { createBrowserRouter, Navigate } from 'react-router-dom';
-import RouteErrorBoundary from 'src/RouteErrorBoundary';
-import Loadable from '../layouts/full/shared/loadable/Loadable';
-import RolesList from 'src/views/roles/RolesList';
-import Dashboard from 'src/views/operations/Dashboard';
+import { lazy, ReactElement } from "react";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import RouteErrorBoundary from "src/RouteErrorBoundary";
+import Loadable from "../layouts/full/shared/loadable/Loadable";
+import RolesList from "src/views/roles/RolesList";
+import Dashboard from "src/views/operations/Dashboard";
 
 /* ***Layouts**** */
-const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
+const FullLayout = Loadable(lazy(() => import("../layouts/full/FullLayout")));
 const BlankLayout = Loadable(
-  lazy(() => import('../layouts/blank/BlankLayout'))
+  lazy(() => import("../layouts/blank/BlankLayout")),
 );
 
 /* ****Pages***** */
-const EirIn = Loadable(lazy(() => import('../views/operations/EirIn')));
+const EirIn = Loadable(lazy(() => import("../views/operations/EirIn")));
 const Admissions = Loadable(
-  lazy(() => import('../views/operations/Admissions'))
+  lazy(() => import("../views/operations/Admissions")),
 );
-const Cro = Loadable(lazy(() => import('../views/operations/Bonus')));
+const Investment = Loadable(
+  lazy(() => import("../views/operations/Investment")),
+);
+const Cro = Loadable(lazy(() => import("../views/operations/Bonus")));
 const PickupSlip = Loadable(
-  lazy(() => import('../views/operations/PickupSlip'))
+  lazy(() => import("../views/operations/PickupSlip")),
 );
-const SaleUnit = Loadable(lazy(() => import('../views/operations/SaleUnit')));
+const SaleUnit = Loadable(lazy(() => import("../views/operations/SaleUnit")));
 const ChangeGrade = Loadable(
-  lazy(() => import('../views/operations/ChangeGrade'))
+  lazy(() => import("../views/operations/ChangeGrade")),
 );
-const Schedule = Loadable(lazy(() => import('../views/edifact/Schedule')));
-const Generate = Loadable(lazy(() => import('../views/edifact/Generate')));
+const Schedule = Loadable(lazy(() => import("../views/edifact/Schedule")));
+const Generate = Loadable(lazy(() => import("../views/edifact/Generate")));
 const BulkGenerate = Loadable(
-  lazy(() => import('../views/edifact/BulkGenerate'))
+  lazy(() => import("../views/edifact/BulkGenerate")),
 );
 const ContainerReport = Loadable(
-  lazy(() => import('../views/edifact/ContainerReport'))
+  lazy(() => import("../views/edifact/ContainerReport")),
 );
-const EDIReport = Loadable(lazy(() => import('../views/edifact/EdiReport')));
-const CopranLog = Loadable(lazy(() => import('../views/edifact/CopranLog')));
+const EDIReport = Loadable(lazy(() => import("../views/edifact/EdiReport")));
+const CopranLog = Loadable(lazy(() => import("../views/edifact/CopranLog")));
 const AdditionService = Loadable(
-  lazy(() => import('../views/service-record/AdditionService'))
+  lazy(() => import("../views/service-record/AdditionService")),
 );
 const GeneralService = Loadable(
-  lazy(() => import('../views/service-record/GeneralService'))
+  lazy(() => import("../views/service-record/GeneralService")),
 );
 const RepairService = Loadable(
-  lazy(() => import('../views/service-record/RepairServices'))
+  lazy(() => import("../views/service-record/RepairServices")),
 );
 const StorageService = Loadable(
-  lazy(() => import('../views/service-record/StorageServices'))
+  lazy(() => import("../views/service-record/StorageServices")),
 );
-const FasahIn = Loadable(lazy(() => import('../views/fasah/In')));
-const FasahOut = Loadable(lazy(() => import('../views/fasah/Out')));
+const FasahIn = Loadable(lazy(() => import("../views/fasah/In")));
+const FasahOut = Loadable(lazy(() => import("../views/fasah/Out")));
 const FasahBulkAppointment = Loadable(
-  lazy(() => import('../views/fasah/BulkAppointment'))
+  lazy(() => import("../views/fasah/BulkAppointment")),
 );
 const FasahBulkDownload = Loadable(
-  lazy(() => import('../views/fasah/BulkDownload'))
+  lazy(() => import("../views/fasah/BulkDownload")),
 );
 const FasahPayment = Loadable(
-  lazy(() => import('../views/fasah/FasahPayment'))
+  lazy(() => import("../views/fasah/FasahPayment")),
 );
 const FasahBulkPayment = Loadable(
-  lazy(() => import('../views/fasah/BulkPayment'))
+  lazy(() => import("../views/fasah/BulkPayment")),
 );
-const Branches = Loadable(lazy(() => import('../views/settings/Branches')));
-const Courses = Loadable(lazy(() => import('../views/settings/Courses')));
+const Branches = Loadable(lazy(() => import("../views/settings/Branches")));
+const Courses = Loadable(lazy(() => import("../views/settings/Courses")));
 const WebsiteSetting = Loadable(
-  lazy(() => import('../views/settings/WebsiteSetting'))
+  lazy(() => import("../views/settings/WebsiteSetting")),
 );
 const VehiclePickupSlip = Loadable(
-  lazy(() => import('../views/settings/VehiclePickupSlip'))
+  lazy(() => import("../views/settings/VehiclePickupSlip")),
 );
 
-const SummaryReport = Loadable(lazy(() => import('../views/reports/Summary')));
+const SummaryReport = Loadable(lazy(() => import("../views/reports/Summary")));
 const GateInOperationReport = Loadable(
-  lazy(() => import('../views/reports/GateInOperation'))
+  lazy(() => import("../views/reports/GateInOperation")),
 );
 const GateOutOperationReport = Loadable(
-  lazy(() => import('../views/reports/GateOutOperation'))
+  lazy(() => import("../views/reports/GateOutOperation")),
 );
 const CustomerFasahReport = Loadable(
-  lazy(() => import('../views/reports/CustomerFasah'))
+  lazy(() => import("../views/reports/CustomerFasah")),
 );
 const ContainerFasahReport = Loadable(
-  lazy(() => import('../views/reports/ContainerFasah'))
+  lazy(() => import("../views/reports/ContainerFasah")),
 );
-const CroReport = Loadable(lazy(() => import('../views/reports/Cro')));
-const EachCroReport = Loadable(lazy(() => import('../views/reports/EachCro')));
-const AllCroReport = Loadable(lazy(() => import('../views/reports/AllCro')));
+const CroReport = Loadable(lazy(() => import("../views/reports/Cro")));
+const EachCroReport = Loadable(lazy(() => import("../views/reports/EachCro")));
+const AllCroReport = Loadable(lazy(() => import("../views/reports/AllCro")));
 const StockReport = Loadable(
-  lazy(() => import('../views/reports/StockReport'))
+  lazy(() => import("../views/reports/StockReport")),
 );
 const StockReport1 = Loadable(
-  lazy(() => import('../views/reports/StockReport1'))
+  lazy(() => import("../views/reports/StockReport1")),
 );
 const StockSaleUnitReport = Loadable(
-  lazy(() => import('../views/reports/StockSaleUnit'))
+  lazy(() => import("../views/reports/StockSaleUnit")),
 );
 const DepotGateInReport = Loadable(
-  lazy(() => import('../views/reports/GateInUnits'))
+  lazy(() => import("../views/reports/GateInUnits")),
 );
 const DepotGateOutReport = Loadable(
-  lazy(() => import('../views/reports/GateOutUnits'))
+  lazy(() => import("../views/reports/GateOutUnits")),
 );
 const DepotTruckTrafficReport = Loadable(
-  lazy(() => import('../views/reports/TruckTrafic'))
+  lazy(() => import("../views/reports/TruckTrafic")),
 );
 const VehicleInReport = Loadable(
-  lazy(() => import('../views/reports/VehicleIn'))
+  lazy(() => import("../views/reports/VehicleIn")),
 );
 const VehicleOutReport = Loadable(
-  lazy(() => import('../views/reports/VehicleOut'))
+  lazy(() => import("../views/reports/VehicleOut")),
 );
 const ContainerOnGroundReport = Loadable(
-  lazy(() => import('../views/reports/ContainerOnGround'))
+  lazy(() => import("../views/reports/ContainerOnGround")),
 );
 const ContainerHistoryReport = Loadable(
-  lazy(() => import('../views/reports/ContainerHistory'))
+  lazy(() => import("../views/reports/ContainerHistory")),
 );
 const PrintEirReport = Loadable(
-  lazy(() => import('../views/reports/PrintEir'))
+  lazy(() => import("../views/reports/PrintEir")),
 );
-const User = Loadable(lazy(() => import('../views/apps/User')));
-const Roles = Loadable(lazy(() => import('../views/apps/Roles')));
-const LoginDetails = Loadable(lazy(() => import('../views/apps/LoginDetail')));
+const User = Loadable(lazy(() => import("../views/apps/User")));
+const Roles = Loadable(lazy(() => import("../views/apps/Roles")));
+const LoginDetails = Loadable(lazy(() => import("../views/apps/LoginDetail")));
 const RepairServices = Loadable(
-  lazy(() => import('../views/work-shop/RepairServices'))
+  lazy(() => import("../views/work-shop/RepairServices")),
 );
 const ServiceManagement = Loadable(
-  lazy(() => import('../views/work-shop/ServiceManagement'))
+  lazy(() => import("../views/work-shop/ServiceManagement")),
 );
 const ContainerData = Loadable(
-  lazy(() => import('../views/master-data/Container'))
+  lazy(() => import("../views/master-data/Container")),
 );
 const SocContainerData = Loadable(
-  lazy(() => import('../views/master-data/SocContainer'))
+  lazy(() => import("../views/master-data/SocContainer")),
 );
 const ContainerWarningsData = Loadable(
-  lazy(() => import('../views/master-data/ContainerWarnings'))
+  lazy(() => import("../views/master-data/ContainerWarnings")),
 );
-const ScrapData = Loadable(lazy(() => import('../views/master-data/Scrap')));
+const ScrapData = Loadable(lazy(() => import("../views/master-data/Scrap")));
 const TransporterData = Loadable(
-  lazy(() => import('../views/master-data/Transporter'))
+  lazy(() => import("../views/master-data/Transporter")),
 );
-const TruckData = Loadable(lazy(() => import('../views/master-data/Truck')));
-const DriverData = Loadable(lazy(() => import('../views/master-data/Driver')));
+const TruckData = Loadable(lazy(() => import("../views/master-data/Truck")));
+const DriverData = Loadable(lazy(() => import("../views/master-data/Driver")));
 const BulkUploadData = Loadable(
-  lazy(() => import('../views/master-data/BulkUpload'))
+  lazy(() => import("../views/master-data/BulkUpload")),
 );
-const ImageData = Loadable(lazy(() => import('../views/master-data/Image')));
-const BankData = Loadable(lazy(() => import('../views/master-data/Bank')));
+const ImageData = Loadable(lazy(() => import("../views/master-data/Image")));
+const BankData = Loadable(lazy(() => import("../views/master-data/Bank")));
 const CustomerData = Loadable(
-  lazy(() => import('../views/master-data/Customer'))
+  lazy(() => import("../views/master-data/Customer")),
 );
-const IsoCode = Loadable(lazy(() => import('../views/apps/IsoCode')));
-const ShippingLine = Loadable(lazy(() => import('../views/apps/ShippingLine')));
+const IsoCode = Loadable(lazy(() => import("../views/apps/IsoCode")));
+const ShippingLine = Loadable(lazy(() => import("../views/apps/ShippingLine")));
 const ContainerGrade = Loadable(
-  lazy(() => import('../views/apps/ContainerGrade'))
+  lazy(() => import("../views/apps/ContainerGrade")),
 );
 const ReportSchedule = Loadable(
-  lazy(() => import('../views/apps/ReportSchedule'))
+  lazy(() => import("../views/apps/ReportSchedule")),
 );
 
 // authentication
 const Login = Loadable(
-  lazy(() => import('../views/authentication/auth1/Login'))
+  lazy(() => import("../views/authentication/auth1/Login")),
 );
 const Login2 = Loadable(
-  lazy(() => import('../views/authentication/auth2/Login2'))
+  lazy(() => import("../views/authentication/auth2/Login2")),
 );
 const Register = Loadable(
-  lazy(() => import('../views/authentication/auth1/Register'))
+  lazy(() => import("../views/authentication/auth1/Register")),
 );
 const Register2 = Loadable(
-  lazy(() => import('../views/authentication/auth2/Register2'))
+  lazy(() => import("../views/authentication/auth2/Register2")),
 );
 const ForgotPassword = Loadable(
-  lazy(() => import('../views/authentication/auth1/ForgotPassword'))
+  lazy(() => import("../views/authentication/auth1/ForgotPassword")),
 );
 const ForgotPassword2 = Loadable(
-  lazy(() => import('../views/authentication/auth2/ForgotPassword2'))
+  lazy(() => import("../views/authentication/auth2/ForgotPassword2")),
 );
 const TwoSteps = Loadable(
-  lazy(() => import('../views/authentication/auth1/TwoSteps'))
+  lazy(() => import("../views/authentication/auth1/TwoSteps")),
 );
 const TwoSteps2 = Loadable(
-  lazy(() => import('../views/authentication/auth2/TwoSteps2'))
+  lazy(() => import("../views/authentication/auth2/TwoSteps2")),
 );
-const Error = Loadable(lazy(() => import('../views/authentication/Error')));
+const Error = Loadable(lazy(() => import("../views/authentication/Error")));
 const Maintenance = Loadable(
-  lazy(() => import('../views/authentication/Maintenance'))
+  lazy(() => import("../views/authentication/Maintenance")),
 );
 
 const ProtectedRoute = ({ children }: { children: ReactElement }) => {
-  if (!localStorage.getItem('token')) {
+  if (!localStorage.getItem("token")) {
     return <Navigate to="/auth/login" replace />;
   }
   return children;
@@ -198,7 +201,7 @@ const ProtectedRoute = ({ children }: { children: ReactElement }) => {
 
 const Router = [
   {
-    path: '/',
+    path: "/",
     element: (
       <ProtectedRoute>
         <FullLayout />
@@ -206,15 +209,16 @@ const Router = [
     ),
     errorElement: <RouteErrorBoundary />,
     children: [
-      { path: '/', element: <Navigate to="/al-munir-system/dashboard" /> },
+      { path: "/", element: <Navigate to="/al-munir-system/dashboard" /> },
       {
-        path: '/al-munir-system/dashboard',
+        path: "/al-munir-system/dashboard",
         exact: true,
         element: <Dashboard />,
       },
-      { path: '/al-munir-system/users', element: <EirIn /> },
-      { path: '/al-munir-system/admissions', element: <Admissions /> },
-      { path: '/al-munir-system/bonus', element: <Cro /> },
+      { path: "/al-munir-system/users", element: <EirIn /> },
+      { path: "/al-munir-system/admissions", element: <Admissions /> },
+      { path: "/al-munir-system/bonus", element: <Cro /> },
+      { path: "/al-munir-system/investment", element: <Investment /> },
       // { path: '/operations/pickup-slips', element: <PickupSlip /> },
       // { path: '/operations/sale-unit', element: <SaleUnit /> },
       // { path: '/operations/change-grade', element: <ChangeGrade /> },
@@ -237,10 +241,10 @@ const Router = [
       // { path: '/fasah/bulk-download', element: <FasahBulkDownload /> },
       // { path: '/fasah/payment', element: <FasahPayment /> },
       // { path: '/fasah/bulk-payment', element: <FasahBulkPayment /> },
-      { path: '/al-munir-system/branches', element: <Branches /> },
-      { path: '/al-munir-system/courses', element: <Courses /> },
-      { path: '/al-munir-system/website-setting', element: <WebsiteSetting /> },
-      { path: '/al-munir-system/role', element: <RolesList /> },
+      { path: "/al-munir-system/branches", element: <Branches /> },
+      { path: "/al-munir-system/courses", element: <Courses /> },
+      { path: "/al-munir-system/website-setting", element: <WebsiteSetting /> },
+      { path: "/al-munir-system/role", element: <RolesList /> },
       // {
       //   path: '/vehicle-operation/pickup-slip',
       //   element: <VehiclePickupSlip />,
@@ -303,7 +307,7 @@ const Router = [
       // { path: '/apps/container-grade', element: <ContainerGrade /> },
       // { path: '/apps/report-schedule', element: <ReportSchedule /> },
 
-      { path: '*', element: <Navigate to="/auth/404" /> },
+      { path: "*", element: <Navigate to="/auth/404" /> },
     ],
   },
   // {
@@ -312,7 +316,7 @@ const Router = [
   //   errorElement: <RouteErrorBoundary />,
   //   children: [
   //     { path: '/auth/404', element: <Error /> },
-  { path: '/auth/login', element: <Login /> },
+  { path: "/auth/login", element: <Login /> },
   //     { path: '/auth/login2', element: <Login2 /> },
   //     { path: '/auth/register', element: <Register /> },
   //     { path: '/auth/register2', element: <Register2 /> },

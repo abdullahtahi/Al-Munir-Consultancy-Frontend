@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React from 'react';
+import React from "react";
 import {
   Box,
   Avatar,
@@ -11,13 +11,13 @@ import {
   Stack,
   useTheme,
   useMediaQuery,
-} from '@mui/material';
-import Grid from '@mui/material/Grid2';
-import welcomeImg from 'src/assets/images/backgrounds/welcome-bg2.png';
+} from "@mui/material";
+import Grid from "@mui/material/Grid2";
+import welcomeImg from "src/assets/images/backgrounds/welcome-bg2.png";
 
 const WelcomeCard = ({ authUser, statsInfo }: any) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Card
@@ -39,10 +39,10 @@ const WelcomeCard = ({ authUser, statsInfo }: any) => {
                 mb={5}
                 sx={{
                   display: {
-                    xs: 'block',
-                    sm: 'flex',
+                    xs: "block",
+                    sm: "flex",
                   },
-                  alignItems: 'center',
+                  alignItems: "center",
                 }}
               >
                 <Avatar
@@ -51,41 +51,49 @@ const WelcomeCard = ({ authUser, statsInfo }: any) => {
                   sx={{ width: 40, height: 40 }}
                 />
                 <Typography variant="h5" whiteSpace="nowrap">
-                  Welcome back{' '}
-                  {authUser?.data?.firstName + ' ' + authUser?.data?.lastName}!
+                  Welcome back{" "}
+                  {authUser?.data?.firstName + " " + authUser?.data?.lastName}!
                 </Typography>
               </Box>
 
               <Stack
                 spacing={2}
-                direction={{ xs: 'column', sm: 'row' }}
+                direction={{ xs: "column", sm: "row" }}
                 divider={
                   <Divider
-                    orientation={isMobile ? 'horizontal' : 'vertical'}
+                    orientation={isMobile ? "horizontal" : "vertical"}
                     flexItem
                   />
                 }
                 flexWrap="wrap"
               >
                 {[
-                  { value: authUser?.data?.level, label: 'Level' },
+                  { value: authUser?.data?.level, label: "Level" },
                   {
                     value: statsInfo?.totalEarned,
-                    label: 'Total Earnings',
+                    label: "Total Earnings",
                   },
                   {
                     value: statsInfo?.availableBalance,
-                    label: 'Available Balance',
+                    label: "Available Balance",
                   },
                   {
                     value: authUser?.data?.withdrawnAmount,
-                    label: 'Withdrawn Amount',
+                    label: "Withdrawn Amount",
+                  },
+                  {
+                    value: authUser?.data?.spotInvestorsCount,
+                    label: "Spot Investor Count",
+                  },
+                  {
+                    value: authUser?.data?.activeInvestorsCount,
+                    label: "Active Investor Count",
                   },
                 ].map((item, index) => (
                   <Box key={index} minWidth={120}>
                     <Typography
                       variant="h2"
-                      sx={{ fontSize: { xs: '1.5rem', sm: '2rem' } }}
+                      sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
                       whiteSpace="nowrap"
                     >
                       {item.value}
@@ -104,7 +112,7 @@ const WelcomeCard = ({ authUser, statsInfo }: any) => {
             }}
           >
             <Box mb="-88px" textAlign="right">
-              <img src={welcomeImg} alt={welcomeImg} width={'300px'} />
+              <img src={welcomeImg} alt={welcomeImg} width={"300px"} />
             </Box>
           </Grid>
         </Grid>
