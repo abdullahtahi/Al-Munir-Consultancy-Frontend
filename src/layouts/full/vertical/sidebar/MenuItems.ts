@@ -70,6 +70,7 @@ import {
   CAN_VIEW_BONUS,
   CAN_VIEW_CONSULTANT,
   CAN_VIEW_SETTING,
+  CAN_VIEW_INVESTMENT,
 } from 'src/constants/Permissions';
 
 const Menuitems: MenuitemsType[] = [
@@ -104,6 +105,20 @@ const Menuitems: MenuitemsType[] = [
     icon: IconGiftFilled,
     href: '/al-munir-system/bonus',
     permission: CAN_VIEW_BONUS,
+  },
+  {
+    id: uniqueId(),
+    title: 'Investment Bonus',
+    icon: IconGiftFilled,
+    href: '/al-munir-system/investment-bonus',
+    permission: CAN_VIEW_BONUS,
+  },
+  {
+    id: uniqueId(),
+    title: 'Investment',
+    icon: IconCashBanknote,
+    href: '/al-munir-system/investment',
+    permission: CAN_VIEW_INVESTMENT,
   },
   // {
   //   id: uniqueId(),

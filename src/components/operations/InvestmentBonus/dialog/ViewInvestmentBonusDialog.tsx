@@ -16,20 +16,20 @@ import dayjs from "dayjs";
 import Button from "@mui/material/Button";
 import DialogActions from "@mui/material/DialogActions";
 
-interface ViewBonusDialogProps {
+interface ViewInvestmentBonusDialogProps {
   open: boolean;
   onClose: () => void;
   singleUser: any;
   onSuccess?: () => void;
 }
 
-const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
+const ViewInvestmentBonusDialog: React.FC<ViewInvestmentBonusDialogProps> = ({
   open,
   onClose,
   singleUser,
   onSuccess,
 }) => {
-  const title: any = "View Bonus Detail";
+  const title: any = "View Investment Bonus Detail";
   const onSubmit = async (values: any, { setSubmitting }: any) => {
     try {
       const response = await put(
@@ -45,7 +45,6 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
         onClose();
       } else {
         console.error("Failed to process bonus", response?.message);
-        // Optionally handle error feedback here if needed, but for now console.error
       }
     } catch (error) {
       console.error("Error processing bonus:", error);
@@ -84,15 +83,14 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
         initialValues={
           singleUser
             ? {
-                studentName: singleUser?.admission?.Student?.studentName || "",
+                sponsorName:
+                  singleUser.fkFromConsultant?.firstName +
+                    " " +
+                    singleUser.fkFromConsultant?.lastName || "",
                 consultantId:
                   singleUser.fkConsultant?.firstName +
                     " " +
                     singleUser.fkConsultant?.lastName || "",
-                fromConsultant:
-                  singleUser.fkFromConsultant?.firstName +
-                    " " +
-                    singleUser.fkFromConsultant?.lastName || "",
                 bonusType: singleUser?.bonusType || "",
                 amount: singleUser.amount,
                 percentage: singleUser?.percentage || "",
@@ -104,9 +102,8 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                 bankAccount: singleUser.fkConsultant?.Bank?.accountNumber || "",
               }
             : {
-                studentName: "",
+                sponsorName: "",
                 consultantId: "",
-                fromConsultant: "",
                 bonusType: "",
                 amount: "",
                 percentage: "",
@@ -128,9 +125,9 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                 <Grid container spacing={2}>
                   <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
                     <CustomFields
-                      name="studentName"
-                      label="Student Name"
-                      placeholder="Enter Student Name"
+                      name="sponsorName"
+                      label="Sponsor Name"
+                      placeholder="Enter Sponsor Name"
                       disabled={true}
                     />
                   </Grid>
@@ -138,15 +135,6 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                     <CustomFields
                       name="consultantId"
                       label="Consultant"
-                      placeholder=""
-                      disabled={true}
-                    />
-                  </Grid>
-
-                  <Grid size={{ xs: 12, sm: 6, md: 6, lg: 6, xl: 6 }}>
-                    <CustomFields
-                      name="fromConsultant"
-                      label="Consultant From"
                       placeholder=""
                       disabled={true}
                     />
@@ -280,4 +268,4 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
   );
 };
 
-export default ViewBonusDialog;
+export default ViewInvestmentBonusDialog;

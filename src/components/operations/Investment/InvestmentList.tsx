@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Add, FilterList } from "@mui/icons-material";
-import { IconPencil, IconTrash } from "@tabler/icons-react";
+import { IconTrash, IconPencil } from "@tabler/icons-react";
 
 import {
   Alert,
   Box,
   Button,
-  Chip,
   Collapse,
   Snackbar,
-  Stack,
   useTheme,
 } from "@mui/material";
 import PageContainer from "@components/layout/PageContainer";
@@ -18,10 +16,19 @@ import GenericTable from "src/components/generic-table";
 import { useSelector } from "react-redux";
 import { RootState } from "src/store";
 import { baseUrl, destroy, get, post, put } from "src/services/default";
-import AdmissionsFilter from "./BranchesFilters";
-import NewBranchesDialog from "./dialog/NewBranchesDialog";
+import InvestmentFilters from "./InvestmentFilters";
+import InvestmentDialog from "./dialog/AddInvestmentDialog";
 import { DeleteDialog } from "src/components/delete-dialog/DeleteDialog";
 import Grid from "@mui/material/Grid2";
+import AuthorizeComponent from "src/utils/AuthorizeComponent";
+import {
+  CAN_ADD_INVESTMENT,
+  CAN_DELETE_INVESTMENT,
+  CAN_VIEW_INVESTMENT,
+  CAN_EDIT_INVESTMENT,
+} from "src/constants/Permissions";
+import dayjs from "dayjs";
+
 interface TableColumn {
   id: string;
   label: React.ReactNode;
@@ -32,7 +39,7 @@ interface TableColumn {
   render?: (row: any, index: number) => React.ReactNode;
 }
 
-const BranchList: React.FC = () => {
+const InvestmentList: React.FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const [singleUser, setSingleUser] = useState<any>({});
@@ -50,16 +57,16 @@ const BranchList: React.FC = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(20);
-  const [branchData, setBranchData] = useState<any[]>([]);
+  const [investmentData, setInvestmentData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   // Add/Edit dialog state
-  const [branchDialogOpen, setBranchOpenDialog] = useState(false);
-  const [branchDialogMode, setbranchDialogMode] = useState<"Add" | "Edit">(
-    "Add",
-  );
+  const [investmentDialogOpen, setInvestmentDialogOpen] = useState(false);
+  const [investmentDialogMode, setInvestmentDialogMode] = useState<
+    "Add" | "Edit"
+  >("Add");
 
   const hanldOpenDeleteModal = (row: any) => {
     setSingleUser(row);
@@ -78,113 +85,111 @@ const BranchList: React.FC = () => {
       render: (_, index) => index + 1,
     },
     {
-      id: "name",
-      label: "Name",
+      id: "employeeName",
+      label: "Employee Name",
+      align: "left",
+      minWidth: 100,
+      classNames: "pr-0 text-nowrap",
+      key: "employeeName",
+      render: (row) =>
+        row?.consultant?.firstName + " " + row?.consultant?.lastName || "-",
+    },
+    {
+      id: "typeOfInvestment",
+      label: "Investment Type",
+      align: "left",
+      minWidth: 100,
+      classNames: "pr-0 text-nowrap",
+      key: "typeOfInvestment",
+      render: (row) => row?.typeOfInvestor || "-",
+    },
+    {
+      id: "durationFrom",
+      label: "Duration From",
+      align: "left",
+      minWidth: 100,
+      classNames: "pr-0 text-nowrap",
+      key: "durationFrom",
+      render: (row) =>
+        row?.durationFrom ? dayjs(row?.durationFrom).format("DD-MM-YYYY") : "-",
+    },
+    {
+      id: "durationTo",
+      label: "Duration To",
+      align: "left",
+      minWidth: 100,
+      classNames: "pr-0 text-nowrap",
+      key: "durationTo",
+      render: (row) =>
+        row?.durationTo ? dayjs(row?.durationTo).format("DD-MM-YYYY") : "-",
+    },
+    {
+      id: "amount",
+      label: "Amount",
       align: "left",
       minWidth: 80,
       classNames: "pr-0 text-nowrap",
-      key: "Student.studentName",
-      render: (row) => row?.name || "-",
+      key: "amount",
+      render: (row) => row?.amount + "Rs",
     },
     {
-      id: "principleName",
-      label: "Principle Name",
-      align: "left",
-      minWidth: 80,
-      classNames: "pr-0 text-nowrap",
-      key: "Student.phone",
-      render: (row) => row?.principleName || "-",
-    },
-    {
-      id: "principleEducation",
-      label: "Principle Education",
-      align: "left",
-      minWidth: 80,
-      classNames: "pr-0 text-nowrap",
-      key: "DependOn.relation",
-      render: (row) => row.principleEducation,
-    },
-    {
-      id: "isActive",
-      label: "status",
-      align: "left",
-      minWidth: 80,
-      classNames: "pr-0 text-nowrap",
-      key: "status",
-      render: (row: any) =>
-        row.isActive == true ? (
-          <Stack direction="row" spacing={1}>
-            <Chip label="Active" color="success" />
-          </Stack>
-        ) : (
-          <Stack direction="row" spacing={1}>
-            <Chip label="In Active" color="error" />
-          </Stack>
-        ),
-    },
-
-    {
-      id: "Edit",
-      label: "Edit",
+      id: "Action",
+      label: "Action",
       align: "left",
       minWidth: 10,
       classNames: "pr-0 text-nowrap",
-      key: "Edit",
+      key: "Action",
       render: (row) => (
-        <Button
-          variant="outlined"
-          size="small"
-          startIcon={<IconPencil size={18} />}
-          onClick={() => handleOpenEdit(row)}
-          sx={{ minWidth: "auto" }}
-        />
-      ),
-    },
-    {
-      id: "Delete",
-      label: "Delete",
-      align: "left",
-      minWidth: 10,
-      classNames: "pr-0 text-nowrap",
-      key: "Edit",
-      render: (row) => (
-        <Button
-          variant="outlined"
-          size="small"
-          startIcon={<IconTrash size={18} />}
-          onClick={() => hanldOpenDeleteModal(row)}
-          sx={{ minWidth: "auto" }}
-        />
+        <Box display="flex" gap={1}>
+          <AuthorizeComponent permission={CAN_EDIT_INVESTMENT}>
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={<IconPencil size={18} />}
+              onClick={() => {
+                setSingleUser(row);
+                setInvestmentDialogMode("Edit");
+                setInvestmentDialogOpen(true);
+              }}
+              sx={{ minWidth: "auto" }}
+            />
+          </AuthorizeComponent>
+          {/* <AuthorizeComponent permission={CAN_DELETE_INVESTMENT}>
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={<IconTrash size={18} />}
+              onClick={() => hanldOpenDeleteModal(row)}
+              sx={{ minWidth: "auto" }}
+            />
+          </AuthorizeComponent> */}
+        </Box>
       ),
     },
   ];
 
-  const handleOpenEdit = (row: any) => {
-    setSingleUser(row);
-    setbranchDialogMode("Edit");
-    setBranchOpenDialog(true);
-  };
-
-  const getBranches = useCallback(
+  const getInvestments = useCallback(
     async (values: any) => {
       try {
         setLoading(true);
-        console.log("values", values);
         const queryString = new URLSearchParams(values).toString();
-        const branches: any = await get(
-          `${baseUrl}/api/v1/branches?page=${page}&limit=${rowsPerPage}&${queryString}`,
+        const investments: any = await get(
+          `${baseUrl}/api/v1/investment?page=${page}&limit=${rowsPerPage}&${queryString}`,
         );
-        if (branches.data) {
-          setBranchData(branches.data.rows);
-          setTotalCount(branches.data.count);
+        console.log("investments", investments);
+        if (investments.data) {
+          setInvestmentData(investments.data.rows || []);
+          setTotalCount(investments.data.count || 0);
         } else {
+          setInvestmentData([]);
+          setTotalCount(0);
           setSnackbar({
             open: true,
-            message: branches.message || "",
+            message: investments.message || "",
             severity: "error",
           });
         }
-        return branches;
+        return investments;
       } catch (error: any) {
         setSnackbar({
           open: true,
@@ -197,56 +202,57 @@ const BranchList: React.FC = () => {
     },
     [token, rowsPerPage, page],
   );
+
   const handleSubmit = async (values: any) => {
     try {
-      const { isActive, ...rest } = values;
-      if (branchDialogMode == "Edit") {
-        console.log("");
-        const user: any = await put(
-          `${baseUrl}/api/v1/branches/${singleUser.id}`,
-          { ...rest, isActive: isActive == "Active" ? true : false },
+      let result: any;
+      if (investmentDialogMode === "Edit") {
+        result = await put(
+          `${baseUrl}/api/v1/investment/${singleUser.id}`,
+          values,
         );
-
-        setSnackbar({
-          open: true,
-          message: user.message || "Updated SuccessFully",
-          severity: "success",
-        });
       } else {
-        const branches: any = await post(`${baseUrl}/api/v1/branches`, {
-          ...rest,
-          isActive: isActive == "Active" ? true : false,
-        });
-        console.log("branches", branches);
-        setSnackbar({
-          open: true,
-          message: branches.message || "Branch Created SuccessFully",
-          severity: "success",
-        });
+        result = await post(`${baseUrl}/api/v1/investment`, values);
       }
 
-      setBranchOpenDialog(false);
-    } catch (error: any) {
-      error.map((row: any) => {
+      if (result.data) {
         setSnackbar({
           open: true,
-          message: row.message,
+          message:
+            result.message ||
+            `Investment ${investmentDialogMode === "Edit" ? "updated" : "created"} SuccessFully`,
+          severity: "success",
+        });
+        setInvestmentDialogOpen(false);
+      } else if (result?.message) {
+        setSnackbar({
+          open: true,
+          message: result.message || "Something went wrong",
           severity: "error",
         });
+      }
+      console.log("result", result);
+    } catch (error: any) {
+      console.log("error", error);
+      const errorMsg = Array.isArray(error) ? error[0]?.message : error.message;
+      setSnackbar({
+        open: true,
+        message: errorMsg || "Something went wrong",
+        severity: "error",
       });
     }
   };
 
-  const deleteImg = async () => {
+  const deleteInvestment = async () => {
     try {
-      await destroy(`${baseUrl}/api/v1/branches/${singleUser.id}`);
+      await destroy(`${baseUrl}/api/v1/investment/${singleUser.id}`);
       setSnackbar({
         open: true,
         message: "Deleted Successfull",
         severity: "success",
       });
       hanldCloseDeleteModal();
-      getBranches({});
+      getInvestments({});
     } catch (error: any) {
       setSnackbar({
         open: true,
@@ -255,30 +261,35 @@ const BranchList: React.FC = () => {
       });
     }
   };
+
   useEffect(() => {
-    getBranches({});
-  }, [rowsPerPage, page, branchDialogOpen]);
+    getInvestments({});
+  }, [rowsPerPage, page, investmentDialogOpen]);
+
+  console.log("investmentData", investmentData);
 
   return (
     <>
       <PageContainer
-        heading={<span>Branches ({totalCount})</span>}
+        heading={<span>Investments ({totalCount || 0})</span>}
         breadcrumbs={[
           { title: t("home"), to: "/" },
-          { title: t("Admissions"), to: "/branches" },
+          { title: "Investments", to: "/al-munir-system/investment" },
         ]}
         action={
-          <Button
-            variant="contained"
-            onClick={() => {
-              setbranchDialogMode("Add");
-              setBranchOpenDialog(true);
-            }}
-            color="primary"
-            size="small"
-            startIcon={<Add />}
-            sx={{ "& .MuiButton-startIcon": { marginRight: 0 } }}
-          />
+          <AuthorizeComponent permission={CAN_ADD_INVESTMENT}>
+            <Button
+              variant="contained"
+              onClick={() => {
+                setInvestmentDialogMode("Add");
+                setInvestmentDialogOpen(true);
+              }}
+              color="primary"
+              size="small"
+              startIcon={<Add />}
+              sx={{ "& .MuiButton-startIcon": { marginRight: 0 } }}
+            />
+          </AuthorizeComponent>
         }
       >
         <Box display="flex" justifyContent="flex-end" mb={1} width="100%">
@@ -299,36 +310,36 @@ const BranchList: React.FC = () => {
 
         <Collapse in={showFilters} timeout="auto" unmountOnExit>
           <Box mb={2} width="100%">
-            <AdmissionsFilter getBranches={getBranches} />
+            <InvestmentFilters getInvestments={getInvestments} />
           </Box>
         </Collapse>
 
         <Grid size={12}>
           <GenericTable
-            data={branchData}
+            data={investmentData}
             columns={columns}
             page={page}
             rowsPerPage={rowsPerPage}
             setPage={setPage}
             setRowsPerPage={setRowsPerPage}
-            totalCount={totalCount}
+            totalCount={totalCount || 0}
             isLoading={loading}
           />
         </Grid>
       </PageContainer>
 
-      <NewBranchesDialog
-        open={branchDialogOpen}
-        onClose={() => setBranchOpenDialog(false)}
+      <InvestmentDialog
+        open={investmentDialogOpen}
+        onClose={() => setInvestmentDialogOpen(false)}
         handleSubmit={handleSubmit}
-        mode={branchDialogMode}
+        mode={investmentDialogMode}
         singleUser={singleUser}
       />
       <DeleteDialog
-        deleteImg={deleteImg}
+        deleteImg={deleteInvestment}
         handleClose={hanldCloseDeleteModal}
-        title="Delete Admission"
-        subText="Are you sure to delete Admission"
+        title="Delete Investment"
+        subText="Are you sure to delete Investment"
         open={openDeleteModal}
       />
       <Snackbar
@@ -349,4 +360,4 @@ const BranchList: React.FC = () => {
   );
 };
 
-export default BranchList;
+export default InvestmentList;

@@ -7,14 +7,14 @@ import CustomFields from "src/components/custom-fields/custom-fields";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import CustomSelect from "src/components/custom-select/custom-select";
-import CustomDatePicker from "src/components/custom-date-picker";
-import dayjs from "dayjs";
 
-interface AdmissionFiltersDialogProps {
+interface InvestmentBonusFiltersProps {
   getBonus: (values: any) => void;
 }
 
-const BonusFilters: React.FC<AdmissionFiltersDialogProps> = ({ getBonus }) => {
+const InvestmentBonusFilters: React.FC<InvestmentBonusFiltersProps> = ({
+  getBonus,
+}) => {
   const handleCancel = (resetForm: any) => {
     resetForm();
     getBonus({});
@@ -26,22 +26,17 @@ const BonusFilters: React.FC<AdmissionFiltersDialogProps> = ({ getBonus }) => {
 
   const getValidationSchema = () =>
     Yup.object().shape({
-      studentName: Yup.string(),
-      admissionType: Yup.string(),
-      admissionNumber: Yup.string(),
-      admissionDateFrom: Yup.string(),
-      admissionDateTo: Yup.string(),
-      status: Yup.string(),
+      sponsorName: Yup.string(),
       consultantId: Yup.string(),
+      bonusType: Yup.string(),
+      status: Yup.string(),
     });
+
   const initialValues = {
-    studentName: "",
-    admissionType: "",
-    admissionNumber: "",
-    admissionDateFrom: "",
-    admissionDateTo: "",
-    status: "",
+    sponsorName: "",
     consultantId: "",
+    bonusType: "",
+    status: "",
   };
 
   return (
@@ -53,42 +48,6 @@ const BonusFilters: React.FC<AdmissionFiltersDialogProps> = ({ getBonus }) => {
     >
       {({ handleSubmit, resetForm }) => (
         <Grid container spacing={2}>
-          <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4, xl: 4 }}>
-            <CustomFields
-              name="studentName"
-              label="Student Name"
-              placeholder="Student Name"
-            />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4, xl: 4 }}>
-            <CustomFields
-              name="admissionNumber"
-              label="Admission Number"
-              placeholder="Enter Admission Number"
-            />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4, xl: 4 }}>
-            <CustomSelect
-              name="admissionType"
-              label="Admission Type"
-              placeholder="Enter Admission Type"
-              options={[
-                {
-                  key: "school",
-                  value: "school",
-                },
-                {
-                  key: "academy",
-                  value: "academy",
-                },
-                {
-                  key: "technical",
-                  value: "technical",
-                },
-              ]}
-            />
-          </Grid>
-
           <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4, xl: 4 }}>
             <CustomSelect
               name="status"
@@ -106,6 +65,7 @@ const BonusFilters: React.FC<AdmissionFiltersDialogProps> = ({ getBonus }) => {
               ]}
             />
           </Grid>
+
           <Grid size={{ xs: 12, sm: 4, md: 4, lg: 4, xl: 4 }}>
             <ShippingLineSelector
               name="consultantId"
@@ -152,4 +112,4 @@ const BonusFilters: React.FC<AdmissionFiltersDialogProps> = ({ getBonus }) => {
   );
 };
 
-export default BonusFilters;
+export default InvestmentBonusFilters;

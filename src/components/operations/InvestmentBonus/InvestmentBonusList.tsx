@@ -18,8 +18,8 @@ import GenericTable from "src/components/generic-table";
 import { useSelector } from "react-redux";
 import { RootState } from "src/store";
 import { baseUrl, get } from "src/services/default";
-import BonusFilters from "./bonusFilters";
-import ViewBonusDialog from "./dialog/ViewBonusDialog";
+import InvestmentBonusFilters from "./InvestmentBonusFilters";
+import ViewInvestmentBonusDialog from "./dialog/ViewInvestmentBonusDialog";
 import AuthorizeComponent from "src/utils/AuthorizeComponent";
 import { CAN_VIEW_BONUS } from "src/constants/Permissions";
 
@@ -33,7 +33,7 @@ interface TableColumn {
   render?: (row: any, index: number) => React.ReactNode;
 }
 
-const BonusList: React.FC = () => {
+const InvestmentBonusList: React.FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const [singleUser, setSingleUser] = useState<any>({});
@@ -75,43 +75,34 @@ const BonusList: React.FC = () => {
       render: (_, index) => index + 1,
     },
     {
-      id: "studentName",
-      label: "Student Name",
+      id: "sponsorName",
+      label: "Invested By",
       align: "left",
       minWidth: 80,
       classNames: "pr-0 text-nowrap",
-      key: "Student.studentName",
-      render: (row) => row?.admission?.Student?.studentName || "-",
-    },
-    {
-      id: "Class",
-      label: "Consultant",
-      align: "left",
-      minWidth: 80,
-      classNames: "pr-0 text-nowrap",
-      key: "Student.phone",
-      render: (row) =>
-        row?.fkConsultant?.firstName + " " + row?.fkConsultant?.lastName || "-",
-    },
-    {
-      id: "DependOn",
-      label: "Consultant From",
-      align: "left",
-      minWidth: 80,
-      classNames: "pr-0 text-nowrap",
-      key: "DependOn.relation",
+      key: "sponsorName",
       render: (row) =>
         row?.fkFromConsultant?.firstName +
           " " +
           row?.fkFromConsultant?.lastName || "-",
     },
     {
-      id: "feeAmount",
+      id: "consultant",
+      label: "Consultant(Bonus receiver)",
+      align: "left",
+      minWidth: 80,
+      classNames: "pr-0 text-nowrap",
+      key: "consultant",
+      render: (row) =>
+        row?.fkConsultant?.firstName + " " + row?.fkConsultant?.lastName || "-",
+    },
+    {
+      id: "bonusType",
       label: "Bonus Type",
       align: "left",
       minWidth: 80,
       classNames: "pr-0 text-nowrap",
-      key: "feeAmount",
+      key: "bonusType",
       render: (row) => (
         <Typography sx={{ fontWeight: 600, textTransform: "capitalize" }}>
           {row?.bonusType.replace(/_/g, " ")}
@@ -119,21 +110,21 @@ const BonusList: React.FC = () => {
       ),
     },
     {
-      id: "admissionNumber",
+      id: "amount",
       label: "Transfer Amount",
       align: "left",
       minWidth: 80,
       classNames: "pr-0 text-nowrap",
-      key: "grade",
+      key: "amount",
       render: (row) => row.amount + ".RS",
     },
     {
-      id: "admissionType",
+      id: "baseAmount",
       label: "Base Amount",
       align: "left",
       minWidth: 80,
       classNames: "pr-0 text-nowrap",
-      key: "grade",
+      key: "baseAmount",
       render: (row) => row.baseAmount + ".RS",
     },
     {
@@ -145,7 +136,7 @@ const BonusList: React.FC = () => {
       key: "status",
       render: (row) => (
         <Chip
-          label={row?.status || "Pending"}
+          label={row?.status || "pending"}
           size="small"
           sx={{
             fontWeight: 600,
@@ -169,12 +160,12 @@ const BonusList: React.FC = () => {
       ),
     },
     {
-      id: "Edit",
+      id: "view",
       label: "View",
       align: "left",
       minWidth: 10,
       classNames: "pr-0 text-nowrap",
-      key: "Edit",
+      key: "view",
       render: (row) => (
         <AuthorizeComponent permission={CAN_VIEW_BONUS}>
           <Button
@@ -193,23 +184,24 @@ const BonusList: React.FC = () => {
     async (values: any) => {
       try {
         setLoading(true);
-        const queryString = new URLSearchParams(values).toString();
-        const admissions: any = await get(
+        const queryParams = { ...values, admissionId: null };
+        const queryString = new URLSearchParams(queryParams).toString();
+        const bonuses: any = await get(
           `${baseUrl}/api/v1/bonuses?page=${page}&limit=${rowsPerPage}&${queryString}`,
         );
-        if (admissions.data) {
-          setBonusData(admissions.data.rows);
-          setTotalCount(admissions.data.count);
+        if (bonuses.data) {
+          setBonusData(bonuses.data.rows);
+          setTotalCount(bonuses.data.count);
         } else {
           setSnackbar({
             open: true,
-            message: admissions.message || "",
+            message: bonuses.message || "",
             severity: "error",
           });
         }
-        console.log("admissions", admissions);
+        console.log("bonuses", bonuses);
 
-        return admissions;
+        return bonuses;
       } catch (error: any) {
         setSnackbar({
           open: true,
@@ -230,10 +222,10 @@ const BonusList: React.FC = () => {
   return (
     <>
       <PageContainer
-        heading={<span>Bonus ({totalCount})</span>}
+        heading={<span>Investment Bonus ({totalCount})</span>}
         breadcrumbs={[
           { title: t("home"), to: "/" },
-          { title: t("Bonus"), to: "/bonus" },
+          { title: t("Investment Bonus"), to: "/investment-bonus" },
         ]}
       >
         <Box display="flex" justifyContent="flex-end" mb={1} width="100%">
@@ -254,7 +246,7 @@ const BonusList: React.FC = () => {
 
         <Collapse in={showFilters} timeout="auto" unmountOnExit>
           <Box mb={2} width="100%">
-            <BonusFilters getBonus={getBonus} />
+            <InvestmentBonusFilters getBonus={getBonus} />
           </Box>
         </Collapse>
 
@@ -273,7 +265,7 @@ const BonusList: React.FC = () => {
           </Box>
         </Box>
       </PageContainer>
-      <ViewBonusDialog
+      <ViewInvestmentBonusDialog
         open={bonusDialogOpen}
         onClose={hanldBonusCloseModal}
         singleUser={singleUser}
@@ -305,4 +297,4 @@ const BonusList: React.FC = () => {
   );
 };
 
-export default BonusList;
+export default InvestmentBonusList;

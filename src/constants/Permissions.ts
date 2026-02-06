@@ -31,3 +31,11 @@ export const CAN_PROCESS_BONUS = 'canProcessBonus';
 
 export const SETTINGS = 'Settings';
 export const CAN_VIEW_SETTING = 'canViewSetting';
+
+export const INVESTMENT = 'Investment';
+export const CAN_VIEW_INVESTMENT = 'canViewInvestment';
+export const CAN_ADD_INVESTMENT = 'canAddInvestment';
+export const CAN_EDIT_INVESTMENT = 'canEditInvestment';
+export const CAN_DELETE_INVESTMENT = 'canDeleteInvestment';
+
+
