@@ -154,7 +154,7 @@ const InvestmentList: React.FC = () => {
               sx={{ minWidth: "auto" }}
             />
           </AuthorizeComponent>
-          <AuthorizeComponent permission={CAN_DELETE_INVESTMENT}>
+          {/* <AuthorizeComponent permission={CAN_DELETE_INVESTMENT}>
             <Button
               variant="outlined"
               size="small"
@@ -162,7 +162,7 @@ const InvestmentList: React.FC = () => {
               onClick={() => hanldOpenDeleteModal(row)}
               sx={{ minWidth: "auto" }}
             />
-          </AuthorizeComponent>
+          </AuthorizeComponent> */}
         </Box>
       ),
     },

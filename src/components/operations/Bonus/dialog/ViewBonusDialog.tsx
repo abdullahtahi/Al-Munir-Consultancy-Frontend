@@ -1,20 +1,20 @@
-import Box from '@mui/material/Box';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import Grid from '@mui/material/Grid2';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { IconX } from '@tabler/icons-react';
-import { Form, Formik } from 'formik';
-import React from 'react';
-import CustomFields from 'src/components/custom-fields/custom-fields';
-import FileUploadField from 'src/components/custom-file-Upload/custom-file-upload';
-import { baseUrl, put } from 'src/services/default';
-import * as Yup from 'yup';
-import dayjs from 'dayjs';
-import Button from '@mui/material/Button';
-import DialogActions from '@mui/material/DialogActions';
+import Box from "@mui/material/Box";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import Grid from "@mui/material/Grid2";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { IconX } from "@tabler/icons-react";
+import { Form, Formik } from "formik";
+import React from "react";
+import CustomFields from "src/components/custom-fields/custom-fields";
+import FileUploadField from "src/components/custom-file-Upload/custom-file-upload";
+import { baseUrl, put } from "src/services/default";
+import * as Yup from "yup";
+import dayjs from "dayjs";
+import Button from "@mui/material/Button";
+import DialogActions from "@mui/material/DialogActions";
 
 interface ViewBonusDialogProps {
   open: boolean;
@@ -29,31 +29,33 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
   singleUser,
   onSuccess,
 }) => {
-  const title: any = 'View Bonus Detail';
+  const title: any = "View Bonus Detail";
   const onSubmit = async (values: any, { setSubmitting }: any) => {
     try {
-      const response = await put(`${baseUrl}/api/v1/bonuses/processable`, {
-        id: singleUser.id,
-        paymentProof: values.paymentProof,
-        status: 'processed',
-      });
+      const response = await put(
+        `${baseUrl}/api/v1/bonuses/${singleUser.id}/process`,
+        {
+          paymentProof: values.paymentProof,
+          status: "processed",
+        },
+      );
 
       if (response?.data) {
         if (onSuccess) onSuccess();
         onClose();
       } else {
-        console.error('Failed to process bonus', response?.message);
+        console.error("Failed to process bonus", response?.message);
         // Optionally handle error feedback here if needed, but for now console.error
       }
     } catch (error) {
-      console.error('Error processing bonus:', error);
+      console.error("Error processing bonus:", error);
     } finally {
       setSubmitting(false);
     }
   };
 
   const validationSchema = Yup.object().shape({
-    paymentProof: Yup.string().required('Payment proof is required'),
+    paymentProof: Yup.string().required("Payment proof is required"),
   });
 
   return (
@@ -64,8 +66,8 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
       fullWidth
       PaperProps={{
         sx: {
-          width: { xs: 'calc(100% - 20px)', md: 1200 },
-          mx: 'auto',
+          width: { xs: "calc(100% - 20px)", md: 1200 },
+          mx: "auto",
         },
       }}
     >
@@ -82,38 +84,38 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
         initialValues={
           singleUser
             ? {
-                studentName: singleUser?.admission?.Student?.studentName || '',
+                studentName: singleUser?.admission?.Student?.studentName || "",
                 consultantId:
                   singleUser.fkConsultant?.firstName +
-                    ' ' +
-                    singleUser.fkConsultant?.lastName || '',
+                    " " +
+                    singleUser.fkConsultant?.lastName || "",
                 fromConsultant:
                   singleUser.fkFromConsultant?.firstName +
-                    ' ' +
-                    singleUser.fkFromConsultant?.lastName || '',
-                bonusType: singleUser?.bonusType || '',
+                    " " +
+                    singleUser.fkFromConsultant?.lastName || "",
+                bonusType: singleUser?.bonusType || "",
                 amount: singleUser.amount,
-                percentage: singleUser?.percentage || '',
-                baseAmount: singleUser.baseAmount || '',
-                levelDepth: singleUser.levelDepth || '',
-                description: singleUser.description || '',
-                paymentProof: '',
-                bankName: singleUser.fkConsultant?.Bank?.name || '',
-                bankAccount: singleUser.fkConsultant?.Bank?.accountNumber || '',
+                percentage: singleUser?.percentage || "",
+                baseAmount: singleUser.baseAmount || "",
+                levelDepth: singleUser.levelDepth || "",
+                description: singleUser.description || "",
+                paymentProof: "",
+                bankName: singleUser.fkConsultant?.Bank?.name || "",
+                bankAccount: singleUser.fkConsultant?.Bank?.accountNumber || "",
               }
             : {
-                studentName: '',
-                consultantId: '',
-                fromConsultant: '',
-                bonusType: '',
-                amount: '',
-                percentage: '',
-                baseAmount: '',
-                levelDepth: '',
-                description: '',
-                paymentProof: '',
-                bankName: '',
-                bankAccount: '',
+                studentName: "",
+                consultantId: "",
+                fromConsultant: "",
+                bonusType: "",
+                amount: "",
+                percentage: "",
+                baseAmount: "",
+                levelDepth: "",
+                description: "",
+                paymentProof: "",
+                bankName: "",
+                bankAccount: "",
               }
         }
         validationSchema={validationSchema}
@@ -200,7 +202,7 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                       name="joiningDate"
                       label="Joining Date"
                       placeholder=""
-                      value={dayjs(singleUser?.createdAt).format('DD-MM-YYYY')}
+                      value={dayjs(singleUser?.createdAt).format("DD-MM-YYYY")}
                       disabled={true}
                     />
                   </Grid>
@@ -212,8 +214,8 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                       placeholder=""
                       value={
                         singleUser?.processedAt
-                          ? dayjs(singleUser?.processedAt).format('DD-MM-YYYY')
-                          : '-'
+                          ? dayjs(singleUser?.processedAt).format("DD-MM-YYYY")
+                          : "-"
                       }
                       disabled={true}
                     />
@@ -267,7 +269,7 @@ const ViewBonusDialog: React.FC<ViewBonusDialogProps> = ({
                   type="submit"
                   variant="contained"
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit'}
+                  {isSubmitting ? "Submitting..." : "Submit"}
                 </Button>
               </DialogActions>
             </Form>

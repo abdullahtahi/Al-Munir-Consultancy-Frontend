@@ -11,6 +11,7 @@ import {
   Snackbar,
   Typography,
   useTheme,
+  Chip,
 } from "@mui/material";
 import PageContainer from "@components/layout/PageContainer";
 import GenericTable from "src/components/generic-table";
@@ -125,6 +126,38 @@ const InvestmentBonusList: React.FC = () => {
       classNames: "pr-0 text-nowrap",
       key: "baseAmount",
       render: (row) => row.baseAmount + ".RS",
+    },
+    {
+      id: "status",
+      label: "Status",
+      align: "left",
+      minWidth: 80,
+      classNames: "pr-0 text-nowrap",
+      key: "status",
+      render: (row) => (
+        <Chip
+          label={row?.status || "pending"}
+          size="small"
+          sx={{
+            fontWeight: 600,
+            textTransform: "capitalize",
+            backgroundColor: (theme) =>
+              row?.status === "processed"
+                ? theme.palette.success.light
+                : theme.palette.warning.light,
+            color: (theme) =>
+              row?.status === "processed"
+                ? theme.palette.success.main
+                : theme.palette.warning.main,
+            border: (theme) =>
+              `1px solid ${
+                row?.status === "processed"
+                  ? theme.palette.success.main
+                  : theme.palette.warning.main
+              }`,
+          }}
+        />
+      ),
     },
     {
       id: "view",

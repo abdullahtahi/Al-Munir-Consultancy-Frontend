@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import { FilterList } from '@mui/icons-material';
-import { IconEye } from '@tabler/icons-react';
+import React, { useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
+import { FilterList } from "@mui/icons-material";
+import { IconEye } from "@tabler/icons-react";
 
 import {
   Alert,
@@ -11,21 +11,22 @@ import {
   Snackbar,
   Typography,
   useTheme,
-} from '@mui/material';
-import PageContainer from '@components/layout/PageContainer';
-import GenericTable from 'src/components/generic-table';
-import { useSelector } from 'react-redux';
-import { RootState } from 'src/store';
-import { baseUrl, get } from 'src/services/default';
-import BonusFilters from './bonusFilters';
-import ViewBonusDialog from './dialog/ViewBonusDialog';
-import AuthorizeComponent from 'src/utils/AuthorizeComponent';
-import { CAN_VIEW_BONUS } from 'src/constants/Permissions';
+  Chip,
+} from "@mui/material";
+import PageContainer from "@components/layout/PageContainer";
+import GenericTable from "src/components/generic-table";
+import { useSelector } from "react-redux";
+import { RootState } from "src/store";
+import { baseUrl, get } from "src/services/default";
+import BonusFilters from "./bonusFilters";
+import ViewBonusDialog from "./dialog/ViewBonusDialog";
+import AuthorizeComponent from "src/utils/AuthorizeComponent";
+import { CAN_VIEW_BONUS } from "src/constants/Permissions";
 
 interface TableColumn {
   id: string;
   label: React.ReactNode;
-  align: 'left' | 'center' | 'right';
+  align: "left" | "center" | "right";
   minWidth: number;
   classNames: string;
   key: string;
@@ -39,11 +40,11 @@ const BonusList: React.FC = () => {
 
   const [snackbar, setSnackbar] = useState({
     open: false,
-    message: '',
-    severity: 'error' as 'error' | 'success' | 'info' | 'warning',
+    message: "",
+    severity: "error" as "error" | "success" | "info" | "warning",
   });
   const token = useSelector(
-    (state: RootState) => state?.auth?.user?.data?.accessToken
+    (state: RootState) => state?.auth?.user?.data?.accessToken,
   );
 
   // State
@@ -65,83 +66,115 @@ const BonusList: React.FC = () => {
 
   const columns: TableColumn[] = [
     {
-      id: 'S.No',
-      label: 'S.No',
-      align: 'left',
+      id: "S.No",
+      label: "S.No",
+      align: "left",
       minWidth: 30,
-      classNames: 'pr-0',
-      key: 'sNo',
+      classNames: "pr-0",
+      key: "sNo",
       render: (_, index) => index + 1,
     },
     {
-      id: 'studentName',
-      label: 'Student Name',
-      align: 'left',
+      id: "studentName",
+      label: "Student Name",
+      align: "left",
       minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'Student.studentName',
-      render: (row) => row?.admission?.Student?.studentName || '-',
+      classNames: "pr-0 text-nowrap",
+      key: "Student.studentName",
+      render: (row) => row?.admission?.Student?.studentName || "-",
     },
     {
-      id: 'Class',
-      label: 'Consultant',
-      align: 'left',
+      id: "Class",
+      label: "Consultant",
+      align: "left",
       minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'Student.phone',
+      classNames: "pr-0 text-nowrap",
+      key: "Student.phone",
       render: (row) =>
-        row?.fkConsultant?.firstName + ' ' + row?.fkConsultant?.lastName || '-',
+        row?.fkConsultant?.firstName + " " + row?.fkConsultant?.lastName || "-",
     },
     {
-      id: 'DependOn',
-      label: 'Consultant From',
-      align: 'left',
+      id: "DependOn",
+      label: "Consultant From",
+      align: "left",
       minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'DependOn.relation',
+      classNames: "pr-0 text-nowrap",
+      key: "DependOn.relation",
       render: (row) =>
         row?.fkFromConsultant?.firstName +
-          ' ' +
-          row?.fkFromConsultant?.lastName || '-',
+          " " +
+          row?.fkFromConsultant?.lastName || "-",
     },
     {
-      id: 'feeAmount',
-      label: 'Bonus Type',
-      align: 'left',
+      id: "feeAmount",
+      label: "Bonus Type",
+      align: "left",
       minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'feeAmount',
+      classNames: "pr-0 text-nowrap",
+      key: "feeAmount",
       render: (row) => (
-        <Typography sx={{ fontWeight: 600, textTransform: 'capitalize' }}>
-          {row?.bonusType.replace(/_/g, ' ')}
+        <Typography sx={{ fontWeight: 600, textTransform: "capitalize" }}>
+          {row?.bonusType.replace(/_/g, " ")}
         </Typography>
       ),
     },
     {
-      id: 'admissionNumber',
-      label: 'Transfer Amount',
-      align: 'left',
+      id: "admissionNumber",
+      label: "Transfer Amount",
+      align: "left",
       minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'grade',
-      render: (row) => row.amount + '.RS',
+      classNames: "pr-0 text-nowrap",
+      key: "grade",
+      render: (row) => row.amount + ".RS",
     },
     {
-      id: 'admissionType',
-      label: 'Base Amount',
-      align: 'left',
+      id: "admissionType",
+      label: "Base Amount",
+      align: "left",
       minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'grade',
-      render: (row) => row.baseAmount + '.RS',
+      classNames: "pr-0 text-nowrap",
+      key: "grade",
+      render: (row) => row.baseAmount + ".RS",
     },
     {
-      id: 'Edit',
-      label: 'View',
-      align: 'left',
+      id: "status",
+      label: "Status",
+      align: "left",
+      minWidth: 80,
+      classNames: "pr-0 text-nowrap",
+      key: "status",
+      render: (row) => (
+        <Chip
+          label={row?.status || "Pending"}
+          size="small"
+          sx={{
+            fontWeight: 600,
+            textTransform: "capitalize",
+            backgroundColor: (theme) =>
+              row?.status === "processed"
+                ? theme.palette.success.light
+                : theme.palette.warning.light,
+            color: (theme) =>
+              row?.status === "processed"
+                ? theme.palette.success.main
+                : theme.palette.warning.main,
+            border: (theme) =>
+              `1px solid ${
+                row?.status === "processed"
+                  ? theme.palette.success.main
+                  : theme.palette.warning.main
+              }`,
+          }}
+        />
+      ),
+    },
+    {
+      id: "Edit",
+      label: "View",
+      align: "left",
       minWidth: 10,
-      classNames: 'pr-0 text-nowrap',
-      key: 'Edit',
+      classNames: "pr-0 text-nowrap",
+      key: "Edit",
       render: (row) => (
         <AuthorizeComponent permission={CAN_VIEW_BONUS}>
           <Button
@@ -149,7 +182,7 @@ const BonusList: React.FC = () => {
             size="small"
             startIcon={<IconEye size={18} />}
             onClick={() => handleOpenModal(row)}
-            sx={{ minWidth: 'auto' }}
+            sx={{ minWidth: "auto" }}
           />
         </AuthorizeComponent>
       ),
@@ -162,7 +195,7 @@ const BonusList: React.FC = () => {
         setLoading(true);
         const queryString = new URLSearchParams(values).toString();
         const admissions: any = await get(
-          `${baseUrl}/api/v1/bonuses?page=${page}&limit=${rowsPerPage}&${queryString}`
+          `${baseUrl}/api/v1/bonuses?page=${page}&limit=${rowsPerPage}&${queryString}`,
         );
         if (admissions.data) {
           setBonusData(admissions.data.rows);
@@ -170,24 +203,24 @@ const BonusList: React.FC = () => {
         } else {
           setSnackbar({
             open: true,
-            message: admissions.message || '',
-            severity: 'error',
+            message: admissions.message || "",
+            severity: "error",
           });
         }
-        console.log('admissions', admissions);
+        console.log("admissions", admissions);
 
         return admissions;
       } catch (error: any) {
         setSnackbar({
           open: true,
           message: error.message || error,
-          severity: 'error',
+          severity: "error",
         });
       } finally {
         setLoading(false);
       }
     },
-    [token, rowsPerPage, page]
+    [token, rowsPerPage, page],
   );
 
   useEffect(() => {
@@ -199,8 +232,8 @@ const BonusList: React.FC = () => {
       <PageContainer
         heading={<span>Bonus ({totalCount})</span>}
         breadcrumbs={[
-          { title: t('home'), to: '/' },
-          { title: t('Bonus'), to: '/bonus' },
+          { title: t("home"), to: "/" },
+          { title: t("Bonus"), to: "/bonus" },
         ]}
       >
         <Box display="flex" justifyContent="flex-end" mb={1} width="100%">
@@ -212,10 +245,10 @@ const BonusList: React.FC = () => {
             sx={{
               backgroundColor: theme.palette.primary.light,
               color: theme.palette.getContrastText(theme.palette.primary.light),
-              '&:hover': { backgroundColor: theme.palette.primary.main },
+              "&:hover": { backgroundColor: theme.palette.primary.main },
             }}
           >
-            {showFilters ? t('hideFilters') : t('showFilters')}
+            {showFilters ? t("hideFilters") : t("showFilters")}
           </Button>
         </Box>
 
@@ -248,8 +281,8 @@ const BonusList: React.FC = () => {
           getBonus({});
           setSnackbar({
             open: true,
-            message: 'Bonus processed successfully',
-            severity: 'success',
+            message: "Bonus processed successfully",
+            severity: "success",
           });
         }}
       />
@@ -258,7 +291,7 @@ const BonusList: React.FC = () => {
         open={snackbar.open}
         autoHideDuration={4000}
         onClose={() => setSnackbar({ ...snackbar, open: false })}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
         <Alert
           onClose={() => setSnackbar({ ...snackbar, open: false })}

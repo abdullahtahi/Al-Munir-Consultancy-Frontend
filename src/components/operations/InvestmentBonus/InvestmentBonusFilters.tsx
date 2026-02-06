@@ -29,19 +29,15 @@ const InvestmentBonusFilters: React.FC<InvestmentBonusFiltersProps> = ({
       sponsorName: Yup.string(),
       consultantId: Yup.string(),
       bonusType: Yup.string(),
+      status: Yup.string(),
     });
 
   const initialValues = {
     sponsorName: "",
     consultantId: "",
     bonusType: "",
+    status: "",
   };
-
-  const bonusTypes = [
-    { key: "Direct Bonus", value: "direct_bonus" },
-    { key: "Indirect Bonus", value: "indirect_bonus" },
-    { key: "Level Bonus", value: "level_bonus" },
-  ];
 
   return (
     <Formik
@@ -53,19 +49,20 @@ const InvestmentBonusFilters: React.FC<InvestmentBonusFiltersProps> = ({
       {({ handleSubmit, resetForm }) => (
         <Grid container spacing={2}>
           <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4, xl: 4 }}>
-            <CustomFields
-              name="sponsorName"
-              label="Sponsor Name"
-              placeholder="Enter Sponsor Name"
-            />
-          </Grid>
-
-          <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4, xl: 4 }}>
             <CustomSelect
-              name="bonusType"
-              label="Bonus Type"
-              placeholder="Select Bonus Type"
-              options={bonusTypes}
+              name="status"
+              label="status"
+              placeholder="Status"
+              options={[
+                {
+                  key: "Pending",
+                  value: "pending",
+                },
+                {
+                  key: "Processed",
+                  value: "processed",
+                },
+              ]}
             />
           </Grid>
 

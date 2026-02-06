@@ -32,11 +32,13 @@ const ViewInvestmentBonusDialog: React.FC<ViewInvestmentBonusDialogProps> = ({
   const title: any = "View Investment Bonus Detail";
   const onSubmit = async (values: any, { setSubmitting }: any) => {
     try {
-      const response = await put(`${baseUrl}/api/v1/bonuses/processable`, {
-        id: singleUser.id,
-        paymentProof: values.paymentProof,
-        status: "processed",
-      });
+      const response = await put(
+        `${baseUrl}/api/v1/bonuses/${singleUser.id}/process`,
+        {
+          paymentProof: values.paymentProof,
+          status: "processed",
+        },
+      );
 
       if (response?.data) {
         if (onSuccess) onSuccess();
