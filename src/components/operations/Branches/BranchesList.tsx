@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Add, FilterList } from '@mui/icons-material';
-import { IconPencil, IconTrash } from '@tabler/icons-react';
+import React, { useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
+import { Add, FilterList } from "@mui/icons-material";
+import { IconPencil, IconTrash } from "@tabler/icons-react";
 
 import {
   Alert,
@@ -12,20 +12,20 @@ import {
   Snackbar,
   Stack,
   useTheme,
-} from '@mui/material';
-import PageContainer from '@components/layout/PageContainer';
-import GenericTable from 'src/components/generic-table';
-import { useSelector } from 'react-redux';
-import { RootState } from 'src/store';
-import { baseUrl, destroy, get, post, put } from 'src/services/default';
-import AdmissionsFilter from './BranchesFilters';
-import NewBranchesDialog from './dialog/NewBranchesDialog';
-import { DeleteDialog } from 'src/components/delete-dialog/DeleteDialog';
-import Grid from '@mui/material/Grid2';
+} from "@mui/material";
+import PageContainer from "@components/layout/PageContainer";
+import GenericTable from "src/components/generic-table";
+import { useSelector } from "react-redux";
+import { RootState } from "src/store";
+import { baseUrl, destroy, get, post, put } from "src/services/default";
+import AdmissionsFilter from "./BranchesFilters";
+import NewBranchesDialog from "./dialog/NewBranchesDialog";
+import { DeleteDialog } from "src/components/delete-dialog/DeleteDialog";
+import Grid from "@mui/material/Grid2";
 interface TableColumn {
   id: string;
   label: React.ReactNode;
-  align: 'left' | 'center' | 'right';
+  align: "left" | "center" | "right";
   minWidth: number;
   classNames: string;
   key: string;
@@ -39,11 +39,11 @@ const BranchList: React.FC = () => {
 
   const [snackbar, setSnackbar] = useState({
     open: false,
-    message: '',
-    severity: 'error' as 'error' | 'success' | 'info' | 'warning',
+    message: "",
+    severity: "error" as "error" | "success" | "info" | "warning",
   });
   const token = useSelector(
-    (state: RootState) => state?.auth?.user?.data?.accessToken
+    (state: RootState) => state?.auth?.user?.data?.accessToken,
   );
 
   // State
@@ -57,8 +57,8 @@ const BranchList: React.FC = () => {
 
   // Add/Edit dialog state
   const [branchDialogOpen, setBranchOpenDialog] = useState(false);
-  const [branchDialogMode, setbranchDialogMode] = useState<'Add' | 'Edit'>(
-    'Add'
+  const [branchDialogMode, setbranchDialogMode] = useState<"Add" | "Edit">(
+    "Add",
   );
 
   const hanldOpenDeleteModal = (row: any) => {
@@ -69,48 +69,48 @@ const BranchList: React.FC = () => {
 
   const columns: TableColumn[] = [
     {
-      id: 'S.No',
-      label: 'S.No',
-      align: 'left',
+      id: "S.No",
+      label: "S.No",
+      align: "left",
       minWidth: 30,
-      classNames: 'pr-0',
-      key: 'sNo',
+      classNames: "pr-0",
+      key: "sNo",
       render: (_, index) => index + 1,
     },
     {
-      id: 'name',
-      label: 'Name',
-      align: 'left',
+      id: "name",
+      label: "Name",
+      align: "left",
       minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'Student.studentName',
-      render: (row) => row?.name || '-',
+      classNames: "pr-0 text-nowrap",
+      key: "Student.studentName",
+      render: (row) => row?.name || "-",
     },
     {
-      id: 'principleName',
-      label: 'Principle Name',
-      align: 'left',
+      id: "principleName",
+      label: "Principle Name",
+      align: "left",
       minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'Student.phone',
-      render: (row) => row?.principleName || '-',
+      classNames: "pr-0 text-nowrap",
+      key: "Student.phone",
+      render: (row) => row?.principleName || "-",
     },
     {
-      id: 'principleEducation',
-      label: 'Principle Education',
-      align: 'left',
+      id: "principleEducation",
+      label: "Principle Education",
+      align: "left",
       minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'DependOn.relation',
+      classNames: "pr-0 text-nowrap",
+      key: "DependOn.relation",
       render: (row) => row.principleEducation,
     },
     {
-      id: 'isActive',
-      label: 'status',
-      align: 'left',
+      id: "isActive",
+      label: "status",
+      align: "left",
       minWidth: 80,
-      classNames: 'pr-0 text-nowrap',
-      key: 'status',
+      classNames: "pr-0 text-nowrap",
+      key: "status",
       render: (row: any) =>
         row.isActive == true ? (
           <Stack direction="row" spacing={1}>
@@ -124,36 +124,36 @@ const BranchList: React.FC = () => {
     },
 
     {
-      id: 'Edit',
-      label: 'Edit',
-      align: 'left',
+      id: "Edit",
+      label: "Edit",
+      align: "left",
       minWidth: 10,
-      classNames: 'pr-0 text-nowrap',
-      key: 'Edit',
+      classNames: "pr-0 text-nowrap",
+      key: "Edit",
       render: (row) => (
         <Button
           variant="outlined"
           size="small"
           startIcon={<IconPencil size={18} />}
           onClick={() => handleOpenEdit(row)}
-          sx={{ minWidth: 'auto' }}
+          sx={{ minWidth: "auto" }}
         />
       ),
     },
     {
-      id: 'Delete',
-      label: 'Delete',
-      align: 'left',
+      id: "Delete",
+      label: "Delete",
+      align: "left",
       minWidth: 10,
-      classNames: 'pr-0 text-nowrap',
-      key: 'Edit',
+      classNames: "pr-0 text-nowrap",
+      key: "Edit",
       render: (row) => (
         <Button
           variant="outlined"
           size="small"
           startIcon={<IconTrash size={18} />}
           onClick={() => hanldOpenDeleteModal(row)}
-          sx={{ minWidth: 'auto' }}
+          sx={{ minWidth: "auto" }}
         />
       ),
     },
@@ -161,7 +161,7 @@ const BranchList: React.FC = () => {
 
   const handleOpenEdit = (row: any) => {
     setSingleUser(row);
-    setbranchDialogMode('Edit');
+    setbranchDialogMode("Edit");
     setBranchOpenDialog(true);
   };
 
@@ -169,59 +169,59 @@ const BranchList: React.FC = () => {
     async (values: any) => {
       try {
         setLoading(true);
-        console.log('values', values);
+        console.log("values", values);
         const queryString = new URLSearchParams(values).toString();
-        const admissions: any = await get(
-          `${baseUrl}/api/v1/branches?page=${page}&limit=${rowsPerPage}&${queryString}`
+        const branches: any = await get(
+          `${baseUrl}/api/v1/branches?page=${page}&limit=${rowsPerPage}&${queryString}`,
         );
-        if (admissions.data) {
-          setBranchData(admissions.data.rows);
-          setTotalCount(admissions.data.count);
+        if (branches.data) {
+          setBranchData(branches.data.rows);
+          setTotalCount(branches.data.count);
         } else {
           setSnackbar({
             open: true,
-            message: admissions.message || '',
-            severity: 'error',
+            message: branches.message || "",
+            severity: "error",
           });
         }
-        return admissions;
+        return branches;
       } catch (error: any) {
         setSnackbar({
           open: true,
           message: error.message || error,
-          severity: 'error',
+          severity: "error",
         });
       } finally {
         setLoading(false);
       }
     },
-    [token, rowsPerPage, page]
+    [token, rowsPerPage, page],
   );
   const handleSubmit = async (values: any) => {
     try {
       const { isActive, ...rest } = values;
-      if (branchDialogMode == 'Edit') {
-        console.log('');
+      if (branchDialogMode == "Edit") {
+        console.log("");
         const user: any = await put(
           `${baseUrl}/api/v1/branches/${singleUser.id}`,
-          { ...rest, isActive: isActive == 'Active' ? true : false }
+          { ...rest, isActive: isActive == "Active" ? true : false },
         );
 
         setSnackbar({
           open: true,
-          message: user.message || 'Updated SuccessFully',
-          severity: 'success',
+          message: user.message || "Updated SuccessFully",
+          severity: "success",
         });
       } else {
         const branches: any = await post(`${baseUrl}/api/v1/branches`, {
           ...rest,
-          isActive: isActive == 'Active' ? true : false,
+          isActive: isActive == "Active" ? true : false,
         });
-        console.log('branches', branches);
+        console.log("branches", branches);
         setSnackbar({
           open: true,
-          message: branches.message || 'Branch Created SuccessFully',
-          severity: 'success',
+          message: branches.message || "Branch Created SuccessFully",
+          severity: "success",
         });
       }
 
@@ -231,7 +231,7 @@ const BranchList: React.FC = () => {
         setSnackbar({
           open: true,
           message: row.message,
-          severity: 'error',
+          severity: "error",
         });
       });
     }
@@ -242,8 +242,8 @@ const BranchList: React.FC = () => {
       await destroy(`${baseUrl}/api/v1/branches/${singleUser.id}`);
       setSnackbar({
         open: true,
-        message: 'Deleted Successfull',
-        severity: 'success',
+        message: "Deleted Successfull",
+        severity: "success",
       });
       hanldCloseDeleteModal();
       getBranches({});
@@ -251,7 +251,7 @@ const BranchList: React.FC = () => {
       setSnackbar({
         open: true,
         message: error.message,
-        severity: 'error',
+        severity: "error",
       });
     }
   };
@@ -264,20 +264,20 @@ const BranchList: React.FC = () => {
       <PageContainer
         heading={<span>Branches ({totalCount})</span>}
         breadcrumbs={[
-          { title: t('home'), to: '/' },
-          { title: t('Admissions'), to: '/admissions' },
+          { title: t("home"), to: "/" },
+          { title: t("Admissions"), to: "/branches" },
         ]}
         action={
           <Button
             variant="contained"
             onClick={() => {
-              setbranchDialogMode('Add');
+              setbranchDialogMode("Add");
               setBranchOpenDialog(true);
             }}
             color="primary"
             size="small"
             startIcon={<Add />}
-            sx={{ '& .MuiButton-startIcon': { marginRight: 0 } }}
+            sx={{ "& .MuiButton-startIcon": { marginRight: 0 } }}
           />
         }
       >
@@ -290,10 +290,10 @@ const BranchList: React.FC = () => {
             sx={{
               backgroundColor: theme.palette.primary.light,
               color: theme.palette.getContrastText(theme.palette.primary.light),
-              '&:hover': { backgroundColor: theme.palette.primary.main },
+              "&:hover": { backgroundColor: theme.palette.primary.main },
             }}
           >
-            {showFilters ? t('hideFilters') : t('showFilters')}
+            {showFilters ? t("hideFilters") : t("showFilters")}
           </Button>
         </Box>
 
@@ -335,7 +335,7 @@ const BranchList: React.FC = () => {
         open={snackbar.open}
         autoHideDuration={4000}
         onClose={() => setSnackbar({ ...snackbar, open: false })}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
         <Alert
           onClose={() => setSnackbar({ ...snackbar, open: false })}

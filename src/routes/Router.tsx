@@ -20,6 +20,9 @@ const Investment = Loadable(
   lazy(() => import("../views/operations/Investment")),
 );
 const Cro = Loadable(lazy(() => import("../views/operations/Bonus")));
+const InvestmentBonus = Loadable(
+  lazy(() => import("../views/operations/InvestmentBonus")),
+);
 const PickupSlip = Loadable(
   lazy(() => import("../views/operations/PickupSlip")),
 );
@@ -218,6 +221,10 @@ const Router = [
       { path: "/al-munir-system/users", element: <EirIn /> },
       { path: "/al-munir-system/admissions", element: <Admissions /> },
       { path: "/al-munir-system/bonus", element: <Cro /> },
+      {
+        path: "/al-munir-system/investment-bonus",
+        element: <InvestmentBonus />,
+      },
       { path: "/al-munir-system/investment", element: <Investment /> },
       // { path: '/operations/pickup-slips', element: <PickupSlip /> },
       // { path: '/operations/sale-unit', element: <SaleUnit /> },

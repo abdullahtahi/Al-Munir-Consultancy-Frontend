@@ -108,6 +108,13 @@ const Menuitems: MenuitemsType[] = [
   },
   {
     id: uniqueId(),
+    title: 'Investment Bonus',
+    icon: IconGiftFilled,
+    href: '/al-munir-system/investment-bonus',
+    permission: CAN_VIEW_BONUS,
+  },
+  {
+    id: uniqueId(),
     title: 'Investment',
     icon: IconCashBanknote,
     href: '/al-munir-system/investment',

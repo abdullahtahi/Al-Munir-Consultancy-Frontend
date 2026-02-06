@@ -7,6 +7,7 @@ export const initialValues = {
   durationFrom: "",
   durationTo: "",
   amount: "",
+  branchId: "",
 };
 
 export const validationSchema = Yup.object().shape({
@@ -18,6 +19,7 @@ export const validationSchema = Yup.object().shape({
   amount: Yup.number()
     .required("Amount is required")
     .positive("Amount must be positive"),
+  branchId: Yup.string(),
 });
 
 export const investmentTypes = [

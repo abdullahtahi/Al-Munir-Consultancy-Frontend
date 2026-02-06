@@ -124,6 +124,7 @@ const AddInvestmentDialog: React.FC<AddInvestmentDialogProps> = ({
 }) => {
   const [fetchedInvestments, setFetchedInvestments] = React.useState<any[]>([]);
   const [loadingInvestments, setLoadingInvestments] = React.useState(false);
+  const [branches, setBranches] = React.useState<any[]>([]);
 
   const fetchPreviousInvestments = async (consultantId: number) => {
     try {
@@ -144,11 +145,30 @@ const AddInvestmentDialog: React.FC<AddInvestmentDialogProps> = ({
     }
   };
 
+  const fetchBranches = async () => {
+    try {
+      const response: any = await get(`${baseUrl}/api/v1/branches?isAll=true`);
+      if (response && response.data) {
+        const formattedBranches =
+          response.data.rows?.map((branch: any) => ({
+            key: branch.name,
+            value: branch.id,
+          })) || [];
+        setBranches(formattedBranches);
+      }
+    } catch (error) {
+      console.error("Error fetching branches:", error);
+      setBranches([]);
+    }
+  };
+
   const title = mode === "Add" ? "Add Investment" : "Edit Investment";
   const actionLabel = mode === "Add" ? "Add" : "Edit";
 
   React.useEffect(() => {
-    if (!open) {
+    if (open) {
+      fetchBranches();
+    } else {
       setFetchedInvestments([]);
     }
   }, [open]);
@@ -177,6 +197,7 @@ const AddInvestmentDialog: React.FC<AddInvestmentDialogProps> = ({
                 durationFrom: dayjs(singleUser.durationFrom),
                 durationTo: dayjs(singleUser.durationTo),
                 amount: singleUser.amount || "",
+                branchId: singleUser.branchId || null,
               }
             : initialValues
         }
@@ -282,6 +303,18 @@ const AddInvestmentDialog: React.FC<AddInvestmentDialogProps> = ({
                     type="number"
                   />
                 </Grid>
+                {(values.typeOfInvestment === "Active Investor" ||
+                  values.typeOfInvestment === "Slient Investor") && (
+                  <Grid size={{ xs: 12, sm: 6 }}>
+                    <CustomSelect
+                      name="branchId"
+                      label="Branch"
+                      placeholder="Select Branch"
+                      options={branches}
+                      disabled={mode === "Edit"}
+                    />
+                  </Grid>
+                )}
               </Grid>
             </DialogContent>
 
