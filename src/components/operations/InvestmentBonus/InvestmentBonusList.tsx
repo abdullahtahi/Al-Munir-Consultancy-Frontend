@@ -184,7 +184,11 @@ const InvestmentBonusList: React.FC = () => {
     async (values: any) => {
       try {
         setLoading(true);
-        const queryParams = { ...values, admissionId: null };
+        const queryParams = {
+          ...values,
+          admissionId: null,
+          referenceType: "investment",
+        };
         const queryString = new URLSearchParams(queryParams).toString();
         const bonuses: any = await get(
           `${baseUrl}/api/v1/bonuses?page=${page}&limit=${rowsPerPage}&${queryString}`,
